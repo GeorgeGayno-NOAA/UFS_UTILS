@@ -1,7 +1,9 @@
 var files =
 [
     [ "affinity.c", "affinity_8c.html", "affinity_8c" ],
-    [ "atmosphere.F90", "atmosphere_8F90_source.html", null ],
+    [ "atmosphere.F90", "atmosphere_8F90.html", [
+      [ "atmosphere", "classatmosphere.html", "classatmosphere" ]
+    ] ],
     [ "bilinear_interp.c", "bilinear__interp_8c_source.html", null ],
     [ "bilinear_interp.h", "bilinear__interp_8h_source.html", null ],
     [ "chgres.f90", "chgres_8f90.html", "chgres_8f90" ],

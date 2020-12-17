@@ -1,5 +1,6 @@
 var NAVTREEINDEX8 =
 {
+"read__mosaic_8c.html#a05a7efd911fa67ab1db08291be3d5424":[3,0,97,3],
 "read__mosaic_8c.html#a070fc541ae80876f7da249dc7c64914a":[3,0,97,25],
 "read__mosaic_8c.html#a0879ad3782288545b309fbd5bf0051d0":[3,0,97,29],
 "read__mosaic_8c.html#a22731d84ae85cb3d6a5f8c1fa638d173":[3,0,97,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX8 =
 "structVar__config.html#abd79150f9a1269b17db6d233f2fb230b":[2,0,52,19],
 "structVar__config.html#acb69749c2a64e50d9594562c4ab353eb":[2,0,52,26],
 "structVar__config.html#acc8e2ee5cc002c185434c9c462868d22":[2,0,52,12],
-"structVar__config.html#adc11688869ab79d1c42d7b680925827d":[2,0,52,3],
-"structVar__config.html#ae67326a4d84fb7c2586012dd839d4174":[2,0,52,13]
+"structVar__config.html#adc11688869ab79d1c42d7b680925827d":[2,0,52,3]
 };

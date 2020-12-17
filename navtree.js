@@ -1,8 +1,8 @@
 var NAVTREE =
 [
   [ "UFS_UTILS", "index.html", [
-    [ "user_guide", "md__lfs4_HFIP_emcda_George_8Gayno_ufs_utils_8git_UFS_UTILS_docs_user_guide.html", null ],
-    [ "readme", "md__lfs4_HFIP_emcda_George_8Gayno_ufs_utils_8git_UFS_UTILS_sorc_fvcom_tools_8fd_readme.html", null ],
+    [ "user_guide", "md__gpfs_dell2_emc_modeling_noscrub_George_8Gayno_ufs_utils_8git_UFS_UTILS_docs_user_guide.html", null ],
+    [ "readme", "md__gpfs_dell2_emc_modeling_noscrub_George_8Gayno_ufs_utils_8git_UFS_UTILS_sorc_fvcom_tools_8fd_readme.html", null ],
     [ "Data Types List", null, [
       [ "Data Types List", "annotated.html", "annotated" ],
       [ "Data Fields", "functions.html", [

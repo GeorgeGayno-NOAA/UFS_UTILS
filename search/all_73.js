@@ -23,6 +23,7 @@ var searchData=
   ['spherical_5farea',['spherical_area',['../tool__util_8c.html#af0e65fff68a4ca220133b9d248ccf34a',1,'spherical_area(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4):&#160;tool_util.c'],['../tool__util_8h.html#af0e65fff68a4ca220133b9d248ccf34a',1,'spherical_area(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4):&#160;tool_util.c']]],
   ['spherical_5fdist',['spherical_dist',['../tool__util_8c.html#a0390b756a4bbcf1d38b389c6f0908cbe',1,'spherical_dist(double x1, double y1, double x2, double y2):&#160;tool_util.c'],['../tool__util_8h.html#a0390b756a4bbcf1d38b389c6f0908cbe',1,'spherical_dist(double x1, double y1, double x2, double y2):&#160;tool_util.c']]],
   ['static_5fdata',['static_data',['../classstatic__data.html',1,'']]],
+  ['static_5fdata_2ef90',['static_data.F90',['../static__data_8F90.html',1,'']]],
   ['surface',['surface',['../classsurface.html',1,'']]],
   ['surface_5fchgres',['surface_chgres',['../classsurface__chgres.html',1,'']]],
   ['surface_5fchgres_2ef90',['surface_chgres.f90',['../surface__chgres_8f90.html',1,'']]],

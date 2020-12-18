@@ -432,7 +432,9 @@ var files =
     [ "source_grid.F90", "source__grid_8F90.html", [
       [ "source_grid", "classsource__grid.html", "classsource__grid" ]
     ] ],
-    [ "static_data.F90", "static__data_8F90_source.html", null ],
+    [ "static_data.F90", "static__data_8F90.html", [
+      [ "static_data", "classstatic__data.html", "classstatic__data" ]
+    ] ],
     [ "surface.F90", "surface_8F90_source.html", null ],
     [ "surface_chgres.f90", "surface__chgres_8f90.html", [
       [ "sfc1d", "classsurface__chgres.html#structsurface__chgres_1_1sfc1d", [

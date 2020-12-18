@@ -9,6 +9,7 @@ var searchData=
   ['snow2mdl_2ef',['snow2mdl.f',['../snow2mdl_8f.html',1,'']]],
   ['snowdat_2ef',['snowdat.f',['../snowdat_8f.html',1,'']]],
   ['source_5fgrid_2ef90',['source_grid.F90',['../source__grid_8F90.html',1,'']]],
+  ['static_5fdata_2ef90',['static_data.F90',['../static__data_8F90.html',1,'']]],
   ['surface_5fchgres_2ef90',['surface_chgres.f90',['../surface__chgres_8f90.html',1,'']]],
   ['utils_2ef90',['utils.f90',['../sfc__climo__gen_8fd_2utils_8f90.html',1,'']]]
 ];

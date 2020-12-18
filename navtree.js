@@ -32,7 +32,7 @@ var NAVTREEINDEX =
 "mosaic__util_8h.html#a8ed512177491d2e4fd7b99355f8ee29c",
 "mpp__io_8h.html#af137dce0c6f3cd2c597d190ac8727597",
 "program__setup_8f.html",
-"structVar__config.html#aac10004220e9abc4935ee91e2cc9c4d0"
+"structVar__config.html#aa5340a5bfea149f198628054fce665d6"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

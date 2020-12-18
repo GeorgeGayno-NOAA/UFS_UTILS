@@ -415,7 +415,9 @@ var files =
     [ "regional_esg_grid.f90", "regional__esg__grid_8f90.html", "regional__esg__grid_8f90" ],
     [ "resevod.h", "resevod_8h_source.html", null ],
     [ "search.f90", "search_8f90.html", "search_8f90" ],
-    [ "search_util.f90", "search__util_8f90_source.html", null ],
+    [ "search_util.f90", "search__util_8f90.html", [
+      [ "search_util", "classsearch__util.html", "classsearch__util" ]
+    ] ],
     [ "setup.f90", "setup_8f90.html", [
       [ "setup", "classsetup.html", "classsetup" ]
     ] ],
@@ -435,7 +437,9 @@ var files =
     [ "static_data.F90", "static__data_8F90.html", [
       [ "static_data", "classstatic__data.html", "classstatic__data" ]
     ] ],
-    [ "surface.F90", "surface_8F90_source.html", null ],
+    [ "surface.F90", "surface_8F90.html", [
+      [ "surface", "classsurface.html", "classsurface" ]
+    ] ],
     [ "surface_chgres.f90", "surface__chgres_8f90.html", [
       [ "sfc1d", "classsurface__chgres.html#structsurface__chgres_1_1sfc1d", [
         [ "albedo", "classsurface__chgres.html#a30789eb8290f4053f8d57d3fbe1f2f7f", null ],

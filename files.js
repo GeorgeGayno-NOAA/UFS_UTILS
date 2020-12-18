@@ -44,7 +44,9 @@ var files =
     [ "grib_utils.f", "grib__utils_8f.html", "grib__utils_8f" ],
     [ "grid.F90", "grid_8F90_source.html", null ],
     [ "inland.F90", "inland_8F90.html", "inland_8F90" ],
-    [ "input_data.F90", "input__data_8F90_source.html", null ],
+    [ "input_data.F90", "input__data_8F90.html", [
+      [ "input_data", "classinput__data.html", "classinput__data" ]
+    ] ],
     [ "interp.c", "interp_8c.html", "interp_8c" ],
     [ "interp.F90", "interp_8F90.html", "interp_8F90" ],
     [ "interp.h", "interp_8h.html", "interp_8h" ],

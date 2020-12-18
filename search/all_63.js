@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['chgres_2ef90',['chgres.f90',['../chgres_8f90.html',1,'']]],
+  ['chgres_2ef90',['chgres.f90',['../chgres_8f90.html',1,'(Global Namespace)'],['../chgres_8F90.html',1,'(Global Namespace)']]],
   ['chgres_5futils_2ef90',['chgres_utils.f90',['../chgres__utils_8f90.html',1,'']]],
   ['clip',['clip',['../create__xgrid_8c.html#a63960816308766e2f024b878cabf60fa',1,'clip(const double lon_in[], const double lat_in[], int n_in, double ll_lon, double ll_lat, double ur_lon, double ur_lat, double lon_out[], double lat_out[]):&#160;create_xgrid.c'],['../create__xgrid_8h.html#a63960816308766e2f024b878cabf60fa',1,'clip(const double lon_in[], const double lat_in[], int n_in, double ll_lon, double ll_lat, double ur_lon, double ur_lat, double lon_out[], double lat_out[]):&#160;create_xgrid.c']]],
   ['clip_5f2dx2d',['clip_2dx2d',['../create__xgrid_8c.html#ae2282257292880364a1237221c9353cf',1,'clip_2dx2d(const double lon1_in[], const double lat1_in[], int n1_in, const double lon2_in[], const double lat2_in[], int n2_in, double lon_out[], double lat_out[]):&#160;create_xgrid.c'],['../create__xgrid_8h.html#ae2282257292880364a1237221c9353cf',1,'clip_2dx2d(const double lon1_in[], const double lat1_in[], int n1_in, const double lon2_in[], const double lat2_in[], int n2_in, double lon_out[], double lat_out[]):&#160;create_xgrid.c']]],

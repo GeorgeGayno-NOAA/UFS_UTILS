@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>UFS_UTILS: grib2_util Module Reference</title>
+<title>UFS_UTILS: chgres.F90 File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -46,8 +46,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Data&#160;Types&#160;List</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Types&#160;List</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -68,8 +68,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Data&#160;Types&#160;List</span></a></li>
-      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('classgrib2__util.html','');});
+$(document).ready(function(){initNavTree('chgres_8F90.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -103,36 +103,35 @@ $(document).ready(function(){initNavTree('classgrib2__util.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#func-members">Functions/Subroutines</a>  </div>
   <div class="headertitle">
-<div class="title">grib2_util Module Reference</div>  </div>
+<div class="title">chgres.F90 File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Initialize an FV3 model run.  
+<a href="#details">More...</a></p>
+
+<p><a href="chgres_8F90_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:af996d692ab1b4d7a573276686d94aaa5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af996d692ab1b4d7a573276686d94aaa5"></a>
-subroutine&#160;</td><td class="memItemRight" valign="bottom"><b>convert_omega</b> (omega, p, t, q, clb, cub)</td></tr>
-<tr class="separator:af996d692ab1b4d7a573276686d94aaa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e4de6a31e8b229216d5f97108683739"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e4de6a31e8b229216d5f97108683739"></a>
-subroutine&#160;</td><td class="memItemRight" valign="bottom"><b>rh2spfh</b> (rh_sphum, p, t)</td></tr>
-<tr class="separator:a0e4de6a31e8b229216d5f97108683739"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49fa08d1399de2c97c469a7790be29b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a49fa08d1399de2c97c469a7790be29b1"></a>
-character(len=len(strin)) function&#160;</td><td class="memItemRight" valign="bottom"><b>to_upper</b> (strIn)</td></tr>
-<tr class="separator:a49fa08d1399de2c97c469a7790be29b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions/Subroutines</h2></td></tr>
+<tr class="memitem:ad344b0a3c44aec05c1d3d8170d5527b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad344b0a3c44aec05c1d3d8170d5527b1"></a>
+program&#160;</td><td class="memItemRight" valign="bottom"><b>chgres</b></td></tr>
+<tr class="separator:ad344b0a3c44aec05c1d3d8170d5527b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="grib2__util_8F90_source.html#l00005">5</a> of file <a class="el" href="grib2__util_8F90_source.html">grib2_util.F90</a>.</p>
-</div><hr/>The documentation for this module was generated from the following file:<ul>
-<li><a class="el" href="grib2__util_8F90_source.html">grib2_util.F90</a></li>
-</ul>
-</div><!-- contents -->
+<div class="textblock"><p>Initialize an FV3 model run. </p>
+<p>Program CHGRES_CUBE</p>
+<p>Abstract: Initialize an FV3 run using history or restart data from another FV3 run, or the NEMS version of the spectral GFS. Converts atmospheric, surface and nst data. </p>
+
+<p>Definition in file <a class="el" href="chgres_8F90_source.html">chgres.F90</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="classgrib2__util.html">grib2_util</a></li>
+    <li class="navelem"><a class="el" href="dir_d8b772108138bf796aaa3f7fe4e09294.html">sorc</a></li><li class="navelem"><a class="el" href="dir_17310f848ad51b2f72dd722d66ff1321.html">chgres_cube.fd</a></li><li class="navelem"><a class="el" href="chgres_8F90.html">chgres.F90</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>

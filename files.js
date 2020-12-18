@@ -7,7 +7,7 @@ var files =
     [ "bilinear_interp.c", "bilinear__interp_8c_source.html", null ],
     [ "bilinear_interp.h", "bilinear__interp_8h_source.html", null ],
     [ "chgres.f90", "chgres_8f90.html", "chgres_8f90" ],
-    [ "chgres.F90", "chgres_8F90_source.html", null ],
+    [ "chgres.F90", "chgres_8F90.html", "chgres_8F90" ],
     [ "chgres_utils.f90", "chgres__utils_8f90.html", "chgres__utils_8f90" ],
     [ "conserve_interp.c", "conserve__interp_8c_source.html", null ],
     [ "conserve_interp.h", "conserve__interp_8h_source.html", null ],
@@ -40,7 +40,9 @@ var files =
     [ "gradient.F90", "gradient_8F90_source.html", null ],
     [ "gradient_c2l.c", "gradient__c2l_8c.html", "gradient__c2l_8c" ],
     [ "gradient_c2l.h", "gradient__c2l_8h.html", "gradient__c2l_8h" ],
-    [ "grib2_util.F90", "grib2__util_8F90_source.html", null ],
+    [ "grib2_util.F90", "grib2__util_8F90.html", [
+      [ "grib2_util", "classgrib2__util.html", "classgrib2__util" ]
+    ] ],
     [ "grib_utils.f", "grib__utils_8f.html", "grib__utils_8f" ],
     [ "grid.F90", "grid_8F90_source.html", null ],
     [ "inland.F90", "inland_8F90.html", "inland_8F90" ],

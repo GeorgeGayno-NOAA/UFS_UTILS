@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>UFS_UTILS: thompson_mp_climo_data Module Reference</title>
+<title>UFS_UTILS: utils.f90 File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -46,8 +46,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Data&#160;Types&#160;List</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Types&#160;List</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -68,8 +68,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Data&#160;Types&#160;List</span></a></li>
-      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('classthompson__mp__climo__data.html','');});
+$(document).ready(function(){initNavTree('chgres__cube_8fd_2utils_8f90.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -103,49 +103,42 @@ $(document).ready(function(){initNavTree('classthompson__mp__climo__data.html','
 
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Data Fields</a>  </div>
+<a href="#func-members">Functions/Subroutines</a>  </div>
   <div class="headertitle">
-<div class="title">thompson_mp_climo_data Module Reference</div>  </div>
+<div class="title">chgres_cube.fd/utils.f90 File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Contains utility routines.  
+<a href="#details">More...</a></p>
+
+<p><a href="chgres__cube_8fd_2utils_8f90_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a50ac430a78518b0963e23517cba243bb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a50ac430a78518b0963e23517cba243bb"></a>
-subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><b>cleanup_thomp_mp_climo_input_data</b></td></tr>
-<tr class="separator:a50ac430a78518b0963e23517cba243bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92a071650b2c4368ae233ac8b85783b4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92a071650b2c4368ae233ac8b85783b4"></a>
-subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><b>read_thomp_mp_climo_data</b></td></tr>
-<tr class="separator:a92a071650b2c4368ae233ac8b85783b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Data Fields</h2></td></tr>
-<tr class="memitem:a970d00615bea70ba6284e9df400286e4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a970d00615bea70ba6284e9df400286e4"></a>
-integer, public&#160;</td><td class="memItemRight" valign="bottom"><b>lev_thomp_mp_climo</b></td></tr>
-<tr class="separator:a970d00615bea70ba6284e9df400286e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4312b55ea121b9c515619b06e80cf2c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4312b55ea121b9c515619b06e80cf2c3"></a>
-type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>qnifa_climo_input_grid</b></td></tr>
-<tr class="separator:a4312b55ea121b9c515619b06e80cf2c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a074322beb120491a9cac33db176369"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a074322beb120491a9cac33db176369"></a>
-type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>qnwfa_climo_input_grid</b></td></tr>
-<tr class="separator:a6a074322beb120491a9cac33db176369"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e3f63f7487a4a397dec4e425c76c46b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e3f63f7487a4a397dec4e425c76c46b"></a>
-type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>thomp_pres_climo_input_grid</b></td></tr>
-<tr class="separator:a8e3f63f7487a4a397dec4e425c76c46b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions/Subroutines</h2></td></tr>
+<tr class="memitem:a494d969fc26018c8a44274492cd80086"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a494d969fc26018c8a44274492cd80086"></a>
+subroutine&#160;</td><td class="memItemRight" valign="bottom"><b>error_handler</b> (string, rc)</td></tr>
+<tr class="separator:a494d969fc26018c8a44274492cd80086"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a442215c3836c0cf8a853c078861ba79f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a442215c3836c0cf8a853c078861ba79f"></a>
+subroutine&#160;</td><td class="memItemRight" valign="bottom"><b>netcdf_err</b> (err, string)</td></tr>
+<tr class="separator:a442215c3836c0cf8a853c078861ba79f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad31e4093177467fb971bb4889546a2c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad31e4093177467fb971bb4889546a2c4"></a>
+subroutine&#160;</td><td class="memItemRight" valign="bottom"><b>to_lower</b> (strIn)</td></tr>
+<tr class="separator:ad31e4093177467fb971bb4889546a2c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48b9ec226aa2d7678b0c7f00bc4c3047"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48b9ec226aa2d7678b0c7f00bc4c3047"></a>
+subroutine&#160;</td><td class="memItemRight" valign="bottom"><b>to_upper</b> (strIn)</td></tr>
+<tr class="separator:a48b9ec226aa2d7678b0c7f00bc4c3047"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="thompson__mp__climo__data_8F90_source.html#l00008">8</a> of file <a class="el" href="thompson__mp__climo__data_8F90_source.html">thompson_mp_climo_data.F90</a>.</p>
-</div><hr/>The documentation for this module was generated from the following file:<ul>
-<li><a class="el" href="thompson__mp__climo__data_8F90_source.html">thompson_mp_climo_data.F90</a></li>
-</ul>
-</div><!-- contents -->
+<div class="textblock"><p>Contains utility routines. </p>
+
+<p>Definition in file <a class="el" href="chgres__cube_8fd_2utils_8f90_source.html">chgres_cube.fd/utils.f90</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="classthompson__mp__climo__data.html">thompson_mp_climo_data</a></li>
+    <li class="navelem"><a class="el" href="dir_d8b772108138bf796aaa3f7fe4e09294.html">sorc</a></li><li class="navelem"><a class="el" href="dir_17310f848ad51b2f72dd722d66ff1321.html">chgres_cube.fd</a></li><li class="navelem"><a class="el" href="chgres__cube_8fd_2utils_8f90.html">utils.f90</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>

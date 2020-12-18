@@ -1,5 +1,6 @@
 var NAVTREEINDEX9 =
 {
+"structVar__config.html#a94347e83de895f806034ce6581218472":[2,0,52,22],
 "structVar__config.html#aa363a359a9604675bbe32aed286ef8c4":[2,0,52,7],
 "structVar__config.html#aa5340a5bfea149f198628054fce665d6":[2,0,52,6],
 "structVar__config.html#aac10004220e9abc4935ee91e2cc9c4d0":[2,0,52,5],

@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"classsnowdat.html":[2,0,45],
 "classsnowdat.html#a097b7b0377daf37b721b0c871762e24d":[2,0,45,2],
 "classsnowdat.html#a139434d1d2a091a5b6160be5e626c2e8":[2,0,45,18],
 "classsnowdat.html#a15e87b99bc4cbdc53cb072e3a3bd331a":[2,0,45,8],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "create__xgrid_8c.html#ab85818daa3268d8c1ccf8037bde85ead":[3,0,15,34],
 "create__xgrid_8c.html#abd4dfc1dfa309da9f729d855c263d0bb":[3,0,15,19],
 "create__xgrid_8c.html#ac8a36a4b29d67484fe3fd5a3b4c19508":[3,0,15,31],
-"create__xgrid_8c.html#ac9f3cd2cfd2082b6651714664fea968f":[3,0,15,15],
-"create__xgrid_8c.html#ad43583a1c9be5fc46c09b4482f3c58e2":[3,0,15,33]
+"create__xgrid_8c.html#ac9f3cd2cfd2082b6651714664fea968f":[3,0,15,15]
 };

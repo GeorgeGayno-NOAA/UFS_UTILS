@@ -108,7 +108,9 @@ var files =
     [ "model_grid.f", "model__grid_8f.html", [
       [ "model_grid", "classmodel__grid.html", "classmodel__grid" ]
     ] ],
-    [ "chgres_cube.fd/model_grid.F90", "chgres__cube_8fd_2model__grid_8F90_source.html", null ],
+    [ "chgres_cube.fd/model_grid.F90", "chgres__cube_8fd_2model__grid_8F90.html", [
+      [ "model_grid", "classmodel__grid.html", "classmodel__grid" ]
+    ] ],
     [ "sfc_climo_gen.fd/model_grid.F90", "sfc__climo__gen_8fd_2model__grid_8F90.html", [
       [ "model_grid", "classmodel__grid.html", "classmodel__grid" ]
     ] ],

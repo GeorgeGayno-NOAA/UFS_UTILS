@@ -122,7 +122,7 @@ $(document).ready(function(){initNavTree('chgres_8F90_source.html','');});
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; <span class="keywordtype">use </span><a class="code" href="classatmosphere.html">atmosphere</a><span class="keywordtype">, only</span>          : atmosphere_driver</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; <span class="keywordtype">use </span><a class="code" href="classprogram__setup.html">program_setup</a><span class="keywordtype">, only</span>       : <a class="code" href="classprogram__setup.html#ac52f11da9f12e0cf9ff87fae136f0cde">read_setup_namelist</a>, &amp;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; <span class="keywordtype">use </span><a class="code" href="classprogram__setup.html">program_setup</a><span class="keywordtype">, only</span>       : read_setup_namelist, &amp;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                                 read_varmap, &amp;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                                 convert_atm, &amp;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                                 convert_sfc </div>
@@ -167,7 +167,7 @@ $(document).ready(function(){initNavTree('chgres_8F90_source.html','');});
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">! Read program configuration namelist.</span></div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">!-------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; call <a class="code" href="classprogram__setup.html#ac52f11da9f12e0cf9ff87fae136f0cde">read_setup_namelist</a></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; call read_setup_namelist</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">!-------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">! Read variable mapping file (used for grib2 input data only).</span></div>
@@ -216,8 +216,7 @@ $(document).ready(function(){initNavTree('chgres_8F90_source.html','');});
 <div class="ttc" id="classsurface_html"><div class="ttname"><a href="classsurface.html">surface</a></div><div class="ttdef"><b>Definition:</b> <a href="surface_8F90_source.html#l00022">surface.F90:22</a></div></div>
 <div class="ttc" id="classmodel__grid_html"><div class="ttname"><a href="classmodel__grid.html">model_grid</a></div><div class="ttdef"><b>Definition:</b> <a href="chgres__cube_8fd_2model__grid_8F90_source.html#l00001">chgres_cube.fd/model_grid.F90:1</a></div></div>
 <div class="ttc" id="classatmosphere_html"><div class="ttname"><a href="classatmosphere.html">atmosphere</a></div><div class="ttdef"><b>Definition:</b> <a href="atmosphere_8F90_source.html#l00026">atmosphere.F90:26</a></div></div>
-<div class="ttc" id="classprogram__setup_html"><div class="ttname"><a href="classprogram__setup.html">program_setup</a></div><div class="ttdoc">program setup </div><div class="ttdef"><b>Definition:</b> <a href="chgres__cube_8fd_2program__setup_8f90_source.html#l00001">chgres_cube.fd/program_setup.f90:1</a></div></div>
-<div class="ttc" id="classprogram__setup_html_ac52f11da9f12e0cf9ff87fae136f0cde"><div class="ttname"><a href="classprogram__setup.html#ac52f11da9f12e0cf9ff87fae136f0cde">program_setup::read_setup_namelist</a></div><div class="ttdeci">subroutine, public read_setup_namelist(localpet)</div><div class="ttdoc">read setup namelist </div><div class="ttdef"><b>Definition:</b> <a href="sfc__climo__gen_8fd_2program__setup_8f90_source.html#l00092">sfc_climo_gen.fd/program_setup.f90:92</a></div></div>
+<div class="ttc" id="classprogram__setup_html"><div class="ttname"><a href="classprogram__setup.html">program_setup</a></div><div class="ttdoc">program setup </div><div class="ttdef"><b>Definition:</b> <a href="chgres__cube_8fd_2program__setup_8f90_source.html#l00161">chgres_cube.fd/program_setup.f90:161</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

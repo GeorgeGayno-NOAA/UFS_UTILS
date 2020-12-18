@@ -376,7 +376,9 @@ var files =
     [ "program_setup.f", "program__setup_8f.html", [
       [ "program_setup", "classprogram__setup.html", "classprogram__setup" ]
     ] ],
-    [ "chgres_cube.fd/program_setup.f90", "chgres__cube_8fd_2program__setup_8f90_source.html", null ],
+    [ "chgres_cube.fd/program_setup.f90", "chgres__cube_8fd_2program__setup_8f90.html", [
+      [ "program_setup", "classprogram__setup.html", "classprogram__setup" ]
+    ] ],
     [ "sfc_climo_gen.fd/program_setup.f90", "sfc__climo__gen_8fd_2program__setup_8f90.html", [
       [ "program_setup", "classprogram__setup.html", "classprogram__setup" ]
     ] ],

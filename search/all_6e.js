@@ -4,6 +4,7 @@ var searchData=
   ['nb_5fgp_5fidx',['nb_gp_idx',['../classcs__nb.html#structcs__nb_1_1nb__gp__idx',1,'cs_nb']]],
   ['nb_5ftile_5fidx',['nb_tile_idx',['../classcs__nb.html#structcs__nb_1_1nb__tile__idx',1,'cs_nb']]],
   ['nc_5fcheck_2ef90',['nc_check.f90',['../nc__check_8f90.html',1,'']]],
+  ['netcdf_5ferr',['netcdf_err',['../chgres__cube_8fd_2utils_8f90.html#a442215c3836c0cf8a853c078861ba79f',1,'utils.f90']]],
   ['netcdf_5fio_2ef90',['netcdf_io.F90',['../netcdf__io_8F90.html',1,'']]],
   ['node',['Node',['../mosaic__util_8h.html#structNode',1,'']]],
   ['nrlmsise00_5fsub_2ef90',['nrlmsise00_sub.f90',['../nrlmsise00__sub_8f90.html',1,'']]],

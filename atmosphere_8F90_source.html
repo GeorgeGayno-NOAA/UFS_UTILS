@@ -138,7 +138,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                                       use_thomp_mp_climo</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; <span class="keywordtype">use </span><a class="code" href="classthompson__mp__climo__data.html">thompson_mp_climo_data</a><span class="keywordtype">, only</span>    : <a class="code" href="classthompson__mp__climo__data.html#a92a071650b2c4368ae233ac8b85783b4">read_thomp_mp_climo_data</a>,  &amp;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                                       cleanup_thomp_mp_climo_input_data, &amp;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                                       <a class="code" href="classthompson__mp__climo__data.html#a50ac430a78518b0963e23517cba243bb">cleanup_thomp_mp_climo_input_data</a>, &amp;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                                       qnifa_climo_input_grid, &amp;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                                       qnwfa_climo_input_grid, &amp;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                                       thomp_pres_climo_input_grid, &amp;</div>
@@ -284,7 +284,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                           routehandle=regrid_bl, &amp;</div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                           srctermprocessing=isrctermprocessing, rc=rc)</div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;   <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;      call error_handler(<span class="stringliteral">&quot;IN FieldSMMStore&quot;</span>, rc)</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;      call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldSMMStore&quot;</span>, rc)</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;</div>
@@ -299,7 +299,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                              routehandle=regrid_bl, &amp;</div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                              regridmethod=method, rc=rc)</div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;   <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;      call error_handler(<span class="stringliteral">&quot;IN FieldRegridStore&quot;</span>, rc)</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;      call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldRegridStore&quot;</span>, rc)</div>
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
 <div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; <span class="keywordflow">endif</span></div>
 <div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div>
@@ -310,7 +310,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                       termorderflag=esmf_termorder_srcseq, &amp;</div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;                       rc=rc)</div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;</div>
 <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160; print*,<span class="stringliteral">&quot;- CALL Field_Regrid FOR PRESSURE.&quot;</span></div>
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160; call esmf_fieldregrid(pres_input_grid, &amp;</div>
@@ -319,7 +319,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                       termorderflag=esmf_termorder_srcseq, &amp;</div>
 <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                       rc=rc)</div>
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160; <span class="keywordflow">do</span> n = 1, num_tracers</div>
 <div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;   print*,<span class="stringliteral">&quot;- CALL Field_Regrid FOR TRACER &quot;</span>, trim(tracers(n))</div>
@@ -328,7 +328,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;                         routehandle=regrid_bl, &amp;</div>
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                         termorderflag=esmf_termorder_srcseq, rc=rc)</div>
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;   <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;      call error_handler(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;      call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;      </div>
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160; <span class="keywordflow">enddo</span></div>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;</div>
@@ -338,14 +338,14 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                       routehandle=regrid_bl, &amp;</div>
 <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                       termorderflag=esmf_termorder_srcseq, rc=rc)</div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    </div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160; nullify(tempptr)</div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR INPUT GRID VERTICAL VEL.&quot;</span></div>
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160; call esmf_fieldget(dzdt_input_grid, &amp;</div>
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                    farrayptr=tempptr, rc=rc)</div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    </div>
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160; print*, <span class="stringliteral">&quot;MIN MAX W INPUT = &quot;</span>, minval(tempptr), maxval(tempptr)</div>
 <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;</div>
@@ -354,7 +354,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160; call esmf_fieldget(dzdt_b4adj_target_grid, &amp;</div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                    farrayptr=tempptr, rc=rc)</div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    </div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160; print*, <span class="stringliteral">&quot;MIN MAX W B4ADJ = &quot;</span>, minval(tempptr), maxval(tempptr)</div>
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
@@ -363,7 +363,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160; call esmf_fieldget(ps_input_grid, &amp;</div>
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                    farrayptr=psptr, rc=rc)</div>
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;</div>
 <div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="comment">!------------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="comment">! Assume standard lapse rate when interpolating pressure (per Phil Pegion).</span></div>
@@ -378,14 +378,14 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                       termorderflag=esmf_termorder_srcseq, &amp;</div>
 <div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                       rc=rc)</div>
 <div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
 <div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;</div>
 <div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160; nullify(psptr)</div>
 <div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR INPUT SURFACE PRESSURE B4ADJ.&quot;</span></div>
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160; call esmf_fieldget(ps_b4adj_target_grid, &amp;</div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                    farrayptr=psptr, rc=rc)</div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;</div>
 <div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160; psptr = p0 * psptr**one_over_exponent</div>
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;</div>
@@ -396,7 +396,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;                       termorderflag=esmf_termorder_srcseq, &amp;</div>
 <div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;                       rc=rc)</div>
 <div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;      call error_handler(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;      call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
 <div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;</div>
 <div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160; print*,<span class="stringliteral">&quot;- CALL Field_Regrid FOR 3-D WIND.&quot;</span></div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160; call esmf_fieldregrid(wind_input_grid, &amp;</div>
@@ -404,12 +404,12 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                       routehandle=regrid_bl, &amp;</div>
 <div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                       termorderflag=esmf_termorder_srcseq, rc=rc)</div>
 <div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;      call error_handler(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;      call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
 <div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;</div>
 <div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldRegridRelease.&quot;</span></div>
 <div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160; call esmf_fieldregridrelease(routehandle=regrid_bl, rc=rc)</div>
 <div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;      call error_handler(<span class="stringliteral">&quot;IN FieldRegridRelease&quot;</span>, rc)</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;      call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldRegridRelease&quot;</span>, rc)</div>
 <div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;</div>
 <div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="comment">!-----------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;<span class="comment">! Deallocate input fields.</span></div>
@@ -469,7 +469,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;                            extrapmethod=esmf_extrapmethod_nearest_stod, &amp;</div>
 <div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                            regridmethod=method, rc=rc)</div>
 <div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldRegridStore&quot;</span>, rc)</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldRegridStore&quot;</span>, rc)</div>
 <div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;</div>
 <div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160; print*,<span class="stringliteral">&quot;- CALL Field_Regrid FOR 3-D WIND WEST EDGE.&quot;</span></div>
 <div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160; call esmf_fieldregrid(wind_target_grid, &amp;</div>
@@ -477,12 +477,12 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;                       routehandle=regrid_bl, &amp;</div>
 <div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;                       termorderflag=esmf_termorder_srcseq, rc=rc)</div>
 <div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
 <div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;</div>
 <div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldRegridRelease.&quot;</span></div>
 <div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160; call esmf_fieldregridrelease(routehandle=regrid_bl, rc=rc)</div>
 <div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldRegridRelease&quot;</span>, rc)</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldRegridRelease&quot;</span>, rc)</div>
 <div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;</div>
 <div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160; isrctermprocessing = 1</div>
 <div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160; method=esmf_regridmethod_bilinear</div>
@@ -496,7 +496,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;                            extrapmethod=esmf_extrapmethod_nearest_stod, &amp;</div>
 <div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;                            regridmethod=method, rc=rc)</div>
 <div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldRegridStore&quot;</span>, rc)</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldRegridStore&quot;</span>, rc)</div>
 <div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;</div>
 <div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160; print*,<span class="stringliteral">&quot;- CALL Field_Regrid FOR 3-D WIND SOUTH EDGE.&quot;</span></div>
 <div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160; call esmf_fieldregrid(wind_target_grid, &amp;</div>
@@ -504,12 +504,12 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;                       routehandle=regrid_bl, &amp;</div>
 <div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;                       termorderflag=esmf_termorder_srcseq, rc=rc)</div>
 <div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
 <div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;</div>
 <div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldRegridRelease.&quot;</span></div>
 <div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160; call esmf_fieldregridrelease(routehandle=regrid_bl, rc=rc)</div>
 <div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldRegridRelease&quot;</span>, rc)</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldRegridRelease&quot;</span>, rc)</div>
 <div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;</div>
 <div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;<span class="comment">!-----------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;<span class="comment">! Convert from 3-d to 2-d cartesian winds.</span></div>
@@ -564,7 +564,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;                                   ungriddedlbound=(/1/), &amp;</div>
 <div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;                                   ungriddedubound=(/lev_input/), rc=rc)</div>
 <div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;   <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;      call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;      call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160; <span class="keywordflow">enddo</span></div>
 <div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;</div>
 <div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET GRID TEMPERATURE BEFORE ADJUSTMENT.&quot;</span></div>
@@ -574,7 +574,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;                                   ungriddedlbound=(/1/), &amp;</div>
 <div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;                                   ungriddedubound=(/lev_input/), rc=rc)</div>
 <div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;</div>
 <div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET GRID PRESSURE BEFORE ADJUSTMENT.&quot;</span></div>
 <div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160; pres_b4adj_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
@@ -583,7 +583,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;                                   ungriddedlbound=(/1/), &amp;</div>
 <div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;                                   ungriddedubound=(/lev_input/), rc=rc)</div>
 <div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;</div>
 <div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET GRID VERTICAL VELOCITY BEFORE ADJUSTMENT.&quot;</span></div>
 <div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160; dzdt_b4adj_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
@@ -592,7 +592,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;                                   ungriddedlbound=(/1/), &amp;</div>
 <div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;                                   ungriddedubound=(/lev_input/), rc=rc)</div>
 <div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;</div>
 <div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET GRID UNSTAGGERED WINDS BEFORE ADJUSTMENT.&quot;</span></div>
 <div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160; wind_b4adj_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
@@ -601,21 +601,21 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;                                   ungriddedlbound=(/1,1/), &amp;</div>
 <div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;                                   ungriddedubound=(/lev_input,3/), rc=rc)</div>
 <div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;</div>
 <div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET TERRAIN.&quot;</span></div>
 <div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160; terrain_interp_to_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
 <div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;                                   typekind=esmf_typekind_r8, &amp;</div>
 <div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;                                   staggerloc=esmf_staggerloc_center, rc=rc)</div>
 <div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;</div>
 <div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET SURFACE PRESSURE BEFORE ADJUSTMENT.&quot;</span></div>
 <div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160; ps_b4adj_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
 <div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;                                   typekind=esmf_typekind_r8, &amp;</div>
 <div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;                                   staggerloc=esmf_staggerloc_center, rc=rc)</div>
 <div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;</div>
 <div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;<span class="keyword"> end subroutine </span>create_atm_b4adj_esmf_fields</div>
 <div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;</div>
@@ -639,7 +639,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;                                   ungriddedlbound=(/1/), &amp;</div>
 <div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;                                   ungriddedubound=(/lev_target/), rc=rc)</div>
 <div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;   <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;      call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;      call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160; <span class="keywordflow">enddo</span></div>
 <div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;</div>
 <div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET GRID TEMPERATURE.&quot;</span></div>
@@ -649,7 +649,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;                                   ungriddedlbound=(/1/), &amp;</div>
 <div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;                                   ungriddedubound=(/lev_target/), rc=rc)</div>
 <div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;</div>
 <div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET GRID PRESSURE.&quot;</span></div>
 <div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160; pres_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
@@ -658,7 +658,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;                                   ungriddedlbound=(/1/), &amp;</div>
 <div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;                                   ungriddedubound=(/lev_target/), rc=rc)</div>
 <div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;</div>
 <div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET GRID VERTICAL VELOCITY.&quot;</span></div>
 <div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160; dzdt_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
@@ -667,7 +667,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;                                   ungriddedlbound=(/1/), &amp;</div>
 <div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;                                   ungriddedubound=(/lev_target/), rc=rc)</div>
 <div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;</div>
 <div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET GRID DELP.&quot;</span></div>
 <div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160; delp_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
@@ -676,7 +676,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;                                   ungriddedlbound=(/1/), &amp;</div>
 <div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;                                   ungriddedubound=(/lev_target/), rc=rc)</div>
 <div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;</div>
 <div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET HEIGHT.&quot;</span></div>
 <div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160; zh_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
@@ -685,7 +685,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;                                   ungriddedlbound=(/1/), &amp;</div>
 <div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;                                   ungriddedubound=(/levp1_target/), rc=rc)</div>
 <div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;</div>
 <div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET UNSTAGGERED 3D-WIND.&quot;</span></div>
 <div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160; wind_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
@@ -694,7 +694,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;                                   ungriddedlbound=(/1,1/), &amp;</div>
 <div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;                                   ungriddedubound=(/lev_target,3/), rc=rc)</div>
 <div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;</div>
 <div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET U_S.&quot;</span></div>
 <div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160; u_s_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
@@ -703,7 +703,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;                                   ungriddedlbound=(/1/), &amp;</div>
 <div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;                                   ungriddedubound=(/lev_target/), rc=rc)</div>
 <div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;</div>
 <div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET V_S.&quot;</span></div>
 <div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160; v_s_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
@@ -712,7 +712,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;                                   ungriddedlbound=(/1/), &amp;</div>
 <div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;                                   ungriddedubound=(/lev_target/), rc=rc)</div>
 <div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;</div>
 <div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET 3D-WIND_S.&quot;</span></div>
 <div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160; wind_s_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
@@ -721,7 +721,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;                                   ungriddedlbound=(/1,1/), &amp;</div>
 <div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;                                   ungriddedubound=(/lev_target,3/), rc=rc)</div>
 <div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;</div>
 <div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET U_W.&quot;</span></div>
 <div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160; u_w_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
@@ -730,7 +730,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;                                   ungriddedlbound=(/1/), &amp;</div>
 <div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;                                   ungriddedubound=(/lev_target/), rc=rc)</div>
 <div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;</div>
 <div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET V_W.&quot;</span></div>
 <div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160; v_w_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
@@ -739,7 +739,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;                                   ungriddedlbound=(/1/), &amp;</div>
 <div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;                                   ungriddedubound=(/lev_target/), rc=rc)</div>
 <div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;</div>
 <div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET 3D-WIND_W.&quot;</span></div>
 <div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160; wind_w_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
@@ -748,14 +748,14 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;                                   ungriddedlbound=(/1,1/), &amp;</div>
 <div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;                                   ungriddedubound=(/lev_target,3/), rc=rc)</div>
 <div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;</div>
 <div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET SURFACE PRESSURE.&quot;</span></div>
 <div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160; ps_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
 <div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;                                   typekind=esmf_typekind_r8, &amp;</div>
 <div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;                                   staggerloc=esmf_staggerloc_center, rc=rc)</div>
 <div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;</div>
 <div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;<span class="keyword"> end subroutine </span>create_atm_esmf_fields</div>
 <div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;</div>
@@ -785,31 +785,31 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;                    computationalubound=cub, &amp;</div>
 <div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;                    farrayptr=windptr, rc=rc)</div>
 <div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;</div>
 <div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR U_S.&quot;</span></div>
 <div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160; call esmf_fieldget(u_s_target_grid, &amp;</div>
 <div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;                    farrayptr=uptr, rc=rc)</div>
 <div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;</div>
 <div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR V_S.&quot;</span></div>
 <div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160; call esmf_fieldget(v_s_target_grid, &amp;</div>
 <div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;                    farrayptr=vptr, rc=rc)</div>
 <div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;</div>
 <div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR LATITUDE_S.&quot;</span></div>
 <div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160; call esmf_fieldget(latitude_s_target_grid, &amp;</div>
 <div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;                    farrayptr=latptr, rc=rc)</div>
 <div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;</div>
 <div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR LONGITUDE_S.&quot;</span></div>
 <div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160; call esmf_fieldget(longitude_s_target_grid, &amp;</div>
 <div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;                    farrayptr=lonptr, rc=rc)</div>
 <div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;</div>
 <div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160; <span class="keywordflow">do</span> i = clb(1), cub(1)</div>
 <div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;   <span class="keywordflow">do</span> j = clb(2), cub(2)</div>
@@ -831,31 +831,31 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;                    computationalubound=cub, &amp;</div>
 <div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;                    farrayptr=windptr, rc=rc)</div>
 <div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;</div>
 <div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR U_W.&quot;</span></div>
 <div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160; call esmf_fieldget(u_w_target_grid, &amp;</div>
 <div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;                    farrayptr=uptr, rc=rc)</div>
 <div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;</div>
 <div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR V_W.&quot;</span></div>
 <div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160; call esmf_fieldget(v_w_target_grid, &amp;</div>
 <div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;                    farrayptr=vptr, rc=rc)</div>
 <div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;</div>
 <div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR LATITUDE_W.&quot;</span></div>
 <div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160; call esmf_fieldget(latitude_w_target_grid, &amp;</div>
 <div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;                    farrayptr=latptr, rc=rc)</div>
 <div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;</div>
 <div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR LONGITUDE_W.&quot;</span></div>
 <div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160; call esmf_fieldget(longitude_w_target_grid, &amp;</div>
 <div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;                    farrayptr=lonptr, rc=rc)</div>
 <div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;</div>
 <div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160; <span class="keywordflow">do</span> i = clb(1), cub(1)</div>
 <div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;   <span class="keywordflow">do</span> j = clb(2), cub(2)</div>
@@ -940,7 +940,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00850"></a><span class="lineno">  850</span>&#160;                    computationalubound=cub, &amp;</div>
 <div class="line"><a name="l00851"></a><span class="lineno">  851</span>&#160;                    farrayptr=pptr, rc=rc)</div>
 <div class="line"><a name="l00852"></a><span class="lineno">  852</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00853"></a><span class="lineno">  853</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l00853"></a><span class="lineno">  853</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l00854"></a><span class="lineno">  854</span>&#160;</div>
 <div class="line"><a name="l00855"></a><span class="lineno">  855</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR DELP.&quot;</span></div>
 <div class="line"><a name="l00856"></a><span class="lineno">  856</span>&#160; call esmf_fieldget(delp_target_grid, &amp;</div>
@@ -948,13 +948,13 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00858"></a><span class="lineno">  858</span>&#160;                    computationalubound=cub, &amp;</div>
 <div class="line"><a name="l00859"></a><span class="lineno">  859</span>&#160;                    farrayptr=delp_ptr, rc=rc)</div>
 <div class="line"><a name="l00860"></a><span class="lineno">  860</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l00862"></a><span class="lineno">  862</span>&#160;</div>
 <div class="line"><a name="l00863"></a><span class="lineno">  863</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR SURFACE PRESSURE AFTER ADJUSTMENT&quot;</span></div>
 <div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160; call esmf_fieldget(ps_target_grid, &amp;</div>
 <div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160;                    farrayptr=psptr, rc=rc)</div>
 <div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;</div>
 <div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160; <span class="keyword">allocate</span>(pi(clb(1):cub(1),clb(2):cub(2),1:levp1_target))</div>
 <div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160; </div>
@@ -976,7 +976,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00886"></a><span class="lineno">  886</span>&#160;     <span class="keywordflow">enddo</span></div>
 <div class="line"><a name="l00887"></a><span class="lineno">  887</span>&#160;   <span class="keywordflow">enddo</span></div>
 <div class="line"><a name="l00888"></a><span class="lineno">  888</span>&#160; <span class="keywordflow">else</span> </div>
-<div class="line"><a name="l00889"></a><span class="lineno">  889</span>&#160;   call error_handler(<span class="stringliteral">&quot;PROGRAM ONLY WORKS WITH IDVC 2&quot;</span>, 1)</div>
+<div class="line"><a name="l00889"></a><span class="lineno">  889</span>&#160;   call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;PROGRAM ONLY WORKS WITH IDVC 2&quot;</span>, 1)</div>
 <div class="line"><a name="l00890"></a><span class="lineno">  890</span>&#160; <span class="keywordflow">endif</span></div>
 <div class="line"><a name="l00891"></a><span class="lineno">  891</span>&#160;</div>
 <div class="line"><a name="l00892"></a><span class="lineno">  892</span>&#160; <span class="keywordflow">if</span>(idsl.eq.2) <span class="keywordflow">then</span> </div>
@@ -1068,7 +1068,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00978"></a><span class="lineno">  978</span>&#160;                    computationalubound=cub, &amp;</div>
 <div class="line"><a name="l00979"></a><span class="lineno">  979</span>&#160;                    farrayptr=pptr, rc=rc)</div>
 <div class="line"><a name="l00980"></a><span class="lineno">  980</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00981"></a><span class="lineno">  981</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l00981"></a><span class="lineno">  981</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l00982"></a><span class="lineno">  982</span>&#160;</div>
 <div class="line"><a name="l00983"></a><span class="lineno">  983</span>&#160; <span class="keywordflow">if</span>(localpet==0) <span class="keywordflow">then</span></div>
 <div class="line"><a name="l00984"></a><span class="lineno">  984</span>&#160;   print*,<span class="stringliteral">&#39;old pres &#39;</span>,pptr(clb(1),clb(2),:)</div>
@@ -1078,7 +1078,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00988"></a><span class="lineno">  988</span>&#160; call esmf_fieldget(temp_b4adj_target_grid, &amp;</div>
 <div class="line"><a name="l00989"></a><span class="lineno">  989</span>&#160;                    farrayptr=tptr, rc=rc)</div>
 <div class="line"><a name="l00990"></a><span class="lineno">  990</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00991"></a><span class="lineno">  991</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l00991"></a><span class="lineno">  991</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l00992"></a><span class="lineno">  992</span>&#160;    </div>
 <div class="line"><a name="l00993"></a><span class="lineno">  993</span>&#160;<span class="comment">! Find specific humidity in the array of tracer fields.</span></div>
 <div class="line"><a name="l00994"></a><span class="lineno">  994</span>&#160;</div>
@@ -1090,31 +1090,31 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01000"></a><span class="lineno"> 1000</span>&#160; call esmf_fieldget(tracers_b4adj_target_grid(ii), &amp;</div>
 <div class="line"><a name="l01001"></a><span class="lineno"> 1001</span>&#160;                    farrayptr=qptr, rc=rc)</div>
 <div class="line"><a name="l01002"></a><span class="lineno"> 1002</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01003"></a><span class="lineno"> 1003</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01003"></a><span class="lineno"> 1003</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01004"></a><span class="lineno"> 1004</span>&#160;    </div>
 <div class="line"><a name="l01005"></a><span class="lineno"> 1005</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR SURFACE PRESSURE BEFORE ADJUSTMENT&quot;</span></div>
 <div class="line"><a name="l01006"></a><span class="lineno"> 1006</span>&#160; call esmf_fieldget(ps_b4adj_target_grid, &amp;</div>
 <div class="line"><a name="l01007"></a><span class="lineno"> 1007</span>&#160;                    farrayptr=psptr, rc=rc)</div>
 <div class="line"><a name="l01008"></a><span class="lineno"> 1008</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01009"></a><span class="lineno"> 1009</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01009"></a><span class="lineno"> 1009</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01010"></a><span class="lineno"> 1010</span>&#160;</div>
 <div class="line"><a name="l01011"></a><span class="lineno"> 1011</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR SURFACE PRESSURE AFTER ADJUSTMENT&quot;</span></div>
 <div class="line"><a name="l01012"></a><span class="lineno"> 1012</span>&#160; call esmf_fieldget(ps_target_grid, &amp;</div>
 <div class="line"><a name="l01013"></a><span class="lineno"> 1013</span>&#160;                    farrayptr=psnewptr, rc=rc)</div>
 <div class="line"><a name="l01014"></a><span class="lineno"> 1014</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01015"></a><span class="lineno"> 1015</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01015"></a><span class="lineno"> 1015</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01016"></a><span class="lineno"> 1016</span>&#160;</div>
 <div class="line"><a name="l01017"></a><span class="lineno"> 1017</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR OLD TERRAIN&quot;</span></div>
 <div class="line"><a name="l01018"></a><span class="lineno"> 1018</span>&#160; call esmf_fieldget(terrain_interp_to_target_grid, &amp;</div>
 <div class="line"><a name="l01019"></a><span class="lineno"> 1019</span>&#160;                    farrayptr=zsptr, rc=rc)</div>
 <div class="line"><a name="l01020"></a><span class="lineno"> 1020</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01021"></a><span class="lineno"> 1021</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01021"></a><span class="lineno"> 1021</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01022"></a><span class="lineno"> 1022</span>&#160;</div>
 <div class="line"><a name="l01023"></a><span class="lineno"> 1023</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR NEW TERRAIN&quot;</span></div>
 <div class="line"><a name="l01024"></a><span class="lineno"> 1024</span>&#160; call esmf_fieldget(terrain_target_grid, &amp;</div>
 <div class="line"><a name="l01025"></a><span class="lineno"> 1025</span>&#160;                    farrayptr=zsnewptr, rc=rc)</div>
 <div class="line"><a name="l01026"></a><span class="lineno"> 1026</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01027"></a><span class="lineno"> 1027</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01027"></a><span class="lineno"> 1027</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01028"></a><span class="lineno"> 1028</span>&#160;</div>
 <div class="line"><a name="l01029"></a><span class="lineno"> 1029</span>&#160; <span class="keyword">allocate</span>(zu(clb(1):cub(1),clb(2):cub(2)))</div>
 <div class="line"><a name="l01030"></a><span class="lineno"> 1030</span>&#160;</div>
@@ -1230,12 +1230,12 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01140"></a><span class="lineno"> 1140</span>&#160; print*,<span class="stringliteral">&quot;OPEN VERTICAL COORD FILE: &quot;</span>, trim(vcoord_file_target_grid)</div>
 <div class="line"><a name="l01141"></a><span class="lineno"> 1141</span>&#160; <span class="keyword">open</span>(14, file=trim(vcoord_file_target_grid), form=<span class="stringliteral">&#39;formatted&#39;</span>, iostat=istat)</div>
 <div class="line"><a name="l01142"></a><span class="lineno"> 1142</span>&#160; <span class="keywordflow">if</span> (istat /= 0) <span class="keywordflow">then</span></div>
-<div class="line"><a name="l01143"></a><span class="lineno"> 1143</span>&#160;   call error_handler(<span class="stringliteral">&quot;OPENING VERTICAL COORD FILE&quot;</span>, istat)</div>
+<div class="line"><a name="l01143"></a><span class="lineno"> 1143</span>&#160;   call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;OPENING VERTICAL COORD FILE&quot;</span>, istat)</div>
 <div class="line"><a name="l01144"></a><span class="lineno"> 1144</span>&#160; <span class="keywordflow">endif</span></div>
 <div class="line"><a name="l01145"></a><span class="lineno"> 1145</span>&#160;</div>
 <div class="line"><a name="l01146"></a><span class="lineno"> 1146</span>&#160; <span class="keyword">read</span>(14, *, iostat=istat) nvcoord_target, lev_target</div>
 <div class="line"><a name="l01147"></a><span class="lineno"> 1147</span>&#160; <span class="keywordflow">if</span> (istat /= 0) <span class="keywordflow">then</span></div>
-<div class="line"><a name="l01148"></a><span class="lineno"> 1148</span>&#160;   call error_handler(<span class="stringliteral">&quot;READING VERTICAL COORD FILE&quot;</span>, istat)</div>
+<div class="line"><a name="l01148"></a><span class="lineno"> 1148</span>&#160;   call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;READING VERTICAL COORD FILE&quot;</span>, istat)</div>
 <div class="line"><a name="l01149"></a><span class="lineno"> 1149</span>&#160; <span class="keywordflow">endif</span></div>
 <div class="line"><a name="l01150"></a><span class="lineno"> 1150</span>&#160;</div>
 <div class="line"><a name="l01151"></a><span class="lineno"> 1151</span>&#160; levp1_target = lev_target + 1</div>
@@ -1243,7 +1243,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01153"></a><span class="lineno"> 1153</span>&#160; <span class="keyword">allocate</span>(vcoord_target(levp1_target, nvcoord_target))</div>
 <div class="line"><a name="l01154"></a><span class="lineno"> 1154</span>&#160; <span class="keyword">read</span>(14, *, iostat=istat) ((vcoord_target(n,k), k=1,nvcoord_target), n=1,levp1_target)</div>
 <div class="line"><a name="l01155"></a><span class="lineno"> 1155</span>&#160; <span class="keywordflow">if</span> (istat /= 0) <span class="keywordflow">then</span></div>
-<div class="line"><a name="l01156"></a><span class="lineno"> 1156</span>&#160;   call error_handler(<span class="stringliteral">&quot;READING VERTICAL COORD FILE&quot;</span>, istat)</div>
+<div class="line"><a name="l01156"></a><span class="lineno"> 1156</span>&#160;   call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;READING VERTICAL COORD FILE&quot;</span>, istat)</div>
 <div class="line"><a name="l01157"></a><span class="lineno"> 1157</span>&#160; <span class="keywordflow">endif</span></div>
 <div class="line"><a name="l01158"></a><span class="lineno"> 1158</span>&#160;</div>
 <div class="line"><a name="l01159"></a><span class="lineno"> 1159</span>&#160; print*</div>
@@ -1274,7 +1274,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01184"></a><span class="lineno"> 1184</span>&#160;                                   ungriddedlbound=(/1/), &amp;</div>
 <div class="line"><a name="l01185"></a><span class="lineno"> 1185</span>&#160;                                   ungriddedubound=(/lev_thomp_mp_climo/), rc=rc)</div>
 <div class="line"><a name="l01186"></a><span class="lineno"> 1186</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01187"></a><span class="lineno"> 1187</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l01187"></a><span class="lineno"> 1187</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l01188"></a><span class="lineno"> 1188</span>&#160;</div>
 <div class="line"><a name="l01189"></a><span class="lineno"> 1189</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET GRID THOMP CLIMO QNWFA BEFORE ADJUSTMENT.&quot;</span></div>
 <div class="line"><a name="l01190"></a><span class="lineno"> 1190</span>&#160; qnwfa_climo_b4adj_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
@@ -1283,7 +1283,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01193"></a><span class="lineno"> 1193</span>&#160;                                   ungriddedlbound=(/1/), &amp;</div>
 <div class="line"><a name="l01194"></a><span class="lineno"> 1194</span>&#160;                                   ungriddedubound=(/lev_thomp_mp_climo/), rc=rc)</div>
 <div class="line"><a name="l01195"></a><span class="lineno"> 1195</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01196"></a><span class="lineno"> 1196</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l01196"></a><span class="lineno"> 1196</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l01197"></a><span class="lineno"> 1197</span>&#160;</div>
 <div class="line"><a name="l01198"></a><span class="lineno"> 1198</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET GRID THOMP CLIMO PRESSURE BEFORE ADJUSTMENT.&quot;</span></div>
 <div class="line"><a name="l01199"></a><span class="lineno"> 1199</span>&#160; thomp_pres_climo_b4adj_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
@@ -1292,7 +1292,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01202"></a><span class="lineno"> 1202</span>&#160;                                   ungriddedlbound=(/1/), &amp;</div>
 <div class="line"><a name="l01203"></a><span class="lineno"> 1203</span>&#160;                                   ungriddedubound=(/lev_thomp_mp_climo/), rc=rc)</div>
 <div class="line"><a name="l01204"></a><span class="lineno"> 1204</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01205"></a><span class="lineno"> 1205</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l01205"></a><span class="lineno"> 1205</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l01206"></a><span class="lineno"> 1206</span>&#160;</div>
 <div class="line"><a name="l01207"></a><span class="lineno"> 1207</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET GRID THOMP CLIMO QNIFA.&quot;</span></div>
 <div class="line"><a name="l01208"></a><span class="lineno"> 1208</span>&#160; qnifa_climo_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
@@ -1301,7 +1301,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01211"></a><span class="lineno"> 1211</span>&#160;                                   ungriddedlbound=(/1/), &amp;</div>
 <div class="line"><a name="l01212"></a><span class="lineno"> 1212</span>&#160;                                   ungriddedubound=(/lev_target/), rc=rc)</div>
 <div class="line"><a name="l01213"></a><span class="lineno"> 1213</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01214"></a><span class="lineno"> 1214</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l01214"></a><span class="lineno"> 1214</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l01215"></a><span class="lineno"> 1215</span>&#160;</div>
 <div class="line"><a name="l01216"></a><span class="lineno"> 1216</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldCreate FOR TARGET GRID THOMP CLIMO QNWFA.&quot;</span></div>
 <div class="line"><a name="l01217"></a><span class="lineno"> 1217</span>&#160; qnwfa_climo_target_grid = esmf_fieldcreate(target_grid, &amp;</div>
@@ -1310,7 +1310,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01220"></a><span class="lineno"> 1220</span>&#160;                                   ungriddedlbound=(/1/), &amp;</div>
 <div class="line"><a name="l01221"></a><span class="lineno"> 1221</span>&#160;                                   ungriddedubound=(/lev_target/), rc=rc)</div>
 <div class="line"><a name="l01222"></a><span class="lineno"> 1222</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01223"></a><span class="lineno"> 1223</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
+<div class="line"><a name="l01223"></a><span class="lineno"> 1223</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldCreate&quot;</span>, rc)</div>
 <div class="line"><a name="l01224"></a><span class="lineno"> 1224</span>&#160;</div>
 <div class="line"><a name="l01225"></a><span class="lineno"> 1225</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldRegridStore FOR THOMPSON CLIMO FIELDS.&quot;</span></div>
 <div class="line"><a name="l01226"></a><span class="lineno"> 1226</span>&#160;</div>
@@ -1323,7 +1323,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01233"></a><span class="lineno"> 1233</span>&#160;                            routehandle=regrid_bl, &amp;</div>
 <div class="line"><a name="l01234"></a><span class="lineno"> 1234</span>&#160;                            regridmethod=method, rc=rc)</div>
 <div class="line"><a name="l01235"></a><span class="lineno"> 1235</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01236"></a><span class="lineno"> 1236</span>&#160;      call error_handler(<span class="stringliteral">&quot;IN FieldRegridStore&quot;</span>, rc)</div>
+<div class="line"><a name="l01236"></a><span class="lineno"> 1236</span>&#160;      call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldRegridStore&quot;</span>, rc)</div>
 <div class="line"><a name="l01237"></a><span class="lineno"> 1237</span>&#160;</div>
 <div class="line"><a name="l01238"></a><span class="lineno"> 1238</span>&#160; print*,<span class="stringliteral">&quot;- CALL Field_Regrid FOR THOMP CLIMO QNIFA.&quot;</span></div>
 <div class="line"><a name="l01239"></a><span class="lineno"> 1239</span>&#160; call esmf_fieldregrid(qnifa_climo_input_grid, &amp;</div>
@@ -1331,7 +1331,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01241"></a><span class="lineno"> 1241</span>&#160;                       routehandle=regrid_bl, &amp;</div>
 <div class="line"><a name="l01242"></a><span class="lineno"> 1242</span>&#160;                       termorderflag=esmf_termorder_srcseq, rc=rc)</div>
 <div class="line"><a name="l01243"></a><span class="lineno"> 1243</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01244"></a><span class="lineno"> 1244</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
+<div class="line"><a name="l01244"></a><span class="lineno"> 1244</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
 <div class="line"><a name="l01245"></a><span class="lineno"> 1245</span>&#160;</div>
 <div class="line"><a name="l01246"></a><span class="lineno"> 1246</span>&#160; print*,<span class="stringliteral">&quot;- CALL Field_Regrid FOR THOMP CLIMO QNWFA.&quot;</span></div>
 <div class="line"><a name="l01247"></a><span class="lineno"> 1247</span>&#160; call esmf_fieldregrid(qnwfa_climo_input_grid, &amp;</div>
@@ -1339,7 +1339,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01249"></a><span class="lineno"> 1249</span>&#160;                       routehandle=regrid_bl, &amp;</div>
 <div class="line"><a name="l01250"></a><span class="lineno"> 1250</span>&#160;                       termorderflag=esmf_termorder_srcseq, rc=rc)</div>
 <div class="line"><a name="l01251"></a><span class="lineno"> 1251</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01252"></a><span class="lineno"> 1252</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
+<div class="line"><a name="l01252"></a><span class="lineno"> 1252</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
 <div class="line"><a name="l01253"></a><span class="lineno"> 1253</span>&#160;</div>
 <div class="line"><a name="l01254"></a><span class="lineno"> 1254</span>&#160; print*,<span class="stringliteral">&quot;- CALL Field_Regrid FOR THOMP PRESSURE.&quot;</span></div>
 <div class="line"><a name="l01255"></a><span class="lineno"> 1255</span>&#160; call esmf_fieldregrid(thomp_pres_climo_input_grid, &amp;</div>
@@ -1347,18 +1347,18 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01257"></a><span class="lineno"> 1257</span>&#160;                       routehandle=regrid_bl, &amp;</div>
 <div class="line"><a name="l01258"></a><span class="lineno"> 1258</span>&#160;                       termorderflag=esmf_termorder_srcseq, rc=rc)</div>
 <div class="line"><a name="l01259"></a><span class="lineno"> 1259</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01260"></a><span class="lineno"> 1260</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
+<div class="line"><a name="l01260"></a><span class="lineno"> 1260</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldRegrid&quot;</span>, rc)</div>
 <div class="line"><a name="l01261"></a><span class="lineno"> 1261</span>&#160;</div>
 <div class="line"><a name="l01262"></a><span class="lineno"> 1262</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldRegridRelease.&quot;</span></div>
 <div class="line"><a name="l01263"></a><span class="lineno"> 1263</span>&#160; call esmf_fieldregridrelease(routehandle=regrid_bl, rc=rc)</div>
 <div class="line"><a name="l01264"></a><span class="lineno"> 1264</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01265"></a><span class="lineno"> 1265</span>&#160;      call error_handler(<span class="stringliteral">&quot;IN FieldRegridRelease&quot;</span>, rc)</div>
+<div class="line"><a name="l01265"></a><span class="lineno"> 1265</span>&#160;      call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldRegridRelease&quot;</span>, rc)</div>
 <div class="line"><a name="l01266"></a><span class="lineno"> 1266</span>&#160;</div>
 <div class="line"><a name="l01267"></a><span class="lineno"> 1267</span>&#160;<span class="comment">!-----------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l01268"></a><span class="lineno"> 1268</span>&#160;<span class="comment">! Free up input data memory.</span></div>
 <div class="line"><a name="l01269"></a><span class="lineno"> 1269</span>&#160;<span class="comment">!-----------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l01270"></a><span class="lineno"> 1270</span>&#160;</div>
-<div class="line"><a name="l01271"></a><span class="lineno"> 1271</span>&#160; call cleanup_thomp_mp_climo_input_data</div>
+<div class="line"><a name="l01271"></a><span class="lineno"> 1271</span>&#160; call <a class="code" href="classthompson__mp__climo__data.html#a50ac430a78518b0963e23517cba243bb">cleanup_thomp_mp_climo_input_data</a></div>
 <div class="line"><a name="l01272"></a><span class="lineno"> 1272</span>&#160;</div>
 <div class="line"><a name="l01273"></a><span class="lineno"> 1273</span>&#160;<span class="keyword"> end subroutine </span>horiz_interp_thomp_mp_climo</div>
 <div class="line"><a name="l01274"></a><span class="lineno"> 1274</span>&#160;</div>
@@ -1392,7 +1392,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01302"></a><span class="lineno"> 1302</span>&#160;                    computationalubound=cub, &amp;</div>
 <div class="line"><a name="l01303"></a><span class="lineno"> 1303</span>&#160;                    farrayptr=p1ptr, rc=rc)</div>
 <div class="line"><a name="l01304"></a><span class="lineno"> 1304</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01305"></a><span class="lineno"> 1305</span>&#160;         call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01305"></a><span class="lineno"> 1305</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01306"></a><span class="lineno"> 1306</span>&#160;</div>
 <div class="line"><a name="l01307"></a><span class="lineno"> 1307</span>&#160;<span class="comment">! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></div>
 <div class="line"><a name="l01308"></a><span class="lineno"> 1308</span>&#160;<span class="comment">! The &#39;1&#39;/&#39;2&#39; arrays hold fields before/after interpolation.  </span></div>
@@ -1411,7 +1411,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01321"></a><span class="lineno"> 1321</span>&#160; call esmf_fieldget(pres_target_grid, &amp;</div>
 <div class="line"><a name="l01322"></a><span class="lineno"> 1322</span>&#160;                    farrayptr=p2ptr, rc=rc)</div>
 <div class="line"><a name="l01323"></a><span class="lineno"> 1323</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01324"></a><span class="lineno"> 1324</span>&#160;         call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01324"></a><span class="lineno"> 1324</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01325"></a><span class="lineno"> 1325</span>&#160;</div>
 <div class="line"><a name="l01326"></a><span class="lineno"> 1326</span>&#160; z2 = -log(p2ptr)</div>
 <div class="line"><a name="l01327"></a><span class="lineno"> 1327</span>&#160;</div>
@@ -1422,7 +1422,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01332"></a><span class="lineno"> 1332</span>&#160; call esmf_fieldget(qnifa_climo_b4adj_target_grid, &amp;</div>
 <div class="line"><a name="l01333"></a><span class="lineno"> 1333</span>&#160;                    farrayptr=qnifa1ptr, rc=rc)</div>
 <div class="line"><a name="l01334"></a><span class="lineno"> 1334</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01335"></a><span class="lineno"> 1335</span>&#160;         call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01335"></a><span class="lineno"> 1335</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01336"></a><span class="lineno"> 1336</span>&#160;</div>
 <div class="line"><a name="l01337"></a><span class="lineno"> 1337</span>&#160; c1(:,:,:,1) =  qnifa1ptr(:,:,:)</div>
 <div class="line"><a name="l01338"></a><span class="lineno"> 1338</span>&#160;</div>
@@ -1430,7 +1430,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01340"></a><span class="lineno"> 1340</span>&#160; call esmf_fieldget(qnwfa_climo_b4adj_target_grid, &amp;</div>
 <div class="line"><a name="l01341"></a><span class="lineno"> 1341</span>&#160;                    farrayptr=qnwfa1ptr, rc=rc)</div>
 <div class="line"><a name="l01342"></a><span class="lineno"> 1342</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01343"></a><span class="lineno"> 1343</span>&#160;         call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01343"></a><span class="lineno"> 1343</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01344"></a><span class="lineno"> 1344</span>&#160;</div>
 <div class="line"><a name="l01345"></a><span class="lineno"> 1345</span>&#160; c1(:,:,:,2) =  qnwfa1ptr(:,:,:)</div>
 <div class="line"><a name="l01346"></a><span class="lineno"> 1346</span>&#160;</div>
@@ -1451,13 +1451,13 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01361"></a><span class="lineno"> 1361</span>&#160; call esmf_fieldget(qnifa_climo_target_grid, &amp;</div>
 <div class="line"><a name="l01362"></a><span class="lineno"> 1362</span>&#160;                    farrayptr=qnifa2ptr, rc=rc)</div>
 <div class="line"><a name="l01363"></a><span class="lineno"> 1363</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01364"></a><span class="lineno"> 1364</span>&#160;         call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01364"></a><span class="lineno"> 1364</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01365"></a><span class="lineno"> 1365</span>&#160;</div>
 <div class="line"><a name="l01366"></a><span class="lineno"> 1366</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR ADJUSTED climo qnwfa.&quot;</span></div>
 <div class="line"><a name="l01367"></a><span class="lineno"> 1367</span>&#160; call esmf_fieldget(qnwfa_climo_target_grid, &amp;</div>
 <div class="line"><a name="l01368"></a><span class="lineno"> 1368</span>&#160;                    farrayptr=qnwfa2ptr, rc=rc)</div>
 <div class="line"><a name="l01369"></a><span class="lineno"> 1369</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01370"></a><span class="lineno"> 1370</span>&#160;         call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01370"></a><span class="lineno"> 1370</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01371"></a><span class="lineno"> 1371</span>&#160;</div>
 <div class="line"><a name="l01372"></a><span class="lineno"> 1372</span>&#160; <span class="keywordflow">DO</span> k=1,lev_target</div>
 <div class="line"><a name="l01373"></a><span class="lineno"> 1373</span>&#160;   <span class="keywordflow">DO</span> i=clb(1),cub(1)</div>
@@ -1544,7 +1544,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01454"></a><span class="lineno"> 1454</span>&#160;                    computationalubound=cub, &amp;</div>
 <div class="line"><a name="l01455"></a><span class="lineno"> 1455</span>&#160;                    farrayptr=p1ptr, rc=rc)</div>
 <div class="line"><a name="l01456"></a><span class="lineno"> 1456</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01457"></a><span class="lineno"> 1457</span>&#160;         call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01457"></a><span class="lineno"> 1457</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01458"></a><span class="lineno"> 1458</span>&#160;</div>
 <div class="line"><a name="l01459"></a><span class="lineno"> 1459</span>&#160;<span class="comment">! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></div>
 <div class="line"><a name="l01460"></a><span class="lineno"> 1460</span>&#160;<span class="comment">! The &#39;1&#39;/&#39;2&#39; arrays hold fields before/after interpolation.  </span></div>
@@ -1563,7 +1563,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01473"></a><span class="lineno"> 1473</span>&#160; call esmf_fieldget(pres_target_grid, &amp;</div>
 <div class="line"><a name="l01474"></a><span class="lineno"> 1474</span>&#160;                    farrayptr=p2ptr, rc=rc)</div>
 <div class="line"><a name="l01475"></a><span class="lineno"> 1475</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01476"></a><span class="lineno"> 1476</span>&#160;         call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01476"></a><span class="lineno"> 1476</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01477"></a><span class="lineno"> 1477</span>&#160;</div>
 <div class="line"><a name="l01478"></a><span class="lineno"> 1478</span>&#160; z2 = -log(p2ptr)</div>
 <div class="line"><a name="l01479"></a><span class="lineno"> 1479</span>&#160;</div>
@@ -1571,7 +1571,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01481"></a><span class="lineno"> 1481</span>&#160; call esmf_fieldget(wind_b4adj_target_grid, &amp;</div>
 <div class="line"><a name="l01482"></a><span class="lineno"> 1482</span>&#160;                    farrayptr=wind1ptr, rc=rc)</div>
 <div class="line"><a name="l01483"></a><span class="lineno"> 1483</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01484"></a><span class="lineno"> 1484</span>&#160;         call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01484"></a><span class="lineno"> 1484</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01485"></a><span class="lineno"> 1485</span>&#160;</div>
 <div class="line"><a name="l01486"></a><span class="lineno"> 1486</span>&#160; c1(:,:,:,1) =  wind1ptr(:,:,:,1)</div>
 <div class="line"><a name="l01487"></a><span class="lineno"> 1487</span>&#160; c1(:,:,:,2) =  wind1ptr(:,:,:,2)</div>
@@ -1581,7 +1581,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01491"></a><span class="lineno"> 1491</span>&#160; call esmf_fieldget(dzdt_b4adj_target_grid, &amp;</div>
 <div class="line"><a name="l01492"></a><span class="lineno"> 1492</span>&#160;                    farrayptr=dzdt1ptr, rc=rc)</div>
 <div class="line"><a name="l01493"></a><span class="lineno"> 1493</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01494"></a><span class="lineno"> 1494</span>&#160;         call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01494"></a><span class="lineno"> 1494</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01495"></a><span class="lineno"> 1495</span>&#160;</div>
 <div class="line"><a name="l01496"></a><span class="lineno"> 1496</span>&#160; c1(:,:,:,4) =  dzdt1ptr(:,:,:)</div>
 <div class="line"><a name="l01497"></a><span class="lineno"> 1497</span>&#160; print*,<span class="stringliteral">&quot;MIN MAX W TARGETB4 IN VINTG = &quot;</span>, minval(dzdt1ptr(:,:,:)), maxval(dzdt1ptr(:,:,:))</div>
@@ -1590,7 +1590,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01500"></a><span class="lineno"> 1500</span>&#160; call esmf_fieldget(temp_b4adj_target_grid, &amp;</div>
 <div class="line"><a name="l01501"></a><span class="lineno"> 1501</span>&#160;                    farrayptr=t1ptr, rc=rc)</div>
 <div class="line"><a name="l01502"></a><span class="lineno"> 1502</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01503"></a><span class="lineno"> 1503</span>&#160;         call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01503"></a><span class="lineno"> 1503</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01504"></a><span class="lineno"> 1504</span>&#160;</div>
 <div class="line"><a name="l01505"></a><span class="lineno"> 1505</span>&#160; c1(:,:,:,5) =  t1ptr(:,:,:)</div>
 <div class="line"><a name="l01506"></a><span class="lineno"> 1506</span>&#160;</div>
@@ -1600,7 +1600,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01510"></a><span class="lineno"> 1510</span>&#160;   call esmf_fieldget(tracers_b4adj_target_grid(i), &amp;</div>
 <div class="line"><a name="l01511"></a><span class="lineno"> 1511</span>&#160;                      farrayptr=q1ptr, rc=rc)</div>
 <div class="line"><a name="l01512"></a><span class="lineno"> 1512</span>&#160;   <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01513"></a><span class="lineno"> 1513</span>&#160;          call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01513"></a><span class="lineno"> 1513</span>&#160;          call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01514"></a><span class="lineno"> 1514</span>&#160;</div>
 <div class="line"><a name="l01515"></a><span class="lineno"> 1515</span>&#160;   c1(:,:,:,5+i) =  q1ptr(:,:,:)</div>
 <div class="line"><a name="l01516"></a><span class="lineno"> 1516</span>&#160;</div>
@@ -1629,19 +1629,19 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01539"></a><span class="lineno"> 1539</span>&#160; call esmf_fieldget(temp_target_grid, &amp;</div>
 <div class="line"><a name="l01540"></a><span class="lineno"> 1540</span>&#160;                    farrayptr=t2ptr, rc=rc)</div>
 <div class="line"><a name="l01541"></a><span class="lineno"> 1541</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01542"></a><span class="lineno"> 1542</span>&#160;         call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01542"></a><span class="lineno"> 1542</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01543"></a><span class="lineno"> 1543</span>&#160;</div>
 <div class="line"><a name="l01544"></a><span class="lineno"> 1544</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR ADJUSTED VERTICAL VELOCITY.&quot;</span></div>
 <div class="line"><a name="l01545"></a><span class="lineno"> 1545</span>&#160; call esmf_fieldget(dzdt_target_grid, &amp;</div>
 <div class="line"><a name="l01546"></a><span class="lineno"> 1546</span>&#160;                    farrayptr=dzdt2ptr, rc=rc)</div>
 <div class="line"><a name="l01547"></a><span class="lineno"> 1547</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01548"></a><span class="lineno"> 1548</span>&#160;         call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01548"></a><span class="lineno"> 1548</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01549"></a><span class="lineno"> 1549</span>&#160;</div>
 <div class="line"><a name="l01550"></a><span class="lineno"> 1550</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR 3-D ADJUSTED WIND.&quot;</span></div>
 <div class="line"><a name="l01551"></a><span class="lineno"> 1551</span>&#160; call esmf_fieldget(wind_target_grid, &amp;</div>
 <div class="line"><a name="l01552"></a><span class="lineno"> 1552</span>&#160;                    farrayptr=wind2ptr, rc=rc)</div>
 <div class="line"><a name="l01553"></a><span class="lineno"> 1553</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01554"></a><span class="lineno"> 1554</span>&#160;         call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01554"></a><span class="lineno"> 1554</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01555"></a><span class="lineno"> 1555</span>&#160;</div>
 <div class="line"><a name="l01556"></a><span class="lineno"> 1556</span>&#160; <span class="keywordflow">DO</span> k=1,lev_target</div>
 <div class="line"><a name="l01557"></a><span class="lineno"> 1557</span>&#160;   <span class="keywordflow">DO</span> i=clb(1),cub(1)</div>
@@ -1666,7 +1666,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01576"></a><span class="lineno"> 1576</span>&#160;   call esmf_fieldget(tracers_target_grid(ii), &amp;</div>
 <div class="line"><a name="l01577"></a><span class="lineno"> 1577</span>&#160;                      farrayptr=q2ptr, rc=rc)</div>
 <div class="line"><a name="l01578"></a><span class="lineno"> 1578</span>&#160;   <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01579"></a><span class="lineno"> 1579</span>&#160;          call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01579"></a><span class="lineno"> 1579</span>&#160;          call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01580"></a><span class="lineno"> 1580</span>&#160;</div>
 <div class="line"><a name="l01581"></a><span class="lineno"> 1581</span>&#160;   <span class="keywordflow">IF</span> (trim(tracers(ii)) == <span class="stringliteral">&quot;sphum&quot;</span>) <span class="keywordflow">THEN</span>  <span class="comment">! specific humidity</span></div>
 <div class="line"><a name="l01582"></a><span class="lineno"> 1582</span>&#160;</div>
@@ -2033,25 +2033,25 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01943"></a><span class="lineno"> 1943</span>&#160;                    computationalubound=cub, &amp;</div>
 <div class="line"><a name="l01944"></a><span class="lineno"> 1944</span>&#160;                    farrayptr=psptr, rc=rc)</div>
 <div class="line"><a name="l01945"></a><span class="lineno"> 1945</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01946"></a><span class="lineno"> 1946</span>&#160;         call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01946"></a><span class="lineno"> 1946</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01947"></a><span class="lineno"> 1947</span>&#160;</div>
 <div class="line"><a name="l01948"></a><span class="lineno"> 1948</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR TERRAIN HEIGHT&quot;</span></div>
 <div class="line"><a name="l01949"></a><span class="lineno"> 1949</span>&#160; call esmf_fieldget(terrain_target_grid, &amp;</div>
 <div class="line"><a name="l01950"></a><span class="lineno"> 1950</span>&#160;                    farrayptr=zhsfcptr, rc=rc)</div>
 <div class="line"><a name="l01951"></a><span class="lineno"> 1951</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01952"></a><span class="lineno"> 1952</span>&#160;         call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01952"></a><span class="lineno"> 1952</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01953"></a><span class="lineno"> 1953</span>&#160;</div>
 <div class="line"><a name="l01954"></a><span class="lineno"> 1954</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR HEIGHT&quot;</span></div>
 <div class="line"><a name="l01955"></a><span class="lineno"> 1955</span>&#160; call esmf_fieldget(zh_target_grid, &amp;</div>
 <div class="line"><a name="l01956"></a><span class="lineno"> 1956</span>&#160;                    farrayptr=zhptr, rc=rc)</div>
 <div class="line"><a name="l01957"></a><span class="lineno"> 1957</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01958"></a><span class="lineno"> 1958</span>&#160;         call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01958"></a><span class="lineno"> 1958</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01959"></a><span class="lineno"> 1959</span>&#160;</div>
 <div class="line"><a name="l01960"></a><span class="lineno"> 1960</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR TEMPERATURE&quot;</span></div>
 <div class="line"><a name="l01961"></a><span class="lineno"> 1961</span>&#160; call esmf_fieldget(temp_target_grid, &amp;</div>
 <div class="line"><a name="l01962"></a><span class="lineno"> 1962</span>&#160;                    farrayptr=tptr, rc=rc)</div>
 <div class="line"><a name="l01963"></a><span class="lineno"> 1963</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01964"></a><span class="lineno"> 1964</span>&#160;         call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01964"></a><span class="lineno"> 1964</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01965"></a><span class="lineno"> 1965</span>&#160;</div>
 <div class="line"><a name="l01966"></a><span class="lineno"> 1966</span>&#160; <span class="keywordflow">do</span> ii = 1, num_tracers</div>
 <div class="line"><a name="l01967"></a><span class="lineno"> 1967</span>&#160;   <span class="keywordflow">if</span> (trim(tracers(ii)) == <span class="stringliteral">&quot;sphum&quot;</span>) <span class="keywordflow">exit</span></div>
@@ -2061,7 +2061,7 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01971"></a><span class="lineno"> 1971</span>&#160; call esmf_fieldget(tracers_target_grid(ii), &amp;</div>
 <div class="line"><a name="l01972"></a><span class="lineno"> 1972</span>&#160;                    farrayptr=qptr, rc=rc)</div>
 <div class="line"><a name="l01973"></a><span class="lineno"> 1973</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01974"></a><span class="lineno"> 1974</span>&#160;         call error_handler(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01974"></a><span class="lineno"> 1974</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
 <div class="line"><a name="l01975"></a><span class="lineno"> 1975</span>&#160;</div>
 <div class="line"><a name="l01976"></a><span class="lineno"> 1976</span>&#160; grd = grav/rdgas </div>
 <div class="line"><a name="l01977"></a><span class="lineno"> 1977</span>&#160; zvir = rvgas/rdgas - 1.0_esmf_kind_r8</div>
@@ -2161,14 +2161,16 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="ttc" id="classinput__data_html_a0acaa48f4b9fa7dc63df496ee4f5f9f4"><div class="ttname"><a href="classinput__data.html#a0acaa48f4b9fa7dc63df496ee4f5f9f4">input_data::cleanup_input_atm_data</a></div><div class="ttdeci">subroutine, public cleanup_input_atm_data</div><div class="ttdoc">Free up memory associated with atm data. </div><div class="ttdef"><b>Definition:</b> <a href="input__data_8F90_source.html#l06430">input_data.F90:6430</a></div></div>
 <div class="ttc" id="classmodel__grid_html"><div class="ttname"><a href="classmodel__grid.html">model_grid</a></div><div class="ttdef"><b>Definition:</b> <a href="chgres__cube_8fd_2model__grid_8F90_source.html#l00050">chgres_cube.fd/model_grid.F90:50</a></div></div>
 <div class="ttc" id="classatmosphere_html"><div class="ttname"><a href="classatmosphere.html">atmosphere</a></div><div class="ttdef"><b>Definition:</b> <a href="atmosphere_8F90_source.html#l00019">atmosphere.F90:19</a></div></div>
+<div class="ttc" id="classthompson__mp__climo__data_html_a50ac430a78518b0963e23517cba243bb"><div class="ttname"><a href="classthompson__mp__climo__data.html#a50ac430a78518b0963e23517cba243bb">thompson_mp_climo_data::cleanup_thomp_mp_climo_input_data</a></div><div class="ttdeci">subroutine, public cleanup_thomp_mp_climo_input_data</div><div class="ttdoc">Free up memory associated with this module. </div><div class="ttdef"><b>Definition:</b> <a href="thompson__mp__climo__data_8F90_source.html#l00315">thompson_mp_climo_data.F90:315</a></div></div>
 <div class="ttc" id="classatmosphere_html_a79bac062052ba98de5baa9ea854410fe"><div class="ttname"><a href="classatmosphere.html#a79bac062052ba98de5baa9ea854410fe">atmosphere::atmosphere_driver</a></div><div class="ttdeci">subroutine, public atmosphere_driver(localpet)</div><div class="ttdoc">Driver routine for atmospheric fields. </div><div class="ttdef"><b>Definition:</b> <a href="atmosphere_8F90_source.html#l00139">atmosphere.F90:139</a></div></div>
 <div class="ttc" id="classinput__data_html"><div class="ttname"><a href="classinput__data.html">input_data</a></div><div class="ttdef"><b>Definition:</b> <a href="input__data_8F90_source.html#l00015">input_data.F90:15</a></div></div>
 <div class="ttc" id="classthompson__mp__climo__data_html"><div class="ttname"><a href="classthompson__mp__climo__data.html">thompson_mp_climo_data</a></div><div class="ttdef"><b>Definition:</b> <a href="thompson__mp__climo__data_8F90_source.html#l00008">thompson_mp_climo_data.F90:8</a></div></div>
 <div class="ttc" id="write__data_8F90_html_a0d32984d1e12f6fefe37f9b7e75de5d9"><div class="ttname"><a href="write__data_8F90.html#a0d32984d1e12f6fefe37f9b7e75de5d9">write_fv3_atm_data_netcdf</a></div><div class="ttdeci">subroutine write_fv3_atm_data_netcdf(localpet)</div><div class="ttdoc">Write atmospheric coldstart files (netcdf format). </div><div class="ttdef"><b>Definition:</b> <a href="write__data_8F90_source.html#l01191">write_data.F90:1191</a></div></div>
-<div class="ttc" id="classthompson__mp__climo__data_html_a92a071650b2c4368ae233ac8b85783b4"><div class="ttname"><a href="classthompson__mp__climo__data.html#a92a071650b2c4368ae233ac8b85783b4">thompson_mp_climo_data::read_thomp_mp_climo_data</a></div><div class="ttdeci">subroutine, public read_thomp_mp_climo_data</div><div class="ttdoc">Read Thompson climatological MP data file and time interpolate data to to current cycle time...</div><div class="ttdef"><b>Definition:</b> <a href="thompson__mp__climo__data_8F90_source.html#l00039">thompson_mp_climo_data.F90:39</a></div></div>
+<div class="ttc" id="classthompson__mp__climo__data_html_a92a071650b2c4368ae233ac8b85783b4"><div class="ttname"><a href="classthompson__mp__climo__data.html#a92a071650b2c4368ae233ac8b85783b4">thompson_mp_climo_data::read_thomp_mp_climo_data</a></div><div class="ttdeci">subroutine, public read_thomp_mp_climo_data</div><div class="ttdoc">Read Thompson climatological MP data file and time interpolate data to to current cycle time...</div><div class="ttdef"><b>Definition:</b> <a href="thompson__mp__climo__data_8F90_source.html#l00037">thompson_mp_climo_data.F90:37</a></div></div>
 <div class="ttc" id="write__data_8F90_html_a7b255517030a7f64aee71d4ff16863dd"><div class="ttname"><a href="write__data_8F90.html#a7b255517030a7f64aee71d4ff16863dd">write_fv3_atm_header_netcdf</a></div><div class="ttdeci">subroutine write_fv3_atm_header_netcdf(localpet)</div><div class="ttdoc">Writes atmospheric header file in netcdf format. </div><div class="ttdef"><b>Definition:</b> <a href="write__data_8F90_source.html#l00013">write_data.F90:13</a></div></div>
 <div class="ttc" id="classinput__data_html_acd6a4066e6c50a722948161870a94539"><div class="ttname"><a href="classinput__data.html#acd6a4066e6c50a722948161870a94539">input_data::read_input_atm_data</a></div><div class="ttdeci">subroutine, public read_input_atm_data(localpet)</div><div class="ttdoc">Read input grid atmospheric data driver. </div><div class="ttdef"><b>Definition:</b> <a href="input__data_8F90_source.html#l00142">input_data.F90:142</a></div></div>
 <div class="ttc" id="classprogram__setup_html"><div class="ttname"><a href="classprogram__setup.html">program_setup</a></div><div class="ttdoc">program setup </div><div class="ttdef"><b>Definition:</b> <a href="chgres__cube_8fd_2program__setup_8f90_source.html#l00156">chgres_cube.fd/program_setup.f90:156</a></div></div>
+<div class="ttc" id="chgres__cube_8fd_2utils_8f90_html_a494d969fc26018c8a44274492cd80086"><div class="ttname"><a href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a></div><div class="ttdeci">subroutine error_handler(string, rc)</div><div class="ttdoc">General error handler. </div><div class="ttdef"><b>Definition:</b> <a href="chgres__cube_8fd_2utils_8f90_source.html#l00010">chgres_cube.fd/utils.f90:10</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

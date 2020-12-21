@@ -133,17 +133,17 @@ $(document).ready(function(){initNavTree('driver_8F90_source.html','');});
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; print*,<span class="stringliteral">&quot;- INITIALIZE ESMF&quot;</span></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; call esmf_initialize(rc=rc)</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    call error_handler(<span class="stringliteral">&quot;INITIALIZING ESMF&quot;</span>, rc)</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;INITIALIZING ESMF&quot;</span>, rc)</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; print*,<span class="stringliteral">&quot;- CALL VMGetGlobal&quot;</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; call esmf_vmgetglobal(vm, rc=rc)</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN VMGetGlobal.&quot;</span>, rc)</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN VMGetGlobal.&quot;</span>, rc)</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; print*,<span class="stringliteral">&quot;- CALL VMGet&quot;</span></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; call esmf_vmget(vm, localpet=localpet, petcount=npets, rc=rc)</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    call error_handler(<span class="stringliteral">&quot;IN VMGet.&quot;</span>, rc)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN VMGet.&quot;</span>, rc)</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; print*,<span class="stringliteral">&#39;- NPETS IS  &#39;</span>,npets</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; print*,<span class="stringliteral">&#39;- LOCAL PET &#39;</span>,localpet</div>
@@ -265,6 +265,7 @@ $(document).ready(function(){initNavTree('driver_8F90_source.html','');});
 <div class="ttc" id="classprogram__setup_html"><div class="ttname"><a href="classprogram__setup.html">program_setup</a></div><div class="ttdoc">program setup </div><div class="ttdef"><b>Definition:</b> <a href="chgres__cube_8fd_2program__setup_8f90_source.html#l00156">chgres_cube.fd/program_setup.f90:156</a></div></div>
 <div class="ttc" id="classsource__grid_html"><div class="ttname"><a href="classsource__grid.html">source_grid</a></div><div class="ttdef"><b>Definition:</b> <a href="source__grid_8F90_source.html#l00032">source_grid.F90:32</a></div></div>
 <div class="ttc" id="classutils_html"><div class="ttname"><a href="classutils.html">utils</a></div><div class="ttdef"><b>Definition:</b> <a href="sfc__climo__gen_8fd_2utils_8f90_source.html#l00002">sfc_climo_gen.fd/utils.f90:2</a></div></div>
+<div class="ttc" id="chgres__cube_8fd_2utils_8f90_html_a494d969fc26018c8a44274492cd80086"><div class="ttname"><a href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a></div><div class="ttdeci">subroutine error_handler(string, rc)</div><div class="ttdoc">General error handler. </div><div class="ttdef"><b>Definition:</b> <a href="chgres__cube_8fd_2utils_8f90_source.html#l00010">chgres_cube.fd/utils.f90:10</a></div></div>
 <div class="ttc" id="classprogram__setup_html_a59431f09ff79583ed8dcea7de2fa918d"><div class="ttname"><a href="classprogram__setup.html#a59431f09ff79583ed8dcea7de2fa918d">program_setup::read_setup_namelist</a></div><div class="ttdeci">subroutine, public read_setup_namelist</div><div class="ttdoc">Reads configuration namelist. </div><div class="ttdef"><b>Definition:</b> <a href="chgres__cube_8fd_2program__setup_8f90_source.html#l00243">chgres_cube.fd/program_setup.f90:243</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

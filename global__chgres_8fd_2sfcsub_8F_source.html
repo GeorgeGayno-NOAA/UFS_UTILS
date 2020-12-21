@@ -8122,22 +8122,22 @@ $(document).ready(function(){initNavTree('global__chgres_8fd_2sfcsub_8F_source.h
 <div class="line"><a name="l08014"></a><span class="lineno"> 8014</span>&#160;     &amp; <span class="stringliteral">&#39; filename=&#39;</span>, trim(filename)</div>
 <div class="line"><a name="l08015"></a><span class="lineno"> 8015</span>&#160;</div>
 <div class="line"><a name="l08016"></a><span class="lineno"> 8016</span>&#160;      error=nf90_open(trim(filename), nf90_nowrite, ncid)</div>
-<div class="line"><a name="l08017"></a><span class="lineno"> 8017</span>&#160;      <span class="keywordflow">if</span> (error /= nf90_noerr) call netcdf_err(error)</div>
+<div class="line"><a name="l08017"></a><span class="lineno"> 8017</span>&#160;      <span class="keywordflow">if</span> (error /= nf90_noerr) call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a442215c3836c0cf8a853c078861ba79f">netcdf_err</a>(error)</div>
 <div class="line"><a name="l08018"></a><span class="lineno"> 8018</span>&#160;</div>
 <div class="line"><a name="l08019"></a><span class="lineno"> 8019</span>&#160;      error=nf90_inq_dimid(ncid, <span class="stringliteral">&#39;nx&#39;</span>, id_dim)</div>
-<div class="line"><a name="l08020"></a><span class="lineno"> 8020</span>&#160;      <span class="keywordflow">if</span> (error /= nf90_noerr) call netcdf_err(error)</div>
+<div class="line"><a name="l08020"></a><span class="lineno"> 8020</span>&#160;      <span class="keywordflow">if</span> (error /= nf90_noerr) call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a442215c3836c0cf8a853c078861ba79f">netcdf_err</a>(error)</div>
 <div class="line"><a name="l08021"></a><span class="lineno"> 8021</span>&#160;      error=nf90_inquire_dimension(ncid,id_dim,len=nx)</div>
-<div class="line"><a name="l08022"></a><span class="lineno"> 8022</span>&#160;      <span class="keywordflow">if</span> (error /= nf90_noerr) call netcdf_err(error)</div>
+<div class="line"><a name="l08022"></a><span class="lineno"> 8022</span>&#160;      <span class="keywordflow">if</span> (error /= nf90_noerr) call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a442215c3836c0cf8a853c078861ba79f">netcdf_err</a>(error)</div>
 <div class="line"><a name="l08023"></a><span class="lineno"> 8023</span>&#160;</div>
 <div class="line"><a name="l08024"></a><span class="lineno"> 8024</span>&#160;      error=nf90_inq_dimid(ncid, <span class="stringliteral">&#39;ny&#39;</span>, id_dim)</div>
-<div class="line"><a name="l08025"></a><span class="lineno"> 8025</span>&#160;      <span class="keywordflow">if</span> (error /= nf90_noerr) call netcdf_err(error)</div>
+<div class="line"><a name="l08025"></a><span class="lineno"> 8025</span>&#160;      <span class="keywordflow">if</span> (error /= nf90_noerr) call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a442215c3836c0cf8a853c078861ba79f">netcdf_err</a>(error)</div>
 <div class="line"><a name="l08026"></a><span class="lineno"> 8026</span>&#160;      error=nf90_inquire_dimension(ncid,id_dim,len=ny)</div>
-<div class="line"><a name="l08027"></a><span class="lineno"> 8027</span>&#160;      <span class="keywordflow">if</span> (error /= nf90_noerr) call netcdf_err(error)</div>
+<div class="line"><a name="l08027"></a><span class="lineno"> 8027</span>&#160;      <span class="keywordflow">if</span> (error /= nf90_noerr) call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a442215c3836c0cf8a853c078861ba79f">netcdf_err</a>(error)</div>
 <div class="line"><a name="l08028"></a><span class="lineno"> 8028</span>&#160;</div>
 <div class="line"><a name="l08029"></a><span class="lineno"> 8029</span>&#160;      error=nf90_inq_dimid(ncid, <span class="stringliteral">&#39;time&#39;</span>, id_dim)</div>
-<div class="line"><a name="l08030"></a><span class="lineno"> 8030</span>&#160;      <span class="keywordflow">if</span> (error /= nf90_noerr) call netcdf_err(error)</div>
+<div class="line"><a name="l08030"></a><span class="lineno"> 8030</span>&#160;      <span class="keywordflow">if</span> (error /= nf90_noerr) call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a442215c3836c0cf8a853c078861ba79f">netcdf_err</a>(error)</div>
 <div class="line"><a name="l08031"></a><span class="lineno"> 8031</span>&#160;      error=nf90_inquire_dimension(ncid,id_dim,len=num_times)</div>
-<div class="line"><a name="l08032"></a><span class="lineno"> 8032</span>&#160;      <span class="keywordflow">if</span> (error /= nf90_noerr) call netcdf_err(error)</div>
+<div class="line"><a name="l08032"></a><span class="lineno"> 8032</span>&#160;      <span class="keywordflow">if</span> (error /= nf90_noerr) call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a442215c3836c0cf8a853c078861ba79f">netcdf_err</a>(error)</div>
 <div class="line"><a name="l08033"></a><span class="lineno"> 8033</span>&#160;</div>
 <div class="line"><a name="l08034"></a><span class="lineno"> 8034</span>&#160;      <span class="keywordflow">select</span> <span class="keywordflow">case</span> (kpds)</div>
 <div class="line"><a name="l08035"></a><span class="lineno"> 8035</span>&#160;        <span class="keywordflow">case</span>(11)</div>
@@ -8169,7 +8169,7 @@ $(document).ready(function(){initNavTree('global__chgres_8fd_2sfcsub_8F_source.h
 <div class="line"><a name="l08061"></a><span class="lineno"> 8061</span>&#160;          print*,<span class="stringliteral">&#39;unknown variable.&#39;</span></div>
 <div class="line"><a name="l08062"></a><span class="lineno"> 8062</span>&#160;          call abort</div>
 <div class="line"><a name="l08063"></a><span class="lineno"> 8063</span>&#160;      <span class="keywordflow">end select</span></div>
-<div class="line"><a name="l08064"></a><span class="lineno"> 8064</span>&#160;      <span class="keywordflow">if</span> (error /= nf90_noerr) call netcdf_err(error)</div>
+<div class="line"><a name="l08064"></a><span class="lineno"> 8064</span>&#160;      <span class="keywordflow">if</span> (error /= nf90_noerr) call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a442215c3836c0cf8a853c078861ba79f">netcdf_err</a>(error)</div>
 <div class="line"><a name="l08065"></a><span class="lineno"> 8065</span>&#160;</div>
 <div class="line"><a name="l08066"></a><span class="lineno"> 8066</span>&#160;      <span class="keyword">allocate</span>(dummy(nx,ny,1))</div>
 <div class="line"><a name="l08067"></a><span class="lineno"> 8067</span>&#160;</div>
@@ -8179,7 +8179,7 @@ $(document).ready(function(){initNavTree('global__chgres_8fd_2sfcsub_8F_source.h
 <div class="line"><a name="l08071"></a><span class="lineno"> 8071</span>&#160;        <span class="keywordflow">do</span> t = 1, num_times</div>
 <div class="line"><a name="l08072"></a><span class="lineno"> 8072</span>&#160;          error=nf90_get_var(ncid, id_var, dummy, start=(/1,1,t/),</div>
 <div class="line"><a name="l08073"></a><span class="lineno"> 8073</span>&#160;     &amp;                     count=(/nx,ny,1/) )</div>
-<div class="line"><a name="l08074"></a><span class="lineno"> 8074</span>&#160;          <span class="keywordflow">if</span> (error /= nf90_noerr) call netcdf_err(error)</div>
+<div class="line"><a name="l08074"></a><span class="lineno"> 8074</span>&#160;          <span class="keywordflow">if</span> (error /= nf90_noerr) call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a442215c3836c0cf8a853c078861ba79f">netcdf_err</a>(error)</div>
 <div class="line"><a name="l08075"></a><span class="lineno"> 8075</span>&#160;          <span class="keywordflow">do</span> ii = 1,npts</div>
 <div class="line"><a name="l08076"></a><span class="lineno"> 8076</span>&#160;            var(ii) = max(var(ii), dummy(i_index(ii),j_index(ii),1))</div>
 <div class="line"><a name="l08077"></a><span class="lineno"> 8077</span>&#160;          <span class="keywordflow">enddo</span></div>
@@ -8191,7 +8191,7 @@ $(document).ready(function(){initNavTree('global__chgres_8fd_2sfcsub_8F_source.h
 <div class="line"><a name="l08083"></a><span class="lineno"> 8083</span>&#160;        <span class="keywordflow">do</span> t = 1, num_times</div>
 <div class="line"><a name="l08084"></a><span class="lineno"> 8084</span>&#160;          error=nf90_get_var(ncid, id_var, dummy, start=(/1,1,t/),</div>
 <div class="line"><a name="l08085"></a><span class="lineno"> 8085</span>&#160;     &amp;                     count=(/nx,ny,1/) )</div>
-<div class="line"><a name="l08086"></a><span class="lineno"> 8086</span>&#160;          <span class="keywordflow">if</span> (error /= nf90_noerr) call netcdf_err(error)</div>
+<div class="line"><a name="l08086"></a><span class="lineno"> 8086</span>&#160;          <span class="keywordflow">if</span> (error /= nf90_noerr) call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a442215c3836c0cf8a853c078861ba79f">netcdf_err</a>(error)</div>
 <div class="line"><a name="l08087"></a><span class="lineno"> 8087</span>&#160;          <span class="keywordflow">do</span> ii = 1, npts</div>
 <div class="line"><a name="l08088"></a><span class="lineno"> 8088</span>&#160;            var(ii) = min(var(ii), dummy(i_index(ii),j_index(ii),1))</div>
 <div class="line"><a name="l08089"></a><span class="lineno"> 8089</span>&#160;          <span class="keywordflow">enddo</span></div>
@@ -8201,7 +8201,7 @@ $(document).ready(function(){initNavTree('global__chgres_8fd_2sfcsub_8F_source.h
 <div class="line"><a name="l08093"></a><span class="lineno"> 8093</span>&#160;</div>
 <div class="line"><a name="l08094"></a><span class="lineno"> 8094</span>&#160;        error=nf90_get_var(ncid, id_var, dummy, start=(/1,1,mon/),</div>
 <div class="line"><a name="l08095"></a><span class="lineno"> 8095</span>&#160;     &amp;                   count=(/nx,ny,1/) )</div>
-<div class="line"><a name="l08096"></a><span class="lineno"> 8096</span>&#160;        <span class="keywordflow">if</span> (error /= nf90_noerr) call netcdf_err(error)</div>
+<div class="line"><a name="l08096"></a><span class="lineno"> 8096</span>&#160;        <span class="keywordflow">if</span> (error /= nf90_noerr) call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a442215c3836c0cf8a853c078861ba79f">netcdf_err</a>(error)</div>
 <div class="line"><a name="l08097"></a><span class="lineno"> 8097</span>&#160;</div>
 <div class="line"><a name="l08098"></a><span class="lineno"> 8098</span>&#160;        <span class="keywordflow">do</span> ii = 1, npts</div>
 <div class="line"><a name="l08099"></a><span class="lineno"> 8099</span>&#160;          var(ii) = dummy(i_index(ii),j_index(ii),1)</div>
@@ -8228,7 +8228,7 @@ $(document).ready(function(){initNavTree('global__chgres_8fd_2sfcsub_8F_source.h
 <div class="line"><a name="l08120"></a><span class="lineno"> 8120</span>&#160;      <span class="keywordflow">return</span></div>
 <div class="line"><a name="l08121"></a><span class="lineno"> 8121</span>&#160;</div>
 <div class="line"><a name="l08122"></a><span class="lineno"> 8122</span>&#160;<span class="keyword">      end subroutine </span>fixrdc_tile</div>
-<div class="line"><a name="l08123"></a><span class="lineno"> 8123</span>&#160;<span class="keyword">      subroutine </span>netcdf_err(error)</div>
+<div class="line"><a name="l08123"></a><span class="lineno"> 8123</span>&#160;<span class="keyword">      subroutine </span><a class="code" href="chgres__cube_8fd_2utils_8f90.html#a442215c3836c0cf8a853c078861ba79f">netcdf_err</a>(error)</div>
 <div class="line"><a name="l08124"></a><span class="lineno"> 8124</span>&#160;</div>
 <div class="line"><a name="l08125"></a><span class="lineno"> 8125</span>&#160;      <span class="keywordtype">use </span>netcdf</div>
 <div class="line"><a name="l08126"></a><span class="lineno"> 8126</span>&#160;      <span class="keywordtype">implicit none</span></div>
@@ -8240,7 +8240,7 @@ $(document).ready(function(){initNavTree('global__chgres_8fd_2sfcsub_8F_source.h
 <div class="line"><a name="l08132"></a><span class="lineno"> 8132</span>&#160;      print*,<span class="stringliteral">&#39;fatal error in sfcsub.F: &#39;</span>, trim(errmsg)</div>
 <div class="line"><a name="l08133"></a><span class="lineno"> 8133</span>&#160;      call abort</div>
 <div class="line"><a name="l08134"></a><span class="lineno"> 8134</span>&#160;</div>
-<div class="line"><a name="l08135"></a><span class="lineno"> 8135</span>&#160;<span class="keyword">      end subroutine </span>netcdf_err</div>
+<div class="line"><a name="l08135"></a><span class="lineno"> 8135</span>&#160;<span class="keyword">      end subroutine </span><a class="code" href="chgres__cube_8fd_2utils_8f90.html#a442215c3836c0cf8a853c078861ba79f">netcdf_err</a></div>
 <div class="line"><a name="l08136"></a><span class="lineno"> 8136</span>&#160;<span class="keyword">      subroutine </span>fixrdc(lugb,fngrib,kpds5,kpds7,mon,slmask,</div>
 <div class="line"><a name="l08137"></a><span class="lineno"> 8137</span>&#160;     &amp;                 gdata,len,iret</div>
 <div class="line"><a name="l08138"></a><span class="lineno"> 8138</span>&#160;     &amp;,                imsk, jmsk, slmskh, gaus,blno, blto</div>
@@ -8757,6 +8757,7 @@ $(document).ready(function(){initNavTree('global__chgres_8fd_2sfcsub_8F_source.h
 <div class="line"><a name="l08649"></a><span class="lineno"> 8649</span>&#160;      <span class="keywordflow">enddo</span></div>
 <div class="line"><a name="l08650"></a><span class="lineno"> 8650</span>&#160;      <span class="keywordflow">return</span></div>
 <div class="line"><a name="l08651"></a><span class="lineno"> 8651</span>&#160;      <span class="keywordflow">end</span></div>
+<div class="ttc" id="chgres__cube_8fd_2utils_8f90_html_a442215c3836c0cf8a853c078861ba79f"><div class="ttname"><a href="chgres__cube_8fd_2utils_8f90.html#a442215c3836c0cf8a853c078861ba79f">netcdf_err</a></div><div class="ttdeci">subroutine netcdf_err(err, string)</div><div class="ttdoc">Error handler for netcdf. </div><div class="ttdef"><b>Definition:</b> <a href="chgres__cube_8fd_2utils_8f90_source.html#l00032">chgres_cube.fd/utils.f90:32</a></div></div>
 <div class="ttc" id="global__cycle_8fd_2sfcsub_8F_html_classsfccyc__module"><div class="ttname"><a href="global__cycle_8fd_2sfcsub_8F.html#classsfccyc__module">sfccyc_module</a></div><div class="ttdef"><b>Definition:</b> <a href="global__chgres_8fd_2sfcsub_8F_source.html#l00002">global_chgres.fd/sfcsub.F:2</a></div></div>
 <div class="ttc" id="machine_8f90_html_classmachine"><div class="ttname"><a href="machine_8f90.html#classmachine">machine</a></div><div class="ttdef"><b>Definition:</b> <a href="machine__8_8f90_source.html#l00002">machine_8.f90:2</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

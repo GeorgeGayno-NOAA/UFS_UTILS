@@ -108,7 +108,6 @@ var files =
     [ "make_hgrid.c", "make__hgrid_8c_source.html", null ],
     [ "make_solo_mosaic.c", "make__solo__mosaic_8c_source.html", null ],
     [ "matrix_utils.f90", "matrix__utils_8f90.html", "matrix__utils_8f90" ],
-    [ "mkgfsnemsioctl.f90", "mkgfsnemsioctl_8f90.html", "mkgfsnemsioctl_8f90" ],
     [ "model_grid.f", "model__grid_8f.html", [
       [ "model_grid", "classmodel__grid.html", "classmodel__grid" ]
     ] ],
@@ -149,9 +148,6 @@ var files =
       ] ]
     ] ],
     [ "nc_check.f90", "nc__check_8f90.html", "nc__check_8f90" ],
-    [ "nemsio_chgdate.f90", "nemsio__chgdate_8f90.html", "nemsio__chgdate_8f90" ],
-    [ "nemsio_get.f90", "nemsio__get_8f90.html", "nemsio__get_8f90" ],
-    [ "nemsio_read.f90", "nemsio__read_8f90.html", "nemsio__read_8f90" ],
     [ "netcdf_io.F90", "netcdf__io_8F90.html", "netcdf__io_8F90" ],
     [ "nrlmsise00_sub.f90", "nrlmsise00__sub_8f90.html", "nrlmsise00__sub_8f90" ],
     [ "nsst_chgres.f90", "nsst__chgres_8f90.html", "nsst__chgres_8f90" ],

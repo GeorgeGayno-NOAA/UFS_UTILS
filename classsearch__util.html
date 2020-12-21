@@ -111,8 +111,8 @@ $(document).ready(function(){initNavTree('classsearch__util.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4a511a55b3ce58a03cc053d19cecc458"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a511a55b3ce58a03cc053d19cecc458"></a>
-subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><b>search</b> (field, mask, idim, jdim, tile, field_num, latitude, terrain_land, soilt_climo)</td></tr>
+<tr class="memitem:a4a511a55b3ce58a03cc053d19cecc458"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsearch__util.html#a4a511a55b3ce58a03cc053d19cecc458">search</a> (field, mask, idim, jdim, tile, field_num, latitude, terrain_land, soilt_climo)</td></tr>
+<tr class="memdesc:a4a511a55b3ce58a03cc053d19cecc458"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replace undefined surface values.  <a href="#a4a511a55b3ce58a03cc053d19cecc458">More...</a><br/></td></tr>
 <tr class="separator:a4a511a55b3ce58a03cc053d19cecc458"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f5cd2507060bc834d1fd8a08a4c31ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f5cd2507060bc834d1fd8a08a4c31ba"></a>
 subroutine&#160;</td><td class="memItemRight" valign="bottom"><b>sst_guess</b> (latitude, sst)</td></tr>
@@ -120,8 +120,83 @@ subroutine&#160;</td><td class="memItemRight" valign="bottom"><b>sst_guess</b> (
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="search__util_8f90_source.html#l00016">16</a> of file <a class="el" href="search__util_8f90_source.html">search_util.f90</a>.</p>
-</div><hr/>The documentation for this module was generated from the following file:<ul>
+<p>Definition at line <a class="el" href="search__util_8f90_source.html#l00012">12</a> of file <a class="el" href="search__util_8f90_source.html">search_util.f90</a>.</p>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a class="anchor" id="a4a511a55b3ce58a03cc053d19cecc458"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine, public search_util::search </td>
+          <td>(</td>
+          <td class="paramtype">real(esmf_kind_r8), dimension(idim,jdim), intent(inout)&#160;</td>
+          <td class="paramname"><em>field</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer(esmf_kind_i8), dimension(idim,jdim), intent(in)&#160;</td>
+          <td class="paramname"><em>mask</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>idim</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>jdim</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>tile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>field_num</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(esmf_kind_r8), dimension(idim,jdim), intent(in), optional&#160;</td>
+          <td class="paramname"><em>latitude</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(esmf_kind_r8), dimension(idim,jdim), intent(in), optional&#160;</td>
+          <td class="paramname"><em>terrain_land</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(esmf_kind_r8), dimension(idim,jdim), intent(in), optional&#160;</td>
+          <td class="paramname"><em>soilt_climo</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Replace undefined surface values. </p>
+<p>Replace undefined values on the model grid with a valid value at a nearby neighbor. Undefined values are typically associated with isolated islands where there is no source data.</p>
+<p>Routine searches a neighborhood with a radius of 100 grid points. If no valid value is found, a default value is used. </p>
+
+<p>Definition at line <a class="el" href="search__util_8f90_source.html#l00035">35</a> of file <a class="el" href="search__util_8f90_source.html">search_util.f90</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this module was generated from the following file:<ul>
 <li><a class="el" href="search__util_8f90_source.html">search_util.f90</a></li>
 </ul>
 </div><!-- contents -->

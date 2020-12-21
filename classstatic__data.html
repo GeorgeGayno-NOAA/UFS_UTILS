@@ -112,11 +112,11 @@ $(document).ready(function(){initNavTree('classstatic__data.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3a6ad318f4d11ae68a6f33dc2fbc6ffc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3a6ad318f4d11ae68a6f33dc2fbc6ffc"></a>
-subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><b>cleanup_static_fields</b></td></tr>
+<tr class="memitem:a3a6ad318f4d11ae68a6f33dc2fbc6ffc"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstatic__data.html#a3a6ad318f4d11ae68a6f33dc2fbc6ffc">cleanup_static_fields</a></td></tr>
+<tr class="memdesc:a3a6ad318f4d11ae68a6f33dc2fbc6ffc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free up memory for fields in this module.  <a href="#a3a6ad318f4d11ae68a6f33dc2fbc6ffc">More...</a><br/></td></tr>
 <tr class="separator:a3a6ad318f4d11ae68a6f33dc2fbc6ffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa310502eb6a2d97f82fb41196b00f4d7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa310502eb6a2d97f82fb41196b00f4d7"></a>
-subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><b>get_static_fields</b> (localpet)</td></tr>
+<tr class="memitem:aa310502eb6a2d97f82fb41196b00f4d7"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstatic__data.html#aa310502eb6a2d97f82fb41196b00f4d7">get_static_fields</a> (localpet)</td></tr>
+<tr class="memdesc:aa310502eb6a2d97f82fb41196b00f4d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver routine to read/time interpolate static/climo fields on the fv3 target grid.  <a href="#aa310502eb6a2d97f82fb41196b00f4d7">More...</a><br/></td></tr>
 <tr class="separator:aa310502eb6a2d97f82fb41196b00f4d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff2a5a5fa372950e606431e9ee777e65"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aff2a5a5fa372950e606431e9ee777e65"></a>
 subroutine&#160;</td><td class="memItemRight" valign="bottom"><b>read_static_file</b> (field, i_target, j_target, tile, data_one_tile, max_data_one_tile, min_data_one_tile)</td></tr>
@@ -169,8 +169,48 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>v
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="static__data_8F90_source.html#l00037">37</a> of file <a class="el" href="static__data_8F90_source.html">static_data.F90</a>.</p>
-</div><hr/>The documentation for this module was generated from the following file:<ul>
+<p>Definition at line <a class="el" href="static__data_8F90_source.html#l00030">30</a> of file <a class="el" href="static__data_8F90_source.html">static_data.F90</a>.</p>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a class="anchor" id="a3a6ad318f4d11ae68a6f33dc2fbc6ffc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine, public static_data::cleanup_static_fields </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Free up memory for fields in this module. </p>
+
+<p>Definition at line <a class="el" href="static__data_8F90_source.html#l00502">502</a> of file <a class="el" href="static__data_8F90_source.html">static_data.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa310502eb6a2d97f82fb41196b00f4d7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine, public static_data::get_static_fields </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>localpet</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Driver routine to read/time interpolate static/climo fields on the fv3 target grid. </p>
+
+<p>Definition at line <a class="el" href="static__data_8F90_source.html#l00063">63</a> of file <a class="el" href="static__data_8F90_source.html">static_data.F90</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this module was generated from the following file:<ul>
 <li><a class="el" href="static__data_8F90_source.html">static_data.F90</a></li>
 </ul>
 </div><!-- contents -->

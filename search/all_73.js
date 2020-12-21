@@ -2,7 +2,7 @@ var searchData=
 [
   ['model_5fgrid_2ef90',['model_grid.F90',['../sfc__climo__gen_8fd_2model__grid_8F90.html',1,'']]],
   ['program_5fsetup_2ef90',['program_setup.f90',['../sfc__climo__gen_8fd_2program__setup_8f90.html',1,'']]],
-  ['search',['search',['../search_8f90.html#acda6493c6d4a2e9ba6e5d80d3852c93c',1,'search.f90']]],
+  ['search',['search',['../classsearch__util.html#a4a511a55b3ce58a03cc053d19cecc458',1,'search_util::search()'],['../search_8f90.html#acda6493c6d4a2e9ba6e5d80d3852c93c',1,'search():&#160;search.f90']]],
   ['search_2ef90',['search.f90',['../search_8f90.html',1,'']]],
   ['search_5futil',['search_util',['../classsearch__util.html',1,'']]],
   ['search_5futil_2ef90',['search_util.f90',['../search__util_8f90.html',1,'']]],

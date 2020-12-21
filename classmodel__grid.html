@@ -112,11 +112,11 @@ $(document).ready(function(){initNavTree('classmodel__grid.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a200bf9a04e0664c70a004ef2e4684f68"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a200bf9a04e0664c70a004ef2e4684f68"></a>
-subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><b>cleanup_input_target_grid_data</b></td></tr>
+<tr class="memitem:a200bf9a04e0664c70a004ef2e4684f68"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel__grid.html#a200bf9a04e0664c70a004ef2e4684f68">cleanup_input_target_grid_data</a></td></tr>
+<tr class="memdesc:a200bf9a04e0664c70a004ef2e4684f68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deallocate all esmf grid objects.  <a href="#a200bf9a04e0664c70a004ef2e4684f68">More...</a><br/></td></tr>
 <tr class="separator:a200bf9a04e0664c70a004ef2e4684f68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36c0033acb111e2ec5c8132ed0fa0199"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36c0033acb111e2ec5c8132ed0fa0199"></a>
-subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><b>define_input_grid</b> (localpet, npets)</td></tr>
+<tr class="memitem:a36c0033acb111e2ec5c8132ed0fa0199"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel__grid.html#a36c0033acb111e2ec5c8132ed0fa0199">define_input_grid</a> (localpet, npets)</td></tr>
+<tr class="memdesc:a36c0033acb111e2ec5c8132ed0fa0199"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the esmf grid object for the input grid.  <a href="#a36c0033acb111e2ec5c8132ed0fa0199">More...</a><br/></td></tr>
 <tr class="separator:a36c0033acb111e2ec5c8132ed0fa0199"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9aaec5943197589ca89c5661f9e9ded8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9aaec5943197589ca89c5661f9e9ded8"></a>
 subroutine&#160;</td><td class="memItemRight" valign="bottom"><b>define_input_grid_gaussian</b> (localpet, npets)</td></tr>
@@ -133,8 +133,8 @@ subroutine&#160;</td><td class="memItemRight" valign="bottom"><b>define_input_gr
 <tr class="memitem:a11dce144a9b8c63f8a84a495c6543237"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel__grid.html#a11dce144a9b8c63f8a84a495c6543237">define_model_grid</a> (localpet, npets)</td></tr>
 <tr class="memdesc:a11dce144a9b8c63f8a84a495c6543237"><td class="mdescLeft">&#160;</td><td class="mdescRight">define model grid  <a href="#a11dce144a9b8c63f8a84a495c6543237">More...</a><br/></td></tr>
 <tr class="separator:a11dce144a9b8c63f8a84a495c6543237"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d0ed99ee8dd8353bf13ab47074eebb1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0d0ed99ee8dd8353bf13ab47074eebb1"></a>
-subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><b>define_target_grid</b> (localpet, npets)</td></tr>
+<tr class="memitem:a0d0ed99ee8dd8353bf13ab47074eebb1"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel__grid.html#a0d0ed99ee8dd8353bf13ab47074eebb1">define_target_grid</a> (localpet, npets)</td></tr>
+<tr class="memdesc:a0d0ed99ee8dd8353bf13ab47074eebb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the esmf grid object for the target grid.  <a href="#a0d0ed99ee8dd8353bf13ab47074eebb1">More...</a><br/></td></tr>
 <tr class="separator:a0d0ed99ee8dd8353bf13ab47074eebb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee5b9d894386382d39b6a4ac065b282c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee5b9d894386382d39b6a4ac065b282c"></a>
 subroutine&#160;</td><td class="memItemRight" valign="bottom"><b>get_cell_corners</b> (latitude, longitude, latitude_sw, longitude_sw, dx, clb, cub)</td></tr>
@@ -345,8 +345,58 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>v
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="chgres__cube_8fd_2model__grid_8F90_source.html#l00058">58</a> of file <a class="el" href="chgres__cube_8fd_2model__grid_8F90_source.html">chgres_cube.fd/model_grid.F90</a>.</p>
+<p>Definition at line <a class="el" href="chgres__cube_8fd_2model__grid_8F90_source.html#l00050">50</a> of file <a class="el" href="chgres__cube_8fd_2model__grid_8F90_source.html">chgres_cube.fd/model_grid.F90</a>.</p>
 </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a class="anchor" id="a200bf9a04e0664c70a004ef2e4684f68"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine, public model_grid::cleanup_input_target_grid_data </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deallocate all esmf grid objects. </p>
+
+<p>Definition at line <a class="el" href="chgres__cube_8fd_2model__grid_8F90_source.html#l01650">1650</a> of file <a class="el" href="chgres__cube_8fd_2model__grid_8F90_source.html">chgres_cube.fd/model_grid.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a36c0033acb111e2ec5c8132ed0fa0199"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine, public model_grid::define_input_grid </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>localpet</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>npets</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Setup the esmf grid object for the input grid. </p>
+<p>Set up the esmf grid object for the input grid. If the input source is tiled fv3 restart or history data, the grid is created by reading the mosaic and grid files. If the input source is fv3 global gaussian nemsio, spectral gfs global gaussian nemsio, or spectral gfs global gaussian sigio/sfcio, the grid is setup by computing lat/lons using the sp library. </p>
+
+<p>Definition at line <a class="el" href="chgres__cube_8fd_2model__grid_8F90_source.html#l00110">110</a> of file <a class="el" href="chgres__cube_8fd_2model__grid_8F90_source.html">chgres_cube.fd/model_grid.F90</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a11dce144a9b8c63f8a84a495c6543237"></a>
 <div class="memitem">
 <div class="memproto">
@@ -384,6 +434,36 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>v
 </dl>
 
 <p>Definition at line <a class="el" href="sfc__climo__gen_8fd_2model__grid_8F90_source.html#l00065">65</a> of file <a class="el" href="sfc__climo__gen_8fd_2model__grid_8F90_source.html">sfc_climo_gen.fd/model_grid.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0d0ed99ee8dd8353bf13ab47074eebb1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine, public model_grid::define_target_grid </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>localpet</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>npets</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Setup the esmf grid object for the target grid. </p>
+
+<p>Definition at line <a class="el" href="chgres__cube_8fd_2model__grid_8F90_source.html#l01084">1084</a> of file <a class="el" href="chgres__cube_8fd_2model__grid_8F90_source.html">chgres_cube.fd/model_grid.F90</a>.</p>
 
 </div>
 </div>

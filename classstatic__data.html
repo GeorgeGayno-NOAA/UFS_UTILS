@@ -118,8 +118,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa310502eb6a2d97f82fb41196b00f4d7"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstatic__data.html#aa310502eb6a2d97f82fb41196b00f4d7">get_static_fields</a> (localpet)</td></tr>
 <tr class="memdesc:aa310502eb6a2d97f82fb41196b00f4d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver routine to read/time interpolate static/climo fields on the fv3 target grid.  <a href="#aa310502eb6a2d97f82fb41196b00f4d7">More...</a><br/></td></tr>
 <tr class="separator:aa310502eb6a2d97f82fb41196b00f4d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff2a5a5fa372950e606431e9ee777e65"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aff2a5a5fa372950e606431e9ee777e65"></a>
-subroutine&#160;</td><td class="memItemRight" valign="bottom"><b>read_static_file</b> (field, i_target, j_target, tile, data_one_tile, max_data_one_tile, min_data_one_tile)</td></tr>
+<tr class="memitem:aff2a5a5fa372950e606431e9ee777e65"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstatic__data.html#aff2a5a5fa372950e606431e9ee777e65">read_static_file</a> (field, i_target, j_target, tile, data_one_tile, max_data_one_tile, min_data_one_tile)</td></tr>
+<tr class="memdesc:aff2a5a5fa372950e606431e9ee777e65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read static climatological data file.  <a href="#aff2a5a5fa372950e606431e9ee777e65">More...</a><br/></td></tr>
 <tr class="separator:aff2a5a5fa372950e606431e9ee777e65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -169,7 +169,7 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>v
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="static__data_8F90_source.html#l00030">30</a> of file <a class="el" href="static__data_8F90_source.html">static_data.F90</a>.</p>
+<p>Definition at line <a class="el" href="static__data_8F90_source.html#l00029">29</a> of file <a class="el" href="static__data_8F90_source.html">static_data.F90</a>.</p>
 </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a class="anchor" id="a3a6ad318f4d11ae68a6f33dc2fbc6ffc"></a>
 <div class="memitem">
@@ -185,8 +185,9 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>v
 </div><div class="memdoc">
 
 <p>Free up memory for fields in this module. </p>
+<dl class="section author"><dt>Author</dt><dd>gayno NCEP/EMC </dd></dl>
 
-<p>Definition at line <a class="el" href="static__data_8F90_source.html#l00502">502</a> of file <a class="el" href="static__data_8F90_source.html">static_data.F90</a>.</p>
+<p>Definition at line <a class="el" href="static__data_8F90_source.html#l00501">501</a> of file <a class="el" href="static__data_8F90_source.html">static_data.F90</a>.</p>
 
 </div>
 </div>
@@ -205,8 +206,70 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>v
 </div><div class="memdoc">
 
 <p>Driver routine to read/time interpolate static/climo fields on the fv3 target grid. </p>
+<dl class="section author"><dt>Author</dt><dd>gayno NCEP/EMC </dd></dl>
 
-<p>Definition at line <a class="el" href="static__data_8F90_source.html#l00063">63</a> of file <a class="el" href="static__data_8F90_source.html">static_data.F90</a>.</p>
+<p>Definition at line <a class="el" href="static__data_8F90_source.html#l00062">62</a> of file <a class="el" href="static__data_8F90_source.html">static_data.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aff2a5a5fa372950e606431e9ee777e65"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine static_data::read_static_file </td>
+          <td>(</td>
+          <td class="paramtype">character(len=*), intent(in)&#160;</td>
+          <td class="paramname"><em>field</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>i_target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>j_target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>tile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(esmf_kind_r8), dimension(i_target,j_target), intent(out)&#160;</td>
+          <td class="paramname"><em>data_one_tile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(esmf_kind_r8), dimension(i_target,j_target), intent(out), optional&#160;</td>
+          <td class="paramname"><em>max_data_one_tile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(esmf_kind_r8), dimension(i_target,j_target), intent(out), optional&#160;</td>
+          <td class="paramname"><em>min_data_one_tile</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read static climatological data file. </p>
+<dl class="section author"><dt>Author</dt><dd>gayno NCEP/EMC </dd></dl>
+
+<p>Definition at line <a class="el" href="static__data_8F90_source.html#l00363">363</a> of file <a class="el" href="static__data_8F90_source.html">static_data.F90</a>.</p>
 
 </div>
 </div>

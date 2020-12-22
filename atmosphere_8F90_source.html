@@ -147,20 +147,20 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; <span class="keywordtype">private</span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; <span class="keywordtype">integer</span>, <span class="keywordtype">public</span>                    :: lev_target       <span class="comment">! num vertical levels</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; <span class="keywordtype">integer</span>, <span class="keywordtype">public</span>                    :: levp1_target     <span class="comment">! num levels plus 1</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; <span class="keywordtype">integer</span>, <span class="keywordtype">public</span>                    :: nvcoord_target   <span class="comment">! num vertical coordinate</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                                                        <span class="comment">! variables</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; <span class="keywordtype">integer</span>, <span class="keywordtype">public</span>                    :: lev_target       !&gt; num vertical levels</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; <span class="keywordtype">integer</span>, <span class="keywordtype">public</span>                    :: levp1_target     !&gt; num levels plus 1</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; <span class="keywordtype">integer</span>, <span class="keywordtype">public</span>                    :: nvcoord_target   !&gt; num vertical coordinate</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">public</span> :: vcoord_target(:,:)  <span class="comment">! vertical coordinate</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classatmosphere.html#ae5bfa0946475301f0de866a20a0c9af6">   63</a></span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">public</span> :: vcoord_target(:,:)  <span class="comment">! vertical coordinate</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; <span class="keywordtype">type(</span>esmf_field<span class="keywordtype">)</span>, <span class="keywordtype">public</span>               :: delp_target_grid</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                                           <span class="comment">! pressure thickness</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; <span class="keywordtype">type(</span>esmf_field<span class="keywordtype">)</span>, <span class="keywordtype">public</span>               :: dzdt_target_grid</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                                           <span class="comment">! vertical velocity</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classatmosphere.html#a2e7960fcc8046a86169b581701361286">   67</a></span>&#160; <span class="keywordtype">type(</span>esmf_field<span class="keywordtype">)</span>, <span class="keywordtype">public</span>               :: dzdt_target_grid</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; <span class="keywordtype">type(</span>esmf_field<span class="keywordtype">)</span>                       :: dzdt_b4adj_target_grid</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                                           <span class="comment">! vertical vel before vert adj</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; <span class="keywordtype">type(</span>esmf_field<span class="keywordtype">)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">public</span>  :: tracers_target_grid(:)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="classatmosphere.html#aa755c536f41d9db969c6e6b6fe4d4578">   71</a></span>&#160; <span class="keywordtype">type(</span>esmf_field<span class="keywordtype">)</span>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">public</span>  :: tracers_target_grid(:)</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                                           <span class="comment">! tracers</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; <span class="keywordtype">type(</span>esmf_field<span class="keywordtype">)</span>, <span class="keywordtype">allocatable</span>          :: tracers_b4adj_target_grid(:)</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                                           <span class="comment">! tracers before vert adj</span></div>

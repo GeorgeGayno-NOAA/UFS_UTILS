@@ -99,7 +99,6 @@ var classprogram__setup =
     [ "tracers", "classprogram__setup.html#a4e934ac801fd213f8f422e5e9bb83568", null ],
     [ "tracers_input", "classprogram__setup.html#ac4c19c8b8a7b17c398fa07ac85b31546", null ],
     [ "use_thomp_mp_climo", "classprogram__setup.html#a6f53159282cadb12b9c881d901ce0699", null ],
-    [ "var", "classprogram__setup.html#ad096fa815cc34aa64365abb8ca281457", null ],
     [ "varmap_file", "classprogram__setup.html#abda8846e5ea6470172073df7ad528171", null ],
     [ "vcoord_file_target_grid", "classprogram__setup.html#af00a42c8dcd1d98cb4e152e5e7fdfe4c", null ],
     [ "vegetation_greenness_method", "classprogram__setup.html#afc0a8243ffbb5ffa0d70eb20951f807b", null ],

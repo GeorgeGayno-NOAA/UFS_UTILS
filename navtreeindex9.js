@@ -1,10 +1,5 @@
 var NAVTREEINDEX9 =
 {
-"structVar__config.html#ae67326a4d84fb7c2586012dd839d4174":[2,0,52,13],
-"structVar__config.html#af415c2fb80672ea3e6f8b4dab17e09d0":[2,0,52,2],
-"structVar__config.html#aff6ac9b6ec47fb62cd5ffd27565b3398":[2,0,52,10],
-"surface_8F90.html":[3,0,112],
-"surface_8F90_source.html":[3,0,112],
 "surface__chgres_8f90.html":[3,0,113],
 "surface__chgres_8f90_source.html":[3,0,113],
 "thompson__mp__climo__data_8F90.html":[3,0,114],

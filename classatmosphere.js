@@ -3,15 +3,11 @@ var classatmosphere =
     [ "atmosphere_driver", "classatmosphere.html#a79bac062052ba98de5baa9ea854410fe", null ],
     [ "create_atm_b4adj_esmf_fields", "classatmosphere.html#a67a8ac36ae3346e7697cc649ce6d7c8c", null ],
     [ "terp3", "classatmosphere.html#acc4e65688bda454688a6f571d6939ae7", null ],
-    [ "coordinate", "classatmosphere.html#a91de0017100aea124dfa872c9c5ef5bd", null ],
     [ "delp_target_grid", "classatmosphere.html#a4a01d8bf9dd536519d66ccad87491d16", null ],
     [ "dzdt_target_grid", "classatmosphere.html#a2e7960fcc8046a86169b581701361286", null ],
     [ "lev_target", "classatmosphere.html#a087a3df78b64c3c342198f2bcc6c8d11", null ],
-    [ "levels", "classatmosphere.html#a3d7e81673b8cf7730be40ad1e871bd33", null ],
     [ "levp1_target", "classatmosphere.html#aa66c8009b3d057d7bf4da5fb449a7756", null ],
-    [ "num", "classatmosphere.html#a6c0b8f7039dcaa4466dac5d523ca0d8a", null ],
     [ "nvcoord_target", "classatmosphere.html#a5cf84436050173b6a0dd926861128428", null ],
-    [ "plus", "classatmosphere.html#a6aa964d2c66e8e0ca34b3bcdf0d9074f", null ],
     [ "ps_target_grid", "classatmosphere.html#a00c34f9bbee9f30bff72a84d6731c319", null ],
     [ "qnifa_climo_target_grid", "classatmosphere.html#aacc1ee6ac118bc90757b0ec7648ee589", null ],
     [ "qnwfa_climo_target_grid", "classatmosphere.html#a1c1486c0b773de210a46bbd6807442c7", null ],
@@ -22,6 +18,5 @@ var classatmosphere =
     [ "v_s_target_grid", "classatmosphere.html#af47c3ae05903afacbaf5c705551fae8a", null ],
     [ "v_w_target_grid", "classatmosphere.html#aff36363895fec1b345aea78549594628", null ],
     [ "vcoord_target", "classatmosphere.html#ae5bfa0946475301f0de866a20a0c9af6", null ],
-    [ "vertical", "classatmosphere.html#a57a891da8b383739f1c850dcbb541908", null ],
     [ "zh_target_grid", "classatmosphere.html#ae2cceb8cd4b47bc9907ef667342c31b8", null ]
 ];

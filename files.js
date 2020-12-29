@@ -108,7 +108,7 @@ var files =
     [ "make_hgrid.c", "make__hgrid_8c_source.html", null ],
     [ "make_solo_mosaic.c", "make__solo__mosaic_8c_source.html", null ],
     [ "matrix_utils.f90", "matrix__utils_8f90.html", "matrix__utils_8f90" ],
-    [ "model_grid.f90", "model__grid_8f90.html", [
+    [ "model_grid.f", "model__grid_8f.html", [
       [ "model_grid", "classmodel__grid.html", "classmodel__grid" ]
     ] ],
     [ "chgres_cube.fd/model_grid.F90", "chgres__cube_8fd_2model__grid_8F90.html", [

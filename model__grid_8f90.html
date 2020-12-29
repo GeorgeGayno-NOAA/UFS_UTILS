@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>UFS_UTILS: emcsfc_snow2mdl.fd Directory Reference</title>
+<title>UFS_UTILS: model_grid.f90 File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -47,7 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Types&#160;List</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -66,6 +66,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -78,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('dir_6c04cce1e346d12dee28b3a41c48082b.html','');});
+$(document).ready(function(){initNavTree('model__grid_8f90.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -96,38 +102,57 @@ $(document).ready(function(){initNavTree('dir_6c04cce1e346d12dee28b3a41c48082b.h
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Types</a>  </div>
   <div class="headertitle">
-<div class="title">emcsfc_snow2mdl.fd Directory Reference</div>  </div>
+<div class="title">model_grid.f90 File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Read in data defining the model grid.  
+<a href="#details">More...</a></p>
+
+<p><a href="model__grid_8f90_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
-Files</h2></td></tr>
-<tr class="memitem:driver_8f"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="driver_8f.html">driver.f</a> <a href="driver_8f_source.html">[code]</a></td></tr>
-<tr class="memdesc:driver_8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a snow cover and snow depth analysis on a nam or global gfs gaussian grid using nesdis/ims snow cover, autosnow snow cover and/or afwa depth data. <br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:grib__utils_8f"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grib__utils_8f.html">grib_utils.f</a> <a href="grib__utils_8f_source.html">[code]</a></td></tr>
-<tr class="memdesc:grib__utils_8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine whether file is grib or not. <br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:model__grid_8f90"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="model__grid_8f90.html">model_grid.f90</a> <a href="model__grid_8f90_source.html">[code]</a></td></tr>
-<tr class="memdesc:model__grid_8f90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read in data defining the model grid. <br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:program__setup_8f"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="program__setup_8f.html">program_setup.f</a> <a href="program__setup_8f_source.html">[code]</a></td></tr>
-<tr class="memdesc:program__setup_8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This module reads in data from the program's configuration namelist. <br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:snow2mdl_8f"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="snow2mdl_8f.html">snow2mdl.f</a> <a href="snow2mdl_8f_source.html">[code]</a></td></tr>
-<tr class="memdesc:snow2mdl_8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolate snow data to model grid and grib the result. <br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:snowdat_8f"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="snowdat_8f.html">snowdat.f</a> <a href="snowdat_8f_source.html">[code]</a></td></tr>
-<tr class="memdesc:snowdat_8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read and qc afwa, nesdis/ims and autosnow snow data. <br/></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Types</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">module &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel__grid.html">model_grid</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Read in data defining the model grid. </p>
+<dl class="section author"><dt>Author</dt><dd>gayno org: w/np2 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2005-dec-16</dd></dl>
+<p>program history log:</p>
+<ul>
+<li>2005-dec-16 gayno - initial version</li>
+<li>2007-nov-30 gayno - improved method for thinning gfs grids. added nam b-grids.</li>
+<li>2014-sep-29 gayno - add option to read model lat, lon and landmask data in grib2.</li>
+</ul>
+<p>variable definitions:</p>
+<ul>
+<li>grid_id_mdl - grib id of model grid, 4-gaussian, 203-egrid</li>
+<li>i/jpts_mdl - i/j index of point on full grid</li>
+<li>imdl - i-dimension of model grid</li>
+<li>jmdl - j-dimension of model grid</li>
+<li>ijmdl - total number of model land points</li>
+<li>kgds_mdl - holds grib gds info of model grid</li>
+<li>lats_mdl - latitudes of model grid points</li>
+<li>lons_mdl - longitudes of model grid points</li>
+<li>lonsperlat - for global grids, the number of i points in each row (decrease toward pole)</li>
+<li>lsmask_mdl - land mask of model grid (0 - non land, 1-land) for global grids run thinned, will contain a modified version of the original mask that has land at all points encompassed by a thinned point</li>
+<li>lsmask_mdl_sav - saved copy of land mask of model grid (0 - non land, 1-land) only used for global thinned grids.</li>
+<li>resol_mdl - approximate model resolution in km.</li>
+<li>thinned - when true, global grids will run thinned (# i points decrease toward pole) </li>
+</ul>
+
+<p>Definition in file <a class="el" href="model__grid_8f90_source.html">model_grid.f90</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d8b772108138bf796aaa3f7fe4e09294.html">sorc</a></li><li class="navelem"><a class="el" href="dir_6c04cce1e346d12dee28b3a41c48082b.html">emcsfc_snow2mdl.fd</a></li>
+    <li class="navelem"><a class="el" href="dir_d8b772108138bf796aaa3f7fe4e09294.html">sorc</a></li><li class="navelem"><a class="el" href="dir_6c04cce1e346d12dee28b3a41c48082b.html">emcsfc_snow2mdl.fd</a></li><li class="navelem"><a class="el" href="model__grid_8f90.html">model_grid.f90</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>

@@ -127,7 +127,7 @@ $(document).ready(function(){initNavTree('sfc__climo__gen_8fd_2model__grid_8F90_
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; <span class="keywordtype">type(</span>esmf_field<span class="keywordtype">)</span>, <span class="keywordtype">public</span>      :: vegt_field_mdl</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; <span class="keywordtype">public</span>                        :: <a class="code" href="classmodel__grid.html#a11dce144a9b8c63f8a84a495c6543237">define_model_grid</a></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; <span class="keywordtype">public</span>                        :: <a class="code" href="classmodel__grid.html#ab82613aa1b639c003cdb59a592953d7b">model_grid_cleanup</a></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; <span class="keywordtype">public</span>                        :: model_grid_cleanup</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; <span class="keyword">contains</span></div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
@@ -449,7 +449,7 @@ $(document).ready(function(){initNavTree('sfc__climo__gen_8fd_2model__grid_8F90_
 <div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;</div>
 <div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;<span class="keyword"> end subroutine </span><a class="code" href="classmodel__grid.html#acb10237ba4e5bada1d8b61456c4d620b">get_model_info</a></div>
 <div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;</div>
-<div class="line"><a name="l00400"></a><span class="lineno"><a class="line" href="classmodel__grid.html#ab82613aa1b639c003cdb59a592953d7b">  400</a></span>&#160;<span class="keyword"> subroutine </span><a class="code" href="classmodel__grid.html#ab82613aa1b639c003cdb59a592953d7b">model_grid_cleanup</a></div>
+<div class="line"><a name="l00400"></a><span class="lineno"><a class="line" href="classmodel__grid.html#ab82613aa1b639c003cdb59a592953d7b">  400</a></span>&#160;<span class="keyword"> subroutine </span>model_grid_cleanup</div>
 <div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;</div>
 <div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160; <span class="keywordtype">implicit none</span></div>
 <div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;</div>
@@ -473,11 +473,10 @@ $(document).ready(function(){initNavTree('sfc__climo__gen_8fd_2model__grid_8F90_
 <div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldDestroy FOR MODEL GRID LONGITUDE.&quot;</span></div>
 <div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160; call esmf_fielddestroy(longitude_field_mdl,rc=rc)</div>
 <div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;<span class="keyword"> end subroutine </span><a class="code" href="classmodel__grid.html#ab82613aa1b639c003cdb59a592953d7b">model_grid_cleanup</a></div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;<span class="keyword"> end subroutine </span>model_grid_cleanup</div>
 <div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;</div>
 <div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;<span class="keyword"> end module </span><a class="code" href="classmodel__grid.html">model_grid</a></div>
 <div class="ttc" id="chgres__cube_8fd_2utils_8f90_html_a442215c3836c0cf8a853c078861ba79f"><div class="ttname"><a href="chgres__cube_8fd_2utils_8f90.html#a442215c3836c0cf8a853c078861ba79f">netcdf_err</a></div><div class="ttdeci">subroutine netcdf_err(err, string)</div><div class="ttdoc">Error handler for netcdf. </div><div class="ttdef"><b>Definition:</b> <a href="chgres__cube_8fd_2utils_8f90_source.html#l00032">chgres_cube.fd/utils.f90:32</a></div></div>
-<div class="ttc" id="classmodel__grid_html_ab82613aa1b639c003cdb59a592953d7b"><div class="ttname"><a href="classmodel__grid.html#ab82613aa1b639c003cdb59a592953d7b">model_grid::model_grid_cleanup</a></div><div class="ttdeci">subroutine, public model_grid_cleanup</div><div class="ttdoc">model grid cleanup </div><div class="ttdef"><b>Definition:</b> <a href="sfc__climo__gen_8fd_2model__grid_8F90_source.html#l00400">sfc_climo_gen.fd/model_grid.F90:400</a></div></div>
 <div class="ttc" id="classmodel__grid_html_a11dce144a9b8c63f8a84a495c6543237"><div class="ttname"><a href="classmodel__grid.html#a11dce144a9b8c63f8a84a495c6543237">model_grid::define_model_grid</a></div><div class="ttdeci">subroutine, public define_model_grid(localpet, npets)</div><div class="ttdoc">define model grid </div><div class="ttdef"><b>Definition:</b> <a href="sfc__climo__gen_8fd_2model__grid_8F90_source.html#l00065">sfc_climo_gen.fd/model_grid.F90:65</a></div></div>
 <div class="ttc" id="classmodel__grid_html"><div class="ttname"><a href="classmodel__grid.html">model_grid</a></div><div class="ttdef"><b>Definition:</b> <a href="chgres__cube_8fd_2model__grid_8F90_source.html#l00008">chgres_cube.fd/model_grid.F90:8</a></div></div>
 <div class="ttc" id="classprogram__setup_html"><div class="ttname"><a href="classprogram__setup.html">program_setup</a></div><div class="ttdoc">program setup </div><div class="ttdef"><b>Definition:</b> <a href="chgres__cube_8fd_2program__setup_8f90_source.html#l00154">chgres_cube.fd/program_setup.f90:154</a></div></div>

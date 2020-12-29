@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>UFS_UTILS: fregrid.c File Reference</title>
+<title>UFS_UTILS: get_contact.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('fregrid_8c.html','');});
+$(document).ready(function(){initNavTree('get__contact_8c.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -104,72 +104,57 @@ $(document).ready(function(){initNavTree('fregrid_8c.html','');});
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">fregrid.c File Reference</div>  </div>
+<div class="title">get_contact.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>This program remaps (scalar or vector) data from the input grid to the output grid.  
-<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br/>
-<code>#include &lt;stdio.h&gt;</code><br/>
-<code>#include &lt;string.h&gt;</code><br/>
-<code>#include &lt;getopt.h&gt;</code><br/>
 <code>#include &lt;math.h&gt;</code><br/>
-<code>#include &lt;time.h&gt;</code><br/>
-<code>#include &quot;<a class="el" href="globals_8h_source.html">globals.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="constant_8h_source.html">constant.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="read__mosaic_8h_source.html">read_mosaic.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="mpp__io_8h_source.html">mpp_io.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="mpp_8h_source.html">mpp.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="mosaic__util_8h_source.html">mosaic_util.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="conserve__interp_8h_source.html">conserve_interp.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="bilinear__interp_8h_source.html">bilinear_interp.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="fregrid__util_8h_source.html">fregrid_util.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="get__contact_8h_source.html">get_contact.h</a>&quot;</code><br/>
 </div>
-<p><a href="fregrid_8c_source.html">Go to the source code of this file.</a></p>
+<p><a href="get__contact_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a4a452b298afbd40befc5356e33891863"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a452b298afbd40befc5356e33891863"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EPSLN10</b>&#160;&#160;&#160;(1.e-10)</td></tr>
-<tr class="separator:a4a452b298afbd40befc5356e33891863"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a307327653bcf8760695a0e413a61099e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a307327653bcf8760695a0e413a61099e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>EPSLN</b>&#160;&#160;&#160;(1.0e-10)</td></tr>
+<tr class="separator:a307327653bcf8760695a0e413a61099e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0ddf1224851353fc92bfbff6f499fa97"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (int argc, char *argv[])</td></tr>
-<tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a0e73e6bb93cd7c621bb7b36f302b440f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e73e6bb93cd7c621bb7b36f302b440f"></a>
-const double&#160;</td><td class="memItemRight" valign="bottom"><b>D2R</b> = M_PI/180.</td></tr>
-<tr class="separator:a0e73e6bb93cd7c621bb7b36f302b440f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0091883d5cf5d0fb1af1aef51bf15df2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0091883d5cf5d0fb1af1aef51bf15df2"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>tagname</b> [] = &quot;$Name: bronx-10_performance_z1l $&quot;</td></tr>
-<tr class="separator:a0091883d5cf5d0fb1af1aef51bf15df2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ab3ebe238ee82f771487586088cb382"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ab3ebe238ee82f771487586088cb382"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>usage</b> []</td></tr>
-<tr class="separator:a4ab3ebe238ee82f771487586088cb382"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55fa1326cb50a0a49f9ddaf7820272e4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55fa1326cb50a0a49f9ddaf7820272e4"></a>
+double *&#160;</td><td class="memItemRight" valign="bottom"><b>east_bound</b> (const double *data, int nx, int ny)</td></tr>
+<tr class="separator:a55fa1326cb50a0a49f9ddaf7820272e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe10ddd84c8e91288255ea2a1ee0a141"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe10ddd84c8e91288255ea2a1ee0a141"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>get_align_contact</b> (int tile1, int tile2, int nx1, int ny1, int nx2, int ny2, const double *x1, const double *y1, const double *x2, const double *y2, double periodx, double periody, int *istart1, int *iend1, int *jstart1, int *jend1, int *istart2, int *iend2, int *jstart2, int *jend2)</td></tr>
+<tr class="separator:afe10ddd84c8e91288255ea2a1ee0a141"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cddc6fe2d425eaf5a92aaf2eabd4f07"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1cddc6fe2d425eaf5a92aaf2eabd4f07"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>get_contact_index</b> (int size1, int size2, double *x1, double *y1, double *x2, double *y2, double periodx, double periody, int *start1, int *end1, int *start2, int *end2)</td></tr>
+<tr class="separator:a1cddc6fe2d425eaf5a92aaf2eabd4f07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab48307d5bd9cb05944b68520c8f71890"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab48307d5bd9cb05944b68520c8f71890"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>get_overlap_contact</b> (int tile1, int tile2, int nx1, int ny1, int nx2, int ny2, const double *x1, const double *y1, const double *x2, const double *y2, int *istart1, int *iend1, int *jstart1, int *jend1, int *istart2, int *iend2, int *jstart2, int *jend2)</td></tr>
+<tr class="separator:ab48307d5bd9cb05944b68520c8f71890"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a053e1456ed3b6ca3f8fe8b25172cdbb2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a053e1456ed3b6ca3f8fe8b25172cdbb2"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>get_overlap_index</b> (double x1, double y1, int nx2, int ny2, const double *x2, const double *y2, int *i2, int *j2)</td></tr>
+<tr class="separator:a053e1456ed3b6ca3f8fe8b25172cdbb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5604f62e6c001e530e6e8a84f49de2a1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5604f62e6c001e530e6e8a84f49de2a1"></a>
+double *&#160;</td><td class="memItemRight" valign="bottom"><b>north_bound</b> (const double *data, int nx, int ny)</td></tr>
+<tr class="separator:a5604f62e6c001e530e6e8a84f49de2a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a941889da5d5fabaf8246d658e10a2b46"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a941889da5d5fabaf8246d658e10a2b46"></a>
+double *&#160;</td><td class="memItemRight" valign="bottom"><b>south_bound</b> (const double *data, int nx, int ny)</td></tr>
+<tr class="separator:a941889da5d5fabaf8246d658e10a2b46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11e16f57fc1888bbce3648a3e62f0aa9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a11e16f57fc1888bbce3648a3e62f0aa9"></a>
+double *&#160;</td><td class="memItemRight" valign="bottom"><b>west_bound</b> (const double *data, int nx, int ny)</td></tr>
+<tr class="separator:a11e16f57fc1888bbce3648a3e62f0aa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This program remaps (scalar or vector) data from the input grid to the output grid. </p>
-<dl class="section author"><dt>Author</dt><dd>Zhi Liang (<a href="#" onclick="location.href='mai'+'lto:'+'Zhi'+'.L'+'ian'+'g@'+'noa'+'a.'+'gov'; return false;">Zhi.L<span style="display: none;">.nosp@m.</span>iang<span style="display: none;">.nosp@m.</span>@noaa<span style="display: none;">.nosp@m.</span>.gov</a>) NOAA Geophysical Fluid Dynamics Lab, Princeton, NJ</dd></dl>
-<p>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.</p>
-<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
-<p>For the full text of the GNU General Public License, write to:</p>
-<p>Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. </p>
-
-<p>Definition in file <a class="el" href="fregrid_8c_source.html">fregrid.c</a>.</p>
-</div></div><!-- contents -->
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d8b772108138bf796aaa3f7fe4e09294.html">sorc</a></li><li class="navelem"><a class="el" href="dir_5264d7cb44d6f637e3969fc6e3a49573.html">fre-nctools.fd</a></li><li class="navelem"><a class="el" href="dir_863547b317e7e680cbccbe3528e39564.html">tools</a></li><li class="navelem"><a class="el" href="dir_ff3a001083259abb9d4bfc33586bb33c.html">fregrid</a></li><li class="navelem"><a class="el" href="fregrid_8c.html">fregrid.c</a></li>
+    <li class="navelem"><a class="el" href="dir_d8b772108138bf796aaa3f7fe4e09294.html">sorc</a></li><li class="navelem"><a class="el" href="dir_5264d7cb44d6f637e3969fc6e3a49573.html">fre-nctools.fd</a></li><li class="navelem"><a class="el" href="dir_863547b317e7e680cbccbe3528e39564.html">tools</a></li><li class="navelem"><a class="el" href="dir_19f86aa373141a93ad1d3984f7e10c68.html">make_solo_mosaic</a></li><li class="navelem"><a class="el" href="get__contact_8c.html">get_contact.c</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>

@@ -11,7 +11,7 @@ var searchData=
   ['interp_2ec',['interp.c',['../interp_8c.html',1,'']]],
   ['interp_2ef90',['interp.F90',['../interp_8F90.html',1,'']]],
   ['interp_2eh',['interp.h',['../interp_8h.html',1,'']]],
-  ['interp_5fconfig',['Interp_config',['../structInterp__config.html',1,'']]],
+  ['interp_5fconfig',['Interp_config',['../globals_8h.html#structInterp__config',1,'']]],
   ['inv_5ffile',['inv_file',['../classmodel__grid.html#abf2ad400947bc2ce70b7752f42755a98',1,'model_grid']]],
   ['ip1_5finput',['ip1_input',['../classmodel__grid.html#a14b39337a9ccda16ca348f21a6a608b3',1,'model_grid']]],
   ['ip1_5ftarget',['ip1_target',['../classmodel__grid.html#af9c1b283e8c80dd9f704c8427db4d085',1,'model_grid']]]

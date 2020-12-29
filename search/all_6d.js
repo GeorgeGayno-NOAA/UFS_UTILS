@@ -14,7 +14,7 @@ var searchData=
   ['module_5fnwp_2ef90',['module_nwp.f90',['../module__nwp_8f90.html',1,'']]],
   ['module_5fnwp_5fbase',['module_nwp_base',['../classmodule__nwp__base.html',1,'']]],
   ['module_5fnwp_5fbase_2ef90',['module_nwp_base.f90',['../module__nwp__base_8f90.html',1,'']]],
-  ['monotone_5fconfig',['Monotone_config',['../structMonotone__config.html',1,'']]],
+  ['monotone_5fconfig',['Monotone_config',['../globals_8h.html#structMonotone__config',1,'']]],
   ['mosaic_5fmod',['mosaic_mod',['../classmosaic__mod.html',1,'']]],
   ['mosaic_5futil_2ec',['mosaic_util.c',['../mosaic__util_8c.html',1,'']]],
   ['mosaic_5futil_2eh',['mosaic_util.h',['../mosaic__util_8h.html',1,'']]],

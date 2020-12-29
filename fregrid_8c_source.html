@@ -106,43 +106,22 @@ $(document).ready(function(){initNavTree('fregrid_8c_source.html','');});
 <div class="title">fregrid.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">  This program remaps (scalar or vector) data from the input grid</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">  to the output grid</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> AUTHOR: Zhi Liang (Zhi.Liang@noaa.gov)</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">          NOAA Geophysical Fluid Dynamics Lab, Princeton, NJ</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">  This program is free software; you can redistribute it and/or modify</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">  it under the terms of the GNU General Public License as published by</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">  the Free Software Foundation; either version 2 of the License, or</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">  (at your option) any later version.</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">  This program is distributed in the hope that it will be useful,</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">  GNU General Public License for more details.</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">  For the full text of the GNU General Public License,</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">  write to: Free Software Foundation, Inc.,</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">            675 Mass Ave, Cambridge, MA 02139, USA.  </span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">-----------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">*/</span></div>
+<a href="fregrid_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;getopt.h&gt;</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;math.h&gt;</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;globals.h&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="globals_8h.html">globals.h</a>&quot;</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="constant_8h.html">constant.h</a>&quot;</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="read__mosaic_8h.html">read_mosaic.h</a>&quot;</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mpp__io_8h.html">mpp_io.h</a>&quot;</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mpp_8h.html">mpp.h</a>&quot;</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mosaic__util_8h.html">mosaic_util.h</a>&quot;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;conserve_interp.h&quot;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;bilinear_interp.h&quot;</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &quot;fregrid_util.h&quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="conserve__interp_8h.html">conserve_interp.h</a>&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="bilinear__interp_8h.html">bilinear_interp.h</a>&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="fregrid__util_8h.html">fregrid_util.h</a>&quot;</span></div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">char</span> *usage[] = {</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <span class="stringliteral">&quot;&quot;</span>,</div>
@@ -404,22 +383,22 @@ $(document).ready(function(){initNavTree('fregrid_8c_source.html','');});
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;  <span class="keywordtype">char</span>          *weight_file=NULL;</div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;  <span class="keywordtype">char</span>          *weight_field = NULL;</div>
 <div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;  <a class="code" href="structVGrid__config.html">VGrid_config</a>   vgrid_in;            <span class="comment">/* store vertical input grid */</span></div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;  <a class="code" href="structVGrid__config.html">VGrid_config</a>   vgrid_out;           <span class="comment">/* store vertical output grid */</span></div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;  <a class="code" href="structGrid__config.html">Grid_config</a>   *grid_in    = NULL;   <span class="comment">/* store input grid  */</span></div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;  <a class="code" href="structGrid__config.html">Grid_config</a>   *grid_out   = NULL;   <span class="comment">/* store output grid */</span></div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;  <a class="code" href="structField__config.html">Field_config</a>  *scalar_in  = NULL;   <span class="comment">/* store input scalar data */</span></div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;  <a class="code" href="structField__config.html">Field_config</a>  *scalar_out = NULL;   <span class="comment">/* store output scalar data */</span></div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;  <a class="code" href="structField__config.html">Field_config</a>  *u_in       = NULL;   <span class="comment">/* store input vector u-component */</span></div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;  <a class="code" href="structField__config.html">Field_config</a>  *v_in       = NULL;   <span class="comment">/* store input vector v-component */</span></div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;  <a class="code" href="structField__config.html">Field_config</a>  *u_out      = NULL;   <span class="comment">/* store input vector u-component */</span></div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;  <a class="code" href="structField__config.html">Field_config</a>  *v_out      = NULL;   <span class="comment">/* store input vector v-component */</span></div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;  <a class="code" href="structFile__config.html">File_config</a>   *file_in    = NULL;   <span class="comment">/* store input file information */</span></div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;  <a class="code" href="structFile__config.html">File_config</a>   *file_out   = NULL;   <span class="comment">/* store output file information */</span></div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;  <a class="code" href="structFile__config.html">File_config</a>   *file2_in   = NULL;   <span class="comment">/* store input file information */</span></div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;  <a class="code" href="structFile__config.html">File_config</a>   *file2_out  = NULL;   <span class="comment">/* store output file information */</span></div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;  <a class="code" href="structBound__config.html">Bound_config</a>  *bound_T    = NULL;   <span class="comment">/* store halo update information for T-cell*/</span></div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;  <a class="code" href="structInterp__config.html">Interp_config</a> *interp     = NULL;   <span class="comment">/* store remapping information */</span></div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;  <a class="code" href="globals_8h.html#structVGrid__config">VGrid_config</a>   vgrid_in;            <span class="comment">/* store vertical input grid */</span></div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;  <a class="code" href="globals_8h.html#structVGrid__config">VGrid_config</a>   vgrid_out;           <span class="comment">/* store vertical output grid */</span></div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;  <a class="code" href="globals_8h.html#structGrid__config">Grid_config</a>   *grid_in    = NULL;   <span class="comment">/* store input grid  */</span></div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;  <a class="code" href="globals_8h.html#structGrid__config">Grid_config</a>   *grid_out   = NULL;   <span class="comment">/* store output grid */</span></div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;  <a class="code" href="globals_8h.html#structField__config">Field_config</a>  *scalar_in  = NULL;   <span class="comment">/* store input scalar data */</span></div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;  <a class="code" href="globals_8h.html#structField__config">Field_config</a>  *scalar_out = NULL;   <span class="comment">/* store output scalar data */</span></div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;  <a class="code" href="globals_8h.html#structField__config">Field_config</a>  *u_in       = NULL;   <span class="comment">/* store input vector u-component */</span></div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;  <a class="code" href="globals_8h.html#structField__config">Field_config</a>  *v_in       = NULL;   <span class="comment">/* store input vector v-component */</span></div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;  <a class="code" href="globals_8h.html#structField__config">Field_config</a>  *u_out      = NULL;   <span class="comment">/* store input vector u-component */</span></div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;  <a class="code" href="globals_8h.html#structField__config">Field_config</a>  *v_out      = NULL;   <span class="comment">/* store input vector v-component */</span></div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;  <a class="code" href="globals_8h.html#structFile__config">File_config</a>   *file_in    = NULL;   <span class="comment">/* store input file information */</span></div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;  <a class="code" href="globals_8h.html#structFile__config">File_config</a>   *file_out   = NULL;   <span class="comment">/* store output file information */</span></div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;  <a class="code" href="globals_8h.html#structFile__config">File_config</a>   *file2_in   = NULL;   <span class="comment">/* store input file information */</span></div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;  <a class="code" href="globals_8h.html#structFile__config">File_config</a>   *file2_out  = NULL;   <span class="comment">/* store output file information */</span></div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;  <a class="code" href="globals_8h.html#structBound__config">Bound_config</a>  *bound_T    = NULL;   <span class="comment">/* store halo update information for T-cell*/</span></div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;  <a class="code" href="globals_8h.html#structInterp__config">Interp_config</a> *interp     = NULL;   <span class="comment">/* store remapping information */</span></div>
 <div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;  <span class="keywordtype">int</span> save_weight_only      = 0;</div>
 <div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;  <span class="keywordtype">int</span> nthreads = 1;</div>
 <div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;</div>
@@ -775,10 +754,10 @@ $(document).ready(function(){initNavTree('fregrid_8c_source.html','');});
 <div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;  <span class="keywordflow">if</span>(extrapolate) opcode |= EXTRAPOLATE;</div>
 <div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;  </div>
 <div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;  <span class="comment">/* memory allocation for data structure */</span></div>
-<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;  grid_in   = (<a class="code" href="structGrid__config.html">Grid_config</a> *)malloc(ntiles_in *<span class="keyword">sizeof</span>(<a class="code" href="structGrid__config.html">Grid_config</a>));</div>
-<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;  grid_out  = (<a class="code" href="structGrid__config.html">Grid_config</a> *)malloc(ntiles_out*<span class="keyword">sizeof</span>(<a class="code" href="structGrid__config.html">Grid_config</a>));</div>
-<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;  bound_T   = (<a class="code" href="structBound__config.html">Bound_config</a> *)malloc(ntiles_in *<span class="keyword">sizeof</span>(<a class="code" href="structBound__config.html">Bound_config</a>));</div>
-<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;  interp    = (<a class="code" href="structInterp__config.html">Interp_config</a> *)malloc(ntiles_out*<span class="keyword">sizeof</span>(<a class="code" href="structInterp__config.html">Interp_config</a>));</div>
+<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;  grid_in   = (<a class="code" href="globals_8h.html#structGrid__config">Grid_config</a> *)malloc(ntiles_in *<span class="keyword">sizeof</span>(<a class="code" href="globals_8h.html#structGrid__config">Grid_config</a>));</div>
+<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;  grid_out  = (<a class="code" href="globals_8h.html#structGrid__config">Grid_config</a> *)malloc(ntiles_out*<span class="keyword">sizeof</span>(<a class="code" href="globals_8h.html#structGrid__config">Grid_config</a>));</div>
+<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;  bound_T   = (<a class="code" href="globals_8h.html#structBound__config">Bound_config</a> *)malloc(ntiles_in *<span class="keyword">sizeof</span>(<a class="code" href="globals_8h.html#structBound__config">Bound_config</a>));</div>
+<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;  interp    = (<a class="code" href="globals_8h.html#structInterp__config">Interp_config</a> *)malloc(ntiles_out*<span class="keyword">sizeof</span>(<a class="code" href="globals_8h.html#structInterp__config">Interp_config</a>));</div>
 <div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;</div>
 <div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;  <span class="keywordflow">if</span>(debug) {</div>
 <div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;    print_mem_usage(<span class="stringliteral">&quot;Before calling get_input_grid&quot;</span>);</div>
@@ -845,22 +824,22 @@ $(document).ready(function(){initNavTree('fregrid_8c_source.html','');});
 <div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;  <span class="keywordflow">if</span>(remap_file) set_remap_file(ntiles_out, mosaic_out, remap_file, interp, &amp;opcode, save_weight_only);  </div>
 <div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;  </div>
 <div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;  <span class="keywordflow">if</span>(!save_weight_only) {</div>
-<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;    file_in   = (<a class="code" href="structFile__config.html">File_config</a> *)malloc(ntiles_in *<span class="keyword">sizeof</span>(<a class="code" href="structFile__config.html">File_config</a>));</div>
-<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;    file_out  = (<a class="code" href="structFile__config.html">File_config</a> *)malloc(ntiles_out*<span class="keyword">sizeof</span>(<a class="code" href="structFile__config.html">File_config</a>));</div>
+<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;    file_in   = (<a class="code" href="globals_8h.html#structFile__config">File_config</a> *)malloc(ntiles_in *<span class="keyword">sizeof</span>(<a class="code" href="globals_8h.html#structFile__config">File_config</a>));</div>
+<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;    file_out  = (<a class="code" href="globals_8h.html#structFile__config">File_config</a> *)malloc(ntiles_out*<span class="keyword">sizeof</span>(<a class="code" href="globals_8h.html#structFile__config">File_config</a>));</div>
 <div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160; </div>
 <div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;    <span class="keywordflow">if</span>(nfiles == 2) {</div>
-<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;      file2_in   = (<a class="code" href="structFile__config.html">File_config</a> *)malloc(ntiles_in *<span class="keyword">sizeof</span>(<a class="code" href="structFile__config.html">File_config</a>));</div>
-<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;      file2_out  = (<a class="code" href="structFile__config.html">File_config</a> *)malloc(ntiles_out*<span class="keyword">sizeof</span>(<a class="code" href="structFile__config.html">File_config</a>));</div>
+<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;      file2_in   = (<a class="code" href="globals_8h.html#structFile__config">File_config</a> *)malloc(ntiles_in *<span class="keyword">sizeof</span>(<a class="code" href="globals_8h.html#structFile__config">File_config</a>));</div>
+<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;      file2_out  = (<a class="code" href="globals_8h.html#structFile__config">File_config</a> *)malloc(ntiles_out*<span class="keyword">sizeof</span>(<a class="code" href="globals_8h.html#structFile__config">File_config</a>));</div>
 <div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;    }</div>
 <div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;    <span class="keywordflow">if</span>(nscalar &gt; 0) {</div>
-<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;      scalar_in  = (<a class="code" href="structField__config.html">Field_config</a> *)malloc(ntiles_in *<span class="keyword">sizeof</span>(<a class="code" href="structField__config.html">Field_config</a>));</div>
-<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;      scalar_out = (<a class="code" href="structField__config.html">Field_config</a> *)malloc(ntiles_out *<span class="keyword">sizeof</span>(<a class="code" href="structField__config.html">Field_config</a>));</div>
+<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;      scalar_in  = (<a class="code" href="globals_8h.html#structField__config">Field_config</a> *)malloc(ntiles_in *<span class="keyword">sizeof</span>(<a class="code" href="globals_8h.html#structField__config">Field_config</a>));</div>
+<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;      scalar_out = (<a class="code" href="globals_8h.html#structField__config">Field_config</a> *)malloc(ntiles_out *<span class="keyword">sizeof</span>(<a class="code" href="globals_8h.html#structField__config">Field_config</a>));</div>
 <div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;    }</div>
 <div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;    <span class="keywordflow">if</span>(nvector &gt; 0) {</div>
-<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;      u_in  = (<a class="code" href="structField__config.html">Field_config</a> *)malloc(ntiles_in *<span class="keyword">sizeof</span>(<a class="code" href="structField__config.html">Field_config</a>));</div>
-<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;      u_out = (<a class="code" href="structField__config.html">Field_config</a> *)malloc(ntiles_out *<span class="keyword">sizeof</span>(<a class="code" href="structField__config.html">Field_config</a>));    </div>
-<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;      v_in  = (<a class="code" href="structField__config.html">Field_config</a> *)malloc(ntiles_in *<span class="keyword">sizeof</span>(<a class="code" href="structField__config.html">Field_config</a>));</div>
-<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;      v_out = (<a class="code" href="structField__config.html">Field_config</a> *)malloc(ntiles_out *<span class="keyword">sizeof</span>(<a class="code" href="structField__config.html">Field_config</a>));</div>
+<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;      u_in  = (<a class="code" href="globals_8h.html#structField__config">Field_config</a> *)malloc(ntiles_in *<span class="keyword">sizeof</span>(<a class="code" href="globals_8h.html#structField__config">Field_config</a>));</div>
+<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;      u_out = (<a class="code" href="globals_8h.html#structField__config">Field_config</a> *)malloc(ntiles_out *<span class="keyword">sizeof</span>(<a class="code" href="globals_8h.html#structField__config">Field_config</a>));    </div>
+<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;      v_in  = (<a class="code" href="globals_8h.html#structField__config">Field_config</a> *)malloc(ntiles_in *<span class="keyword">sizeof</span>(<a class="code" href="globals_8h.html#structField__config">Field_config</a>));</div>
+<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;      v_out = (<a class="code" href="globals_8h.html#structField__config">Field_config</a> *)malloc(ntiles_out *<span class="keyword">sizeof</span>(<a class="code" href="globals_8h.html#structField__config">Field_config</a>));</div>
 <div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;    }</div>
 <div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;  </div>
 <div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;    set_mosaic_data_file(ntiles_in, mosaic_in, dir_in, file_in,  input_file[0]);</div>
@@ -1130,25 +1109,29 @@ $(document).ready(function(){initNavTree('fregrid_8c_source.html','');});
 <div class="line"><a name="l01022"></a><span class="lineno"> 1022</span>&#160;</div>
 <div class="line"><a name="l01023"></a><span class="lineno"> 1023</span>&#160;  </div>
 <div class="line"><a name="l01024"></a><span class="lineno"> 1024</span>&#160;  </div>
-<div class="ttc" id="structGrid__config_html"><div class="ttname"><a href="structGrid__config.html">Grid_config</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00143">globals.h:143</a></div></div>
 <div class="ttc" id="constant_8h_html"><div class="ttname"><a href="constant_8h.html">constant.h</a></div></div>
 <div class="ttc" id="mpp__io_8h_html"><div class="ttname"><a href="mpp__io_8h.html">mpp_io.h</a></div></div>
+<div class="ttc" id="globals_8h_html_structVGrid__config"><div class="ttname"><a href="globals_8h.html#structVGrid__config">VGrid_config</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00134">globals.h:134</a></div></div>
 <div class="ttc" id="affinity_8c_html_a71b5b491d6c8960803adf60a9b7d173a"><div class="ttname"><a href="affinity_8c.html#a71b5b491d6c8960803adf60a9b7d173a">get_cpu_affinity</a></div><div class="ttdeci">int get_cpu_affinity(void)</div><div class="ttdoc">Returns this thread&amp;#39;s CPU affinity, if bound to a single core, or else -1. </div><div class="ttdef"><b>Definition:</b> <a href="affinity_8c_source.html#l00022">affinity.c:22</a></div></div>
+<div class="ttc" id="globals_8h_html_structFile__config"><div class="ttname"><a href="globals_8h.html#structFile__config">File_config</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00106">globals.h:106</a></div></div>
+<div class="ttc" id="globals_8h_html"><div class="ttname"><a href="globals_8h.html">globals.h</a></div></div>
+<div class="ttc" id="globals_8h_html_structGrid__config"><div class="ttname"><a href="globals_8h.html#structGrid__config">Grid_config</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00144">globals.h:144</a></div></div>
+<div class="ttc" id="bilinear__interp_8h_html"><div class="ttname"><a href="bilinear__interp_8h.html">bilinear_interp.h</a></div></div>
 <div class="ttc" id="mosaic__util_8h_html"><div class="ttname"><a href="mosaic__util_8h.html">mosaic_util.h</a></div></div>
 <div class="ttc" id="read__mosaic_8h_html"><div class="ttname"><a href="read__mosaic_8h.html">read_mosaic.h</a></div></div>
 <div class="ttc" id="mpp_8h_html"><div class="ttname"><a href="mpp_8h.html">mpp.h</a></div></div>
-<div class="ttc" id="structBound__config_html"><div class="ttname"><a href="structBound__config.html">Bound_config</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00191">globals.h:191</a></div></div>
-<div class="ttc" id="structField__config_html"><div class="ttname"><a href="structField__config.html">Field_config</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00079">globals.h:79</a></div></div>
-<div class="ttc" id="structInterp__config_html"><div class="ttname"><a href="structInterp__config.html">Interp_config</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00117">globals.h:117</a></div></div>
-<div class="ttc" id="structVGrid__config_html"><div class="ttname"><a href="structVGrid__config.html">VGrid_config</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00133">globals.h:133</a></div></div>
-<div class="ttc" id="structFile__config_html"><div class="ttname"><a href="structFile__config.html">File_config</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00105">globals.h:105</a></div></div>
+<div class="ttc" id="globals_8h_html_structInterp__config"><div class="ttname"><a href="globals_8h.html#structInterp__config">Interp_config</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00118">globals.h:118</a></div></div>
+<div class="ttc" id="conserve__interp_8h_html"><div class="ttname"><a href="conserve__interp_8h.html">conserve_interp.h</a></div></div>
+<div class="ttc" id="fregrid__util_8h_html"><div class="ttname"><a href="fregrid__util_8h.html">fregrid_util.h</a></div></div>
+<div class="ttc" id="globals_8h_html_structField__config"><div class="ttname"><a href="globals_8h.html#structField__config">Field_config</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00080">globals.h:80</a></div></div>
+<div class="ttc" id="globals_8h_html_structBound__config"><div class="ttname"><a href="globals_8h.html#structBound__config">Bound_config</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00192">globals.h:192</a></div></div>
 <div class="ttc" id="affinity_8c_html_ad57f4d1d9817a8397936de34fc6eee0e"><div class="ttname"><a href="affinity_8c.html#ad57f4d1d9817a8397936de34fc6eee0e">set_cpu_affinity</a></div><div class="ttdeci">void set_cpu_affinity(int cpu)</div><div class="ttdoc">Set CPU affinity to one core. </div><div class="ttdef"><b>Definition:</b> <a href="affinity_8c_source.html#l00058">affinity.c:58</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d8b772108138bf796aaa3f7fe4e09294.html">sorc</a></li><li class="navelem"><a class="el" href="dir_5264d7cb44d6f637e3969fc6e3a49573.html">fre-nctools.fd</a></li><li class="navelem"><a class="el" href="dir_863547b317e7e680cbccbe3528e39564.html">tools</a></li><li class="navelem"><a class="el" href="dir_ff3a001083259abb9d4bfc33586bb33c.html">fregrid</a></li><li class="navelem"><b>fregrid.c</b></li>
+    <li class="navelem"><a class="el" href="dir_d8b772108138bf796aaa3f7fe4e09294.html">sorc</a></li><li class="navelem"><a class="el" href="dir_5264d7cb44d6f637e3969fc6e3a49573.html">fre-nctools.fd</a></li><li class="navelem"><a class="el" href="dir_863547b317e7e680cbccbe3528e39564.html">tools</a></li><li class="navelem"><a class="el" href="dir_ff3a001083259abb9d4bfc33586bb33c.html">fregrid</a></li><li class="navelem"><a class="el" href="fregrid_8c.html">fregrid.c</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>

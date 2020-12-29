@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>UFS_UTILS: Data_holder Struct Reference</title>
+<title>UFS_UTILS: conserve_interp.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -46,8 +46,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Data&#160;Types&#160;List</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Types&#160;List</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -68,8 +68,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Data&#160;Types&#160;List</span></a></li>
-      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('structData__holder.html','');});
+$(document).ready(function(){initNavTree('conserve__interp_8h.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -103,79 +103,33 @@ $(document).ready(function(){initNavTree('structData__holder.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#pub-attribs">Data Fields</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Data_holder Struct Reference</div>  </div>
+<div class="title">conserve_interp.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="globals_8h_source.html">globals.h</a>&quot;</code><br/>
+</div>
+<p><a href="conserve__interp_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Data Fields</h2></td></tr>
-<tr class="memitem:aca202d71965e7e8f355b8e6bd7358733"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca202d71965e7e8f355b8e6bd7358733"></a>
-double *&#160;</td><td class="memItemRight" valign="bottom"><b>data</b></td></tr>
-<tr class="separator:aca202d71965e7e8f355b8e6bd7358733"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93e4a9b6601b0a90dd9a40d7dbc08ebe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93e4a9b6601b0a90dd9a40d7dbc08ebe"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>nx</b></td></tr>
-<tr class="separator:a93e4a9b6601b0a90dd9a40d7dbc08ebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adaaa30bca1dd67812709038b38ec49b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adaaa30bca1dd67812709038b38ec49b8"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>ny</b></td></tr>
-<tr class="separator:adaaa30bca1dd67812709038b38ec49b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a0677574a556733aa18822f9a578047ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0677574a556733aa18822f9a578047ec"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>do_scalar_conserve_interp</b> (<a class="el" href="globals_8h.html#structInterp__config">Interp_config</a> *interp, int varid, int ntiles_in, const <a class="el" href="globals_8h.html#structGrid__config">Grid_config</a> *grid_in, int ntiles_out, const <a class="el" href="globals_8h.html#structGrid__config">Grid_config</a> *grid_out, const <a class="el" href="globals_8h.html#structField__config">Field_config</a> *field_in, <a class="el" href="globals_8h.html#structField__config">Field_config</a> *field_out, unsigned int opcode, int nz)</td></tr>
+<tr class="separator:a0677574a556733aa18822f9a578047ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2130599a9734f97340ef41278d2524b2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2130599a9734f97340ef41278d2524b2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>do_vector_conserve_interp</b> (<a class="el" href="globals_8h.html#structInterp__config">Interp_config</a> *interp, int varid, int ntiles_in, const <a class="el" href="globals_8h.html#structGrid__config">Grid_config</a> *grid_in, int ntiles_out, const <a class="el" href="globals_8h.html#structGrid__config">Grid_config</a> *grid_out, const <a class="el" href="globals_8h.html#structField__config">Field_config</a> *u_in, const <a class="el" href="globals_8h.html#structField__config">Field_config</a> *v_in, <a class="el" href="globals_8h.html#structField__config">Field_config</a> *u_out, <a class="el" href="globals_8h.html#structField__config">Field_config</a> *v_out, unsigned int opcode)</td></tr>
+<tr class="separator:a2130599a9734f97340ef41278d2524b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f198fe188c7ff48cf16ed0295d1a699"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f198fe188c7ff48cf16ed0295d1a699"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setup_conserve_interp</b> (int ntiles_in, const <a class="el" href="globals_8h.html#structGrid__config">Grid_config</a> *grid_in, int ntiles_out, <a class="el" href="globals_8h.html#structGrid__config">Grid_config</a> *grid_out, <a class="el" href="globals_8h.html#structInterp__config">Interp_config</a> *interp, unsigned int opcode)</td></tr>
+<tr class="separator:a1f198fe188c7ff48cf16ed0295d1a699"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="globals_8h_source.html#l00199">199</a> of file <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
-</div><h2 class="groupheader">Field Documentation</h2>
-<a class="anchor" id="aca202d71965e7e8f355b8e6bd7358733"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double* Data_holder::data</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="globals_8h_source.html#l00200">200</a> of file <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a93e4a9b6601b0a90dd9a40d7dbc08ebe"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Data_holder::nx</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="globals_8h_source.html#l00201">201</a> of file <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="adaaa30bca1dd67812709038b38ec49b8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Data_holder::ny</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="globals_8h_source.html#l00202">202</a> of file <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
-
-</div>
-</div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
-<li><a class="el" href="globals_8h_source.html">globals.h</a></li>
-</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="structData__holder.html">Data_holder</a></li>
+    <li class="navelem"><a class="el" href="dir_d8b772108138bf796aaa3f7fe4e09294.html">sorc</a></li><li class="navelem"><a class="el" href="dir_5264d7cb44d6f637e3969fc6e3a49573.html">fre-nctools.fd</a></li><li class="navelem"><a class="el" href="dir_863547b317e7e680cbccbe3528e39564.html">tools</a></li><li class="navelem"><a class="el" href="dir_ff3a001083259abb9d4bfc33586bb33c.html">fregrid</a></li><li class="navelem"><a class="el" href="conserve__interp_8h.html">conserve_interp.h</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>

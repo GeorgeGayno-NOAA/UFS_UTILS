@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>UFS_UTILS: Monotone_config Struct Reference</title>
+<title>UFS_UTILS: bilinear_interp.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -46,8 +46,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Data&#160;Types&#160;List</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Types&#160;List</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -68,8 +68,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Data&#160;Types&#160;List</span></a></li>
-      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('structMonotone__config.html','');});
+$(document).ready(function(){initNavTree('bilinear__interp_8h.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -103,96 +103,32 @@ $(document).ready(function(){initNavTree('structMonotone__config.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#pub-attribs">Data Fields</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Monotone_config Struct Reference</div>  </div>
+<div class="title">bilinear_interp.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a href="bilinear__interp_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Data Fields</h2></td></tr>
-<tr class="memitem:a05fab6480d5111287d5a7f00af094eed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a05fab6480d5111287d5a7f00af094eed"></a>
-double *&#160;</td><td class="memItemRight" valign="bottom"><b>f_bar_max</b></td></tr>
-<tr class="separator:a05fab6480d5111287d5a7f00af094eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8208ba40e071339b6f85720586b56604"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8208ba40e071339b6f85720586b56604"></a>
-double *&#160;</td><td class="memItemRight" valign="bottom"><b>f_bar_min</b></td></tr>
-<tr class="separator:a8208ba40e071339b6f85720586b56604"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a145f09ab892c8a6548416df2ff872c96"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a145f09ab892c8a6548416df2ff872c96"></a>
-double *&#160;</td><td class="memItemRight" valign="bottom"><b>f_max</b></td></tr>
-<tr class="separator:a145f09ab892c8a6548416df2ff872c96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e311f6e6f39e1be44c2988d21ea030b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e311f6e6f39e1be44c2988d21ea030b"></a>
-double *&#160;</td><td class="memItemRight" valign="bottom"><b>f_min</b></td></tr>
-<tr class="separator:a5e311f6e6f39e1be44c2988d21ea030b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a496abd4f826dbb3cdcbf2db6307e98e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a496abd4f826dbb3cdcbf2db6307e98e2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>do_scalar_bilinear_interp</b> (const <a class="el" href="globals_8h.html#structInterp__config">Interp_config</a> *interp, int vid, int ntiles_in, const <a class="el" href="globals_8h.html#structGrid__config">Grid_config</a> *grid_in, const <a class="el" href="globals_8h.html#structGrid__config">Grid_config</a> *grid_out, const <a class="el" href="globals_8h.html#structField__config">Field_config</a> *field_in, <a class="el" href="globals_8h.html#structField__config">Field_config</a> *field_out, int finer_step, int fill_missing)</td></tr>
+<tr class="separator:a496abd4f826dbb3cdcbf2db6307e98e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ff686ffe3728291cc2f3820b7c1c8ff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ff686ffe3728291cc2f3820b7c1c8ff"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>do_vector_bilinear_interp</b> (<a class="el" href="globals_8h.html#structInterp__config">Interp_config</a> *interp, int vid, int ntiles_in, const <a class="el" href="globals_8h.html#structGrid__config">Grid_config</a> *grid_in, int ntiles_out, const <a class="el" href="globals_8h.html#structGrid__config">Grid_config</a> *grid_out, const <a class="el" href="globals_8h.html#structField__config">Field_config</a> *u_in, const <a class="el" href="globals_8h.html#structField__config">Field_config</a> *v_in, <a class="el" href="globals_8h.html#structField__config">Field_config</a> *u_out, <a class="el" href="globals_8h.html#structField__config">Field_config</a> *v_out, int finer_step, int fill_missing)</td></tr>
+<tr class="separator:a4ff686ffe3728291cc2f3820b7c1c8ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87ec14e4c0f422dca3189946f0f593aa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a87ec14e4c0f422dca3189946f0f593aa"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setup_bilinear_interp</b> (int ntiles_in, const <a class="el" href="globals_8h.html#structGrid__config">Grid_config</a> *grid_in, int ntiles_out, const <a class="el" href="globals_8h.html#structGrid__config">Grid_config</a> *grid_out, <a class="el" href="globals_8h.html#structInterp__config">Interp_config</a> *interp, unsigned int opcode)</td></tr>
+<tr class="separator:a87ec14e4c0f422dca3189946f0f593aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="globals_8h_source.html#l00205">205</a> of file <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
-</div><h2 class="groupheader">Field Documentation</h2>
-<a class="anchor" id="a05fab6480d5111287d5a7f00af094eed"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double* Monotone_config::f_bar_max</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="globals_8h_source.html#l00206">206</a> of file <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8208ba40e071339b6f85720586b56604"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double* Monotone_config::f_bar_min</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="globals_8h_source.html#l00207">207</a> of file <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a145f09ab892c8a6548416df2ff872c96"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double* Monotone_config::f_max</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="globals_8h_source.html#l00208">208</a> of file <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5e311f6e6f39e1be44c2988d21ea030b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double* Monotone_config::f_min</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="globals_8h_source.html#l00209">209</a> of file <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
-
-</div>
-</div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
-<li><a class="el" href="globals_8h_source.html">globals.h</a></li>
-</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="structMonotone__config.html">Monotone_config</a></li>
+    <li class="navelem"><a class="el" href="dir_d8b772108138bf796aaa3f7fe4e09294.html">sorc</a></li><li class="navelem"><a class="el" href="dir_5264d7cb44d6f637e3969fc6e3a49573.html">fre-nctools.fd</a></li><li class="navelem"><a class="el" href="dir_863547b317e7e680cbccbe3528e39564.html">tools</a></li><li class="navelem"><a class="el" href="dir_ff3a001083259abb9d4bfc33586bb33c.html">fregrid</a></li><li class="navelem"><a class="el" href="bilinear__interp_8h.html">bilinear_interp.h</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>

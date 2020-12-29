@@ -7,6 +7,7 @@ var searchData=
   ['get_5fmodel_5finfo',['get_model_info',['../classmodel__grid.html#acb10237ba4e5bada1d8b61456c4d620b',1,'model_grid']]],
   ['get_5fstatic_5ffields',['get_static_fields',['../classstatic__data.html#aa310502eb6a2d97f82fb41196b00f4d7',1,'static_data']]],
   ['global_5fequiv_5fresol_2ef90',['global_equiv_resol.f90',['../global__equiv__resol_8f90.html',1,'']]],
+  ['globals_2eh',['globals.h',['../globals_8h.html',1,'']]],
   ['gradient_5fc2l_2ec',['gradient_c2l.c',['../gradient__c2l_8c.html',1,'']]],
   ['gradient_5fc2l_2eh',['gradient_c2l.h',['../gradient__c2l_8h.html',1,'']]],
   ['gradient_5fmod',['gradient_mod',['../classgradient__mod.html',1,'']]],
@@ -15,11 +16,11 @@ var searchData=
   ['grib_5fcheck',['grib_check',['../grib__utils_8f.html#afb32109d497155b14ab1db47cbaaf364',1,'grib_utils.f']]],
   ['grib_5futils_2ef',['grib_utils.f',['../grib__utils_8f.html',1,'']]],
   ['grid_5fbox_5fradius',['grid_box_radius',['../create__xgrid_8c.html#a8fb5a4e4fd5eef7fbb99d81662566ff0',1,'create_xgrid.c']]],
-  ['grid_5fconfig',['Grid_config',['../structGrid__config.html',1,'']]],
+  ['grid_5fconfig',['Grid_config',['../globals_8h.html#structGrid__config',1,'']]],
   ['grid_5fmod',['grid_mod',['../classgrid__mod.html',1,'']]],
   ['gtd7',['gtd7',['../nrlmsise00__sub_8f90.html#a854cde9dcb857a36cddaedab25ecddb2',1,'nrlmsise00_sub.f90']]],
   ['num_5fparthds_2ef90',['num_parthds.f90',['../global__chgres_8fd_2num__parthds_8f90.html',1,'']]],
   ['num_5fparthds_2ef90',['num_parthds.f90',['../global__cycle_8fd_2num__parthds_8f90.html',1,'']]],
-  ['sfcsub_2ef',['sfcsub.F',['../global__cycle_8fd_2sfcsub_8F.html',1,'']]],
-  ['sfcsub_2ef',['sfcsub.F',['../global__chgres_8fd_2sfcsub_8F.html',1,'']]]
+  ['sfcsub_2ef',['sfcsub.F',['../global__chgres_8fd_2sfcsub_8F.html',1,'']]],
+  ['sfcsub_2ef',['sfcsub.F',['../global__cycle_8fd_2sfcsub_8F.html',1,'']]]
 ];

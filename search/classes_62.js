@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bound_5fconfig',['Bound_config',['../structBound__config.html',1,'']]]
+  ['bound_5fconfig',['Bound_config',['../globals_8h.html#structBound__config',1,'']]]
 ];

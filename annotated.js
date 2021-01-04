@@ -19,7 +19,7 @@ var annotated =
     [ "input_data", "classinput__data.html", "classinput__data" ],
     [ "Interp_config", "globals_8h.html#structInterp__config", "globals_8h" ],
     [ "kinds", "kinds_8f90.html#classkinds", "kinds_8f90" ],
-    [ "machine", "machine_8f90.html#classmachine", "machine_8f90" ],
+    [ "machine", "orog__mask__tools_8fd_2orog_8fd_2machine_8f90.html#classmachine", "orog__mask__tools_8fd_2orog_8fd_2machine_8f90" ],
     [ "model_grid", "classmodel__grid.html", "classmodel__grid" ],
     [ "module_ncio", "classmodule__ncio.html", "classmodule__ncio" ],
     [ "module_nwp", "classmodule__nwp.html", null ],

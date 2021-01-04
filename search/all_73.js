@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['model_5fgrid_2ef90',['model_grid.F90',['../sfc__climo__gen_8fd_2model__grid_8F90.html',1,'']]],
-  ['program_5fsetup_2ef90',['program_setup.f90',['../sfc__climo__gen_8fd_2program__setup_8f90.html',1,'']]],
   ['seamask_5ftarget_5fgrid',['seamask_target_grid',['../classmodel__grid.html#ac603676e21495133afd160bf36c70068',1,'model_grid']]],
   ['search',['search',['../classsearch__util.html#a4a511a55b3ce58a03cc053d19cecc458',1,'search_util::search()'],['../search_8f90.html#acda6493c6d4a2e9ba6e5d80d3852c93c',1,'search():&#160;search.f90']]],
   ['search_2ef90',['search.f90',['../search_8f90.html',1,'']]],
@@ -13,6 +11,8 @@ var searchData=
   ['sfc1d',['sfc1d',['../classsurface__chgres.html#structsurface__chgres_1_1sfc1d',1,'surface_chgres']]],
   ['sfc2d',['sfc2d',['../classsurface__chgres.html#structsurface__chgres_1_1sfc2d',1,'surface_chgres']]],
   ['sfccyc_5fmodule',['sfccyc_module',['../global__cycle_8fd_2sfcsub_8F.html#classsfccyc__module',1,'']]],
+  ['sfcsub_2ef',['sfcsub.F',['../global__chgres_8fd_2sfcsub_8F.html',1,'']]],
+  ['sfcsub_2ef',['sfcsub.F',['../global__cycle_8fd_2sfcsub_8F.html',1,'']]],
   ['shave_5fnc_2ef90',['shave_nc.F90',['../shave__nc_8F90.html',1,'']]],
   ['smth9_5fmsk_2ef90',['smth9_msk.f90',['../smth9__msk_8f90.html',1,'']]],
   ['snow2mdl',['snow2mdl',['../classsnow2mdl.html',1,'']]],
@@ -30,6 +30,5 @@ var searchData=
   ['surface_2ef90',['surface.F90',['../surface_8F90.html',1,'']]],
   ['surface_5fchgres',['surface_chgres',['../classsurface__chgres.html',1,'']]],
   ['surface_5fchgres_2ef90',['surface_chgres.f90',['../surface__chgres_8f90.html',1,'']]],
-  ['surface_5fdriver',['surface_driver',['../classsurface.html#a0707121ff6af9350608125b1750e32f5',1,'surface']]],
-  ['utils_2ef90',['utils.f90',['../sfc__climo__gen_8fd_2utils_8f90.html',1,'']]]
+  ['surface_5fdriver',['surface_driver',['../classsurface.html#a0707121ff6af9350608125b1750e32f5',1,'surface']]]
 ];

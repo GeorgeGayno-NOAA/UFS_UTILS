@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['chgres_2ef90',['chgres.f90',['../chgres_8f90.html',1,'(Global Namespace)'],['../chgres_8F90.html',1,'(Global Namespace)']]],
+  ['chgres_2ef90',['chgres.F90',['../chgres_8F90.html',1,'(Global Namespace)'],['../chgres_8f90.html',1,'(Global Namespace)']]],
   ['chgres_5futils_2ef90',['chgres_utils.f90',['../chgres__utils_8f90.html',1,'']]],
   ['conserve_5finterp_2ec',['conserve_interp.c',['../conserve__interp_8c.html',1,'']]],
   ['conserve_5finterp_2eh',['conserve_interp.h',['../conserve__interp_8h.html',1,'']]],
@@ -12,8 +12,5 @@ var searchData=
   ['create_5flonlat_5fgrid_2ec',['create_lonlat_grid.c',['../create__lonlat__grid_8c.html',1,'']]],
   ['create_5fxgrid_2ec',['create_xgrid.c',['../create__xgrid_8c.html',1,'']]],
   ['create_5fxgrid_2eh',['create_xgrid.h',['../create__xgrid_8h.html',1,'']]],
-  ['cycle_2ef90',['cycle.f90',['../cycle_8f90.html',1,'']]],
-  ['model_5fgrid_2ef90',['model_grid.F90',['../chgres__cube_8fd_2model__grid_8F90.html',1,'']]],
-  ['program_5fsetup_2ef90',['program_setup.f90',['../chgres__cube_8fd_2program__setup_8f90.html',1,'']]],
-  ['utils_2ef90',['utils.f90',['../chgres__cube_8fd_2utils_8f90.html',1,'']]]
+  ['cycle_2ef90',['cycle.f90',['../cycle_8f90.html',1,'']]]
 ];

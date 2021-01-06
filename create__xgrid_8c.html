@@ -109,6 +109,9 @@ $(document).ready(function(){initNavTree('create__xgrid_8c.html','');});
 <div class="title">create_xgrid.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Utility routines to create and process exchange grids.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br/>
 <code>#include &lt;stdio.h&gt;</code><br/>
 <code>#include &lt;math.h&gt;</code><br/>
@@ -254,7 +257,11 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_maxxgrid_</b> (voi
 <tr class="memdesc:a4850c503286d59e7e1ce7fd4ecc72a22"><td class="mdescLeft">&#160;</td><td class="mdescRight">double <a class="el" href="create__xgrid_8h.html#a357b7d995949f3f5135ce0063fefa58d" title="double poly_ctrlon(const double x[], const double y[], int n, double clon) This routine is used to ca...">poly_ctrlon(const double x[], const double y[], int n, double clon)</a> This routine is used to calculate the lontitude of the centroid.  <a href="#a4850c503286d59e7e1ce7fd4ecc72a22">More...</a><br/></td></tr>
 <tr class="separator:a4850c503286d59e7e1ce7fd4ecc72a22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Utility routines to create and process exchange grids. </p>
+
+<p>Definition in file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a2bfdfb2d796dadce1247fd606f91982a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -294,7 +301,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_maxxgrid_</b> (voi
 <p>double <a class="el" href="create__xgrid_8h.html#a2bfdfb2d796dadce1247fd606f91982a" title="double box_ctrlat(double ll_lon, double ll_lat, double ur_lon, double ur_lat) This routine is used to...">box_ctrlat(double ll_lon, double ll_lat, double ur_lon, double ur_lat)</a> This routine is used to calculate the latitude of the centroid. </p>
 <hr/>
  
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02137">2137</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02139">2139</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -344,7 +351,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_maxxgrid_</b> (voi
 <h2>This routine is used to calculate the lontitude of the centroid </h2>
 </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02152">2152</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02154">2154</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -416,7 +423,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_maxxgrid_</b> (voi
 
 <p>Sutherland-Hodgeman algorithm sequentially clips parts outside 4 boundaries. </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l01139">1139</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l01141">1141</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -483,7 +490,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_maxxgrid_</b> (voi
 <p>Revise Sutherland-Hodgeman algorithm to find the vertices of the overlapping between any two grid boxes. </p>
 <p>It return the number of vertices for the exchange grid. </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l01246">1246</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l01248">1248</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -568,7 +575,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_maxxgrid_</b> (voi
 <p>Revise Sutherland-Hodgeman algorithm to find the vertices of the overlapping between any two grid boxes. </p>
 <p>It return the number of vertices for the exchange grid. Each edge of grid box is a part of great circle. All the points are cartesian coordinates. Here we are assuming each polygon is convex. RANGE_CHECK_CRITERIA is used to determine if the two grid boxes are possible to be overlap. The size should be between 0 and 0.5. The larger the range_check_criteria, the more expensive of the computatioin. When the value is close to 0, some small exchange grid might be lost. Suggest to use value 0.05 for C48. </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l01442">1442</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l01444">1444</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -671,7 +678,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_maxxgrid_</b> (voi
 <p>void create_xgrid_1dx2d_order1 This routine generate exchange grids between two grids for the first order conservative interpolation. </p>
 <p>nlon_in,nlat_in,nlon_out,nlat_out are the size of the grid cell and lon_in,lat_in are 1-D grid bounds, lon_out,lat_out are geographic grid location of grid cell bounds. </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l00179">179</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l00181">181</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -786,7 +793,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_maxxgrid_</b> (voi
 <p>void create_xgrid_1dx2d_order2 This routine generate exchange grids between two grids for the second order conservative interpolation. </p>
 <p>nlon_in,nlat_in,nlon_out,nlat_out are the size of the grid cell and lon_in,lat_in are 1-D grid bounds, lon_out,lat_out are geographic grid location of grid cell bounds. </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l00283">283</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l00285">285</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -889,7 +896,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_maxxgrid_</b> (voi
 <p>void create_xgrid_2dx1d_order1 This routine generate exchange grids between two grids for the first order conservative interpolation. </p>
 <p>nlon_in,nlat_in,nlon_out,nlat_out are the size of the grid cell and lon_out,lat_out are 1-D grid bounds, lon_in,lat_in are geographic grid location of grid cell bounds. mask is on grid lon_in/lat_in. </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l00383">383</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l00385">385</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -1004,7 +1011,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_maxxgrid_</b> (voi
 <p>void create_xgrid_2dx1d_order2 This routine generate exchange grids between two grids for the second order conservative interpolation. </p>
 <p>nlon_in,nlat_in,nlon_out,nlat_out are the size of the grid cell and lon_out,lat_out are 1-D grid bounds, lon_in,lat_in are geographic grid location of grid cell bounds. mask is on grid lon_in/lat_in. </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l00484">484</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l00486">486</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -1107,7 +1114,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_maxxgrid_</b> (voi
 <p>void create_xgrid_2DX2D_order1 This routine generate exchange grids between two grids for the first order conservative interpolation. </p>
 <p>nlon_in,nlat_in,nlon_out,nlat_out are the size of the grid cell and lon_in,lat_in, lon_out,lat_out are geographic grid location of grid cell bounds. mask is on grid lon_in/lat_in. </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l00590">590</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l00592">592</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -1222,7 +1229,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_maxxgrid_</b> (voi
 <p>void create_xgrid_2dx1d_order2 This routine generate exchange grids between two grids for the second order conservative interpolation. </p>
 <p>nlon_in,nlat_in,nlon_out,nlat_out are the size of the grid cell and lon_in,lat_in, lon_out,lat_out are geographic grid location of grid cell bounds. mask is on grid lon_in/lat_in. </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l00861">861</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l00863">863</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -1289,7 +1296,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_maxxgrid_</b> (voi
 <p>double dist_between_boxes(const double *x1, const double *y1, const double *z1, int n1, const double *x2, const double *y2, const double *z2, int n2); Find the distance between any two grid boxes. </p>
 <p>The distance is defined by the maximum distance between any vertices of these two box </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02229">2229</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02231">2231</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -1337,7 +1344,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_maxxgrid_</b> (voi
 
 <p>void get_grid_area(const int *nlon, const int *nlat, const double *lon, const double *lat, const double *area) return the grid area. </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l00043">43</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l00045">45</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -1357,7 +1364,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_maxxgrid_</b> (voi
 
 <p>int get_maxxgrid return constants MAXXGRID. </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l00028">28</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l00030">30</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -1399,7 +1406,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_maxxgrid_</b> (voi
 
 <p>double grid_box_radius(double *x, double *y, double *z, int n); Find the radius of the grid box, the radius is defined the maximum distance between any two vertices </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02205">2205</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02207">2207</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -1454,7 +1461,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_maxxgrid_</b> (voi
 <p>int <a class="el" href="create__xgrid_8c.html#a290b2ed60dc9b411420d36d01f2791c2" title="int inside_edge(double x0, double y0, double x1, double y1, double x, double y) determine a point(x...">inside_edge(double x0, double y0, double x1, double y1, double x, double y)</a> determine a point(x,y) is inside or outside a given edge with vertex, (x0,y0) and (x1,y1). </p>
 <p>return 1 if inside and 0 if outside. &lt;y1-y0, -(x1-x0)&gt; is the outward edge normal from vertex &lt;x0,y0&gt; to &lt;x1,y1&gt;. &lt;x-x0,y-y0&gt; is the vector from &lt;x0,y0&gt; to &lt;x,y&gt;. if Inner produce &lt;x-x0,y-y0&gt;*&lt;y1-y0, -(x1-x0)&gt; &gt; 0, outside, otherwise inside. inner product value = 0 also treate as inside. </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02256">2256</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02258">2258</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -1527,7 +1534,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_maxxgrid_</b> (voi
 <p>Intersects between the line a and the seqment s where both line and segment are great circle lines on the sphere represented by 3D cartesian points. </p>
 <p>[sin sout] are the ends of a line segment returns true if the lines could be intersected, false otherwise. inbound means the direction of (a1,a2) go inside or outside of (q1,q2,q3) </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l01883">1883</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l01885">1885</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -1565,7 +1572,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_maxxgrid_</b> (voi
 <h2>This routine is used to calculate the latitude of the centroid </h2>
 </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02053">2053</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02055">2055</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -1608,7 +1615,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_maxxgrid_</b> (voi
 <p>double <a class="el" href="create__xgrid_8h.html#a357b7d995949f3f5135ce0063fefa58d" title="double poly_ctrlon(const double x[], const double y[], int n, double clon) This routine is used to ca...">poly_ctrlon(const double x[], const double y[], int n, double clon)</a> This routine is used to calculate the lontitude of the centroid. </p>
 <hr/>
  
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02084">2084</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02086">2086</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>

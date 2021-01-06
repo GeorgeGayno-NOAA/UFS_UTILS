@@ -110,6 +110,9 @@ $(document).ready(function(){initNavTree('create__xgrid_8h.html','');});
 </div><!--header-->
 <div class="contents">
 
+<p>Function declarations for <a class="el" href="create__xgrid_8c.html" title="Utility routines to create and process exchange grids. ">create_xgrid.c</a>.  
+<a href="#details">More...</a></p>
+
 <p><a href="create__xgrid_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -185,7 +188,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>get_grid_great_circle
 <tr class="memdesc:a357b7d995949f3f5135ce0063fefa58d"><td class="mdescLeft">&#160;</td><td class="mdescRight">double <a class="el" href="create__xgrid_8h.html#a357b7d995949f3f5135ce0063fefa58d" title="double poly_ctrlon(const double x[], const double y[], int n, double clon) This routine is used to ca...">poly_ctrlon(const double x[], const double y[], int n, double clon)</a> This routine is used to calculate the lontitude of the centroid.  <a href="#a357b7d995949f3f5135ce0063fefa58d">More...</a><br/></td></tr>
 <tr class="separator:a357b7d995949f3f5135ce0063fefa58d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Function declarations for <a class="el" href="create__xgrid_8c.html" title="Utility routines to create and process exchange grids. ">create_xgrid.c</a>. </p>
+
+<p>Definition in file <a class="el" href="create__xgrid_8h_source.html">create_xgrid.h</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a2bfdfb2d796dadce1247fd606f91982a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -225,7 +232,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>get_grid_great_circle
 <p>double <a class="el" href="create__xgrid_8h.html#a2bfdfb2d796dadce1247fd606f91982a" title="double box_ctrlat(double ll_lon, double ll_lat, double ur_lon, double ur_lat) This routine is used to...">box_ctrlat(double ll_lon, double ll_lat, double ur_lon, double ur_lat)</a> This routine is used to calculate the latitude of the centroid. </p>
 <hr/>
  
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02137">2137</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02139">2139</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -275,7 +282,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>get_grid_great_circle
 <h2>This routine is used to calculate the lontitude of the centroid </h2>
 </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02152">2152</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02154">2154</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -347,7 +354,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>get_grid_great_circle
 
 <p>Sutherland-Hodgeman algorithm sequentially clips parts outside 4 boundaries. </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l01139">1139</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l01141">1141</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -414,7 +421,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>get_grid_great_circle
 <p>Revise Sutherland-Hodgeman algorithm to find the vertices of the overlapping between any two grid boxes. </p>
 <p>It return the number of vertices for the exchange grid. </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l01246">1246</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l01248">1248</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -499,7 +506,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>get_grid_great_circle
 <p>Revise Sutherland-Hodgeman algorithm to find the vertices of the overlapping between any two grid boxes. </p>
 <p>It return the number of vertices for the exchange grid. Each edge of grid box is a part of great circle. All the points are cartesian coordinates. Here we are assuming each polygon is convex. RANGE_CHECK_CRITERIA is used to determine if the two grid boxes are possible to be overlap. The size should be between 0 and 0.5. The larger the range_check_criteria, the more expensive of the computatioin. When the value is close to 0, some small exchange grid might be lost. Suggest to use value 0.05 for C48. </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l01442">1442</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l01444">1444</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -519,7 +526,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>get_grid_great_circle
 
 <p>int get_maxxgrid return constants MAXXGRID. </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l00028">28</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l00030">30</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -557,7 +564,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>get_grid_great_circle
 <h2>This routine is used to calculate the latitude of the centroid </h2>
 </p>
 
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02053">2053</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02055">2055</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>
@@ -600,7 +607,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>get_grid_great_circle
 <p>double <a class="el" href="create__xgrid_8h.html#a357b7d995949f3f5135ce0063fefa58d" title="double poly_ctrlon(const double x[], const double y[], int n, double clon) This routine is used to ca...">poly_ctrlon(const double x[], const double y[], int n, double clon)</a> This routine is used to calculate the lontitude of the centroid. </p>
 <hr/>
  
-<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02084">2084</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
+<p>Definition at line <a class="el" href="create__xgrid_8c_source.html#l02086">2086</a> of file <a class="el" href="create__xgrid_8c_source.html">create_xgrid.c</a>.</p>
 
 </div>
 </div>

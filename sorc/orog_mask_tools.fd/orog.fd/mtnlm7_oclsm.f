@@ -861,6 +861,14 @@ C23456789012345678901234567890123456789012345678901234567890123456789012......
 
          print*,'mom6 slmsk ',maxval(tmpvar),minval(tmpvar)
 
+         error=nf_inq_varid(ncid_mom6, 'lake_frac', id_var)
+         call netcdf_err(error, 'inquire varid of lake_frac from file '
+     &                   //trim(mom6_file) )
+         error=nf_get_var_double(ncid_mom6, id_var, tmpvar)
+         call netcdf_err(error, 'inquire data of lake_frac from file '
+     &                   //trim(mom6_file) )
+
+         print*,'mom6 lake_frac ',maxval(tmpvar),minval(tmpvar)
 
          stop
 

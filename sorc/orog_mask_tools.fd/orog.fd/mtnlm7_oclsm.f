@@ -170,6 +170,8 @@ C
       integer                      :: IMN,JMN,IM,JM,NW
       character(len=*), intent(in) :: OUTGRID
       character(len=*), intent(in) :: INPUTOROG
+      character(len=200) :: mom6_file
+      integer :: ncid_mom6
       integer :: NR,NF0,NF1
       real, parameter :: MISSING_VALUE=-9999.
       real, PARAMETER :: PI=3.1415926535897931
@@ -838,6 +840,30 @@ C
                                 !
 ! --- CALL MAKEMT(ZAVG,ZSLM,ORO,OCLSM,mskocn,SLM,VAR,VAR4,GLAT,
       if(grid_from_file) then
+
+C23456789012345678901234567890123456789012345678901234567890123456789012......
+      mom6_file=
+     &"/scratch1/BMC/gsd-fv3-dev/fv3data/oro_lake100_ceil/C96.mx025_frac
+     &/oro_data.tile1.nc"
+         error=NF__OPEN(trim(mom6_file),NF_NOWRITE,fsize,ncid_mom6)
+         call netcdf_err(error, 'Open file '//trim(mom6_file) )
+         print*,'after open'
+
+         deallocate(tmpvar)
+         allocate(tmpvar(im,jm))
+
+         error=nf_inq_varid(ncid_mom6, 'slmsk', id_var)
+         call netcdf_err(error, 'inquire varid of slmsk from file '
+     &                   //trim(mom6_file) )
+         error=nf_get_var_double(ncid_mom6, id_var, tmpvar)
+         call netcdf_err(error, 'inquire data of slmsk from file '
+     &                   //trim(mom6_file) )
+
+         print*,'mom6 slmsk ',maxval(tmpvar),minval(tmpvar)
+
+
+         stop
+
        tbeg=timef()
          CALL MAKEMT2(ZAVG,ZSLM,ORO,SLM,land_frac,VAR,VAR4,GLAT,
      & IM,JM,IMN,JMN,geolon_c,geolat_c)

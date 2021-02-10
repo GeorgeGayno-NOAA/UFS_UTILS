@@ -911,7 +911,8 @@ C
        if(grid_from_file) then       
       tbeg=timef()
          CALL MAKEPC2(ZAVG,ZSLM,THETA,GAMMA,SIGMA,GLAT,
-     1            IM,JM,IMN,JMN,geolon_c,geolat_c)
+     1            IM,JM,IMN,JMN,geolon_c,geolat_c,
+     2            slmsk_mom6,lake_frac_mom6)
       tend=timef()
       write(6,*)' MAKEPC2 time= ',tend-tbeg
        else
@@ -2228,7 +2229,8 @@ C
       END
 
       SUBROUTINE MAKEPC2(ZAVG,ZSLM,THETA,GAMMA,SIGMA,
-     1           GLAT,IM,JM,IMN,JMN,lon_c,lat_c)
+     1           GLAT,IM,JM,IMN,JMN,lon_c,lat_c,
+     2           slmsk_mom6,lake_frac_mom6)
 C
 C===  PC: principal coordinates of each Z avg orog box for L&M
 C
@@ -2236,6 +2238,8 @@ C
       real, parameter :: REARTH=6.3712E+6
       real, parameter :: D2R = 3.14159265358979/180. 
       integer :: IM,JM,IMN,JMN
+      real, intent(in) :: slmsk_mom6(im,jm)
+      real, intent(in) :: lake_frac_mom6(im,jm)
       real  :: GLAT(JMN),DELTAX(JMN)
       INTEGER ZAVG(IMN,JMN),ZSLM(IMN,JMN)
       real lon_c(IM+1,JM+1), lat_c(IM+1,JM+1)
@@ -2253,6 +2257,8 @@ C
 C===  DATA DEBUG/.TRUE./
       DATA DEBUG/.FALSE./
 C
+      print*,'top of makepc2'
+
       PI = 4.0 * ATAN(1.0)
       CERTH = PI * REARTH
 C---- GLOBAL XLAT AND XLON ( DEGREE )

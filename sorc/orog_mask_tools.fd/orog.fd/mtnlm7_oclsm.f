@@ -171,6 +171,8 @@ C
       character(len=*), intent(in) :: OUTGRID
       character(len=*), intent(in) :: INPUTOROG
       character(len=200) :: mom6_file
+      real, allocatable :: lake_frac_mom6(:,:)
+      real, allocatable :: slmsk_mom6(:,:)
       integer :: ncid_mom6
       integer :: NR,NF0,NF1
       real, parameter :: MISSING_VALUE=-9999.
@@ -847,36 +849,36 @@ C23456789012345678901234567890123456789012345678901234567890123456789012......
      &/oro_data.tile1.nc"
          error=NF__OPEN(trim(mom6_file),NF_NOWRITE,fsize,ncid_mom6)
          call netcdf_err(error, 'Open file '//trim(mom6_file) )
-         print*,'after open'
+         print*,'after open of mom6 file'
 
-         deallocate(tmpvar)
-         allocate(tmpvar(im,jm))
+         allocate(slmsk_mom6(im,jm))
+         allocate(lake_frac_mom6(im,jm))
 
          error=nf_inq_varid(ncid_mom6, 'slmsk', id_var)
          call netcdf_err(error, 'inquire varid of slmsk from file '
      &                   //trim(mom6_file) )
-         error=nf_get_var_double(ncid_mom6, id_var, tmpvar)
+         error=nf_get_var_double(ncid_mom6, id_var, slmsk_mom6)
          call netcdf_err(error, 'inquire data of slmsk from file '
      &                   //trim(mom6_file) )
 
-         print*,'mom6 slmsk ',maxval(tmpvar),minval(tmpvar)
+         print*,'mom6 slmsk ',maxval(slmsk_mom6),minval(slmsk_mom6)
 
          error=nf_inq_varid(ncid_mom6, 'lake_frac', id_var)
          call netcdf_err(error, 'inquire varid of lake_frac from file '
      &                   //trim(mom6_file) )
-         error=nf_get_var_double(ncid_mom6, id_var, tmpvar)
+         error=nf_get_var_double(ncid_mom6, id_var, lake_frac_mom6)
          call netcdf_err(error, 'inquire data of lake_frac from file '
      &                   //trim(mom6_file) )
 
-         print*,'mom6 lake_frac ',maxval(tmpvar),minval(tmpvar)
-
-         stop
+         print*,'mom6 lake_frac ',maxval(lake_frac_mom6),
+     &      minval(lake_frac_mom6)
 
        tbeg=timef()
          CALL MAKEMT2(ZAVG,ZSLM,ORO,SLM,land_frac,VAR,VAR4,GLAT,
-     & IM,JM,IMN,JMN,geolon_c,geolat_c)
+     & IM,JM,IMN,JMN,geolon_c,geolat_c,slmsk_mom6,lake_frac_mom6)
       tend=timef()
       write(6,*)' MAKEMT2 time= ',tend-tbeg
+
       else
 
         CALL MAKEMT(ZAVG,ZSLM,ORO,SLM,VAR,VAR4,GLAT,
@@ -1802,7 +1804,8 @@ C
       END   
       
       SUBROUTINE MAKEMT2(ZAVG,ZSLM,ORO,SLM,land_frac,VAR,VAR4,
-     1 GLAT,IM,JM,IMN,JMN,lon_c,lat_c)
+     1 GLAT,IM,JM,IMN,JMN,lon_c,lat_c,slmsk_mom6,
+     2 lake_frac_mom6)
       implicit none
       real, parameter :: D2R = 3.14159265358979/180.
       integer, parameter :: MAXSUM=20000000
@@ -1811,6 +1814,8 @@ C
       real GLAT(JMN), GLON(IMN)
       INTEGER ZAVG(IMN,JMN),ZSLM(IMN,JMN)
       real land_frac(IM,JM)
+      real, intent(in) :: slmsk_mom6(im,jm)
+      real, intent(in) :: lake_frac_mom6(im,jm)
       real ORO(IM,JM),SLM(IM,JM),VAR(IM,JM),VAR4(IM,JM)
       integer IST,IEN,JST, JEN
       real lon_c(IM+1,JM+1), lat_c(IM+1,JM+1)
@@ -1907,13 +1912,45 @@ C  (*j*)  for hard wired zero offset (lambda s =0) for terr05
 ! --- SLM initialized with OCLSM calc from all land points except ....
 ! ---  0 is ocean and 1 is land for slm
 ! ---  Step 1 is to only change SLM after GFS SLM is applied
+
                land_frac(i,j) = XLAND/XNSUM  
                SLM(I,J) = FLOAT(NINT(XLAND/XNSUM))
-               IF(SLM(I,J).NE.0.) THEN
-                  ORO(I,J)= XL1 / XLAND
-               ELSE
-                  ORO(I,J)= XS1 / XWATR
-               ENDIF
+
+!              IF(SLM(I,J).NE.0.) THEN
+!                 ORO(I,J)= XL1 / XLAND
+!              ELSE
+!                 ORO(I,J)= XS1 / XWATR
+!              ENDIF
+
+               if (slmsk_mom6(i,j) > 0.99) then ! mom6 point with
+                                            ! at least some land.
+                 if (xland > 0) then
+                   ORO(I,J)= XL1 / XLAND
+                 else
+                   ORO(I,J)= XS1 / XWATR
+                 endif
+
+! mom6 file has '1' for inland water and '0' elsewhere.  There
+! are no fractional values as I can see.
+
+               elseif (lake_frac_mom6(i,j) > 0.99) then
+                                           ! mom6 inland water
+                 if (xwatr > 0) then
+                   ORO(I,J)= XS1 / XWATR
+                 else
+                   ORO(I,J)= XL1 / XLAND
+                 endif
+
+               else  ! This should be mom6 ocean points
+
+                   oro(i,j) = 0.0
+
+               endif
+
+
+! these variances are computed the same whether land or water.
+! will not adjust these for now.
+
                VAR(I,J)=SQRT(MAX(XW2/XNSUM-(XW1/XNSUM)**2,0.))
                do I1 = 1, NSUM
                   XW4 = XW4 + (hgt_1d(I1) - ORO(i,j)) ** 4
@@ -1922,15 +1959,17 @@ C  (*j*)  for hard wired zero offset (lambda s =0) for terr05
                IF(VAR(I,J).GT.1.) THEN
                   VAR4(I,J) = MIN(XW4/XNSUM/VAR(I,J) **4,10.)
                ENDIF
+
+
             ENDIF
          ENDDO
       ENDDO
 !$omp end parallel do
-      WRITE(6,*) "! MAKEMT ORO SLM VAR VAR4 DONE"
+      WRITE(6,*) "! MAKEMT2 ORO SLM VAR VAR4 DONE"
 C
 
       RETURN
-      END
+      END SUBROUTINE MAKEMT2
 
       
       SUBROUTINE MAKEPC(ZAVG,ZSLM,THETA,GAMMA,SIGMA,

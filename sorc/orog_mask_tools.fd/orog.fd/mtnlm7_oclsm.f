@@ -2239,11 +2239,11 @@ C
       real  :: GLAT(JMN),DELTAX(JMN)
       INTEGER ZAVG(IMN,JMN),ZSLM(IMN,JMN)
       real lon_c(IM+1,JM+1), lat_c(IM+1,JM+1)
-      real ORO(IM,JM),SLM(IM,JM),HL(IM,JM),HK(IM,JM)
+      real SLM(IM,JM),HL(IM,JM),HK(IM,JM)
       real HX2(IM,JM),HY2(IM,JM),HXY(IM,JM),HLPRIM(IM,JM)
       real THETA(IM,JM),GAMMA(IM,JM),SIGMA2(IM,JM),SIGMA(IM,JM)
-      real PI,CERTH,DELXN,DELTAY,XNSUM,XLAND,XWATR,XL1,XS1
-      real xfp,yfp,xfpyfp,xfp2,yfp2,HEIGHT
+      real PI,CERTH,DELXN,DELTAY,XNSUM,XLAND
+      real xfp,yfp,xfpyfp,xfp2,yfp2
       real hi0,hip1,hj0,hjp1,hijax,hi1j1
       real LONO(4),LATO(4),LONI,LATI
       integer i,j,i1,j1,i2,jst,jen,numx,i0,ip1,ijax
@@ -2272,22 +2272,22 @@ C
 C... DERIVITIVE TENSOR OF HEIGHT
 C
 !$omp parallel do
-!$omp* private (j,i,xnsum,xland,xwatr,xl1,xs1,xfp,yfp,xfpyfp,
+!$omp* private (j,i,xnsum,xland,xfp,yfp,xfpyfp,
 !$omp*          xfp2,yfp2,lono,lato,jst,jen,ilist,numx,j1,i2,i1,
-!$omp*          loni,lati,i0,ip1,height,hi0,hip1,hj0,hjp1,ijax,
+!$omp*          loni,lati,i0,ip1,hi0,hip1,hj0,hjp1,ijax,
 !$omp*          hijax,hi1j1)
       DO J=1,JM
 !        print*, "J=", J
         DO I=1,IM
-          ORO(I,J)  = 0.0
+!         ORO(I,J)  = 0.0
           HX2(I,J) = 0.0
           HY2(I,J) = 0.0
           HXY(I,J) = 0.0
           XNSUM = 0.0
           XLAND = 0.0
-          XWATR = 0.0
-          XL1 = 0.0
-            XS1 = 0.0
+!         XWATR = 0.0
+!         XL1 = 0.0
+!           XS1 = 0.0
             xfp = 0.0
             yfp = 0.0
             xfpyfp = 0.0
@@ -2329,14 +2329,14 @@ C
                 if (i1 + 1 .gt. imn)  ip1 = ip1 - imn
 
                   XLAND = XLAND + FLOAT(ZSLM(I1,J1))
-                  XWATR = XWATR + FLOAT(1-ZSLM(I1,J1))
+!                 XWATR = XWATR + FLOAT(1-ZSLM(I1,J1))
                   XNSUM = XNSUM + 1.
 C
-                  HEIGHT = FLOAT(ZAVG(I1,J1))
+!                 HEIGHT = FLOAT(ZAVG(I1,J1))
                   hi0 =  float(zavg(i0,j1))
                   hip1 =  float(zavg(ip1,j1))
 C
-                  IF(HEIGHT.LT.-990.) HEIGHT = 0.0
+!                 IF(HEIGHT.LT.-990.) HEIGHT = 0.0
                   if(hi0 .lt. -990.)  hi0 = 0.0
                   if(hip1 .lt. -990.)  hip1 = 0.0
 C........           xfp = xfp + 0.5 * ( hip1 - hi0 ) / DELTAX(J1)
@@ -2395,8 +2395,8 @@ C ===    The above does an average across the pole for the bndry in j.
 C23456789012345678901234567890123456789012345678901234567890123456789012......
 C
                   xfpyfp = xfpyfp + xfp * yfp
-                  XL1 = XL1 + HEIGHT * FLOAT(ZSLM(I1,J1))
-                  XS1 = XS1 + HEIGHT * FLOAT(1-ZSLM(I1,J1))
+!                 XL1 = XL1 + HEIGHT * FLOAT(ZSLM(I1,J1))
+!                 XS1 = XS1 + HEIGHT * FLOAT(1-ZSLM(I1,J1))
                ENDIF
 C
 C === average the HX2, HY2 and HXY
@@ -2410,16 +2410,16 @@ C
            IF(XNSUM.GT.1.) THEN
                SLM(I,J) = FLOAT(NINT(XLAND/XNSUM))
                IF(SLM(I,J).NE.0.) THEN
-                  ORO(I,J)= XL1 / XLAND
+!                 ORO(I,J)= XL1 / XLAND
                   HX2(I,J) =  xfp2  / XLAND
                   HY2(I,J) =  yfp2  / XLAND
 		  HXY(I,J) =  xfpyfp / XLAND
-               ELSE
-                  ORO(I,J)= XS1 / XWATR
+!              ELSE
+!                 ORO(I,J)= XS1 / XWATR
                ENDIF
 C=== degub testing
       if (debug) then
-          print *," I,J,i1,j1,HEIGHT:", I,J,i1,j1,HEIGHT,
+          print *," I,J,i1,j1:", I,J,i1,j1,
      1         XLAND,SLM(i,j)
           print *," xfpyfp,xfp2,yfp2:",xfpyfp,xfp2,yfp2
           print *," HX2,HY2,HXY:",HX2(I,J),HY2(I,J),HXY(I,J)

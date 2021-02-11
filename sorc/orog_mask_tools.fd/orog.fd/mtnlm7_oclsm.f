@@ -2413,20 +2413,32 @@ C
 C
 C ===  HTENSR 
 C
+! shan's data has slmsk == 1 for any land (even fractional) and
+! '0' for lake and ocean.
+! lake frac is either 1 for lake or 0 for not lake.  there are
+! no fractional values.
            IF(XNSUM.GT.1.) THEN
-               SLM(I,J) = FLOAT(NINT(XLAND/XNSUM))
-               IF(SLM(I,J).NE.0.) THEN
+!              SLM(I,J) = FLOAT(NINT(XLAND/XNSUM))
+!              IF(SLM(I,J).NE.0.) THEN
+! if shan's data is land.
+               IF(slmsk_mom6(I,J)>0.99) THEN
 !                 ORO(I,J)= XL1 / XLAND
+                if (xland > 0) then
                   HX2(I,J) =  xfp2  / XLAND
                   HY2(I,J) =  yfp2  / XLAND
 		  HXY(I,J) =  xfpyfp / XLAND
+                else
+                  HX2(I,J) =  xfp2  / XNSUM
+                  HY2(I,J) =  yfp2  / XNSUM
+		  HXY(I,J) =  xfpyfp / XNSUM
+                endif
 !              ELSE
 !                 ORO(I,J)= XS1 / XWATR
                ENDIF
 C=== degub testing
       if (debug) then
           print *," I,J,i1,j1:", I,J,i1,j1,
-     1         XLAND,SLM(i,j)
+     1         XLAND,slmsk_mom6(i,j)
           print *," xfpyfp,xfp2,yfp2:",xfpyfp,xfp2,yfp2
           print *," HX2,HY2,HXY:",HX2(I,J),HY2(I,J),HXY(I,J)
       ENDIF
@@ -2437,7 +2449,8 @@ C
                HK(I,J) = 0.5 * ( HX2(I,J) + HY2(I,J) )
                HL(I,J) = 0.5 * ( HX2(I,J) - HY2(I,J) )
                HLPRIM(I,J) = SQRT(HL(I,J)*HL(I,J) + HXY(I,J)*HXY(I,J))
-           IF( HL(I,J).NE. 0. .AND. SLM(I,J) .NE. 0. ) THEN
+!          IF( HL(I,J).NE. 0. .AND. SLM(I,J) .NE. 0. ) THEN
+           IF( HL(I,J).NE. 0. .AND. slmsk_mom6(I,J) > 0.99) THEN
 C
              THETA(I,J) = 0.5 * ATAN2(HXY(I,J),HL(I,J)) / D2R
 C ===   for testing print out in degrees
@@ -2461,10 +2474,10 @@ C            THETA(I,J) = 0.5 * ATAN2(HXY(I,J),HL(I,J))
         ENDDO
       ENDDO
 !$omp end parallel do
-      WRITE(6,*) "! MAKE Principal Coord  DONE"
+      WRITE(6,*) "! MAKEPC2 Principal Coord  DONE"
 C
       RETURN
-      END
+      END SUBROUTINE MAKEPC2
       
       SUBROUTINE MAKEOA(ZAVG,VAR,GLAT,OA4,OL,IOA4,ELVMAX,
      1           ORO,oro1,XNSUM,XNSUM1,XNSUM2,XNSUM3,XNSUM4,

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>UFS_UTILS: user_guide</title>
+<title>UFS_UTILS: fvcom_readme</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -78,7 +78,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('md__gpfs_dell2_emc_modeling_noscrub_George_8Gayno_ufs_utils_8git_UFS_UTILS_docs_user_guide.html','');});
+$(document).ready(function(){initNavTree('md__gpfs_dell1_stmp_George_8Gayno_UFS_UTILS_8ed_sorc_fvcom_tools_8fd_fvcom_readme.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -97,10 +97,22 @@ $(document).ready(function(){initNavTree('md__gpfs_dell2_emc_modeling_noscrub_Ge
 
 <div class="header">
   <div class="headertitle">
-<div class="title">user_guide </div>  </div>
+<div class="title">fvcom_readme </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"></div></div><!-- contents -->
+<div class="textblock"><p>replaces lake surface and lake ice temperature</p>
+<p><a class="anchor" id="fvcom_readme"></a> <b>fvcom_to_FV3.exe</b></p>
+<p><b>Introduction:</b> This code replaces lake surface and lake ice temperature along with aerial ice concentration generated from Great Lakes Operational Forecast System (GLOFS), an FVCOM-based model, into sfc_data.nc. <b>NOTE</b> that the variables in the input files must reside on the same grid. This means data from FVCOM must be horizontally interpolated to the FV3 grid. This routine will also force a minimum ice concentration of 15%. If ice concentration is less than 15% in FVCOM, it will be set to 0% to avoid FV3 from changing values less than 15% to 15% and generating unrealistic lake ice temperatures.</p>
+<p><b>Library Dependencies:</b> Installation depends on the netCDF library and cmake.</p>
+<p><b>Running:</b> This routine will take two variables from the command line:</p>
+<ol type="1">
+<li>Name of FV3 sfc data file (e.g. sfc_data.tile7.halo0.nc) which is generated from chgres_cube.exe.</li>
+<li>Name of FVCOM data file in netcdf format (e.g. fvcom.nc)</li>
+</ol>
+<p>To run the script, use the following example, modifying file names as needed: ./fvcom_to_FV3 sfc_data.tile7.halo0.nc fvcom.nc Output will be to the sfc data file and include lake surface and lake ice temperature, and lake ice concentration from FVCOM.</p>
+<p>This routine is <em>strongly</em> based upon Eric James' (ESRL/GSL) work to update HRRR/WRF Great Lakes' temperature data with FVCOM. It also relies heavily on Ming Hu's (ESRL/GSL) ncio module.</p>
+<p><b>For more information, please contact:</b> David Wright University of Michigan and GLERL <a href="#" onclick="location.href='mai'+'lto:'+'dmw'+'ri'+'ght'+'@u'+'mic'+'h.'+'edu'; return false;">dmwri<span style="display: none;">.nosp@m.</span>ght@<span style="display: none;">.nosp@m.</span>umich<span style="display: none;">.nosp@m.</span>.edu</a> </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

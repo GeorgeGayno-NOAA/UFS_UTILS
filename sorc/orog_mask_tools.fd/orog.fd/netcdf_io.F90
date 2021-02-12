@@ -1,12 +1,17 @@
 !> @file
 !! @brief Write out data in netcdf format
 !!
-  subroutine write_netcdf(im, jm, slm, land_frac, oro, orf, hprime, ntiles, tile, geolon, geolat, lon, lat)
+  subroutine write_netcdf(im, jm, slm, land_frac, oro, orf, hprime, ntiles, tile, geolon, geolat, lon, lat, &
+    slmsk_mom6, land_frac_mom6, lake_frac_mom6, lake_depth_mom6)
     implicit none
     integer, intent(in):: im, jm, ntiles, tile
     real, intent(in) :: lon(im), lat(jm)
     real, intent(in), dimension(im,jm)  :: slm, oro, orf, geolon, geolat, land_frac
     real, intent(in), dimension(im,jm,14):: hprime
+    real, intent(in), dimension(im,jm):: slmsk_mom6
+    real, intent(in), dimension(im,jm):: lake_frac_mom6
+    real, intent(in), dimension(im,jm):: lake_depth_mom6
+    real, intent(in), dimension(im,jm):: land_frac_mom6
     character(len=128) :: outfile
     integer            :: error, ncid, i
     integer            :: header_buffer_val = 16384      
@@ -14,6 +19,7 @@
     integer            :: dim1, dim2
     integer            :: dim_lon, dim_lat
     integer            :: id_geolon,id_geolat
+    integer            :: id_lake_frac, id_lake_depth
     integer            :: id_slmsk,id_orog_raw,id_orog_filt,id_land_frac
     integer            :: id_stddev,id_convex
     integer            :: id_oa1,id_oa2,id_oa3,id_oa4
@@ -65,6 +71,16 @@
     call netcdf_err(error, 'define var land_frac for file='//trim(outfile) )
     error = nf_put_att_text(ncid, id_land_frac, "coordinates", 13, "geolon geolat")
     call netcdf_err(error, 'define land_frac coordinates for file='//trim(outfile) )
+!--- lake_frac
+    error = nf_def_var(ncid, 'lake_frac', NF_FLOAT, 2, (/dim_lon,dim_lat/), id_lake_frac)
+    call netcdf_err(error, 'define var lake_frac for file='//trim(outfile) )
+    error = nf_put_att_text(ncid, id_lake_frac, "coordinates", 13, "geolon geolat")
+    call netcdf_err(error, 'define lake_frac coordinates for file='//trim(outfile) )
+!--- lake_depth
+    error = nf_def_var(ncid, 'lake_depth', NF_FLOAT, 2, (/dim_lon,dim_lat/), id_lake_depth)
+    call netcdf_err(error, 'define var lake_depth for file='//trim(outfile) )
+    error = nf_put_att_text(ncid, id_lake_depth, "coordinates", 13, "geolon geolat")
+    call netcdf_err(error, 'define lake_depth coordinates for file='//trim(outfile) )
 !---orography - raw
     error = nf_def_var(ncid, 'orog_raw', NF_FLOAT, 2, (/dim_lon,dim_lat/), id_orog_raw)
     call netcdf_err(error, 'define var orog_raw for file='//trim(outfile) )
@@ -146,10 +162,15 @@
     error = nf_put_var_double( ncid, id_geolat, geolat(:dim1,:dim2))
     call netcdf_err(error, 'write var geolat for file='//trim(outfile) )
 
-    error = nf_put_var_double( ncid, id_slmsk, slm(:dim1,:dim2))
-    call netcdf_err(error, 'write var slmsk for file='//trim(outfile) )
-    error = nf_put_var_double( ncid, id_land_frac, land_frac(:dim1,:dim2))
+!>mom6 output mom6 slmsk.
+    error = nf_put_var_double( ncid, id_slmsk, slmsk_mom6(:dim1,:dim2))
+    call netcdf_err(error, 'write var slmsk_mom6 for file='//trim(outfile) )
+    error = nf_put_var_double( ncid, id_land_frac, land_frac_mom6(:dim1,:dim2))
     call netcdf_err(error, 'write var land_frac for file='//trim(outfile) )
+    error = nf_put_var_double( ncid, id_lake_frac, lake_frac_mom6(:dim1,:dim2))
+    call netcdf_err(error, 'write var lake_frac for file='//trim(outfile) )
+    error = nf_put_var_double( ncid, id_lake_depth, lake_depth_mom6(:dim1,:dim2))
+    call netcdf_err(error, 'write var lake_depth for file='//trim(outfile) )
 
     error = nf_put_var_double( ncid, id_orog_raw, oro(:dim1,:dim2))
     call netcdf_err(error, 'write var orog_raw for file='//trim(outfile) )

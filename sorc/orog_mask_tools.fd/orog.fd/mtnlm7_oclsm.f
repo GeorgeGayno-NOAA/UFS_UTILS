@@ -170,10 +170,14 @@ C
       integer                      :: IMN,JMN,IM,JM,NW
       character(len=*), intent(in) :: OUTGRID
       character(len=*), intent(in) :: INPUTOROG
+!>mom6
       character(len=200) :: mom6_file
-      real, allocatable :: lake_frac_mom6(:,:)
-      real, allocatable :: slmsk_mom6(:,:)
+      real, allocatable  :: slmsk_mom6(:,:)
+      real, allocatable  :: land_frac_mom6(:,:)
+      real, allocatable  :: lake_frac_mom6(:,:)
+      real, allocatable  :: lake_depth_mom6(:,:)
       integer :: ncid_mom6
+
       integer :: NR,NF0,NF1
       real, parameter :: MISSING_VALUE=-9999.
       real, PARAMETER :: PI=3.1415926535897931
@@ -843,6 +847,7 @@ C
 ! --- CALL MAKEMT(ZAVG,ZSLM,ORO,OCLSM,mskocn,SLM,VAR,VAR4,GLAT,
       if(grid_from_file) then
 
+!>mom6 read in shan's file
 C23456789012345678901234567890123456789012345678901234567890123456789012......
       mom6_file=
      &"/scratch1/BMC/gsd-fv3-dev/fv3data/oro_lake100_ceil/C96.mx025_frac
@@ -852,7 +857,9 @@ C23456789012345678901234567890123456789012345678901234567890123456789012......
          print*,'after open of mom6 file'
 
          allocate(slmsk_mom6(im,jm))
+         allocate(land_frac_mom6(im,jm))
          allocate(lake_frac_mom6(im,jm))
+         allocate(lake_depth_mom6(im,jm))
 
          error=nf_inq_varid(ncid_mom6, 'slmsk', id_var)
          call netcdf_err(error, 'inquire varid of slmsk from file '
@@ -872,6 +879,26 @@ C23456789012345678901234567890123456789012345678901234567890123456789012......
 
          print*,'mom6 lake_frac ',maxval(lake_frac_mom6),
      &      minval(lake_frac_mom6)
+
+         error=nf_inq_varid(ncid_mom6, 'land_frac', id_var)
+         call netcdf_err(error, 'inquire varid of land_frac from file '
+     &                   //trim(mom6_file) )
+         error=nf_get_var_double(ncid_mom6, id_var, land_frac_mom6)
+         call netcdf_err(error, 'inquire data of land_frac from file '
+     &                   //trim(mom6_file) )
+
+         print*,'mom6 land_frac ',maxval(land_frac_mom6),
+     &      minval(land_frac_mom6)
+
+         error=nf_inq_varid(ncid_mom6, 'lake_depth', id_var)
+         call netcdf_err(error, 'inquire varid of lake_depth from file '
+     &                   //trim(mom6_file) )
+         error=nf_get_var_double(ncid_mom6, id_var, lake_depth_mom6)
+         call netcdf_err(error, 'inquire data of lake_depth from file '
+     &                   //trim(mom6_file) )
+
+         print*,'mom6 lake_depth ',maxval(lake_depth_mom6),
+     &      minval(lake_depth_mom6)
 
        tbeg=timef()
          CALL MAKEMT2(ZAVG,ZSLM,ORO,SLM,land_frac,VAR,VAR4,GLAT,
@@ -1138,9 +1165,14 @@ C
       print *,' Testing at point (itest,jtest)=',itest,jtest
       print *,' SLM(itest,jtest)=',slm(itest,jtest),itest,jtest
       print *,' ORO(itest,jtest)=',oro(itest,jtest),itest,jtest
+
+! mom6>  use mom6 slmsk and lake frac.
+
       DO J = 1,JM
         DO I = 1,numi(j)
-          IF(SLM(I,J).EQ.0.) THEN
+!         IF(SLM(I,J).EQ.0.) THEN
+          IF(slmsk_mom6(I,J) <0.01 .or. 
+     1       lake_frac_mom6(i,j) > 0.99) THEN
 C           VAR(I,J) = 0.
             VAR4(I,J) = 0.
             OA(I,J,1) = 0.
@@ -1169,6 +1201,13 @@ C
 ! ---  SLM is only field that will be altered by OCLSM
 ! ---  Ocean land sea mask ocean points made ocean in atm model
 ! ---  Land and Lakes and all other atm elv moments remain unchanged.  
+
+!> mom6
+! this will change the mom6 mask.  don't want this.  add goto
+! to ignore it.
+       print*,'before mskocn adjustment ',mskocn
+       goto 433
+
             if ( mskocn .eq. 1 ) then
 
       DO j = 1,jm
@@ -1184,11 +1223,19 @@ C
         enddo
       enddo
             endif
+
+!> mom6
+ 433  continue
+
       print *,' SLM(itest,jtest)=',slm(itest,jtest),itest,jtest
       print *,' ORO(itest,jtest)=',oro(itest,jtest),itest,jtest
 
+!> mom6
+! this will change the mask.  turn off for now.
+      goto 434
+
 C  REMOVE ISOLATED POINTS
-      DO J=2,JM-1
+      iso_loop : DO J=2,JM-1
         JN=J-1
         JS=J+1
         RN=REAL(NUMI(JN))/REAL(NUMI(J))
@@ -1291,9 +1338,14 @@ C  REMOVE ISOLATED POINTS
             ENDDO
           ENDIF
         ENDDO
-      ENDDO
+      ENDDO iso_loop
+
+!> mom6
+  434 continue
+
+
+
 C--- print for testing after isolated points removed
-      print *,' after isolated points removed'
        call minmxj(IM,JM,ORO,'     ORO')
 C     print *,' JM=',JM,' numi=',numi
       print *,' ORO(itest,jtest)=',oro(itest,jtest)
@@ -1388,6 +1440,7 @@ C       SPECTRALLY TRUNCATE AND FILTER OROGRAPHY
         ORS=0.
         ORF=ORO
       ENDIF
+
        call mnmxja(IM,JM,ELVMAX,itest,jtest,'  ELVMAX')
       print *,' ELVMAX(',itest,jtest,')=',ELVMAX(itest,jtest)
       print *,' after spectral filter is applied'
@@ -1395,6 +1448,11 @@ C       SPECTRALLY TRUNCATE AND FILTER OROGRAPHY
        call minmxj(IM,JM,ORF,'     ORF')
 C
 C  USE NEAREST NEIGHBOR INTERPOLATION TO FILL FULL GRIDS
+
+!> mom6 when numi = im/jm the rg2gg routine should not
+!       be active.
+      print*,'before rg2gg ',im,jm,numi
+
       call rg2gg(im,jm,numi,slm)
       call rg2gg(im,jm,numi,oro)
       call rg2gg(im,jm,numi,orf)
@@ -1423,7 +1481,11 @@ C   check antarctic pole
       ENDDO
       tend=timef()
       write(6,*)' Timer 5 time= ',tend-tbeg
-      if (output_binary) then
+
+!>mom6 
+      print*,'output binary ',output_binary
+
+      binary : if (output_binary) then
       tbeg=timef()
 C       OUTPUT BINARY FIELDS
         print *,' OUTPUT BINARY FIELDS'
@@ -1546,7 +1608,8 @@ C
         CALL BAOPEN(62,'fort.62',IRET)
         CALL PUTGB(62,IM*JM,KPDS,KGDS,LB,ELVMAX,IRET)
       print *,' ELVMAX: putgb-KPDS(22,5),iret:',KPDS(22),KPDS(5),IRET
-      endif ! output_binary
+      endif binary ! output_binary
+
 C
       DELXN = 360./IM
       do i=1,im
@@ -1570,8 +1633,13 @@ C
       tend=timef()
       write(6,*)' Binary output time= ',tend-tbeg
       tbeg=timef()
+
+!> mom6 pass in mom6 mask to be written out.
+
       CALL WRITE_NETCDF(IM,JM,SLM,land_frac,ORO,ORF,HPRIME,1,1,
-     1                  GEOLON(1:IM,1:JM),GEOLAT(1:IM,1:JM), XLON,XLAT)
+     1                  GEOLON(1:IM,1:JM),GEOLAT(1:IM,1:JM), XLON,XLAT,
+     2       slmsk_mom6, land_frac_mom6, lake_frac_mom6,
+     3       lake_depth_mom6)
       tend=timef()
       write(6,*)' WRITE_NETCDF time= ',tend-tbeg
       print *,' wrote netcdf file out.oro.tile?.nc'

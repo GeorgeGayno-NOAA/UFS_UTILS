@@ -940,7 +940,8 @@ C
            CALL MAKEOA2(ZAVG,zslm,VAR,GLAT,OA,OL,IWORK,ELVMAX,ORO,
      1            WORK1,WORK2,WORK3,WORK4,WORK5,WORK6,
      2            IM,JM,IMN,JMN,geolon_c,geolat_c,
-     3            geolon,geolat,dx,dy,is_south_pole,is_north_pole)
+     3            geolon,geolat,dx,dy,is_south_pole,is_north_pole,
+     4            slmsk_mom6, lake_frac_mom6)
       tend=timef()
       write(6,*)' MAKEOA2 time= ',tend-tbeg
          else
@@ -1054,12 +1055,14 @@ C
      4            oa_in,ol_in,slm_in,lon_in,lat_in)
          endif  
        else
+           print*,'before makeoa. should not get here.'
          CALL MAKEOA(ZAVG,VAR,GLAT,OA,OL,IWORK,ELVMAX,ORO,
      1            WORK1,WORK2,WORK3,WORK4,
      2            WORK5,WORK6,
      3            IST,IEN,JST,JEN,IM,JM,IMN,JMN,XLAT,numi)
        endif
        tbeg=timef()
+       print*,'got here. after makeoa2.  before minmxj'
        call minmxj(IM,JM,OA,'      OA')
        call minmxj(IM,JM,OL,'      OL')
        call minmxj(IM,JM,ELVMAX,'  ELVMAX')
@@ -2824,7 +2827,8 @@ C
       SUBROUTINE MAKEOA2(ZAVG,zslm,VAR,GLAT,OA4,OL,IOA4,ELVMAX,
      1           ORO,oro1,XNSUM,XNSUM1,XNSUM2,XNSUM3,XNSUM4,
      2           IM,JM,IMN,JMN,lon_c,lat_c,lon_t,lat_t,dx,dy,
-     3           is_south_pole,is_north_pole )
+     3           is_south_pole,is_north_pole,slmsk_mom6,
+     4           lake_frac_mom6 )
       implicit none
       real, parameter :: MISSING_VALUE = -9999.
       real, parameter :: D2R = 3.14159265358979/180.
@@ -2832,7 +2836,10 @@ C
       integer IM,JM,IMN,JMN
       real    GLAT(JMN)
       INTEGER ZAVG(IMN,JMN),ZSLM(IMN,JMN)
-      real    ORO(IM,JM),ORO1(IM,JM),ELVMAX(IM,JM),ZMAX(IM,JM)
+      real, intent(in) :: slmsk_mom6(IM,JM)
+      real, intent(in) :: lake_frac_mom6(IM,JM)
+      real, intent(in) :: oro(IM,JM)
+      real    ORO1(IM,JM),ELVMAX(IM,JM),ZMAX(IM,JM)
       real    OA4(IM,JM,4)
       integer IOA4(IM,JM,4)
       real    lon_c(IM+1,JM+1), lat_c(IM+1,JM+1)
@@ -2841,7 +2848,8 @@ C
       logical is_south_pole(IM,JM), is_north_pole(IM,JM)
       real    XNSUM(IM,JM),XNSUM1(IM,JM),XNSUM2(IM,JM)
       real    XNSUM3(IM,JM),XNSUM4(IM,JM)
-      real    VAR(IM,JM),OL(IM,JM,4)
+      real, intent(in) :: VAR(IM,JM)
+      real    OL(IM,JM,4)
       LOGICAL FLAG
       integer i,j,ilist(IMN),numx,i1,j1,ii1
       integer KWD,II,npts
@@ -2857,7 +2865,7 @@ C
       real    xnsum2_11,xnsum2_12,xnsum2_21,xnsum2_22
       real    get_lon_angle, get_lat_angle, get_xnsum
       integer ist, ien, jst, jen
-      real    xland,xwatr,xl1,xs1,oroavg,slm
+      real    xland,xwatr,xl1,xs1,oroavg
 C   
 C---- GLOBAL XLAT AND XLON ( DEGREE )
 C
@@ -2956,9 +2964,9 @@ C
 !$omp*          xnsum1_11,xnsum2_11,hc_11, xnsum1_12,xnsum2_12,
 !$omp*          hc_12,xnsum1_21,xnsum2_21,hc_21, xnsum1_22,
 !$omp*          xnsum2_22,hc_22)
-      DO J=1,JM
+      jloop : DO J=1,JM
 !       print*, "j = ", j
-        DO I=1,IM
+        iloop : DO I=1,IM
           lon = lon_t(i,j)
           lat = lat_t(i,j)
           !--- for around north pole, oa and ol are all 0
@@ -3002,7 +3010,7 @@ C
              print*, "at upper left i=,j=", i, j, lat, dlat,lat1,lat2
           endif
           xnsum11 = get_xnsum(lon1,lat1,lon2,lat2,IMN,JMN,GLAt,
-     &     zavg,zslm,delxn)          
+     &     zavg,zslm,delxn,slmsk_mom6(i,j))          
 
           !--- upper left 
           lon1 = lon-dlon*1.5
@@ -3013,7 +3021,7 @@ C
              print*, "at lower left i=,j=", i, j, lat, dlat,lat1,lat2
           endif
           xnsum12 = get_xnsum(lon1,lat1,lon2,lat2,IMN,JMN,GLAt,
-     &     zavg,zslm,delxn)          
+     &     zavg,zslm,delxn,slmsk_mom6(i,j))          
 
           !--- lower right
           lon1 = lon-dlon*0.5
@@ -3024,7 +3032,7 @@ C
              print*, "at upper right i=,j=", i, j, lat, dlat,lat1,lat2
           endif
           xnsum21 = get_xnsum(lon1,lat1,lon2,lat2,IMN,JMN,GLAt,
-     &     zavg,zslm,delxn)          
+     &     zavg,zslm,delxn,slmsk_mom6(i,j))          
 
           !--- upper right 
           lon1 = lon-dlon*0.5
@@ -3036,7 +3044,7 @@ C
           endif
           
           xnsum22 = get_xnsum(lon1,lat1,lon2,lat2,IMN,JMN,GLAt,
-     &     zavg,zslm,delxn)          
+     &     zavg,zslm,delxn,slmsk_mom6(i,j))          
           
            XNPU = xnsum11 + xnsum12
            XNPD = xnsum21 + xnsum22
@@ -3053,7 +3061,6 @@ C
            XNPU = xnsum12 + (xnsum11+xnsum22)*0.5
            XNPD = xnsum21 + (xnsum11+xnsum22)*0.5
            IF (XNPD .NE. XNPU) OA4(I,J,4) = 1. - XNPD / MAX(XNPU , 1.)
-
            
           !--- calculate OL3 and OL4
           !--- lower left 
@@ -3064,8 +3071,12 @@ C
           if(lat1<-90 .or. lat2>90) then
              print*, "at upper left i=,j=", i, j, lat, dlat,lat1,lat2
           endif          
+
+! the get_xnsum2 routines does not consider land mask.
+! don't update for mom6 mask.
+
           call get_xnsum2(lon1,lat1,lon2,lat2,IMN,JMN,GLAt,
-     &     zavg,zslm,delxn, xnsum1_11, xnsum2_11, HC_11)          
+     &     zavg,delxn, xnsum1_11, xnsum2_11, HC_11)          
 
           !--- upper left 
           lon1 = lon-dlon*1.5
@@ -3076,7 +3087,7 @@ C
              print*, "at lower left i=,j=", i, j, lat, dlat,lat1,lat2
           endif
           call get_xnsum2(lon1,lat1,lon2,lat2,IMN,JMN,GLAt,
-     &     zavg,zslm,delxn, xnsum1_12, xnsum2_12, HC_12)          
+     &     zavg,delxn, xnsum1_12, xnsum2_12, HC_12)          
 
           !--- lower right
           lon1 = lon-dlon*0.5
@@ -3087,7 +3098,7 @@ C
              print*, "at upper right i=,j=", i, j, lat, dlat,lat1,lat2
           endif
           call get_xnsum2(lon1,lat1,lon2,lat2,IMN,JMN,GLAt,
-     &     zavg,zslm,delxn, xnsum1_21, xnsum2_21, HC_21)          
+     &     zavg,delxn, xnsum1_21, xnsum2_21, HC_21)          
 
           !--- upper right 
           lon1 = lon-dlon*0.5
@@ -3098,7 +3109,7 @@ C
              print*, "at lower right i=,j=", i, j, lat, dlat,lat1,lat2
           endif          
           call get_xnsum2(lon1,lat1,lon2,lat2,IMN,JMN,GLAt,
-     &     zavg,zslm,delxn, xnsum1_22, xnsum2_22, HC_22)           
+     &     zavg,delxn, xnsum1_22, xnsum2_22, HC_22)           
                   
           OL(i,j,3) = (XNSUM1_22+XNSUM1_11)/(XNSUM2_22+XNSUM2_11)
           OL(i,j,4) = (XNSUM1_12+XNSUM1_21)/(XNSUM2_12+XNSUM2_21)
@@ -3113,7 +3124,7 @@ C
              print*, "at upper left i=,j=", i, j, lat, dlat,lat1,lat2
           endif
           call get_xnsum3(lon1,lat1,lon2,lat2,IMN,JMN,GLAt,
-     &     zavg,zslm,delxn, xnsum1_11, xnsum2_11, HC_11)          
+     &     zavg,delxn, xnsum1_11, xnsum2_11, HC_11)          
 
           !--- upper left 
           lon1 = lon-dlon*2.0
@@ -3125,7 +3136,7 @@ C
           endif
           
           call get_xnsum3(lon1,lat1,lon2,lat2,IMN,JMN,GLAt,
-     &     zavg,zslm,delxn, xnsum1_12, xnsum2_12, HC_12)          
+     &     zavg,delxn, xnsum1_12, xnsum2_12, HC_12)          
 
           !--- lower right
           lon1 = lon-dlon
@@ -3136,7 +3147,7 @@ C
              print*, "at upper right i=,j=", i, j, lat, dlat,lat1,lat2
           endif          
           call get_xnsum3(lon1,lat1,lon2,lat2,IMN,JMN,GLAt,
-     &     zavg,zslm,delxn, xnsum1_21, xnsum2_21, HC_21)          
+     &     zavg,delxn, xnsum1_21, xnsum2_21, HC_21)          
 
           !--- upper right 
           lon1 = lon-dlon
@@ -3148,14 +3159,16 @@ C
           endif
           
           call get_xnsum3(lon1,lat1,lon2,lat2,IMN,JMN,GLAt,
-     &     zavg,zslm,delxn, xnsum1_22, xnsum2_22, HC_22)           
+     &     zavg,delxn, xnsum1_22, xnsum2_22, HC_22)           
                   
           OL(i,j,1) = (XNSUM1_11+XNSUM1_21)/(XNSUM2_11+XNSUM2_21)
           OL(i,j,2) = (XNSUM1_21+XNSUM1_22)/(XNSUM2_21+XNSUM2_22)         
           ENDIF          
-        ENDDO
-      ENDDO
+        ENDDO iloop
+      ENDDO jloop
 !$omp end parallel do
+
+
       DO KWD=1,4
         DO J=1,JM
           DO I=1,IM
@@ -3205,7 +3218,7 @@ C
       WRITE(6,*) "! MAKEOA2 EXIT"
 C
       RETURN
-      END
+      END SUBROUTINE MAKEOA2
 
 
 C-----------------------------------------------------------------------
@@ -4262,18 +4275,21 @@ C
 
 
       function get_xnsum(lon1,lat1,lon2,lat2,IMN,JMN,
-     &                   glat,zavg,zslm,delxn)
+     &                   glat,zavg,zslm,delxn,slmsk_mom6)
         implicit none
 
         real get_xnsum
         logical verbose
-        real lon1,lat1,lon2,lat2,oro,delxn
-        integer IMN,JMN
-        real    glat(JMN)
-        integer zavg(IMN,JMN),zslm(IMN,JMN)
+        real, intent(in):: lon1,lat1,lon2,lat2,delxn
+        real oro
+        integer, intent(in):: IMN,JMN
+        real, intent(in)::    glat(JMN)
+        integer, intent(in):: zavg(IMN,JMN),zslm(IMN,JMN)
         integer i, j, ist, ien, jst, jen, i1
         real    HEIGHT
         real    xland,xwatr,xl1,xs1,slm,xnsum
+        real, intent(in) :: slmsk_mom6
+
         !---figure out ist,ien,jst,jen
         do j = 1, JMN
            if( GLAT(J) .GT. lat1 ) then
@@ -4317,11 +4333,22 @@ C
              enddo
           enddo
           if( XNSUM > 1.) THEN
-             SLM = FLOAT(NINT(XLAND/XNSUM))
-               IF(SLM.NE.0.) THEN
-                  ORO= XL1 / XLAND
+!            SLM = FLOAT(NINT(XLAND/XNSUM))
+!              IF(SLM.NE.0.) THEN
+! In shan's dataset, any point with at least some land
+! has an slmsk value of '1'.
+               if (slmsk_mom6 > 0.99) then
+                  if (xland > 0) then
+                    ORO= XL1 / XLAND
+                  else
+                    ORO = XS1 / XWATR
+                  endif
                ELSE
-                  ORO = XS1 / XWATR
+                  if (xwatr > 0) then
+                    ORO = XS1 / XWATR
+                  else
+                    ORO= XL1 / XLAND
+                  endif
                ENDIF
           ENDIF
           
@@ -4342,18 +4369,19 @@ C
       
 
       subroutine get_xnsum2(lon1,lat1,lon2,lat2,IMN,JMN,
-     &                   glat,zavg,zslm,delxn,xnsum1,xnsum2,HC)
+     &                   glat,zavg,delxn,xnsum1,xnsum2,HC)
         implicit none
 
         real, intent(out) :: xnsum1,xnsum2,HC
         logical verbose
-        real lon1,lat1,lon2,lat2,oro,delxn
-        integer IMN,JMN
-        real    glat(JMN)
-        integer zavg(IMN,JMN),zslm(IMN,JMN)
+        real, intent(in):: lon1,lat1,lon2,lat2,delxn
+        real oro
+        integer, intent(in):: IMN,JMN
+        real, intent(in)::    glat(JMN)
+        integer, intent(in):: zavg(IMN,JMN)
         integer i, j, ist, ien, jst, jen, i1
         real    HEIGHT, var
-        real    XW1,XW2,slm,xnsum
+        real    XW1,XW2,xnsum
         !---figure out ist,ien,jst,jen
         do j = 1, JMN
            if( GLAT(J) .GT. lat1 ) then
@@ -4409,18 +4437,20 @@ C
       end subroutine get_xnsum2 
 
 
+! does not use mask, so no updates for mom6 mask.
+
       subroutine get_xnsum3(lon1,lat1,lon2,lat2,IMN,JMN,
-     &                   glat,zavg,zslm,delxn,xnsum1,xnsum2,HC)
+     &                   glat,zavg,delxn,xnsum1,xnsum2,HC)
         implicit none
 
         real, intent(out) :: xnsum1,xnsum2
-        real lon1,lat1,lon2,lat2,oro,delxn
-        integer IMN,JMN
-        real    glat(JMN)
-        integer zavg(IMN,JMN),zslm(IMN,JMN)
+        real, intent(in):: lon1,lat1,lon2,lat2,delxn
+        integer, intent(in):: IMN,JMN
+        real, intent(in)::    glat(JMN)
+        integer, intent(in):: zavg(IMN,JMN)
         integer i, j, ist, ien, jst, jen, i1
-        real    HEIGHT, HC
-        real    XW1,XW2,slm,xnsum
+        real    HEIGHT
+        real, intent(in) :: hc
         !---figure out ist,ien,jst,jen
         ! if lat1 or lat 2 is 90 degree. set jst = JMN
         jst = JMN

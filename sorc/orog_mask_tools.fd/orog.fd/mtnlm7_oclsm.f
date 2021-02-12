@@ -848,6 +848,7 @@ C
       if(grid_from_file) then
 
 !>mom6 read in shan's file
+
 C23456789012345678901234567890123456789012345678901234567890123456789012......
       mom6_file=
      &"/scratch1/BMC/gsd-fv3-dev/fv3data/oro_lake100_ceil/C96.mx025_frac
@@ -901,6 +902,9 @@ C23456789012345678901234567890123456789012345678901234567890123456789012......
      &      minval(lake_depth_mom6)
 
        tbeg=timef()
+
+!>mom6  pass in mom6 mask to makemt2
+
          CALL MAKEMT2(ZAVG,ZSLM,ORO,SLM,land_frac,VAR,VAR4,GLAT,
      & IM,JM,IMN,JMN,geolon_c,geolat_c,slmsk_mom6,lake_frac_mom6)
       tend=timef()
@@ -937,6 +941,9 @@ C ===  Compute mtn principal coord HTENSR: THETA,GAMMA,SIGMA
 C
        if(grid_from_file) then       
       tbeg=timef()
+
+!>mom6 pass in mom6 mask to makepc2
+
          CALL MAKEPC2(ZAVG,ZSLM,THETA,GAMMA,SIGMA,GLAT,
      1            IM,JM,IMN,JMN,geolon_c,geolat_c,
      2            slmsk_mom6,lake_frac_mom6)
@@ -964,6 +971,9 @@ C
          if(trim(INPUTOROG) == "none") then
            print*, "calling MAKEOA2 to compute OA, OL"
       tbeg=timef()
+
+!>mom6  pass in mom6 mask to makeoa2
+
            CALL MAKEOA2(ZAVG,zslm,VAR,GLAT,OA,OL,IWORK,ELVMAX,ORO,
      1            WORK1,WORK2,WORK3,WORK4,WORK5,WORK6,
      2            IM,JM,IMN,JMN,geolon_c,geolat_c,
@@ -1166,7 +1176,10 @@ C
       print *,' SLM(itest,jtest)=',slm(itest,jtest),itest,jtest
       print *,' ORO(itest,jtest)=',oro(itest,jtest),itest,jtest
 
-! mom6>  use mom6 slmsk and lake frac.
+!>mom6  zero out fields at water. use mom6 slmsk and lake frac.
+!>mom6  slmsk is '0' for ocean and lakes.  lake frac is
+!>mom6  '1' where there is inland water and '0' elsewhere.
+!>mom6  shan's dataset does not have fractional lake frac.
 
       DO J = 1,JM
         DO I = 1,numi(j)
@@ -1202,9 +1215,10 @@ C
 ! ---  Ocean land sea mask ocean points made ocean in atm model
 ! ---  Land and Lakes and all other atm elv moments remain unchanged.  
 
-!> mom6
-! this will change the mom6 mask.  don't want this.  add goto
-! to ignore it.
+!>mom6
+!>mom6  this will change the mom6 mask.  don't want this.  add goto
+!>mom6  to ignore it.
+
        print*,'before mskocn adjustment ',mskocn
        goto 433
 
@@ -1224,14 +1238,14 @@ C
       enddo
             endif
 
-!> mom6
+!>mom6
  433  continue
 
       print *,' SLM(itest,jtest)=',slm(itest,jtest),itest,jtest
       print *,' ORO(itest,jtest)=',oro(itest,jtest),itest,jtest
 
-!> mom6
-! this will change the mask.  turn off for now.
+!>mom6
+!>mom6  this will change the mask.  turn off for now.
       goto 434
 
 C  REMOVE ISOLATED POINTS
@@ -1340,7 +1354,7 @@ C  REMOVE ISOLATED POINTS
         ENDDO
       ENDDO iso_loop
 
-!> mom6
+!>mom6
   434 continue
 
 
@@ -1449,8 +1463,8 @@ C       SPECTRALLY TRUNCATE AND FILTER OROGRAPHY
 C
 C  USE NEAREST NEIGHBOR INTERPOLATION TO FILL FULL GRIDS
 
-!> mom6 when numi = im/jm the rg2gg routine should not
-!       be active.
+!>mom6  when numi = im/jm the rg2gg routine should not
+!>mom6  be active.
       print*,'before rg2gg ',im,jm,numi
 
       call rg2gg(im,jm,numi,slm)
@@ -1634,7 +1648,7 @@ C
       write(6,*)' Binary output time= ',tend-tbeg
       tbeg=timef()
 
-!> mom6 pass in mom6 mask to be written out.
+!>mom6 pass in mom6 mask and lake frac/depth to be written out.
 
       CALL WRITE_NETCDF(IM,JM,SLM,land_frac,ORO,ORF,HPRIME,1,1,
      1                  GEOLON(1:IM,1:JM),GEOLAT(1:IM,1:JM), XLON,XLAT,
@@ -1994,6 +2008,8 @@ C  (*j*)  for hard wired zero offset (lambda s =0) for terr05
 !                 ORO(I,J)= XS1 / XWATR
 !              ENDIF
 
+!>mom6 Any point with at least some land.
+
                if (slmsk_mom6(i,j) > 0.99) then ! mom6 point with
                                             ! at least some land.
                  if (xland > 0) then
@@ -2002,8 +2018,8 @@ C  (*j*)  for hard wired zero offset (lambda s =0) for terr05
                    ORO(I,J)= XS1 / XWATR
                  endif
 
-! mom6 file has '1' for inland water and '0' elsewhere.  There
-! are no fractional values as I can see.
+!>mom6  file has '1' for inland water and '0' elsewhere.  There
+!>mom6  are no fractional values as I can see.
 
                elseif (lake_frac_mom6(i,j) > 0.99) then
                                            ! mom6 inland water
@@ -2013,6 +2029,7 @@ C  (*j*)  for hard wired zero offset (lambda s =0) for terr05
                    ORO(I,J)= XL1 / XLAND
                  endif
 
+!>mom6 
                else  ! This should be mom6 ocean points
 
                    oro(i,j) = 0.0
@@ -2020,8 +2037,8 @@ C  (*j*)  for hard wired zero offset (lambda s =0) for terr05
                endif
 
 
-! these variances are computed the same whether land or water.
-! will not adjust these for now.
+!>mom6  these variances are computed the same whether land or water.
+!>mom6  will not adjust these for now.
 
                VAR(I,J)=SQRT(MAX(XW2/XNSUM-(XW1/XNSUM)**2,0.))
                do I1 = 1, NSUM
@@ -2484,16 +2501,18 @@ C
 C
 C ===  HTENSR 
 C
-! shan's data has slmsk == 1 for any land (even fractional) and
-! '0' for lake and ocean.
-! lake frac is either 1 for lake or 0 for not lake.  there are
-! no fractional values.
+
+!>mom6 shan's data has slmsk == 1 for any land (even fractional) and
+!>mom6 '0' for lake and ocean.
+!>mom6 lake frac is either 1 for lake or 0 for not lake.  there are
+!>mom6 no fractional lake values.
+
            IF(XNSUM.GT.1.) THEN
-!              SLM(I,J) = FLOAT(NINT(XLAND/XNSUM))
-!              IF(SLM(I,J).NE.0.) THEN
-! if shan's data is land.
+!>mom6         SLM(I,J) = FLOAT(NINT(XLAND/XNSUM))
+!>mom6         IF(SLM(I,J).NE.0.) THEN
+!>mom6 if shan's data is land.
                IF(slmsk_mom6(I,J)>0.99) THEN
-!                 ORO(I,J)= XL1 / XLAND
+!>mom6 oro not used            ORO(I,J)= XL1 / XLAND
                 if (xland > 0) then
                   HX2(I,J) =  xfp2  / XLAND
                   HY2(I,J) =  yfp2  / XLAND
@@ -2503,8 +2522,8 @@ C
                   HY2(I,J) =  yfp2  / XNSUM
 		  HXY(I,J) =  xfpyfp / XNSUM
                 endif
-!              ELSE
-!                 ORO(I,J)= XS1 / XWATR
+!>mom6         ELSE
+!>mom6            ORO(I,J)= XS1 / XWATR
                ENDIF
 C=== degub testing
       if (debug) then
@@ -2520,7 +2539,8 @@ C
                HK(I,J) = 0.5 * ( HX2(I,J) + HY2(I,J) )
                HL(I,J) = 0.5 * ( HX2(I,J) - HY2(I,J) )
                HLPRIM(I,J) = SQRT(HL(I,J)*HL(I,J) + HXY(I,J)*HXY(I,J))
-!          IF( HL(I,J).NE. 0. .AND. SLM(I,J) .NE. 0. ) THEN
+!>mom6  replace slm with mom6 mask
+!>mom6          IF( HL(I,J).NE. 0. .AND. SLM(I,J) .NE. 0. ) THEN
            IF( HL(I,J).NE. 0. .AND. slmsk_mom6(I,J) > 0.99) THEN
 C
              THETA(I,J) = 0.5 * ATAN2(HXY(I,J),HL(I,J)) / D2R
@@ -3077,6 +3097,7 @@ C
           if(lat1<-90 .or. lat2>90) then
              print*, "at upper left i=,j=", i, j, lat, dlat,lat1,lat2
           endif
+!>mom6 pass in mom6 mask
           xnsum11 = get_xnsum(lon1,lat1,lon2,lat2,IMN,JMN,GLAt,
      &     zavg,zslm,delxn,slmsk_mom6(i,j))          
 
@@ -3088,6 +3109,7 @@ C
           if(lat1<-90 .or. lat2>90) then
              print*, "at lower left i=,j=", i, j, lat, dlat,lat1,lat2
           endif
+!>mom6 pass in mom6 mask
           xnsum12 = get_xnsum(lon1,lat1,lon2,lat2,IMN,JMN,GLAt,
      &     zavg,zslm,delxn,slmsk_mom6(i,j))          
 
@@ -3099,6 +3121,7 @@ C
           if(lat1<-90 .or. lat2>90) then
              print*, "at upper right i=,j=", i, j, lat, dlat,lat1,lat2
           endif
+!>mom6 pass in mom6 mask
           xnsum21 = get_xnsum(lon1,lat1,lon2,lat2,IMN,JMN,GLAt,
      &     zavg,zslm,delxn,slmsk_mom6(i,j))          
 
@@ -3111,6 +3134,7 @@ C
              print*, "at lower right i=,j=", i, j, lat, dlat,lat1,lat2
           endif
           
+!>mom6 pass in mom6 mask
           xnsum22 = get_xnsum(lon1,lat1,lon2,lat2,IMN,JMN,GLAt,
      &     zavg,zslm,delxn,slmsk_mom6(i,j))          
           
@@ -3140,8 +3164,8 @@ C
              print*, "at upper left i=,j=", i, j, lat, dlat,lat1,lat2
           endif          
 
-! the get_xnsum2 routines does not consider land mask.
-! don't update for mom6 mask.
+!>mom6  the get_xnsum2 routines does not consider land mask.
+!>mom6  don't update for mom6 mask.
 
           call get_xnsum2(lon1,lat1,lon2,lat2,IMN,JMN,GLAt,
      &     zavg,delxn, xnsum1_11, xnsum2_11, HC_11)          
@@ -4342,6 +4366,7 @@ C
       end
 
 
+!>mom6  pass in mom6 mask to get_xnsum 
       function get_xnsum(lon1,lat1,lon2,lat2,IMN,JMN,
      &                   glat,zavg,zslm,delxn,slmsk_mom6)
         implicit none
@@ -4403,8 +4428,8 @@ C
           if( XNSUM > 1.) THEN
 !            SLM = FLOAT(NINT(XLAND/XNSUM))
 !              IF(SLM.NE.0.) THEN
-! In shan's dataset, any point with at least some land
-! has an slmsk value of '1'.
+!>mom6  In shan's dataset, any point with at least some land
+!>mom6  has an slmsk value of '1'.
                if (slmsk_mom6 > 0.99) then
                   if (xland > 0) then
                     ORO= XL1 / XLAND
@@ -4505,7 +4530,7 @@ C
       end subroutine get_xnsum2 
 
 
-! does not use mask, so no updates for mom6 mask.
+!>mom6 does not use mask, so no updates for mom6 mask.
 
       subroutine get_xnsum3(lon1,lat1,lon2,lat2,IMN,JMN,
      &                   glat,zavg,delxn,xnsum1,xnsum2,HC)

@@ -78,13 +78,18 @@ C>
       integer fsize, ncid, error, id_dim, nx, ny
       character(len=256) :: OUTGRID = "none"
       character(len=256) :: INPUTOROG = "none"
+      character(len=256) :: mom6_file
       logical            :: do_oa = .true. ! create oa and ol data.
       logical            :: grid_from_file = .true.
       integer :: MTNRES,IM,JM,NM,NR,NF0,NF1,EFAC,BLAT,NW
+      namelist /test/ mom6_file
       fsize=65536
       READ(5,*) MTNRES,IM,JM,NM,NR,NF0,NF1,EFAC,BLAT
       READ(5,*) OUTGRID
       READ(5,*) INPUTOROG
+      open(41, file="./fort.41")
+      read(41,nml=test)
+      close(41)
 !      MTNRES=1
 !      IM=48
 !      JM=48
@@ -157,11 +162,11 @@ C>
          
       
       CALL TERSUB(IMN,JMN,IM,JM,NM,NR,NF0,NF1,NW,EFAC,BLAT,
-     &            OUTGRID,INPUTOROG)
+     &            OUTGRID,INPUTOROG,mom6_file)
       STOP
       END
       SUBROUTINE TERSUB(IMN,JMN,IM,JM,NM,NR,NF0,NF1,NW,EFAC,BLAT,
-     &     OUTGRID,INPUTOROG)
+     &     OUTGRID,INPUTOROG,mom6_file)
 !jaa      use ipfort
       use machine
       implicit none
@@ -171,7 +176,7 @@ C
       character(len=*), intent(in) :: OUTGRID
       character(len=*), intent(in) :: INPUTOROG
 !>mom6
-      character(len=200) :: mom6_file
+      character(len=*), intent(in) :: mom6_file
       real, allocatable  :: slmsk_mom6(:,:)
       real, allocatable  :: land_frac_mom6(:,:)
       real, allocatable  :: lake_frac_mom6(:,:)
@@ -849,10 +854,7 @@ C
 
 !>mom6 read in shan's file
 
-C23456789012345678901234567890123456789012345678901234567890123456789012......
-      mom6_file=
-     &"/scratch1/BMC/gsd-fv3-dev/fv3data/oro_lake100_ceil/C96.mx025_frac
-     &/oro_data.tile1.nc"
+         print*,'open shans file ',trim(mom6_file)
          error=NF__OPEN(trim(mom6_file),NF_NOWRITE,fsize,ncid_mom6)
          call netcdf_err(error, 'Open file '//trim(mom6_file) )
          print*,'after open of mom6 file'

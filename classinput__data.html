@@ -113,7 +113,7 @@ $(document).ready(function(){initNavTree('classinput__data.html','');});
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac84071b9efaa4eead9de8e1e37613f17"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinput__data.html#ac84071b9efaa4eead9de8e1e37613f17">calcalpha_rotlatlon</a> (latgrid, longrid, cenlat, cenlon, alpha)</td></tr>
-<tr class="memdesc:ac84071b9efaa4eead9de8e1e37613f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subroutine calcalpha_rotlatlon calculates rotation angle specific to rotated latlon grids, needed to convert to earth-relative winds.  <a href="#ac84071b9efaa4eead9de8e1e37613f17">More...</a><br/></td></tr>
+<tr class="memdesc:ac84071b9efaa4eead9de8e1e37613f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate rotation angle for rotated latlon grids.  <a href="#ac84071b9efaa4eead9de8e1e37613f17">More...</a><br/></td></tr>
 <tr class="separator:ac84071b9efaa4eead9de8e1e37613f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0acaa48f4b9fa7dc63df496ee4f5f9f4"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinput__data.html#a0acaa48f4b9fa7dc63df496ee4f5f9f4">cleanup_input_atm_data</a></td></tr>
 <tr class="memdesc:a0acaa48f4b9fa7dc63df496ee4f5f9f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free up memory associated with atm data.  <a href="#a0acaa48f4b9fa7dc63df496ee4f5f9f4">More...</a><br/></td></tr>
@@ -125,10 +125,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ae950e45cfb617096efd86358a04ca892"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free up memory associated with sfc data.  <a href="#ae950e45cfb617096efd86358a04ca892">More...</a><br/></td></tr>
 <tr class="separator:ae950e45cfb617096efd86358a04ca892"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d084215fc50befe204521d7e59520bf"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinput__data.html#a9d084215fc50befe204521d7e59520bf">convert_winds</a></td></tr>
-<tr class="memdesc:a9d084215fc50befe204521d7e59520bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from 2-d to 3-d winds.  <a href="#a9d084215fc50befe204521d7e59520bf">More...</a><br/></td></tr>
+<tr class="memdesc:a9d084215fc50befe204521d7e59520bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert winds from 2-d to 3-d components.  <a href="#a9d084215fc50befe204521d7e59520bf">More...</a><br/></td></tr>
 <tr class="separator:a9d084215fc50befe204521d7e59520bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa364de59c00461c87ce9de2d376d090d"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinput__data.html#aa364de59c00461c87ce9de2d376d090d">handle_grib_error</a> (vname, lev, method, value, varnum, iret, var, var8, var3d)</td></tr>
-<tr class="memdesc:aa364de59c00461c87ce9de2d376d090d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle GRIB error.  <a href="#aa364de59c00461c87ce9de2d376d090d">More...</a><br/></td></tr>
+<tr class="memdesc:aa364de59c00461c87ce9de2d376d090d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle GRIB2 read error based on the user selected method in the varmap file.  <a href="#aa364de59c00461c87ce9de2d376d090d">More...</a><br/></td></tr>
 <tr class="separator:aa364de59c00461c87ce9de2d376d090d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd6a4066e6c50a722948161870a94539"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinput__data.html#acd6a4066e6c50a722948161870a94539">read_input_atm_data</a> (localpet)</td></tr>
 <tr class="memdesc:acd6a4066e6c50a722948161870a94539"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read input grid atmospheric data driver.  <a href="#acd6a4066e6c50a722948161870a94539">More...</a><br/></td></tr>
@@ -370,20 +370,21 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>z
       </table>
 </div><div class="memdoc">
 
-<p>Subroutine calcalpha_rotlatlon calculates rotation angle specific to rotated latlon grids, needed to convert to earth-relative winds. </p>
+<p>Calculate rotation angle for rotated latlon grids. </p>
+<p>Needed to convert to earth-relative winds. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">latgrid</td><td></td></tr>
-    <tr><td class="paramname">longrid</td><td></td></tr>
-    <tr><td class="paramname">cenlat</td><td></td></tr>
-    <tr><td class="paramname">cenlon</td><td></td></tr>
-    <tr><td class="paramname">alpha</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">latgrid</td><td>grid latitudes </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">longrid</td><td>grid longitudes </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cenlat</td><td>center latitude </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cenlon</td><td>center longitude </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">alpha</td><td>grid rotation angle </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section author"><dt>Author</dt><dd>gayno NCEP/EMC </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Larissa Reames </dd></dl>
 
-<p>Definition at line <a class="el" href="input__data_8F90_source.html#l06277">6277</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
+<p>Definition at line <a class="el" href="input__data_8F90_source.html#l06298">6298</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
 
 </div>
 </div>
@@ -401,9 +402,9 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>z
 </div><div class="memdoc">
 
 <p>Free up memory associated with atm data. </p>
-<dl class="section author"><dt>Author</dt><dd>gayno NCEP/EMC </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>George Gayno NCEP/EMC </dd></dl>
 
-<p>Definition at line <a class="el" href="input__data_8F90_source.html#l06449">6449</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
+<p>Definition at line <a class="el" href="input__data_8F90_source.html#l06471">6471</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
 
 </div>
 </div>
@@ -421,9 +422,9 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>z
 </div><div class="memdoc">
 
 <p>Free up memory associated with nst data. </p>
-<dl class="section author"><dt>Author</dt><dd>gayno NCEP/EMC </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>George Gayno NCEP/EMC </dd></dl>
 
-<p>Definition at line <a class="el" href="input__data_8F90_source.html#l06474">6474</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
+<p>Definition at line <a class="el" href="input__data_8F90_source.html#l06496">6496</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
 
 </div>
 </div>
@@ -441,9 +442,9 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>z
 </div><div class="memdoc">
 
 <p>Free up memory associated with sfc data. </p>
-<dl class="section author"><dt>Author</dt><dd>gayno NCEP/EMC </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>George Gayno NCEP/EMC </dd></dl>
 
-<p>Definition at line <a class="el" href="input__data_8F90_source.html#l06507">6507</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
+<p>Definition at line <a class="el" href="input__data_8F90_source.html#l06529">6529</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
 
 </div>
 </div>
@@ -460,10 +461,10 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>z
       </table>
 </div><div class="memdoc">
 
-<p>Convert from 2-d to 3-d winds. </p>
-<dl class="section author"><dt>Author</dt><dd>gayno NCEP/EMC </dd></dl>
+<p>Convert winds from 2-d to 3-d components. </p>
+<dl class="section author"><dt>Author</dt><dd>George Gayno NCEP/EMC </dd></dl>
 
-<p>Definition at line <a class="el" href="input__data_8F90_source.html#l06165">6165</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
+<p>Definition at line <a class="el" href="input__data_8F90_source.html#l06183">6183</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
 
 </div>
 </div>
@@ -533,24 +534,24 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>z
       </table>
 </div><div class="memdoc">
 
-<p>Handle GRIB error. </p>
+<p>Handle GRIB2 read error based on the user selected method in the varmap file. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">vname</td><td></td></tr>
-    <tr><td class="paramname">lev</td><td></td></tr>
-    <tr><td class="paramname">method</td><td></td></tr>
-    <tr><td class="paramname">value</td><td></td></tr>
-    <tr><td class="paramname">varnum</td><td></td></tr>
-    <tr><td class="paramname">iret</td><td></td></tr>
-    <tr><td class="paramname">var</td><td></td></tr>
-    <tr><td class="paramname">var8</td><td></td></tr>
-    <tr><td class="paramname">var3d</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vname</td><td>grib2 variable name </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lev</td><td>grib2 variable level </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">method</td><td>how missing data is handled </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>fill value for missing data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">varnum</td><td>grib2 variable number </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">iret</td><td>return status code </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">var</td><td>4-byte array of corrected data </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">var8</td><td>8-byte array of corrected data </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">var3d</td><td>3-d array of corrected data </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section author"><dt>Author</dt><dd>gayno NCEP/EMC </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Larissa Reames </dd></dl>
 
-<p>Definition at line <a class="el" href="input__data_8F90_source.html#l06325">6325</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
+<p>Definition at line <a class="el" href="input__data_8F90_source.html#l06347">6347</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
 
 </div>
 </div>
@@ -599,11 +600,11 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>z
 <p>Starting July 19, 2017). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">localpet</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">localpet</td><td>ESMF local persistent execution thread </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section author"><dt>Author</dt><dd>gayno NCEP/EMC </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>George Gayno NCEP/EMC </dd></dl>
 
 <p>Definition at line <a class="el" href="input__data_8F90_source.html#l00969">969</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
 
@@ -626,13 +627,13 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>z
 <p>Read input grid atmospheric fv3gfs grib2 files. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">localpet</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">localpet</td><td>ESMF local persistent execution thread </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section author"><dt>Author</dt><dd>gayno NCEP/EMC </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>George Gayno NCEP/EMC </dd></dl>
 
-<p>Definition at line <a class="el" href="input__data_8F90_source.html#l02434">2434</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
+<p>Definition at line <a class="el" href="input__data_8F90_source.html#l02439">2439</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
 
 </div>
 </div>
@@ -651,16 +652,16 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>z
 </div><div class="memdoc">
 
 <p>Read input grid fv3 atmospheric tiled history files in netcdf format. </p>
-<p>Routine reads tiled files in parallel. Tile 1 is read by localpet 0; tile 2 by localpet 1, etc. The number of pets must be equal to or greater than the number of tiled files. </p>
+<dl class="section note"><dt>Note</dt><dd>Routine reads tiled files in parallel. Tile 1 is read by localpet 0; tile 2 by localpet 1, etc. The number of pets must be equal to or greater than the number of tiled files. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">localpet</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">localpet</td><td>ESMF local persistent execution thread </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section author"><dt>Author</dt><dd>gayno NCEP/EMC </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>George Gayno NCEP/EMC </dd></dl>
 
-<p>Definition at line <a class="el" href="input__data_8F90_source.html#l02144">2144</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
+<p>Definition at line <a class="el" href="input__data_8F90_source.html#l02148">2148</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
 
 </div>
 </div>
@@ -681,11 +682,11 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>z
 <p>Driver to read input grid nst data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">localpet</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">localpet</td><td>ESMF local persistent execution thread </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section author"><dt>Author</dt><dd>gayno NCEP/EMC </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>George Gayno NCEP/EMC </dd></dl>
 
 <p>Definition at line <a class="el" href="input__data_8F90_source.html#l00211">211</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
 
@@ -708,13 +709,13 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>z
 <p>Read nst data from these netcdf formatted fv3 files: tiled history, tiled warm restart, and gaussian history. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">localpet</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">localpet</td><td>ESMF local persistent execution thread </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section author"><dt>Author</dt><dd>gayno NCEP/EMC </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>George Gayno NCEP/EMC </dd></dl>
 
-<p>Definition at line <a class="el" href="input__data_8F90_source.html#l05407">5407</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
+<p>Definition at line <a class="el" href="input__data_8F90_source.html#l05419">5419</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
 
 </div>
 </div>
@@ -735,11 +736,11 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>z
 <p>Driver to read input grid surface data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">localpet</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">localpet</td><td>ESMF local persistent execution thread </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section author"><dt>Author</dt><dd>gayno NCEP/EMC </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>George Gayno NCEP/EMC </dd></dl>
 
 <p>Definition at line <a class="el" href="input__data_8F90_source.html#l00374">374</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
 
@@ -760,16 +761,16 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>z
 </div><div class="memdoc">
 
 <p>Read input grid surface data from a spectral gfs gaussian nemsio file. </p>
-<p>Format used by gfs starting July 19, 2017. </p>
+<dl class="section note"><dt>Note</dt><dd>Format used by gfs starting July 19, 2017. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">localpet</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">localpet</td><td>ESMF local persistent execution thread </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section author"><dt>Author</dt><dd>gayno NCEP/EMC </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>George Gayno NCEP/EMC </dd></dl>
 
-<p>Definition at line <a class="el" href="input__data_8F90_source.html#l03194">3194</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
+<p>Definition at line <a class="el" href="input__data_8F90_source.html#l03201">3201</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
 
 </div>
 </div>
@@ -788,16 +789,16 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>z
 </div><div class="memdoc">
 
 <p>Read input grid surface data from a spectral gfs gaussian sfcio file. </p>
-<p>Prior to July 19, 2017. </p>
+<dl class="section note"><dt>Note</dt><dd>Prior to July 19, 2017. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">localpet</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">localpet</td><td>ESMF local persistent execution thread </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section author"><dt>Author</dt><dd>gayno NCEP/EMC </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>George Gayno NCEP/EMC </dd></dl>
 
-<p>Definition at line <a class="el" href="input__data_8F90_source.html#l02973">2973</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
+<p>Definition at line <a class="el" href="input__data_8F90_source.html#l02979">2979</a> of file <a class="el" href="input__data_8F90_source.html">input_data.F90</a>.</p>
 
 </div>
 </div>

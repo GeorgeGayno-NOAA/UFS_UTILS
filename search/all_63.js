@@ -1,8 +1,6 @@
 var searchData=
 [
   ['calc_5fsoil_5fparams_5fdriver',['calc_soil_params_driver',['../classprogram__setup.html#abd7579c405f8e7aef79aeb4bb6b574ac',1,'program_setup']]],
-  ['calcalpha_5frotlatlon',['calcalpha_rotlatlon',['../classinput__data.html#ac84071b9efaa4eead9de8e1e37613f17',1,'input_data']]],
-  ['canopy_5fmc_5finput_5fgrid',['canopy_mc_input_grid',['../classinput__data.html#a14baed258f8dd95e3c2cbcb8ce0798fc',1,'input_data']]],
   ['chgres_2ef90',['chgres.F90',['../chgres_8F90.html',1,'(Global Namespace)'],['../chgres_8f90.html',1,'(Global Namespace)']]],
   ['chgres_5futils_2ef90',['chgres_utils.f90',['../chgres__utils_8f90.html',1,'']]],
   ['cleanup_5finput_5fatm_5fdata',['cleanup_input_atm_data',['../classinput__data.html#a0acaa48f4b9fa7dc63df496ee4f5f9f4',1,'input_data']]],
@@ -19,7 +17,6 @@ var searchData=
   ['conserve_5finterp_2ec',['conserve_interp.c',['../conserve__interp_8c.html',1,'']]],
   ['conserve_5finterp_2eh',['conserve_interp.h',['../conserve__interp_8h.html',1,'']]],
   ['constant_2eh',['constant.h',['../constant_8h.html',1,'']]],
-  ['convert_5fwinds',['convert_winds',['../classinput__data.html#a9d084215fc50befe204521d7e59520bf',1,'input_data']]],
   ['create_5fconformal_5fcubic_5fgrid_2ec',['create_conformal_cubic_grid.c',['../create__conformal__cubic__grid_8c.html',1,'']]],
   ['create_5fgnomonic_5fcubic_5fgrid_2ec',['create_gnomonic_cubic_grid.c',['../create__gnomonic__cubic__grid_8c.html',1,'']]],
   ['create_5fgrid_5ffrom_5ffile_2ec',['create_grid_from_file.c',['../create__grid__from__file_8c.html',1,'']]],

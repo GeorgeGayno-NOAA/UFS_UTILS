@@ -116,10 +116,10 @@ $(document).ready(function(){initNavTree('classprogram__setup.html','');});
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:abd7579c405f8e7aef79aeb4bb6b574ac"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprogram__setup.html#abd7579c405f8e7aef79aeb4bb6b574ac">calc_soil_params_driver</a> (localpet)</td></tr>
-<tr class="memdesc:abd7579c405f8e7aef79aeb4bb6b574ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute soil parameters.  <a href="#abd7579c405f8e7aef79aeb4bb6b574ac">More...</a><br/></td></tr>
+<tr class="memdesc:abd7579c405f8e7aef79aeb4bb6b574ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver routine to compute soil parameters for each soil type.  <a href="#abd7579c405f8e7aef79aeb4bb6b574ac">More...</a><br/></td></tr>
 <tr class="separator:abd7579c405f8e7aef79aeb4bb6b574ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1aa0e7ed8df76be6db0a0ab964756f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1aa0e7ed8df76be6db0a0ab964756f3"></a>
-subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><b>get_var_cond</b> (var_name, this_miss_var_method, this_miss_var_value, this_field_var_name, loc)</td></tr>
+<tr class="memitem:aa1aa0e7ed8df76be6db0a0ab964756f3"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprogram__setup.html#aa1aa0e7ed8df76be6db0a0ab964756f3">get_var_cond</a> (var_name, this_miss_var_method, this_miss_var_value, this_field_var_name, loc)</td></tr>
+<tr class="memdesc:aa1aa0e7ed8df76be6db0a0ab964756f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search the variable mapping table to find conditions for handling missing variables.  <a href="#aa1aa0e7ed8df76be6db0a0ab964756f3">More...</a><br/></td></tr>
 <tr class="separator:aa1aa0e7ed8df76be6db0a0ab964756f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40111d93a5e305839de5e43e78183273"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a40111d93a5e305839de5e43e78183273"></a>
 subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><b>read_config_nml</b></td></tr>
@@ -128,10 +128,10 @@ subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><b>read_co
 <tr class="memdesc:ac52f11da9f12e0cf9ff87fae136f0cde"><td class="mdescLeft">&#160;</td><td class="mdescRight">read setup namelist  <a href="#ac52f11da9f12e0cf9ff87fae136f0cde">More...</a><br/></td></tr>
 <tr class="separator:ac52f11da9f12e0cf9ff87fae136f0cde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59431f09ff79583ed8dcea7de2fa918d"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprogram__setup.html#a59431f09ff79583ed8dcea7de2fa918d">read_setup_namelist</a></td></tr>
-<tr class="memdesc:a59431f09ff79583ed8dcea7de2fa918d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads configuration namelist.  <a href="#a59431f09ff79583ed8dcea7de2fa918d">More...</a><br/></td></tr>
+<tr class="memdesc:a59431f09ff79583ed8dcea7de2fa918d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads program configuration namelist.  <a href="#a59431f09ff79583ed8dcea7de2fa918d">More...</a><br/></td></tr>
 <tr class="separator:a59431f09ff79583ed8dcea7de2fa918d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8cb781f9243350c2658fc2a74a0bfe82"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8cb781f9243350c2658fc2a74a0bfe82"></a>
-subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><b>read_varmap</b></td></tr>
+<tr class="memitem:a8cb781f9243350c2658fc2a74a0bfe82"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprogram__setup.html#a8cb781f9243350c2658fc2a74a0bfe82">read_varmap</a></td></tr>
+<tr class="memdesc:a8cb781f9243350c2658fc2a74a0bfe82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the variable mapping table, which is required for initializing with GRIB2 data.  <a href="#a8cb781f9243350c2658fc2a74a0bfe82">More...</a><br/></td></tr>
 <tr class="separator:a8cb781f9243350c2658fc2a74a0bfe82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -511,10 +511,79 @@ allocatable, public&#160;</td><td class="memItemRight" valign="bottom"><b>wltsmc
       </table>
 </div><div class="memdoc">
 
-<p>Compute soil parameters. </p>
-<dl class="section author"><dt>Author</dt><dd>gayno NCEP/EMC </dd></dl>
+<p>Driver routine to compute soil parameters for each soil type. </p>
+<p>Works for Zobler and STATSGO soil categories.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">localpet</td><td>ESMF local persistent execution thread </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>George Gayno NCEP/EMC </dd></dl>
 
-<p>Definition at line <a class="el" href="chgres__cube_8fd_2program__setup_8f90_source.html#l00519">519</a> of file <a class="el" href="chgres__cube_8fd_2program__setup_8f90_source.html">program_setup.f90</a>.</p>
+<p>Definition at line <a class="el" href="chgres__cube_8fd_2program__setup_8f90_source.html#l00532">532</a> of file <a class="el" href="chgres__cube_8fd_2program__setup_8f90_source.html">program_setup.f90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa1aa0e7ed8df76be6db0a0ab964756f3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine, public program_setup::get_var_cond </td>
+          <td>(</td>
+          <td class="paramtype">character(len=20), intent(in)&#160;</td>
+          <td class="paramname"><em>var_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character(len=20), intent(out), optional&#160;</td>
+          <td class="paramname"><em>this_miss_var_method</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(esmf_kind_r4), intent(out), optional&#160;</td>
+          <td class="paramname"><em>this_miss_var_value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character(len=20), intent(out), optional&#160;</td>
+          <td class="paramname"><em>this_field_var_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(out), optional&#160;</td>
+          <td class="paramname"><em>loc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Search the variable mapping table to find conditions for handling missing variables. </p>
+<p>Only applicable when using GRIB2 data as input.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">var_name</td><td>table variable name to search for </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">this_miss_var_method</td><td>the method used to replace missing data </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">this_miss_var_value</td><td>the value used to replace missing data </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">this_field_var_name</td><td>name of variable in output file. not currently implemented. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">loc</td><td>variable table location index </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Larissa Reames </dd>
+<dd>
+Jeff Beck </dd></dl>
+
+<p>Definition at line <a class="el" href="chgres__cube_8fd_2program__setup_8f90_source.html#l00488">488</a> of file <a class="el" href="chgres__cube_8fd_2program__setup_8f90_source.html">program_setup.f90</a>.</p>
 
 </div>
 </div>
@@ -560,10 +629,32 @@ allocatable, public&#160;</td><td class="memItemRight" valign="bottom"><b>wltsmc
       </table>
 </div><div class="memdoc">
 
-<p>Reads configuration namelist. </p>
-<dl class="section author"><dt>Author</dt><dd>gayno NCEP/EMC </dd></dl>
+<p>Reads program configuration namelist. </p>
+<dl class="section author"><dt>Author</dt><dd>George Gayno NCEP/EMC </dd></dl>
 
-<p>Definition at line <a class="el" href="chgres__cube_8fd_2program__setup_8f90_source.html#l00241">241</a> of file <a class="el" href="chgres__cube_8fd_2program__setup_8f90_source.html">program_setup.f90</a>.</p>
+<p>Definition at line <a class="el" href="chgres__cube_8fd_2program__setup_8f90_source.html#l00240">240</a> of file <a class="el" href="chgres__cube_8fd_2program__setup_8f90_source.html">program_setup.f90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8cb781f9243350c2658fc2a74a0bfe82"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine, public program_setup::read_varmap </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads the variable mapping table, which is required for initializing with GRIB2 data. </p>
+<dl class="section author"><dt>Author</dt><dd>Larissa Reames </dd>
+<dd>
+Jeff Beck </dd></dl>
+
+<p>Definition at line <a class="el" href="chgres__cube_8fd_2program__setup_8f90_source.html#l00419">419</a> of file <a class="el" href="chgres__cube_8fd_2program__setup_8f90_source.html">program_setup.f90</a>.</p>
 
 </div>
 </div>

@@ -1,9 +1,9 @@
 var NAVTREE =
 [
   [ "UFS_UTILS", "index.html", [
-    [ "user_guide", "md__scratch2_NCEPDEV_stmp1_George_8Gayno_UFS_UTILS_8ed_docs_user_guide.html", null ],
-    [ "fvcom_readme", "md__scratch2_NCEPDEV_stmp1_George_8Gayno_UFS_UTILS_8ed_sorc_fvcom_tools_8fd_fvcom_readme.html", null ],
-    [ "global_chgres_users_guide", "md__scratch2_NCEPDEV_stmp1_George_8Gayno_UFS_UTILS_8ed_sorc_global_chgres_8fd_global_chgres_users_guide.html", null ],
+    [ "user_guide", "md__gpfs_dell1_stmp_George_8Gayno_UFS_UTILS_8ed_docs_user_guide.html", null ],
+    [ "fvcom_readme", "md__gpfs_dell1_stmp_George_8Gayno_UFS_UTILS_8ed_sorc_fvcom_tools_8fd_fvcom_readme.html", null ],
+    [ "global_chgres_users_guide", "md__gpfs_dell1_stmp_George_8Gayno_UFS_UTILS_8ed_sorc_global_chgres_8fd_global_chgres_users_guide.html", null ],
     [ "Data Types List", null, [
       [ "Data Types List", "annotated.html", "annotated" ],
       [ "Data Fields", "functions.html", [

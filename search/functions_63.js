@@ -1,6 +1,7 @@
 var searchData=
 [
   ['calc_5fsoil_5fparams_5fdriver',['calc_soil_params_driver',['../classprogram__setup.html#abd7579c405f8e7aef79aeb4bb6b574ac',1,'program_setup']]],
+  ['calcalpha_5frotlatlon',['calcalpha_rotlatlon',['../classinput__data.html#ac84071b9efaa4eead9de8e1e37613f17',1,'input_data']]],
   ['cleanup_5finput_5fatm_5fdata',['cleanup_input_atm_data',['../classinput__data.html#a0acaa48f4b9fa7dc63df496ee4f5f9f4',1,'input_data']]],
   ['cleanup_5finput_5fnst_5fdata',['cleanup_input_nst_data',['../classinput__data.html#aebd953ddaebef5f94800aa020dc7783b',1,'input_data']]],
   ['cleanup_5finput_5fsfc_5fdata',['cleanup_input_sfc_data',['../classinput__data.html#ae950e45cfb617096efd86358a04ca892',1,'input_data']]],
@@ -12,6 +13,7 @@ var searchData=
   ['clip_5f2dx2d_5fgreat_5fcircle',['clip_2dx2d_great_circle',['../create__xgrid_8c.html#ad8a0276df2022de7a7ed990ef4043965',1,'clip_2dx2d_great_circle(const double x1_in[], const double y1_in[], const double z1_in[], int n1_in, const double x2_in[], const double y2_in[], const double z2_in[], int n2_in, double x_out[], double y_out[], double z_out[]):&#160;create_xgrid.c'],['../create__xgrid_8h.html#ad8a0276df2022de7a7ed990ef4043965',1,'clip_2dx2d_great_circle(const double x1_in[], const double y1_in[], const double z1_in[], int n1_in, const double x2_in[], const double y2_in[], const double z2_in[], int n2_in, double x_out[], double y_out[], double z_out[]):&#160;create_xgrid.c']]],
   ['compute_5fgrid_5fbound',['compute_grid_bound',['../tool__util_8c.html#a9dae2ee8185adfb625cd3439a1ee1788',1,'compute_grid_bound(int nb, const double *bnds, const int *npts, int *grid_size, const char *center):&#160;tool_util.c'],['../tool__util_8h.html#a9dae2ee8185adfb625cd3439a1ee1788',1,'compute_grid_bound(int nb, const double *bnds, const int *npts, int *grid_size, const char *center):&#160;tool_util.c']]],
   ['compute_5fgrid_5fbound_5flegacy',['compute_grid_bound_legacy',['../tool__util_8c.html#a7ac097de8c16caf1a48b1174974e7869',1,'compute_grid_bound_legacy(int nb, const double *bnds, const double *dbnds, double stretch, int *grid_size, const char *center):&#160;tool_util.c'],['../tool__util_8h.html#a7ac097de8c16caf1a48b1174974e7869',1,'compute_grid_bound_legacy(int nb, const double *bnds, const double *dbnds, double stretch, int *grid_size, const char *center):&#160;tool_util.c']]],
+  ['convert_5fwinds',['convert_winds',['../classinput__data.html#a9d084215fc50befe204521d7e59520bf',1,'input_data']]],
   ['create_5fxgrid_5f1dx2d_5forder1_5f',['create_xgrid_1dx2d_order1_',['../create__xgrid_8c.html#ac9f3cd2cfd2082b6651714664fea968f',1,'create_xgrid.c']]],
   ['create_5fxgrid_5f1dx2d_5forder2_5f',['create_xgrid_1dx2d_order2_',['../create__xgrid_8c.html#aa6b2a7466d63f8c401302abdab06c200',1,'create_xgrid.c']]],
   ['create_5fxgrid_5f2dx1d_5forder1_5f',['create_xgrid_2dx1d_order1_',['../create__xgrid_8c.html#abd4dfc1dfa309da9f729d855c263d0bb',1,'create_xgrid.c']]],

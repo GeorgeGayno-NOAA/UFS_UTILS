@@ -109,21 +109,24 @@ $(document).ready(function(){initNavTree('interp_8F90.html','');});
 </div><!--header-->
 <div class="contents">
 
+<p>Read the input source data and interpolate it to the model grid.  
+<a href="#details">More...</a></p>
+
 <p><a href="interp_8F90_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
-<tr class="memitem:a16ec757345ad00f2004b636caeac5e72"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a16ec757345ad00f2004b636caeac5e72"></a>
-subroutine&#160;</td><td class="memItemRight" valign="bottom"><b>adjust_for_landice</b> (field, vegt, idim, jdim, field_ch)</td></tr>
+<tr class="memitem:a16ec757345ad00f2004b636caeac5e72"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interp_8F90.html#a16ec757345ad00f2004b636caeac5e72">adjust_for_landice</a> (field, vegt, idim, jdim, field_ch)</td></tr>
+<tr class="memdesc:a16ec757345ad00f2004b636caeac5e72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensure consistent fields at land ice points Land ice is vegetation type 15 (variable landice).  <a href="#a16ec757345ad00f2004b636caeac5e72">More...</a><br/></td></tr>
 <tr class="separator:a16ec757345ad00f2004b636caeac5e72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac237b91c4757b45946297adf2729c350"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac237b91c4757b45946297adf2729c350"></a>
 subroutine&#160;</td><td class="memItemRight" valign="bottom"><b>interp</b> (localpet, method, input_file)</td></tr>
 <tr class="separator:ac237b91c4757b45946297adf2729c350"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section author"><dt>Author</dt><dd>gayno </dd></dl>
+<div class="textblock"><p>Read the input source data and interpolate it to the model grid. </p>
+<dl class="section author"><dt>Author</dt><dd>gayno </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2018</dd></dl>
-<p>Read the input source data and interpolate it to the model grid.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">input_flle</td><td>filename of input source data. </td></tr>
@@ -134,7 +137,66 @@ subroutine&#160;</td><td class="memItemRight" valign="bottom"><b>interp</b> (loc
 </dl>
 
 <p>Definition in file <a class="el" href="interp_8F90_source.html">interp.F90</a>.</p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function/Subroutine Documentation</h2>
+<a class="anchor" id="a16ec757345ad00f2004b636caeac5e72"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine adjust_for_landice </td>
+          <td>(</td>
+          <td class="paramtype">real(esmf_kind_r4), dimension(idim,jdim), intent(inout)&#160;</td>
+          <td class="paramname"><em>field</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(esmf_kind_i4), dimension(idim,jdim), intent(in)&#160;</td>
+          <td class="paramname"><em>vegt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>idim</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>jdim</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character(len=*), intent(in)&#160;</td>
+          <td class="paramname"><em>field_ch</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ensure consistent fields at land ice points Land ice is vegetation type 15 (variable landice). </p>
+<dl class="section author"><dt>Author</dt><dd>George Gayno NCEP/EMC Usage: call adjust_for_landice(field, vegt, idim, jdim, field_ch) output is Model field </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">field</td><td>- Model field before adjustments for land ice. </td></tr>
+    <tr><td class="paramname">field_ch</td><td>- Field name. </td></tr>
+    <tr><td class="paramname">i/jdim</td><td>- i/j dimension of model tile. </td></tr>
+    <tr><td class="paramname">vegt</td><td>- Vegetation type on the model tile. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="interp_8F90_source.html#l00272">272</a> of file <a class="el" href="interp_8F90_source.html">interp.F90</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

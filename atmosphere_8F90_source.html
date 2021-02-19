@@ -1559,349 +1559,349 @@ $(document).ready(function(){initNavTree('atmosphere_8F90_source.html','');});
 <div class="line"><a name="l01553"></a><span class="lineno"> 1553</span>&#160;</div>
 <div class="line"><a name="l01554"></a><span class="lineno"> 1554</span>&#160;<span class="keyword"> END SUBROUTINE </span>vintg</div>
 <div class="line"><a name="l01555"></a><span class="lineno"> 1555</span>&#160;</div>
-<div class="line"><a name="l01594"></a><span class="lineno"><a class="line" href="classatmosphere.html#acc4e65688bda454688a6f571d6939ae7"> 1594</a></span>&#160;<span class="keyword"> SUBROUTINE </span>terp3(IM,IXZ1,IXQ1,IXZ2,IXQ2,NM,NXQ1,NXQ2,             &amp;</div>
-<div class="line"><a name="l01595"></a><span class="lineno"> 1595</span>&#160;                  km1,kxz1,kxq1,z1,q1,km2,kxz2,kxq2,z2,q2)      </div>
-<div class="line"><a name="l01596"></a><span class="lineno"> 1596</span>&#160;      <span class="keywordtype">IMPLICIT NONE</span> </div>
-<div class="line"><a name="l01597"></a><span class="lineno"> 1597</span>&#160;      <span class="keywordtype">INTEGER</span> im,ixz1,ixq1,ixz2,ixq2,nm,nxq1,nxq2 </div>
-<div class="line"><a name="l01598"></a><span class="lineno"> 1598</span>&#160;      <span class="keywordtype">INTEGER</span> km1,kxz1,kxq1,km2,kxz2,kxq2 </div>
-<div class="line"><a name="l01599"></a><span class="lineno"> 1599</span>&#160;      <span class="keywordtype">INTEGER</span> i,k1,k2,n </div>
-<div class="line"><a name="l01600"></a><span class="lineno"> 1600</span>&#160;      <span class="keywordtype">INTEGER</span> k1s(im,km2) </div>
-<div class="line"><a name="l01601"></a><span class="lineno"> 1601</span>&#160;      <span class="keywordtype">REAL(ESMF_KIND_R8)</span>, <span class="keywordtype">PARAMETER</span> :: one = 1.0_esmf_kind_r8</div>
-<div class="line"><a name="l01602"></a><span class="lineno"> 1602</span>&#160;      <span class="keywordtype">REAL(ESMF_KIND_R8)</span> :: z1(1+(im-1)*ixz1+(km1-1)*kxz1) </div>
-<div class="line"><a name="l01603"></a><span class="lineno"> 1603</span>&#160;      <span class="keywordtype">REAL(ESMF_KIND_R8)</span> :: q1(1+(im-1)*ixq1+(km1-1)*kxq1+(nm-1)*nxq1) </div>
-<div class="line"><a name="l01604"></a><span class="lineno"> 1604</span>&#160;      <span class="keywordtype">REAL(ESMF_KIND_R8)</span> :: z2(1+(im-1)*ixz2+(km2-1)*kxz2) </div>
-<div class="line"><a name="l01605"></a><span class="lineno"> 1605</span>&#160;      <span class="keywordtype">REAL(ESMF_KIND_R8)</span> :: q2(1+(im-1)*ixq2+(km2-1)*kxq2+(nm-1)*nxq2) </div>
-<div class="line"><a name="l01606"></a><span class="lineno"> 1606</span>&#160;<span class="comment">!     REAL(ESMF_KIND_R8) :: J2(1+(IM-1)*IXQ2+(KM2-1)*KXQ2+(NM-1)*NXQ2) </span></div>
-<div class="line"><a name="l01607"></a><span class="lineno"> 1607</span>&#160;      <span class="keywordtype">REAL(ESMF_KIND_R8)</span> :: ffa(im),ffb(im),ffc(im),ffd(im) </div>
-<div class="line"><a name="l01608"></a><span class="lineno"> 1608</span>&#160;      <span class="keywordtype">REAL(ESMF_KIND_R8)</span> :: gga(im),ggb(im),ggc(im),ggd(im) </div>
-<div class="line"><a name="l01609"></a><span class="lineno"> 1609</span>&#160;      <span class="keywordtype">REAL(ESMF_KIND_R8)</span> :: z1a,z1b,z1c,z1d,q1a,q1b,q1c,q1d,z2s,q2s</div>
-<div class="line"><a name="l01610"></a><span class="lineno"> 1610</span>&#160;<span class="comment">!     REAL(ESMF_KIND_R8) :: J2S </span></div>
-<div class="line"><a name="l01611"></a><span class="lineno"> 1611</span>&#160;</div>
-<div class="line"><a name="l01612"></a><span class="lineno"> 1612</span>&#160;<span class="comment">! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </span></div>
-<div class="line"><a name="l01613"></a><span class="lineno"> 1613</span>&#160;<span class="comment">!  FIND THE SURROUNDING INPUT INTERVAL FOR EACH OUTPUT POINT.</span></div>
-<div class="line"><a name="l01614"></a><span class="lineno"> 1614</span>&#160;      CALL rsearch(im,km1,ixz1,kxz1,z1,km2,ixz2,kxz2,z2,1,im,k1s) </div>
-<div class="line"><a name="l01615"></a><span class="lineno"> 1615</span>&#160;</div>
-<div class="line"><a name="l01616"></a><span class="lineno"> 1616</span>&#160;<span class="comment">! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </span></div>
-<div class="line"><a name="l01617"></a><span class="lineno"> 1617</span>&#160;<span class="comment">!  GENERALLY INTERPOLATE CUBICALLY WITH MONOTONIC CONSTRAINT            </span></div>
-<div class="line"><a name="l01618"></a><span class="lineno"> 1618</span>&#160;<span class="comment">!  FROM TWO NEAREST INPUT POINTS ON EITHER SIDE OF THE OUTPUT POINT,    </span></div>
-<div class="line"><a name="l01619"></a><span class="lineno"> 1619</span>&#160;<span class="comment">!  BUT WITHIN THE TWO EDGE INTERVALS INTERPOLATE LINEARLY.              </span></div>
-<div class="line"><a name="l01620"></a><span class="lineno"> 1620</span>&#160;<span class="comment">!  KEEP THE OUTPUT FIELDS CONSTANT OUTSIDE THE INPUT DOMAIN.            </span></div>
-<div class="line"><a name="l01621"></a><span class="lineno"> 1621</span>&#160;                                                                        </div>
-<div class="line"><a name="l01622"></a><span class="lineno"> 1622</span>&#160;<span class="comment">!$OMP PARALLEL DO DEFAULT(PRIVATE) SHARED(IM,IXZ1,IXQ1,IXZ2), &amp;</span></div>
-<div class="line"><a name="l01623"></a><span class="lineno"> 1623</span>&#160;<span class="comment">!$OMP&amp; SHARED(IXQ2,NM,NXQ1,NXQ2,KM1,KXZ1,KXQ1,Z1,Q1,KM2,KXZ2), &amp;</span></div>
-<div class="line"><a name="l01624"></a><span class="lineno"> 1624</span>&#160;<span class="comment">!$OMP&amp; SHARED(KXQ2,Z2,Q2,K1S)</span></div>
-<div class="line"><a name="l01625"></a><span class="lineno"> 1625</span>&#160;      <span class="keywordflow">DO</span> k2=1,km2 </div>
-<div class="line"><a name="l01626"></a><span class="lineno"> 1626</span>&#160;        <span class="keywordflow">DO</span> i=1,im </div>
-<div class="line"><a name="l01627"></a><span class="lineno"> 1627</span>&#160;          k1=k1s(i,k2) </div>
-<div class="line"><a name="l01628"></a><span class="lineno"> 1628</span>&#160;          <span class="keywordflow">IF</span>(k1.EQ.1.OR.k1.EQ.km1-1) <span class="keywordflow">THEN</span> </div>
-<div class="line"><a name="l01629"></a><span class="lineno"> 1629</span>&#160;            z2s=z2(1+(i-1)*ixz2+(k2-1)*kxz2) </div>
-<div class="line"><a name="l01630"></a><span class="lineno"> 1630</span>&#160;            z1a=z1(1+(i-1)*ixz1+(k1-1)*kxz1) </div>
-<div class="line"><a name="l01631"></a><span class="lineno"> 1631</span>&#160;            z1b=z1(1+(i-1)*ixz1+(k1+0)*kxz1) </div>
-<div class="line"><a name="l01632"></a><span class="lineno"> 1632</span>&#160;            ffa(i)=(z2s-z1b)/(z1a-z1b) </div>
-<div class="line"><a name="l01633"></a><span class="lineno"> 1633</span>&#160;            ffb(i)=(z2s-z1a)/(z1b-z1a) </div>
-<div class="line"><a name="l01634"></a><span class="lineno"> 1634</span>&#160;            gga(i)=one/(z1a-z1b) </div>
-<div class="line"><a name="l01635"></a><span class="lineno"> 1635</span>&#160;            ggb(i)=one/(z1b-z1a) </div>
-<div class="line"><a name="l01636"></a><span class="lineno"> 1636</span>&#160;          <span class="keywordflow">ELSEIF</span>(k1.GT.1.AND.k1.LT.km1-1) <span class="keywordflow">THEN</span> </div>
-<div class="line"><a name="l01637"></a><span class="lineno"> 1637</span>&#160;            z2s=z2(1+(i-1)*ixz2+(k2-1)*kxz2) </div>
-<div class="line"><a name="l01638"></a><span class="lineno"> 1638</span>&#160;            z1a=z1(1+(i-1)*ixz1+(k1-2)*kxz1) </div>
-<div class="line"><a name="l01639"></a><span class="lineno"> 1639</span>&#160;            z1b=z1(1+(i-1)*ixz1+(k1-1)*kxz1) </div>
-<div class="line"><a name="l01640"></a><span class="lineno"> 1640</span>&#160;            z1c=z1(1+(i-1)*ixz1+(k1+0)*kxz1) </div>
-<div class="line"><a name="l01641"></a><span class="lineno"> 1641</span>&#160;            z1d=z1(1+(i-1)*ixz1+(k1+1)*kxz1) </div>
-<div class="line"><a name="l01642"></a><span class="lineno"> 1642</span>&#160;            ffa(i)=(z2s-z1b)/(z1a-z1b)*                                 &amp;</div>
-<div class="line"><a name="l01643"></a><span class="lineno"> 1643</span>&#160;                   (z2s-z1c)/(z1a-z1c)*                                 &amp;</div>
-<div class="line"><a name="l01644"></a><span class="lineno"> 1644</span>&#160;                   (z2s-z1d)/(z1a-z1d)                                  </div>
-<div class="line"><a name="l01645"></a><span class="lineno"> 1645</span>&#160;            ffb(i)=(z2s-z1a)/(z1b-z1a)*                                 &amp;</div>
-<div class="line"><a name="l01646"></a><span class="lineno"> 1646</span>&#160;                   (z2s-z1c)/(z1b-z1c)*                                 &amp;</div>
-<div class="line"><a name="l01647"></a><span class="lineno"> 1647</span>&#160;                   (z2s-z1d)/(z1b-z1d)                                  </div>
-<div class="line"><a name="l01648"></a><span class="lineno"> 1648</span>&#160;            ffc(i)=(z2s-z1a)/(z1c-z1a)*                                 &amp;</div>
-<div class="line"><a name="l01649"></a><span class="lineno"> 1649</span>&#160;                   (z2s-z1b)/(z1c-z1b)*                                 &amp;</div>
-<div class="line"><a name="l01650"></a><span class="lineno"> 1650</span>&#160;                   (z2s-z1d)/(z1c-z1d)                                  </div>
-<div class="line"><a name="l01651"></a><span class="lineno"> 1651</span>&#160;            ffd(i)=(z2s-z1a)/(z1d-z1a)*                                 &amp;</div>
-<div class="line"><a name="l01652"></a><span class="lineno"> 1652</span>&#160;                   (z2s-z1b)/(z1d-z1b)*                                 &amp;</div>
-<div class="line"><a name="l01653"></a><span class="lineno"> 1653</span>&#160;                   (z2s-z1c)/(z1d-z1c)                                  </div>
-<div class="line"><a name="l01654"></a><span class="lineno"> 1654</span>&#160;            gga(i)=      one/(z1a-z1b)*                                 &amp;</div>
-<div class="line"><a name="l01655"></a><span class="lineno"> 1655</span>&#160;                   (z2s-z1c)/(z1a-z1c)*                                 &amp;</div>
-<div class="line"><a name="l01656"></a><span class="lineno"> 1656</span>&#160;                   (z2s-z1d)/(z1a-z1d)+                                 &amp;</div>
-<div class="line"><a name="l01657"></a><span class="lineno"> 1657</span>&#160;                   (z2s-z1b)/(z1a-z1b)*                                 &amp;</div>
-<div class="line"><a name="l01658"></a><span class="lineno"> 1658</span>&#160;                         one/(z1a-z1c)*                                 &amp;</div>
-<div class="line"><a name="l01659"></a><span class="lineno"> 1659</span>&#160;                   (z2s-z1d)/(z1a-z1d)+                                 &amp;</div>
-<div class="line"><a name="l01660"></a><span class="lineno"> 1660</span>&#160;                   (z2s-z1b)/(z1a-z1b)*                                 &amp;</div>
-<div class="line"><a name="l01661"></a><span class="lineno"> 1661</span>&#160;                   (z2s-z1c)/(z1a-z1c)*                                 &amp;</div>
-<div class="line"><a name="l01662"></a><span class="lineno"> 1662</span>&#160;                         one/(z1a-z1d)                                  </div>
-<div class="line"><a name="l01663"></a><span class="lineno"> 1663</span>&#160;            ggb(i)=      one/(z1b-z1a)*                                 &amp;</div>
-<div class="line"><a name="l01664"></a><span class="lineno"> 1664</span>&#160;                   (z2s-z1c)/(z1b-z1c)*                                 &amp;</div>
-<div class="line"><a name="l01665"></a><span class="lineno"> 1665</span>&#160;                   (z2s-z1d)/(z1b-z1d)+                                 &amp;</div>
-<div class="line"><a name="l01666"></a><span class="lineno"> 1666</span>&#160;                   (z2s-z1a)/(z1b-z1a)*                                 &amp;</div>
-<div class="line"><a name="l01667"></a><span class="lineno"> 1667</span>&#160;                         one/(z1b-z1c)*                                 &amp;</div>
-<div class="line"><a name="l01668"></a><span class="lineno"> 1668</span>&#160;                   (z2s-z1d)/(z1b-z1d)+                                 &amp;</div>
-<div class="line"><a name="l01669"></a><span class="lineno"> 1669</span>&#160;                   (z2s-z1a)/(z1b-z1a)*                                 &amp;</div>
-<div class="line"><a name="l01670"></a><span class="lineno"> 1670</span>&#160;                   (z2s-z1c)/(z1b-z1c)*                                 &amp;</div>
-<div class="line"><a name="l01671"></a><span class="lineno"> 1671</span>&#160;                         one/(z1b-z1d)                                  </div>
-<div class="line"><a name="l01672"></a><span class="lineno"> 1672</span>&#160;            ggc(i)=      one/(z1c-z1a)*                                 &amp;</div>
-<div class="line"><a name="l01673"></a><span class="lineno"> 1673</span>&#160;                   (z2s-z1b)/(z1c-z1b)*                                 &amp;</div>
-<div class="line"><a name="l01674"></a><span class="lineno"> 1674</span>&#160;                   (z2s-z1d)/(z1c-z1d)+                                 &amp;</div>
-<div class="line"><a name="l01675"></a><span class="lineno"> 1675</span>&#160;                   (z2s-z1a)/(z1c-z1a)*                                 &amp;</div>
-<div class="line"><a name="l01676"></a><span class="lineno"> 1676</span>&#160;                         one/(z1c-z1b)*                                 &amp;</div>
-<div class="line"><a name="l01677"></a><span class="lineno"> 1677</span>&#160;                   (z2s-z1d)/(z1c-z1d)+                                 &amp;</div>
-<div class="line"><a name="l01678"></a><span class="lineno"> 1678</span>&#160;                   (z2s-z1a)/(z1c-z1a)*                                 &amp;</div>
-<div class="line"><a name="l01679"></a><span class="lineno"> 1679</span>&#160;                   (z2s-z1b)/(z1c-z1b)*                                 &amp;</div>
-<div class="line"><a name="l01680"></a><span class="lineno"> 1680</span>&#160;                         one/(z1c-z1d)                                  </div>
-<div class="line"><a name="l01681"></a><span class="lineno"> 1681</span>&#160;            ggd(i)=      one/(z1d-z1a)*                                 &amp;</div>
-<div class="line"><a name="l01682"></a><span class="lineno"> 1682</span>&#160;                   (z2s-z1b)/(z1d-z1b)*                                 &amp;</div>
-<div class="line"><a name="l01683"></a><span class="lineno"> 1683</span>&#160;                   (z2s-z1c)/(z1d-z1c)+                                 &amp;</div>
-<div class="line"><a name="l01684"></a><span class="lineno"> 1684</span>&#160;                   (z2s-z1a)/(z1d-z1a)*                                 &amp;</div>
-<div class="line"><a name="l01685"></a><span class="lineno"> 1685</span>&#160;                         one/(z1d-z1b)*                                 &amp;</div>
-<div class="line"><a name="l01686"></a><span class="lineno"> 1686</span>&#160;                   (z2s-z1c)/(z1d-z1c)+                                 &amp;</div>
-<div class="line"><a name="l01687"></a><span class="lineno"> 1687</span>&#160;                   (z2s-z1a)/(z1d-z1a)*                                 &amp;</div>
-<div class="line"><a name="l01688"></a><span class="lineno"> 1688</span>&#160;                   (z2s-z1b)/(z1d-z1b)*                                 &amp;</div>
-<div class="line"><a name="l01689"></a><span class="lineno"> 1689</span>&#160;                         one/(z1d-z1c)                                  </div>
-<div class="line"><a name="l01690"></a><span class="lineno"> 1690</span>&#160;          <span class="keywordflow">ENDIF</span> </div>
-<div class="line"><a name="l01691"></a><span class="lineno"> 1691</span>&#160;        <span class="keywordflow">ENDDO</span> </div>
-<div class="line"><a name="l01692"></a><span class="lineno"> 1692</span>&#160;</div>
-<div class="line"><a name="l01693"></a><span class="lineno"> 1693</span>&#160;<span class="comment">!  INTERPOLATE.                                                         </span></div>
-<div class="line"><a name="l01694"></a><span class="lineno"> 1694</span>&#160;        <span class="keywordflow">DO</span> n=1,nm </div>
-<div class="line"><a name="l01695"></a><span class="lineno"> 1695</span>&#160;          <span class="keywordflow">DO</span> i=1,im </div>
-<div class="line"><a name="l01696"></a><span class="lineno"> 1696</span>&#160;            k1=k1s(i,k2) </div>
-<div class="line"><a name="l01697"></a><span class="lineno"> 1697</span>&#160;            <span class="keywordflow">IF</span>(k1.EQ.0) <span class="keywordflow">THEN</span> </div>
-<div class="line"><a name="l01698"></a><span class="lineno"> 1698</span>&#160;              q2s=q1(1+(i-1)*ixq1+(n-1)*nxq1) </div>
-<div class="line"><a name="l01699"></a><span class="lineno"> 1699</span>&#160;<span class="comment">!             J2S=0 </span></div>
-<div class="line"><a name="l01700"></a><span class="lineno"> 1700</span>&#160;            <span class="keywordflow">ELSEIF</span>(k1.EQ.km1) <span class="keywordflow">THEN</span> </div>
-<div class="line"><a name="l01701"></a><span class="lineno"> 1701</span>&#160;              q2s=q1(1+(i-1)*ixq1+(km1-1)*kxq1+(n-1)*nxq1) </div>
-<div class="line"><a name="l01702"></a><span class="lineno"> 1702</span>&#160;<span class="comment">!             J2S=0 </span></div>
-<div class="line"><a name="l01703"></a><span class="lineno"> 1703</span>&#160;            <span class="keywordflow">ELSEIF</span>(k1.EQ.1.OR.k1.EQ.km1-1) <span class="keywordflow">THEN</span> </div>
-<div class="line"><a name="l01704"></a><span class="lineno"> 1704</span>&#160;              q1a=q1(1+(i-1)*ixq1+(k1-1)*kxq1+(n-1)*nxq1) </div>
-<div class="line"><a name="l01705"></a><span class="lineno"> 1705</span>&#160;              q1b=q1(1+(i-1)*ixq1+(k1+0)*kxq1+(n-1)*nxq1) </div>
-<div class="line"><a name="l01706"></a><span class="lineno"> 1706</span>&#160;              q2s=ffa(i)*q1a+ffb(i)*q1b </div>
-<div class="line"><a name="l01707"></a><span class="lineno"> 1707</span>&#160;<span class="comment">!             J2S=GGA(I)*Q1A+GGB(I)*Q1B </span></div>
-<div class="line"><a name="l01708"></a><span class="lineno"> 1708</span>&#160;            <span class="keywordflow">ELSE</span> </div>
-<div class="line"><a name="l01709"></a><span class="lineno"> 1709</span>&#160;              q1a=q1(1+(i-1)*ixq1+(k1-2)*kxq1+(n-1)*nxq1) </div>
-<div class="line"><a name="l01710"></a><span class="lineno"> 1710</span>&#160;              q1b=q1(1+(i-1)*ixq1+(k1-1)*kxq1+(n-1)*nxq1) </div>
-<div class="line"><a name="l01711"></a><span class="lineno"> 1711</span>&#160;              q1c=q1(1+(i-1)*ixq1+(k1+0)*kxq1+(n-1)*nxq1) </div>
-<div class="line"><a name="l01712"></a><span class="lineno"> 1712</span>&#160;              q1d=q1(1+(i-1)*ixq1+(k1+1)*kxq1+(n-1)*nxq1) </div>
-<div class="line"><a name="l01713"></a><span class="lineno"> 1713</span>&#160;              q2s=ffa(i)*q1a+ffb(i)*q1b+ffc(i)*q1c+ffd(i)*q1d </div>
-<div class="line"><a name="l01714"></a><span class="lineno"> 1714</span>&#160;<span class="comment">!             J2S=GGA(I)*Q1A+GGB(I)*Q1B+GGC(I)*Q1C+GGD(I)*Q1D </span></div>
-<div class="line"><a name="l01715"></a><span class="lineno"> 1715</span>&#160;              <span class="keywordflow">IF</span>(q2s.LT.min(q1b,q1c)) <span class="keywordflow">THEN</span> </div>
-<div class="line"><a name="l01716"></a><span class="lineno"> 1716</span>&#160;                q2s=min(q1b,q1c) </div>
-<div class="line"><a name="l01717"></a><span class="lineno"> 1717</span>&#160;<span class="comment">!               J2S=0 </span></div>
-<div class="line"><a name="l01718"></a><span class="lineno"> 1718</span>&#160;              <span class="keywordflow">ELSEIF</span>(q2s.GT.max(q1b,q1c)) <span class="keywordflow">THEN</span> </div>
-<div class="line"><a name="l01719"></a><span class="lineno"> 1719</span>&#160;                q2s=max(q1b,q1c) </div>
-<div class="line"><a name="l01720"></a><span class="lineno"> 1720</span>&#160;<span class="comment">!               J2S=0 </span></div>
-<div class="line"><a name="l01721"></a><span class="lineno"> 1721</span>&#160;              <span class="keywordflow">ENDIF</span> </div>
-<div class="line"><a name="l01722"></a><span class="lineno"> 1722</span>&#160;            <span class="keywordflow">ENDIF</span> </div>
-<div class="line"><a name="l01723"></a><span class="lineno"> 1723</span>&#160;            q2(1+(i-1)*ixq2+(k2-1)*kxq2+(n-1)*nxq2)=q2s </div>
-<div class="line"><a name="l01724"></a><span class="lineno"> 1724</span>&#160;<span class="comment">!           J2(1+(I-1)*IXQ2+(K2-1)*KXQ2+(N-1)*NXQ2)=J2S </span></div>
-<div class="line"><a name="l01725"></a><span class="lineno"> 1725</span>&#160;          <span class="keywordflow">ENDDO</span> </div>
-<div class="line"><a name="l01726"></a><span class="lineno"> 1726</span>&#160;        <span class="keywordflow">ENDDO</span> </div>
-<div class="line"><a name="l01727"></a><span class="lineno"> 1727</span>&#160;      <span class="keywordflow">ENDDO</span> </div>
-<div class="line"><a name="l01728"></a><span class="lineno"> 1728</span>&#160;<span class="comment">!$OMP END PARALLEL DO                                                   </span></div>
+<div class="line"><a name="l01592"></a><span class="lineno"><a class="line" href="classatmosphere.html#acc4e65688bda454688a6f571d6939ae7"> 1592</a></span>&#160;<span class="keyword"> SUBROUTINE </span>terp3(IM,IXZ1,IXQ1,IXZ2,IXQ2,NM,NXQ1,NXQ2,             &amp;</div>
+<div class="line"><a name="l01593"></a><span class="lineno"> 1593</span>&#160;                  km1,kxz1,kxq1,z1,q1,km2,kxz2,kxq2,z2,q2)      </div>
+<div class="line"><a name="l01594"></a><span class="lineno"> 1594</span>&#160;      <span class="keywordtype">IMPLICIT NONE</span> </div>
+<div class="line"><a name="l01595"></a><span class="lineno"> 1595</span>&#160;      <span class="keywordtype">INTEGER</span> im,ixz1,ixq1,ixz2,ixq2,nm,nxq1,nxq2 </div>
+<div class="line"><a name="l01596"></a><span class="lineno"> 1596</span>&#160;      <span class="keywordtype">INTEGER</span> km1,kxz1,kxq1,km2,kxz2,kxq2 </div>
+<div class="line"><a name="l01597"></a><span class="lineno"> 1597</span>&#160;      <span class="keywordtype">INTEGER</span> i,k1,k2,n </div>
+<div class="line"><a name="l01598"></a><span class="lineno"> 1598</span>&#160;      <span class="keywordtype">INTEGER</span> k1s(im,km2) </div>
+<div class="line"><a name="l01599"></a><span class="lineno"> 1599</span>&#160;      <span class="keywordtype">REAL(ESMF_KIND_R8)</span>, <span class="keywordtype">PARAMETER</span> :: one = 1.0_esmf_kind_r8</div>
+<div class="line"><a name="l01600"></a><span class="lineno"> 1600</span>&#160;      <span class="keywordtype">REAL(ESMF_KIND_R8)</span> :: z1(1+(im-1)*ixz1+(km1-1)*kxz1) </div>
+<div class="line"><a name="l01601"></a><span class="lineno"> 1601</span>&#160;      <span class="keywordtype">REAL(ESMF_KIND_R8)</span> :: q1(1+(im-1)*ixq1+(km1-1)*kxq1+(nm-1)*nxq1) </div>
+<div class="line"><a name="l01602"></a><span class="lineno"> 1602</span>&#160;      <span class="keywordtype">REAL(ESMF_KIND_R8)</span> :: z2(1+(im-1)*ixz2+(km2-1)*kxz2) </div>
+<div class="line"><a name="l01603"></a><span class="lineno"> 1603</span>&#160;      <span class="keywordtype">REAL(ESMF_KIND_R8)</span> :: q2(1+(im-1)*ixq2+(km2-1)*kxq2+(nm-1)*nxq2) </div>
+<div class="line"><a name="l01604"></a><span class="lineno"> 1604</span>&#160;<span class="comment">!     REAL(ESMF_KIND_R8) :: J2(1+(IM-1)*IXQ2+(KM2-1)*KXQ2+(NM-1)*NXQ2) </span></div>
+<div class="line"><a name="l01605"></a><span class="lineno"> 1605</span>&#160;      <span class="keywordtype">REAL(ESMF_KIND_R8)</span> :: ffa(im),ffb(im),ffc(im),ffd(im) </div>
+<div class="line"><a name="l01606"></a><span class="lineno"> 1606</span>&#160;      <span class="keywordtype">REAL(ESMF_KIND_R8)</span> :: gga(im),ggb(im),ggc(im),ggd(im) </div>
+<div class="line"><a name="l01607"></a><span class="lineno"> 1607</span>&#160;      <span class="keywordtype">REAL(ESMF_KIND_R8)</span> :: z1a,z1b,z1c,z1d,q1a,q1b,q1c,q1d,z2s,q2s</div>
+<div class="line"><a name="l01608"></a><span class="lineno"> 1608</span>&#160;<span class="comment">!     REAL(ESMF_KIND_R8) :: J2S </span></div>
+<div class="line"><a name="l01609"></a><span class="lineno"> 1609</span>&#160;</div>
+<div class="line"><a name="l01610"></a><span class="lineno"> 1610</span>&#160;<span class="comment">! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </span></div>
+<div class="line"><a name="l01611"></a><span class="lineno"> 1611</span>&#160;<span class="comment">!  FIND THE SURROUNDING INPUT INTERVAL FOR EACH OUTPUT POINT.</span></div>
+<div class="line"><a name="l01612"></a><span class="lineno"> 1612</span>&#160;      CALL rsearch(im,km1,ixz1,kxz1,z1,km2,ixz2,kxz2,z2,1,im,k1s) </div>
+<div class="line"><a name="l01613"></a><span class="lineno"> 1613</span>&#160;</div>
+<div class="line"><a name="l01614"></a><span class="lineno"> 1614</span>&#160;<span class="comment">! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </span></div>
+<div class="line"><a name="l01615"></a><span class="lineno"> 1615</span>&#160;<span class="comment">!  GENERALLY INTERPOLATE CUBICALLY WITH MONOTONIC CONSTRAINT            </span></div>
+<div class="line"><a name="l01616"></a><span class="lineno"> 1616</span>&#160;<span class="comment">!  FROM TWO NEAREST INPUT POINTS ON EITHER SIDE OF THE OUTPUT POINT,    </span></div>
+<div class="line"><a name="l01617"></a><span class="lineno"> 1617</span>&#160;<span class="comment">!  BUT WITHIN THE TWO EDGE INTERVALS INTERPOLATE LINEARLY.              </span></div>
+<div class="line"><a name="l01618"></a><span class="lineno"> 1618</span>&#160;<span class="comment">!  KEEP THE OUTPUT FIELDS CONSTANT OUTSIDE THE INPUT DOMAIN.            </span></div>
+<div class="line"><a name="l01619"></a><span class="lineno"> 1619</span>&#160;                                                                        </div>
+<div class="line"><a name="l01620"></a><span class="lineno"> 1620</span>&#160;<span class="comment">!$OMP PARALLEL DO DEFAULT(PRIVATE) SHARED(IM,IXZ1,IXQ1,IXZ2), &amp;</span></div>
+<div class="line"><a name="l01621"></a><span class="lineno"> 1621</span>&#160;<span class="comment">!$OMP&amp; SHARED(IXQ2,NM,NXQ1,NXQ2,KM1,KXZ1,KXQ1,Z1,Q1,KM2,KXZ2), &amp;</span></div>
+<div class="line"><a name="l01622"></a><span class="lineno"> 1622</span>&#160;<span class="comment">!$OMP&amp; SHARED(KXQ2,Z2,Q2,K1S)</span></div>
+<div class="line"><a name="l01623"></a><span class="lineno"> 1623</span>&#160;      <span class="keywordflow">DO</span> k2=1,km2 </div>
+<div class="line"><a name="l01624"></a><span class="lineno"> 1624</span>&#160;        <span class="keywordflow">DO</span> i=1,im </div>
+<div class="line"><a name="l01625"></a><span class="lineno"> 1625</span>&#160;          k1=k1s(i,k2) </div>
+<div class="line"><a name="l01626"></a><span class="lineno"> 1626</span>&#160;          <span class="keywordflow">IF</span>(k1.EQ.1.OR.k1.EQ.km1-1) <span class="keywordflow">THEN</span> </div>
+<div class="line"><a name="l01627"></a><span class="lineno"> 1627</span>&#160;            z2s=z2(1+(i-1)*ixz2+(k2-1)*kxz2) </div>
+<div class="line"><a name="l01628"></a><span class="lineno"> 1628</span>&#160;            z1a=z1(1+(i-1)*ixz1+(k1-1)*kxz1) </div>
+<div class="line"><a name="l01629"></a><span class="lineno"> 1629</span>&#160;            z1b=z1(1+(i-1)*ixz1+(k1+0)*kxz1) </div>
+<div class="line"><a name="l01630"></a><span class="lineno"> 1630</span>&#160;            ffa(i)=(z2s-z1b)/(z1a-z1b) </div>
+<div class="line"><a name="l01631"></a><span class="lineno"> 1631</span>&#160;            ffb(i)=(z2s-z1a)/(z1b-z1a) </div>
+<div class="line"><a name="l01632"></a><span class="lineno"> 1632</span>&#160;            gga(i)=one/(z1a-z1b) </div>
+<div class="line"><a name="l01633"></a><span class="lineno"> 1633</span>&#160;            ggb(i)=one/(z1b-z1a) </div>
+<div class="line"><a name="l01634"></a><span class="lineno"> 1634</span>&#160;          <span class="keywordflow">ELSEIF</span>(k1.GT.1.AND.k1.LT.km1-1) <span class="keywordflow">THEN</span> </div>
+<div class="line"><a name="l01635"></a><span class="lineno"> 1635</span>&#160;            z2s=z2(1+(i-1)*ixz2+(k2-1)*kxz2) </div>
+<div class="line"><a name="l01636"></a><span class="lineno"> 1636</span>&#160;            z1a=z1(1+(i-1)*ixz1+(k1-2)*kxz1) </div>
+<div class="line"><a name="l01637"></a><span class="lineno"> 1637</span>&#160;            z1b=z1(1+(i-1)*ixz1+(k1-1)*kxz1) </div>
+<div class="line"><a name="l01638"></a><span class="lineno"> 1638</span>&#160;            z1c=z1(1+(i-1)*ixz1+(k1+0)*kxz1) </div>
+<div class="line"><a name="l01639"></a><span class="lineno"> 1639</span>&#160;            z1d=z1(1+(i-1)*ixz1+(k1+1)*kxz1) </div>
+<div class="line"><a name="l01640"></a><span class="lineno"> 1640</span>&#160;            ffa(i)=(z2s-z1b)/(z1a-z1b)*                                 &amp;</div>
+<div class="line"><a name="l01641"></a><span class="lineno"> 1641</span>&#160;                   (z2s-z1c)/(z1a-z1c)*                                 &amp;</div>
+<div class="line"><a name="l01642"></a><span class="lineno"> 1642</span>&#160;                   (z2s-z1d)/(z1a-z1d)                                  </div>
+<div class="line"><a name="l01643"></a><span class="lineno"> 1643</span>&#160;            ffb(i)=(z2s-z1a)/(z1b-z1a)*                                 &amp;</div>
+<div class="line"><a name="l01644"></a><span class="lineno"> 1644</span>&#160;                   (z2s-z1c)/(z1b-z1c)*                                 &amp;</div>
+<div class="line"><a name="l01645"></a><span class="lineno"> 1645</span>&#160;                   (z2s-z1d)/(z1b-z1d)                                  </div>
+<div class="line"><a name="l01646"></a><span class="lineno"> 1646</span>&#160;            ffc(i)=(z2s-z1a)/(z1c-z1a)*                                 &amp;</div>
+<div class="line"><a name="l01647"></a><span class="lineno"> 1647</span>&#160;                   (z2s-z1b)/(z1c-z1b)*                                 &amp;</div>
+<div class="line"><a name="l01648"></a><span class="lineno"> 1648</span>&#160;                   (z2s-z1d)/(z1c-z1d)                                  </div>
+<div class="line"><a name="l01649"></a><span class="lineno"> 1649</span>&#160;            ffd(i)=(z2s-z1a)/(z1d-z1a)*                                 &amp;</div>
+<div class="line"><a name="l01650"></a><span class="lineno"> 1650</span>&#160;                   (z2s-z1b)/(z1d-z1b)*                                 &amp;</div>
+<div class="line"><a name="l01651"></a><span class="lineno"> 1651</span>&#160;                   (z2s-z1c)/(z1d-z1c)                                  </div>
+<div class="line"><a name="l01652"></a><span class="lineno"> 1652</span>&#160;            gga(i)=      one/(z1a-z1b)*                                 &amp;</div>
+<div class="line"><a name="l01653"></a><span class="lineno"> 1653</span>&#160;                   (z2s-z1c)/(z1a-z1c)*                                 &amp;</div>
+<div class="line"><a name="l01654"></a><span class="lineno"> 1654</span>&#160;                   (z2s-z1d)/(z1a-z1d)+                                 &amp;</div>
+<div class="line"><a name="l01655"></a><span class="lineno"> 1655</span>&#160;                   (z2s-z1b)/(z1a-z1b)*                                 &amp;</div>
+<div class="line"><a name="l01656"></a><span class="lineno"> 1656</span>&#160;                         one/(z1a-z1c)*                                 &amp;</div>
+<div class="line"><a name="l01657"></a><span class="lineno"> 1657</span>&#160;                   (z2s-z1d)/(z1a-z1d)+                                 &amp;</div>
+<div class="line"><a name="l01658"></a><span class="lineno"> 1658</span>&#160;                   (z2s-z1b)/(z1a-z1b)*                                 &amp;</div>
+<div class="line"><a name="l01659"></a><span class="lineno"> 1659</span>&#160;                   (z2s-z1c)/(z1a-z1c)*                                 &amp;</div>
+<div class="line"><a name="l01660"></a><span class="lineno"> 1660</span>&#160;                         one/(z1a-z1d)                                  </div>
+<div class="line"><a name="l01661"></a><span class="lineno"> 1661</span>&#160;            ggb(i)=      one/(z1b-z1a)*                                 &amp;</div>
+<div class="line"><a name="l01662"></a><span class="lineno"> 1662</span>&#160;                   (z2s-z1c)/(z1b-z1c)*                                 &amp;</div>
+<div class="line"><a name="l01663"></a><span class="lineno"> 1663</span>&#160;                   (z2s-z1d)/(z1b-z1d)+                                 &amp;</div>
+<div class="line"><a name="l01664"></a><span class="lineno"> 1664</span>&#160;                   (z2s-z1a)/(z1b-z1a)*                                 &amp;</div>
+<div class="line"><a name="l01665"></a><span class="lineno"> 1665</span>&#160;                         one/(z1b-z1c)*                                 &amp;</div>
+<div class="line"><a name="l01666"></a><span class="lineno"> 1666</span>&#160;                   (z2s-z1d)/(z1b-z1d)+                                 &amp;</div>
+<div class="line"><a name="l01667"></a><span class="lineno"> 1667</span>&#160;                   (z2s-z1a)/(z1b-z1a)*                                 &amp;</div>
+<div class="line"><a name="l01668"></a><span class="lineno"> 1668</span>&#160;                   (z2s-z1c)/(z1b-z1c)*                                 &amp;</div>
+<div class="line"><a name="l01669"></a><span class="lineno"> 1669</span>&#160;                         one/(z1b-z1d)                                  </div>
+<div class="line"><a name="l01670"></a><span class="lineno"> 1670</span>&#160;            ggc(i)=      one/(z1c-z1a)*                                 &amp;</div>
+<div class="line"><a name="l01671"></a><span class="lineno"> 1671</span>&#160;                   (z2s-z1b)/(z1c-z1b)*                                 &amp;</div>
+<div class="line"><a name="l01672"></a><span class="lineno"> 1672</span>&#160;                   (z2s-z1d)/(z1c-z1d)+                                 &amp;</div>
+<div class="line"><a name="l01673"></a><span class="lineno"> 1673</span>&#160;                   (z2s-z1a)/(z1c-z1a)*                                 &amp;</div>
+<div class="line"><a name="l01674"></a><span class="lineno"> 1674</span>&#160;                         one/(z1c-z1b)*                                 &amp;</div>
+<div class="line"><a name="l01675"></a><span class="lineno"> 1675</span>&#160;                   (z2s-z1d)/(z1c-z1d)+                                 &amp;</div>
+<div class="line"><a name="l01676"></a><span class="lineno"> 1676</span>&#160;                   (z2s-z1a)/(z1c-z1a)*                                 &amp;</div>
+<div class="line"><a name="l01677"></a><span class="lineno"> 1677</span>&#160;                   (z2s-z1b)/(z1c-z1b)*                                 &amp;</div>
+<div class="line"><a name="l01678"></a><span class="lineno"> 1678</span>&#160;                         one/(z1c-z1d)                                  </div>
+<div class="line"><a name="l01679"></a><span class="lineno"> 1679</span>&#160;            ggd(i)=      one/(z1d-z1a)*                                 &amp;</div>
+<div class="line"><a name="l01680"></a><span class="lineno"> 1680</span>&#160;                   (z2s-z1b)/(z1d-z1b)*                                 &amp;</div>
+<div class="line"><a name="l01681"></a><span class="lineno"> 1681</span>&#160;                   (z2s-z1c)/(z1d-z1c)+                                 &amp;</div>
+<div class="line"><a name="l01682"></a><span class="lineno"> 1682</span>&#160;                   (z2s-z1a)/(z1d-z1a)*                                 &amp;</div>
+<div class="line"><a name="l01683"></a><span class="lineno"> 1683</span>&#160;                         one/(z1d-z1b)*                                 &amp;</div>
+<div class="line"><a name="l01684"></a><span class="lineno"> 1684</span>&#160;                   (z2s-z1c)/(z1d-z1c)+                                 &amp;</div>
+<div class="line"><a name="l01685"></a><span class="lineno"> 1685</span>&#160;                   (z2s-z1a)/(z1d-z1a)*                                 &amp;</div>
+<div class="line"><a name="l01686"></a><span class="lineno"> 1686</span>&#160;                   (z2s-z1b)/(z1d-z1b)*                                 &amp;</div>
+<div class="line"><a name="l01687"></a><span class="lineno"> 1687</span>&#160;                         one/(z1d-z1c)                                  </div>
+<div class="line"><a name="l01688"></a><span class="lineno"> 1688</span>&#160;          <span class="keywordflow">ENDIF</span> </div>
+<div class="line"><a name="l01689"></a><span class="lineno"> 1689</span>&#160;        <span class="keywordflow">ENDDO</span> </div>
+<div class="line"><a name="l01690"></a><span class="lineno"> 1690</span>&#160;</div>
+<div class="line"><a name="l01691"></a><span class="lineno"> 1691</span>&#160;<span class="comment">!  INTERPOLATE.                                                         </span></div>
+<div class="line"><a name="l01692"></a><span class="lineno"> 1692</span>&#160;        <span class="keywordflow">DO</span> n=1,nm </div>
+<div class="line"><a name="l01693"></a><span class="lineno"> 1693</span>&#160;          <span class="keywordflow">DO</span> i=1,im </div>
+<div class="line"><a name="l01694"></a><span class="lineno"> 1694</span>&#160;            k1=k1s(i,k2) </div>
+<div class="line"><a name="l01695"></a><span class="lineno"> 1695</span>&#160;            <span class="keywordflow">IF</span>(k1.EQ.0) <span class="keywordflow">THEN</span> </div>
+<div class="line"><a name="l01696"></a><span class="lineno"> 1696</span>&#160;              q2s=q1(1+(i-1)*ixq1+(n-1)*nxq1) </div>
+<div class="line"><a name="l01697"></a><span class="lineno"> 1697</span>&#160;<span class="comment">!             J2S=0 </span></div>
+<div class="line"><a name="l01698"></a><span class="lineno"> 1698</span>&#160;            <span class="keywordflow">ELSEIF</span>(k1.EQ.km1) <span class="keywordflow">THEN</span> </div>
+<div class="line"><a name="l01699"></a><span class="lineno"> 1699</span>&#160;              q2s=q1(1+(i-1)*ixq1+(km1-1)*kxq1+(n-1)*nxq1) </div>
+<div class="line"><a name="l01700"></a><span class="lineno"> 1700</span>&#160;<span class="comment">!             J2S=0 </span></div>
+<div class="line"><a name="l01701"></a><span class="lineno"> 1701</span>&#160;            <span class="keywordflow">ELSEIF</span>(k1.EQ.1.OR.k1.EQ.km1-1) <span class="keywordflow">THEN</span> </div>
+<div class="line"><a name="l01702"></a><span class="lineno"> 1702</span>&#160;              q1a=q1(1+(i-1)*ixq1+(k1-1)*kxq1+(n-1)*nxq1) </div>
+<div class="line"><a name="l01703"></a><span class="lineno"> 1703</span>&#160;              q1b=q1(1+(i-1)*ixq1+(k1+0)*kxq1+(n-1)*nxq1) </div>
+<div class="line"><a name="l01704"></a><span class="lineno"> 1704</span>&#160;              q2s=ffa(i)*q1a+ffb(i)*q1b </div>
+<div class="line"><a name="l01705"></a><span class="lineno"> 1705</span>&#160;<span class="comment">!             J2S=GGA(I)*Q1A+GGB(I)*Q1B </span></div>
+<div class="line"><a name="l01706"></a><span class="lineno"> 1706</span>&#160;            <span class="keywordflow">ELSE</span> </div>
+<div class="line"><a name="l01707"></a><span class="lineno"> 1707</span>&#160;              q1a=q1(1+(i-1)*ixq1+(k1-2)*kxq1+(n-1)*nxq1) </div>
+<div class="line"><a name="l01708"></a><span class="lineno"> 1708</span>&#160;              q1b=q1(1+(i-1)*ixq1+(k1-1)*kxq1+(n-1)*nxq1) </div>
+<div class="line"><a name="l01709"></a><span class="lineno"> 1709</span>&#160;              q1c=q1(1+(i-1)*ixq1+(k1+0)*kxq1+(n-1)*nxq1) </div>
+<div class="line"><a name="l01710"></a><span class="lineno"> 1710</span>&#160;              q1d=q1(1+(i-1)*ixq1+(k1+1)*kxq1+(n-1)*nxq1) </div>
+<div class="line"><a name="l01711"></a><span class="lineno"> 1711</span>&#160;              q2s=ffa(i)*q1a+ffb(i)*q1b+ffc(i)*q1c+ffd(i)*q1d </div>
+<div class="line"><a name="l01712"></a><span class="lineno"> 1712</span>&#160;<span class="comment">!             J2S=GGA(I)*Q1A+GGB(I)*Q1B+GGC(I)*Q1C+GGD(I)*Q1D </span></div>
+<div class="line"><a name="l01713"></a><span class="lineno"> 1713</span>&#160;              <span class="keywordflow">IF</span>(q2s.LT.min(q1b,q1c)) <span class="keywordflow">THEN</span> </div>
+<div class="line"><a name="l01714"></a><span class="lineno"> 1714</span>&#160;                q2s=min(q1b,q1c) </div>
+<div class="line"><a name="l01715"></a><span class="lineno"> 1715</span>&#160;<span class="comment">!               J2S=0 </span></div>
+<div class="line"><a name="l01716"></a><span class="lineno"> 1716</span>&#160;              <span class="keywordflow">ELSEIF</span>(q2s.GT.max(q1b,q1c)) <span class="keywordflow">THEN</span> </div>
+<div class="line"><a name="l01717"></a><span class="lineno"> 1717</span>&#160;                q2s=max(q1b,q1c) </div>
+<div class="line"><a name="l01718"></a><span class="lineno"> 1718</span>&#160;<span class="comment">!               J2S=0 </span></div>
+<div class="line"><a name="l01719"></a><span class="lineno"> 1719</span>&#160;              <span class="keywordflow">ENDIF</span> </div>
+<div class="line"><a name="l01720"></a><span class="lineno"> 1720</span>&#160;            <span class="keywordflow">ENDIF</span> </div>
+<div class="line"><a name="l01721"></a><span class="lineno"> 1721</span>&#160;            q2(1+(i-1)*ixq2+(k2-1)*kxq2+(n-1)*nxq2)=q2s </div>
+<div class="line"><a name="l01722"></a><span class="lineno"> 1722</span>&#160;<span class="comment">!           J2(1+(I-1)*IXQ2+(K2-1)*KXQ2+(N-1)*NXQ2)=J2S </span></div>
+<div class="line"><a name="l01723"></a><span class="lineno"> 1723</span>&#160;          <span class="keywordflow">ENDDO</span> </div>
+<div class="line"><a name="l01724"></a><span class="lineno"> 1724</span>&#160;        <span class="keywordflow">ENDDO</span> </div>
+<div class="line"><a name="l01725"></a><span class="lineno"> 1725</span>&#160;      <span class="keywordflow">ENDDO</span> </div>
+<div class="line"><a name="l01726"></a><span class="lineno"> 1726</span>&#160;<span class="comment">!$OMP END PARALLEL DO                                                   </span></div>
+<div class="line"><a name="l01727"></a><span class="lineno"> 1727</span>&#160;</div>
+<div class="line"><a name="l01728"></a><span class="lineno"> 1728</span>&#160;<span class="keyword"> END SUBROUTINE </span>terp3 </div>
 <div class="line"><a name="l01729"></a><span class="lineno"> 1729</span>&#160;</div>
-<div class="line"><a name="l01730"></a><span class="lineno"> 1730</span>&#160;<span class="keyword"> END SUBROUTINE </span>terp3 </div>
-<div class="line"><a name="l01731"></a><span class="lineno"> 1731</span>&#160;</div>
-<div class="line"><a name="l01791"></a><span class="lineno"> 1791</span>&#160;<span class="keyword"> SUBROUTINE </span>rsearch(IM,KM1,IXZ1,KXZ1,Z1,KM2,IXZ2,KXZ2,Z2,IXL2,KXL2,L2)</div>
-<div class="line"><a name="l01792"></a><span class="lineno"> 1792</span>&#160; <span class="keywordtype">IMPLICIT NONE</span> </div>
-<div class="line"><a name="l01793"></a><span class="lineno"> 1793</span>&#160;</div>
-<div class="line"><a name="l01794"></a><span class="lineno"> 1794</span>&#160; <span class="keywordtype">INTEGER</span>,<span class="keywordtype">INTENT(IN)</span>    :: im,km1,ixz1,kxz1,km2,ixz2,kxz2,ixl2,kxl2 </div>
-<div class="line"><a name="l01795"></a><span class="lineno"> 1795</span>&#160; <span class="keywordtype">INTEGER</span>,<span class="keywordtype">INTENT(OUT)</span>   :: l2(1+(im-1)*ixl2+(km2-1)*kxl2) </div>
-<div class="line"><a name="l01796"></a><span class="lineno"> 1796</span>&#160;</div>
-<div class="line"><a name="l01797"></a><span class="lineno"> 1797</span>&#160; <span class="keywordtype">REAL(ESMF_KIND_R8)</span>,<span class="keywordtype">INTENT(IN)</span> :: z1(1+(im-1)*ixz1+(km1-1)*kxz1) </div>
-<div class="line"><a name="l01798"></a><span class="lineno"> 1798</span>&#160; <span class="keywordtype">REAL(ESMF_KIND_R8)</span>,<span class="keywordtype">INTENT(IN)</span> :: z2(1+(im-1)*ixz2+(km2-1)*kxz2) </div>
+<div class="line"><a name="l01789"></a><span class="lineno"> 1789</span>&#160;<span class="keyword"> SUBROUTINE </span>rsearch(IM,KM1,IXZ1,KXZ1,Z1,KM2,IXZ2,KXZ2,Z2,IXL2,KXL2,L2)</div>
+<div class="line"><a name="l01790"></a><span class="lineno"> 1790</span>&#160; <span class="keywordtype">IMPLICIT NONE</span> </div>
+<div class="line"><a name="l01791"></a><span class="lineno"> 1791</span>&#160;</div>
+<div class="line"><a name="l01792"></a><span class="lineno"> 1792</span>&#160; <span class="keywordtype">INTEGER</span>,<span class="keywordtype">INTENT(IN)</span>    :: im,km1,ixz1,kxz1,km2,ixz2,kxz2,ixl2,kxl2 </div>
+<div class="line"><a name="l01793"></a><span class="lineno"> 1793</span>&#160; <span class="keywordtype">INTEGER</span>,<span class="keywordtype">INTENT(OUT)</span>   :: l2(1+(im-1)*ixl2+(km2-1)*kxl2) </div>
+<div class="line"><a name="l01794"></a><span class="lineno"> 1794</span>&#160;</div>
+<div class="line"><a name="l01795"></a><span class="lineno"> 1795</span>&#160; <span class="keywordtype">REAL(ESMF_KIND_R8)</span>,<span class="keywordtype">INTENT(IN)</span> :: z1(1+(im-1)*ixz1+(km1-1)*kxz1) </div>
+<div class="line"><a name="l01796"></a><span class="lineno"> 1796</span>&#160; <span class="keywordtype">REAL(ESMF_KIND_R8)</span>,<span class="keywordtype">INTENT(IN)</span> :: z2(1+(im-1)*ixz2+(km2-1)*kxz2) </div>
+<div class="line"><a name="l01797"></a><span class="lineno"> 1797</span>&#160;</div>
+<div class="line"><a name="l01798"></a><span class="lineno"> 1798</span>&#160; <span class="keywordtype">INTEGER</span>                       :: i,k2,l</div>
 <div class="line"><a name="l01799"></a><span class="lineno"> 1799</span>&#160;</div>
-<div class="line"><a name="l01800"></a><span class="lineno"> 1800</span>&#160; <span class="keywordtype">INTEGER</span>                       :: i,k2,l</div>
+<div class="line"><a name="l01800"></a><span class="lineno"> 1800</span>&#160; <span class="keywordtype">REAL(ESMF_KIND_R8)</span>            :: z </div>
 <div class="line"><a name="l01801"></a><span class="lineno"> 1801</span>&#160;</div>
-<div class="line"><a name="l01802"></a><span class="lineno"> 1802</span>&#160; <span class="keywordtype">REAL(ESMF_KIND_R8)</span>            :: z </div>
-<div class="line"><a name="l01803"></a><span class="lineno"> 1803</span>&#160;</div>
-<div class="line"><a name="l01804"></a><span class="lineno"> 1804</span>&#160;  </div>
-<div class="line"><a name="l01805"></a><span class="lineno"> 1805</span>&#160;<span class="comment">! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></div>
-<div class="line"><a name="l01806"></a><span class="lineno"> 1806</span>&#160;<span class="comment">!  FIND THE SURROUNDING INPUT INTERVAL FOR EACH OUTPUT POINT.          </span></div>
-<div class="line"><a name="l01807"></a><span class="lineno"> 1807</span>&#160; <span class="keywordflow">DO</span> i=1,im </div>
-<div class="line"><a name="l01808"></a><span class="lineno"> 1808</span>&#160;   <span class="keywordflow">IF</span> (z1(1+(i-1)*ixz1).LE.z1(1+(i-1)*ixz1+(km1-1)*kxz1)) <span class="keywordflow">THEN</span> </div>
-<div class="line"><a name="l01809"></a><span class="lineno"> 1809</span>&#160;<span class="comment">!  INPUT COORDINATE IS MONOTONICALLY ASCENDING.                        </span></div>
-<div class="line"><a name="l01810"></a><span class="lineno"> 1810</span>&#160;     <span class="keywordflow">DO</span> k2=1,km2</div>
-<div class="line"><a name="l01811"></a><span class="lineno"> 1811</span>&#160;       z=z2(1+(i-1)*ixz2+(k2-1)*kxz2)</div>
-<div class="line"><a name="l01812"></a><span class="lineno"> 1812</span>&#160;       l=0 </div>
-<div class="line"><a name="l01813"></a><span class="lineno"> 1813</span>&#160;       <span class="keywordflow">DO</span> </div>
-<div class="line"><a name="l01814"></a><span class="lineno"> 1814</span>&#160;         <span class="keywordflow">IF</span>(z.LT.z1(1+(i-1)*ixz1+l*kxz1)) <span class="keywordflow">EXIT</span> </div>
-<div class="line"><a name="l01815"></a><span class="lineno"> 1815</span>&#160;         l=l+1 </div>
-<div class="line"><a name="l01816"></a><span class="lineno"> 1816</span>&#160;         <span class="keywordflow">IF</span>(l.EQ.km1) <span class="keywordflow">EXIT</span> </div>
-<div class="line"><a name="l01817"></a><span class="lineno"> 1817</span>&#160;       <span class="keywordflow">ENDDO</span></div>
-<div class="line"><a name="l01818"></a><span class="lineno"> 1818</span>&#160;       l2(1+(i-1)*ixl2+(k2-1)*kxl2)=l </div>
-<div class="line"><a name="l01819"></a><span class="lineno"> 1819</span>&#160;     <span class="keywordflow">ENDDO</span> </div>
-<div class="line"><a name="l01820"></a><span class="lineno"> 1820</span>&#160;   <span class="keywordflow">ELSE</span> </div>
-<div class="line"><a name="l01821"></a><span class="lineno"> 1821</span>&#160;<span class="comment">!   INPUT COORDINATE IS MONOTONICALLY DESCENDING.                       </span></div>
-<div class="line"><a name="l01822"></a><span class="lineno"> 1822</span>&#160;     <span class="keywordflow">DO</span> k2=1,km2 </div>
-<div class="line"><a name="l01823"></a><span class="lineno"> 1823</span>&#160;       z=z2(1+(i-1)*ixz2+(k2-1)*kxz2) </div>
-<div class="line"><a name="l01824"></a><span class="lineno"> 1824</span>&#160;       l=0 </div>
-<div class="line"><a name="l01825"></a><span class="lineno"> 1825</span>&#160;       <span class="keywordflow">DO</span> </div>
-<div class="line"><a name="l01826"></a><span class="lineno"> 1826</span>&#160;         <span class="keywordflow">IF</span>(z.GT.z1(1+(i-1)*ixz1+l*kxz1)) <span class="keywordflow">EXIT</span> </div>
-<div class="line"><a name="l01827"></a><span class="lineno"> 1827</span>&#160;         l=l+1 </div>
-<div class="line"><a name="l01828"></a><span class="lineno"> 1828</span>&#160;         <span class="keywordflow">IF</span>(l.EQ.km1) <span class="keywordflow">EXIT</span> </div>
-<div class="line"><a name="l01829"></a><span class="lineno"> 1829</span>&#160;       <span class="keywordflow">ENDDO</span></div>
-<div class="line"><a name="l01830"></a><span class="lineno"> 1830</span>&#160;       l2(1+(i-1)*ixl2+(k2-1)*kxl2)=l </div>
-<div class="line"><a name="l01831"></a><span class="lineno"> 1831</span>&#160;     <span class="keywordflow">ENDDO</span> </div>
-<div class="line"><a name="l01832"></a><span class="lineno"> 1832</span>&#160;   <span class="keywordflow">ENDIF</span> </div>
-<div class="line"><a name="l01833"></a><span class="lineno"> 1833</span>&#160; <span class="keywordflow">ENDDO</span> </div>
-<div class="line"><a name="l01834"></a><span class="lineno"> 1834</span>&#160;                                                                        </div>
-<div class="line"><a name="l01835"></a><span class="lineno"> 1835</span>&#160;<span class="keyword"> END SUBROUTINE </span>rsearch </div>
-<div class="line"><a name="l01836"></a><span class="lineno"> 1836</span>&#160;</div>
-<div class="line"><a name="l01839"></a><span class="lineno"> 1839</span>&#160;<span class="keyword"> subroutine </span>compute_zh</div>
+<div class="line"><a name="l01802"></a><span class="lineno"> 1802</span>&#160;  </div>
+<div class="line"><a name="l01803"></a><span class="lineno"> 1803</span>&#160;<span class="comment">! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></div>
+<div class="line"><a name="l01804"></a><span class="lineno"> 1804</span>&#160;<span class="comment">!  FIND THE SURROUNDING INPUT INTERVAL FOR EACH OUTPUT POINT.          </span></div>
+<div class="line"><a name="l01805"></a><span class="lineno"> 1805</span>&#160; <span class="keywordflow">DO</span> i=1,im </div>
+<div class="line"><a name="l01806"></a><span class="lineno"> 1806</span>&#160;   <span class="keywordflow">IF</span> (z1(1+(i-1)*ixz1).LE.z1(1+(i-1)*ixz1+(km1-1)*kxz1)) <span class="keywordflow">THEN</span> </div>
+<div class="line"><a name="l01807"></a><span class="lineno"> 1807</span>&#160;<span class="comment">!  INPUT COORDINATE IS MONOTONICALLY ASCENDING.                        </span></div>
+<div class="line"><a name="l01808"></a><span class="lineno"> 1808</span>&#160;     <span class="keywordflow">DO</span> k2=1,km2</div>
+<div class="line"><a name="l01809"></a><span class="lineno"> 1809</span>&#160;       z=z2(1+(i-1)*ixz2+(k2-1)*kxz2)</div>
+<div class="line"><a name="l01810"></a><span class="lineno"> 1810</span>&#160;       l=0 </div>
+<div class="line"><a name="l01811"></a><span class="lineno"> 1811</span>&#160;       <span class="keywordflow">DO</span> </div>
+<div class="line"><a name="l01812"></a><span class="lineno"> 1812</span>&#160;         <span class="keywordflow">IF</span>(z.LT.z1(1+(i-1)*ixz1+l*kxz1)) <span class="keywordflow">EXIT</span> </div>
+<div class="line"><a name="l01813"></a><span class="lineno"> 1813</span>&#160;         l=l+1 </div>
+<div class="line"><a name="l01814"></a><span class="lineno"> 1814</span>&#160;         <span class="keywordflow">IF</span>(l.EQ.km1) <span class="keywordflow">EXIT</span> </div>
+<div class="line"><a name="l01815"></a><span class="lineno"> 1815</span>&#160;       <span class="keywordflow">ENDDO</span></div>
+<div class="line"><a name="l01816"></a><span class="lineno"> 1816</span>&#160;       l2(1+(i-1)*ixl2+(k2-1)*kxl2)=l </div>
+<div class="line"><a name="l01817"></a><span class="lineno"> 1817</span>&#160;     <span class="keywordflow">ENDDO</span> </div>
+<div class="line"><a name="l01818"></a><span class="lineno"> 1818</span>&#160;   <span class="keywordflow">ELSE</span> </div>
+<div class="line"><a name="l01819"></a><span class="lineno"> 1819</span>&#160;<span class="comment">!   INPUT COORDINATE IS MONOTONICALLY DESCENDING.                       </span></div>
+<div class="line"><a name="l01820"></a><span class="lineno"> 1820</span>&#160;     <span class="keywordflow">DO</span> k2=1,km2 </div>
+<div class="line"><a name="l01821"></a><span class="lineno"> 1821</span>&#160;       z=z2(1+(i-1)*ixz2+(k2-1)*kxz2) </div>
+<div class="line"><a name="l01822"></a><span class="lineno"> 1822</span>&#160;       l=0 </div>
+<div class="line"><a name="l01823"></a><span class="lineno"> 1823</span>&#160;       <span class="keywordflow">DO</span> </div>
+<div class="line"><a name="l01824"></a><span class="lineno"> 1824</span>&#160;         <span class="keywordflow">IF</span>(z.GT.z1(1+(i-1)*ixz1+l*kxz1)) <span class="keywordflow">EXIT</span> </div>
+<div class="line"><a name="l01825"></a><span class="lineno"> 1825</span>&#160;         l=l+1 </div>
+<div class="line"><a name="l01826"></a><span class="lineno"> 1826</span>&#160;         <span class="keywordflow">IF</span>(l.EQ.km1) <span class="keywordflow">EXIT</span> </div>
+<div class="line"><a name="l01827"></a><span class="lineno"> 1827</span>&#160;       <span class="keywordflow">ENDDO</span></div>
+<div class="line"><a name="l01828"></a><span class="lineno"> 1828</span>&#160;       l2(1+(i-1)*ixl2+(k2-1)*kxl2)=l </div>
+<div class="line"><a name="l01829"></a><span class="lineno"> 1829</span>&#160;     <span class="keywordflow">ENDDO</span> </div>
+<div class="line"><a name="l01830"></a><span class="lineno"> 1830</span>&#160;   <span class="keywordflow">ENDIF</span> </div>
+<div class="line"><a name="l01831"></a><span class="lineno"> 1831</span>&#160; <span class="keywordflow">ENDDO</span> </div>
+<div class="line"><a name="l01832"></a><span class="lineno"> 1832</span>&#160;                                                                        </div>
+<div class="line"><a name="l01833"></a><span class="lineno"> 1833</span>&#160;<span class="keyword"> END SUBROUTINE </span>rsearch </div>
+<div class="line"><a name="l01834"></a><span class="lineno"> 1834</span>&#160;</div>
+<div class="line"><a name="l01837"></a><span class="lineno"> 1837</span>&#160;<span class="keyword"> subroutine </span>compute_zh</div>
+<div class="line"><a name="l01838"></a><span class="lineno"> 1838</span>&#160;</div>
+<div class="line"><a name="l01839"></a><span class="lineno"> 1839</span>&#160; <span class="keywordtype">implicit none</span> </div>
 <div class="line"><a name="l01840"></a><span class="lineno"> 1840</span>&#160;</div>
-<div class="line"><a name="l01841"></a><span class="lineno"> 1841</span>&#160; <span class="keywordtype">implicit none</span> </div>
+<div class="line"><a name="l01841"></a><span class="lineno"> 1841</span>&#160; <span class="keywordtype">integer</span>                          :: i,ii, j,k, rc, clb(2), cub(2)</div>
 <div class="line"><a name="l01842"></a><span class="lineno"> 1842</span>&#160;</div>
-<div class="line"><a name="l01843"></a><span class="lineno"> 1843</span>&#160; <span class="keywordtype">integer</span>                          :: i,ii, j,k, rc, clb(2), cub(2)</div>
-<div class="line"><a name="l01844"></a><span class="lineno"> 1844</span>&#160;</div>
-<div class="line"><a name="l01845"></a><span class="lineno"> 1845</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>, <span class="keywordtype">allocatable</span>  :: pe0(:), pn0(:)</div>
-<div class="line"><a name="l01846"></a><span class="lineno"> 1846</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>, <span class="keywordtype">pointer</span>      :: psptr(:,:)</div>
-<div class="line"><a name="l01847"></a><span class="lineno"> 1847</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>, <span class="keywordtype">pointer</span>      :: zhsfcptr(:,:)</div>
-<div class="line"><a name="l01848"></a><span class="lineno"> 1848</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>, <span class="keywordtype">pointer</span>      :: zhptr(:,:,:)</div>
-<div class="line"><a name="l01849"></a><span class="lineno"> 1849</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>, <span class="keywordtype">pointer</span>      :: tptr(:,:,:)</div>
-<div class="line"><a name="l01850"></a><span class="lineno"> 1850</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>, <span class="keywordtype">pointer</span>      :: qptr(:,:,:)</div>
-<div class="line"><a name="l01851"></a><span class="lineno"> 1851</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>               :: ak, bk, zvir, grd</div>
-<div class="line"><a name="l01852"></a><span class="lineno"> 1852</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>, <span class="keywordtype">parameter</span>    :: grav  = 9.80665 </div>
-<div class="line"><a name="l01853"></a><span class="lineno"> 1853</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>, <span class="keywordtype">parameter</span>    :: rdgas = 287.05 </div>
-<div class="line"><a name="l01854"></a><span class="lineno"> 1854</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>, <span class="keywordtype">parameter</span>    :: rvgas = 461.50 </div>
+<div class="line"><a name="l01843"></a><span class="lineno"> 1843</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>, <span class="keywordtype">allocatable</span>  :: pe0(:), pn0(:)</div>
+<div class="line"><a name="l01844"></a><span class="lineno"> 1844</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>, <span class="keywordtype">pointer</span>      :: psptr(:,:)</div>
+<div class="line"><a name="l01845"></a><span class="lineno"> 1845</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>, <span class="keywordtype">pointer</span>      :: zhsfcptr(:,:)</div>
+<div class="line"><a name="l01846"></a><span class="lineno"> 1846</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>, <span class="keywordtype">pointer</span>      :: zhptr(:,:,:)</div>
+<div class="line"><a name="l01847"></a><span class="lineno"> 1847</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>, <span class="keywordtype">pointer</span>      :: tptr(:,:,:)</div>
+<div class="line"><a name="l01848"></a><span class="lineno"> 1848</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>, <span class="keywordtype">pointer</span>      :: qptr(:,:,:)</div>
+<div class="line"><a name="l01849"></a><span class="lineno"> 1849</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>               :: ak, bk, zvir, grd</div>
+<div class="line"><a name="l01850"></a><span class="lineno"> 1850</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>, <span class="keywordtype">parameter</span>    :: grav  = 9.80665 </div>
+<div class="line"><a name="l01851"></a><span class="lineno"> 1851</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>, <span class="keywordtype">parameter</span>    :: rdgas = 287.05 </div>
+<div class="line"><a name="l01852"></a><span class="lineno"> 1852</span>&#160; <span class="keywordtype">real(esmf_kind_r8)</span>, <span class="keywordtype">parameter</span>    :: rvgas = 461.50 </div>
+<div class="line"><a name="l01853"></a><span class="lineno"> 1853</span>&#160;</div>
+<div class="line"><a name="l01854"></a><span class="lineno"> 1854</span>&#160; print*,<span class="stringliteral">&quot;- COMPUTE HEIGHT&quot;</span></div>
 <div class="line"><a name="l01855"></a><span class="lineno"> 1855</span>&#160;</div>
-<div class="line"><a name="l01856"></a><span class="lineno"> 1856</span>&#160; print*,<span class="stringliteral">&quot;- COMPUTE HEIGHT&quot;</span></div>
-<div class="line"><a name="l01857"></a><span class="lineno"> 1857</span>&#160;</div>
-<div class="line"><a name="l01858"></a><span class="lineno"> 1858</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR SURFACE PRESSURE&quot;</span></div>
-<div class="line"><a name="l01859"></a><span class="lineno"> 1859</span>&#160; call esmf_fieldget(ps_target_grid, &amp;</div>
-<div class="line"><a name="l01860"></a><span class="lineno"> 1860</span>&#160;                    computationallbound=clb, &amp;</div>
-<div class="line"><a name="l01861"></a><span class="lineno"> 1861</span>&#160;                    computationalubound=cub, &amp;</div>
-<div class="line"><a name="l01862"></a><span class="lineno"> 1862</span>&#160;                    farrayptr=psptr, rc=rc)</div>
-<div class="line"><a name="l01863"></a><span class="lineno"> 1863</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01864"></a><span class="lineno"> 1864</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
-<div class="line"><a name="l01865"></a><span class="lineno"> 1865</span>&#160;</div>
-<div class="line"><a name="l01866"></a><span class="lineno"> 1866</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR TERRAIN HEIGHT&quot;</span></div>
-<div class="line"><a name="l01867"></a><span class="lineno"> 1867</span>&#160; call esmf_fieldget(terrain_target_grid, &amp;</div>
-<div class="line"><a name="l01868"></a><span class="lineno"> 1868</span>&#160;                    farrayptr=zhsfcptr, rc=rc)</div>
-<div class="line"><a name="l01869"></a><span class="lineno"> 1869</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01870"></a><span class="lineno"> 1870</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
-<div class="line"><a name="l01871"></a><span class="lineno"> 1871</span>&#160;</div>
-<div class="line"><a name="l01872"></a><span class="lineno"> 1872</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR HEIGHT&quot;</span></div>
-<div class="line"><a name="l01873"></a><span class="lineno"> 1873</span>&#160; call esmf_fieldget(zh_target_grid, &amp;</div>
-<div class="line"><a name="l01874"></a><span class="lineno"> 1874</span>&#160;                    farrayptr=zhptr, rc=rc)</div>
-<div class="line"><a name="l01875"></a><span class="lineno"> 1875</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01876"></a><span class="lineno"> 1876</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
-<div class="line"><a name="l01877"></a><span class="lineno"> 1877</span>&#160;</div>
-<div class="line"><a name="l01878"></a><span class="lineno"> 1878</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR TEMPERATURE&quot;</span></div>
-<div class="line"><a name="l01879"></a><span class="lineno"> 1879</span>&#160; call esmf_fieldget(temp_target_grid, &amp;</div>
-<div class="line"><a name="l01880"></a><span class="lineno"> 1880</span>&#160;                    farrayptr=tptr, rc=rc)</div>
-<div class="line"><a name="l01881"></a><span class="lineno"> 1881</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01882"></a><span class="lineno"> 1882</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
-<div class="line"><a name="l01883"></a><span class="lineno"> 1883</span>&#160;</div>
-<div class="line"><a name="l01884"></a><span class="lineno"> 1884</span>&#160; <span class="keywordflow">do</span> ii = 1, num_tracers</div>
-<div class="line"><a name="l01885"></a><span class="lineno"> 1885</span>&#160;   <span class="keywordflow">if</span> (trim(tracers(ii)) == <span class="stringliteral">&quot;sphum&quot;</span>) <span class="keywordflow">exit</span></div>
-<div class="line"><a name="l01886"></a><span class="lineno"> 1886</span>&#160; <span class="keywordflow">enddo</span></div>
-<div class="line"><a name="l01887"></a><span class="lineno"> 1887</span>&#160;</div>
-<div class="line"><a name="l01888"></a><span class="lineno"> 1888</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR SPECIFIC HUMIDITY&quot;</span></div>
-<div class="line"><a name="l01889"></a><span class="lineno"> 1889</span>&#160; call esmf_fieldget(tracers_target_grid(ii), &amp;</div>
-<div class="line"><a name="l01890"></a><span class="lineno"> 1890</span>&#160;                    farrayptr=qptr, rc=rc)</div>
-<div class="line"><a name="l01891"></a><span class="lineno"> 1891</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
-<div class="line"><a name="l01892"></a><span class="lineno"> 1892</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
-<div class="line"><a name="l01893"></a><span class="lineno"> 1893</span>&#160;</div>
-<div class="line"><a name="l01894"></a><span class="lineno"> 1894</span>&#160; grd = grav/rdgas </div>
-<div class="line"><a name="l01895"></a><span class="lineno"> 1895</span>&#160; zvir = rvgas/rdgas - 1.0_esmf_kind_r8</div>
-<div class="line"><a name="l01896"></a><span class="lineno"> 1896</span>&#160;                                                                        </div>
-<div class="line"><a name="l01897"></a><span class="lineno"> 1897</span>&#160; <span class="keyword">allocate</span>(pe0(levp1_target))</div>
-<div class="line"><a name="l01898"></a><span class="lineno"> 1898</span>&#160; <span class="keyword">allocate</span>(pn0(levp1_target))</div>
-<div class="line"><a name="l01899"></a><span class="lineno"> 1899</span>&#160;</div>
-<div class="line"><a name="l01900"></a><span class="lineno"> 1900</span>&#160; <span class="keywordflow">do</span> j = clb(2), cub(2)</div>
-<div class="line"><a name="l01901"></a><span class="lineno"> 1901</span>&#160; <span class="keywordflow">do</span> i = clb(1), cub(1)</div>
-<div class="line"><a name="l01902"></a><span class="lineno"> 1902</span>&#160;</div>
-<div class="line"><a name="l01903"></a><span class="lineno"> 1903</span>&#160;   <span class="keywordflow">do</span> k = 1, levp1_target</div>
-<div class="line"><a name="l01904"></a><span class="lineno"> 1904</span>&#160;     ak = vcoord_target(k,1)</div>
-<div class="line"><a name="l01905"></a><span class="lineno"> 1905</span>&#160;     ak = max(ak, 1.e-9)</div>
-<div class="line"><a name="l01906"></a><span class="lineno"> 1906</span>&#160;     bk = vcoord_target(k,2)</div>
-<div class="line"><a name="l01907"></a><span class="lineno"> 1907</span>&#160;</div>
-<div class="line"><a name="l01908"></a><span class="lineno"> 1908</span>&#160;     pe0(k) = ak + bk*psptr(i,j)</div>
-<div class="line"><a name="l01909"></a><span class="lineno"> 1909</span>&#160;     pn0(k) = log(pe0(k))</div>
-<div class="line"><a name="l01910"></a><span class="lineno"> 1910</span>&#160;   <span class="keywordflow">enddo</span></div>
+<div class="line"><a name="l01856"></a><span class="lineno"> 1856</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR SURFACE PRESSURE&quot;</span></div>
+<div class="line"><a name="l01857"></a><span class="lineno"> 1857</span>&#160; call esmf_fieldget(ps_target_grid, &amp;</div>
+<div class="line"><a name="l01858"></a><span class="lineno"> 1858</span>&#160;                    computationallbound=clb, &amp;</div>
+<div class="line"><a name="l01859"></a><span class="lineno"> 1859</span>&#160;                    computationalubound=cub, &amp;</div>
+<div class="line"><a name="l01860"></a><span class="lineno"> 1860</span>&#160;                    farrayptr=psptr, rc=rc)</div>
+<div class="line"><a name="l01861"></a><span class="lineno"> 1861</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
+<div class="line"><a name="l01862"></a><span class="lineno"> 1862</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01863"></a><span class="lineno"> 1863</span>&#160;</div>
+<div class="line"><a name="l01864"></a><span class="lineno"> 1864</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR TERRAIN HEIGHT&quot;</span></div>
+<div class="line"><a name="l01865"></a><span class="lineno"> 1865</span>&#160; call esmf_fieldget(terrain_target_grid, &amp;</div>
+<div class="line"><a name="l01866"></a><span class="lineno"> 1866</span>&#160;                    farrayptr=zhsfcptr, rc=rc)</div>
+<div class="line"><a name="l01867"></a><span class="lineno"> 1867</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
+<div class="line"><a name="l01868"></a><span class="lineno"> 1868</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01869"></a><span class="lineno"> 1869</span>&#160;</div>
+<div class="line"><a name="l01870"></a><span class="lineno"> 1870</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR HEIGHT&quot;</span></div>
+<div class="line"><a name="l01871"></a><span class="lineno"> 1871</span>&#160; call esmf_fieldget(zh_target_grid, &amp;</div>
+<div class="line"><a name="l01872"></a><span class="lineno"> 1872</span>&#160;                    farrayptr=zhptr, rc=rc)</div>
+<div class="line"><a name="l01873"></a><span class="lineno"> 1873</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
+<div class="line"><a name="l01874"></a><span class="lineno"> 1874</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01875"></a><span class="lineno"> 1875</span>&#160;</div>
+<div class="line"><a name="l01876"></a><span class="lineno"> 1876</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR TEMPERATURE&quot;</span></div>
+<div class="line"><a name="l01877"></a><span class="lineno"> 1877</span>&#160; call esmf_fieldget(temp_target_grid, &amp;</div>
+<div class="line"><a name="l01878"></a><span class="lineno"> 1878</span>&#160;                    farrayptr=tptr, rc=rc)</div>
+<div class="line"><a name="l01879"></a><span class="lineno"> 1879</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
+<div class="line"><a name="l01880"></a><span class="lineno"> 1880</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01881"></a><span class="lineno"> 1881</span>&#160;</div>
+<div class="line"><a name="l01882"></a><span class="lineno"> 1882</span>&#160; <span class="keywordflow">do</span> ii = 1, num_tracers</div>
+<div class="line"><a name="l01883"></a><span class="lineno"> 1883</span>&#160;   <span class="keywordflow">if</span> (trim(tracers(ii)) == <span class="stringliteral">&quot;sphum&quot;</span>) <span class="keywordflow">exit</span></div>
+<div class="line"><a name="l01884"></a><span class="lineno"> 1884</span>&#160; <span class="keywordflow">enddo</span></div>
+<div class="line"><a name="l01885"></a><span class="lineno"> 1885</span>&#160;</div>
+<div class="line"><a name="l01886"></a><span class="lineno"> 1886</span>&#160; print*,<span class="stringliteral">&quot;- CALL FieldGet FOR SPECIFIC HUMIDITY&quot;</span></div>
+<div class="line"><a name="l01887"></a><span class="lineno"> 1887</span>&#160; call esmf_fieldget(tracers_target_grid(ii), &amp;</div>
+<div class="line"><a name="l01888"></a><span class="lineno"> 1888</span>&#160;                    farrayptr=qptr, rc=rc)</div>
+<div class="line"><a name="l01889"></a><span class="lineno"> 1889</span>&#160; <span class="keywordflow">if</span>(esmf_logfounderror(rctocheck=rc,msg=esmf_logerr_passthru,line=__line__,file=__file__)) &amp;</div>
+<div class="line"><a name="l01890"></a><span class="lineno"> 1890</span>&#160;         call <a class="code" href="chgres__cube_8fd_2utils_8f90.html#a494d969fc26018c8a44274492cd80086">error_handler</a>(<span class="stringliteral">&quot;IN FieldGet&quot;</span>, rc)</div>
+<div class="line"><a name="l01891"></a><span class="lineno"> 1891</span>&#160;</div>
+<div class="line"><a name="l01892"></a><span class="lineno"> 1892</span>&#160; grd = grav/rdgas </div>
+<div class="line"><a name="l01893"></a><span class="lineno"> 1893</span>&#160; zvir = rvgas/rdgas - 1.0_esmf_kind_r8</div>
+<div class="line"><a name="l01894"></a><span class="lineno"> 1894</span>&#160;                                                                        </div>
+<div class="line"><a name="l01895"></a><span class="lineno"> 1895</span>&#160; <span class="keyword">allocate</span>(pe0(levp1_target))</div>
+<div class="line"><a name="l01896"></a><span class="lineno"> 1896</span>&#160; <span class="keyword">allocate</span>(pn0(levp1_target))</div>
+<div class="line"><a name="l01897"></a><span class="lineno"> 1897</span>&#160;</div>
+<div class="line"><a name="l01898"></a><span class="lineno"> 1898</span>&#160; <span class="keywordflow">do</span> j = clb(2), cub(2)</div>
+<div class="line"><a name="l01899"></a><span class="lineno"> 1899</span>&#160; <span class="keywordflow">do</span> i = clb(1), cub(1)</div>
+<div class="line"><a name="l01900"></a><span class="lineno"> 1900</span>&#160;</div>
+<div class="line"><a name="l01901"></a><span class="lineno"> 1901</span>&#160;   <span class="keywordflow">do</span> k = 1, levp1_target</div>
+<div class="line"><a name="l01902"></a><span class="lineno"> 1902</span>&#160;     ak = vcoord_target(k,1)</div>
+<div class="line"><a name="l01903"></a><span class="lineno"> 1903</span>&#160;     ak = max(ak, 1.e-9)</div>
+<div class="line"><a name="l01904"></a><span class="lineno"> 1904</span>&#160;     bk = vcoord_target(k,2)</div>
+<div class="line"><a name="l01905"></a><span class="lineno"> 1905</span>&#160;</div>
+<div class="line"><a name="l01906"></a><span class="lineno"> 1906</span>&#160;     pe0(k) = ak + bk*psptr(i,j)</div>
+<div class="line"><a name="l01907"></a><span class="lineno"> 1907</span>&#160;     pn0(k) = log(pe0(k))</div>
+<div class="line"><a name="l01908"></a><span class="lineno"> 1908</span>&#160;   <span class="keywordflow">enddo</span></div>
+<div class="line"><a name="l01909"></a><span class="lineno"> 1909</span>&#160;</div>
+<div class="line"><a name="l01910"></a><span class="lineno"> 1910</span>&#160;   zhptr(i,j,1) = zhsfcptr(i,j)</div>
 <div class="line"><a name="l01911"></a><span class="lineno"> 1911</span>&#160;</div>
-<div class="line"><a name="l01912"></a><span class="lineno"> 1912</span>&#160;   zhptr(i,j,1) = zhsfcptr(i,j)</div>
-<div class="line"><a name="l01913"></a><span class="lineno"> 1913</span>&#160;</div>
-<div class="line"><a name="l01914"></a><span class="lineno"> 1914</span>&#160;   <span class="keywordflow">do</span> k = 2, levp1_target</div>
-<div class="line"><a name="l01915"></a><span class="lineno"> 1915</span>&#160;     zhptr(i,j,k) = zhptr(i,j,k-1)+tptr(i,j,k-1)*(1.+zvir*qptr(i,j,k-1))*     &amp;</div>
-<div class="line"><a name="l01916"></a><span class="lineno"> 1916</span>&#160;              (pn0(k-1)-pn0(k))/grd</div>
-<div class="line"><a name="l01917"></a><span class="lineno"> 1917</span>&#160;   <span class="keywordflow">enddo</span></div>
-<div class="line"><a name="l01918"></a><span class="lineno"> 1918</span>&#160;</div>
-<div class="line"><a name="l01919"></a><span class="lineno"> 1919</span>&#160; <span class="keywordflow">enddo</span></div>
-<div class="line"><a name="l01920"></a><span class="lineno"> 1920</span>&#160; <span class="keywordflow">enddo</span></div>
+<div class="line"><a name="l01912"></a><span class="lineno"> 1912</span>&#160;   <span class="keywordflow">do</span> k = 2, levp1_target</div>
+<div class="line"><a name="l01913"></a><span class="lineno"> 1913</span>&#160;     zhptr(i,j,k) = zhptr(i,j,k-1)+tptr(i,j,k-1)*(1.+zvir*qptr(i,j,k-1))*     &amp;</div>
+<div class="line"><a name="l01914"></a><span class="lineno"> 1914</span>&#160;              (pn0(k-1)-pn0(k))/grd</div>
+<div class="line"><a name="l01915"></a><span class="lineno"> 1915</span>&#160;   <span class="keywordflow">enddo</span></div>
+<div class="line"><a name="l01916"></a><span class="lineno"> 1916</span>&#160;</div>
+<div class="line"><a name="l01917"></a><span class="lineno"> 1917</span>&#160; <span class="keywordflow">enddo</span></div>
+<div class="line"><a name="l01918"></a><span class="lineno"> 1918</span>&#160; <span class="keywordflow">enddo</span></div>
+<div class="line"><a name="l01919"></a><span class="lineno"> 1919</span>&#160;</div>
+<div class="line"><a name="l01920"></a><span class="lineno"> 1920</span>&#160; <span class="keyword">deallocate</span>(pe0, pn0)</div>
 <div class="line"><a name="l01921"></a><span class="lineno"> 1921</span>&#160;</div>
-<div class="line"><a name="l01922"></a><span class="lineno"> 1922</span>&#160; <span class="keyword">deallocate</span>(pe0, pn0)</div>
-<div class="line"><a name="l01923"></a><span class="lineno"> 1923</span>&#160;</div>
-<div class="line"><a name="l01924"></a><span class="lineno"> 1924</span>&#160;<span class="keyword"> end subroutine </span>compute_zh </div>
-<div class="line"><a name="l01925"></a><span class="lineno"> 1925</span>&#160; </div>
-<div class="line"><a name="l01928"></a><span class="lineno"> 1928</span>&#160;<span class="keyword"> subroutine </span>cleanup_target_atm_b4adj_data</div>
+<div class="line"><a name="l01922"></a><span class="lineno"> 1922</span>&#160;<span class="keyword"> end subroutine </span>compute_zh </div>
+<div class="line"><a name="l01923"></a><span class="lineno"> 1923</span>&#160; </div>
+<div class="line"><a name="l01926"></a><span class="lineno"> 1926</span>&#160;<span class="keyword"> subroutine </span>cleanup_target_atm_b4adj_data</div>
+<div class="line"><a name="l01927"></a><span class="lineno"> 1927</span>&#160;</div>
+<div class="line"><a name="l01928"></a><span class="lineno"> 1928</span>&#160; <span class="keywordtype">implicit none</span></div>
 <div class="line"><a name="l01929"></a><span class="lineno"> 1929</span>&#160;</div>
-<div class="line"><a name="l01930"></a><span class="lineno"> 1930</span>&#160; <span class="keywordtype">implicit none</span></div>
+<div class="line"><a name="l01930"></a><span class="lineno"> 1930</span>&#160; <span class="keywordtype">integer</span>                     :: i, rc</div>
 <div class="line"><a name="l01931"></a><span class="lineno"> 1931</span>&#160;</div>
-<div class="line"><a name="l01932"></a><span class="lineno"> 1932</span>&#160; <span class="keywordtype">integer</span>                     :: i, rc</div>
+<div class="line"><a name="l01932"></a><span class="lineno"> 1932</span>&#160; print*,<span class="stringliteral">&quot;- DESTROY TARGET GRID ATMOSPHERIC BEFORE ADJUSTMENT FIELDS.&quot;</span></div>
 <div class="line"><a name="l01933"></a><span class="lineno"> 1933</span>&#160;</div>
-<div class="line"><a name="l01934"></a><span class="lineno"> 1934</span>&#160; print*,<span class="stringliteral">&quot;- DESTROY TARGET GRID ATMOSPHERIC BEFORE ADJUSTMENT FIELDS.&quot;</span></div>
-<div class="line"><a name="l01935"></a><span class="lineno"> 1935</span>&#160;</div>
-<div class="line"><a name="l01936"></a><span class="lineno"> 1936</span>&#160; call esmf_fielddestroy(wind_b4adj_target_grid, rc=rc)</div>
-<div class="line"><a name="l01937"></a><span class="lineno"> 1937</span>&#160; call esmf_fielddestroy(dzdt_b4adj_target_grid, rc=rc)</div>
-<div class="line"><a name="l01938"></a><span class="lineno"> 1938</span>&#160; call esmf_fielddestroy(ps_b4adj_target_grid, rc=rc)</div>
-<div class="line"><a name="l01939"></a><span class="lineno"> 1939</span>&#160; call esmf_fielddestroy(pres_b4adj_target_grid, rc=rc)</div>
-<div class="line"><a name="l01940"></a><span class="lineno"> 1940</span>&#160; call esmf_fielddestroy(temp_b4adj_target_grid, rc=rc)</div>
-<div class="line"><a name="l01941"></a><span class="lineno"> 1941</span>&#160; call esmf_fielddestroy(terrain_interp_to_target_grid, rc=rc)</div>
-<div class="line"><a name="l01942"></a><span class="lineno"> 1942</span>&#160;</div>
-<div class="line"><a name="l01943"></a><span class="lineno"> 1943</span>&#160; <span class="keywordflow">do</span> i = 1, num_tracers</div>
-<div class="line"><a name="l01944"></a><span class="lineno"> 1944</span>&#160;   call esmf_fielddestroy(tracers_b4adj_target_grid(i), rc=rc)</div>
-<div class="line"><a name="l01945"></a><span class="lineno"> 1945</span>&#160; <span class="keywordflow">enddo</span></div>
+<div class="line"><a name="l01934"></a><span class="lineno"> 1934</span>&#160; call esmf_fielddestroy(wind_b4adj_target_grid, rc=rc)</div>
+<div class="line"><a name="l01935"></a><span class="lineno"> 1935</span>&#160; call esmf_fielddestroy(dzdt_b4adj_target_grid, rc=rc)</div>
+<div class="line"><a name="l01936"></a><span class="lineno"> 1936</span>&#160; call esmf_fielddestroy(ps_b4adj_target_grid, rc=rc)</div>
+<div class="line"><a name="l01937"></a><span class="lineno"> 1937</span>&#160; call esmf_fielddestroy(pres_b4adj_target_grid, rc=rc)</div>
+<div class="line"><a name="l01938"></a><span class="lineno"> 1938</span>&#160; call esmf_fielddestroy(temp_b4adj_target_grid, rc=rc)</div>
+<div class="line"><a name="l01939"></a><span class="lineno"> 1939</span>&#160; call esmf_fielddestroy(terrain_interp_to_target_grid, rc=rc)</div>
+<div class="line"><a name="l01940"></a><span class="lineno"> 1940</span>&#160;</div>
+<div class="line"><a name="l01941"></a><span class="lineno"> 1941</span>&#160; <span class="keywordflow">do</span> i = 1, num_tracers</div>
+<div class="line"><a name="l01942"></a><span class="lineno"> 1942</span>&#160;   call esmf_fielddestroy(tracers_b4adj_target_grid(i), rc=rc)</div>
+<div class="line"><a name="l01943"></a><span class="lineno"> 1943</span>&#160; <span class="keywordflow">enddo</span></div>
+<div class="line"><a name="l01944"></a><span class="lineno"> 1944</span>&#160;</div>
+<div class="line"><a name="l01945"></a><span class="lineno"> 1945</span>&#160; <span class="keyword">deallocate</span>(tracers_b4adj_target_grid)</div>
 <div class="line"><a name="l01946"></a><span class="lineno"> 1946</span>&#160;</div>
-<div class="line"><a name="l01947"></a><span class="lineno"> 1947</span>&#160; <span class="keyword">deallocate</span>(tracers_b4adj_target_grid)</div>
+<div class="line"><a name="l01947"></a><span class="lineno"> 1947</span>&#160;<span class="keyword"> end subroutine </span>cleanup_target_atm_b4adj_data</div>
 <div class="line"><a name="l01948"></a><span class="lineno"> 1948</span>&#160;</div>
-<div class="line"><a name="l01949"></a><span class="lineno"> 1949</span>&#160;<span class="keyword"> end subroutine </span>cleanup_target_atm_b4adj_data</div>
-<div class="line"><a name="l01950"></a><span class="lineno"> 1950</span>&#160;</div>
-<div class="line"><a name="l01953"></a><span class="lineno"> 1953</span>&#160;<span class="keyword"> subroutine </span>cleanup_target_atm_data</div>
+<div class="line"><a name="l01951"></a><span class="lineno"> 1951</span>&#160;<span class="keyword"> subroutine </span>cleanup_target_atm_data</div>
+<div class="line"><a name="l01952"></a><span class="lineno"> 1952</span>&#160;</div>
+<div class="line"><a name="l01953"></a><span class="lineno"> 1953</span>&#160; <span class="keywordtype">implicit none</span></div>
 <div class="line"><a name="l01954"></a><span class="lineno"> 1954</span>&#160;</div>
-<div class="line"><a name="l01955"></a><span class="lineno"> 1955</span>&#160; <span class="keywordtype">implicit none</span></div>
+<div class="line"><a name="l01955"></a><span class="lineno"> 1955</span>&#160; <span class="keywordtype">integer</span>                     :: i, rc</div>
 <div class="line"><a name="l01956"></a><span class="lineno"> 1956</span>&#160;</div>
-<div class="line"><a name="l01957"></a><span class="lineno"> 1957</span>&#160; <span class="keywordtype">integer</span>                     :: i, rc</div>
+<div class="line"><a name="l01957"></a><span class="lineno"> 1957</span>&#160; print*,<span class="stringliteral">&quot;- DESTROY TARGET GRID ATMOSPHERIC FIELDS.&quot;</span></div>
 <div class="line"><a name="l01958"></a><span class="lineno"> 1958</span>&#160;</div>
-<div class="line"><a name="l01959"></a><span class="lineno"> 1959</span>&#160; print*,<span class="stringliteral">&quot;- DESTROY TARGET GRID ATMOSPHERIC FIELDS.&quot;</span></div>
-<div class="line"><a name="l01960"></a><span class="lineno"> 1960</span>&#160;</div>
-<div class="line"><a name="l01961"></a><span class="lineno"> 1961</span>&#160; call esmf_fielddestroy(delp_target_grid, rc=rc)</div>
-<div class="line"><a name="l01962"></a><span class="lineno"> 1962</span>&#160; call esmf_fielddestroy(dzdt_target_grid, rc=rc)</div>
-<div class="line"><a name="l01963"></a><span class="lineno"> 1963</span>&#160; call esmf_fielddestroy(ps_target_grid, rc=rc)</div>
-<div class="line"><a name="l01964"></a><span class="lineno"> 1964</span>&#160; call esmf_fielddestroy(pres_target_grid, rc=rc)</div>
-<div class="line"><a name="l01965"></a><span class="lineno"> 1965</span>&#160; call esmf_fielddestroy(temp_target_grid, rc=rc)</div>
-<div class="line"><a name="l01966"></a><span class="lineno"> 1966</span>&#160; call esmf_fielddestroy(u_s_target_grid, rc=rc)</div>
-<div class="line"><a name="l01967"></a><span class="lineno"> 1967</span>&#160; call esmf_fielddestroy(v_s_target_grid, rc=rc)</div>
-<div class="line"><a name="l01968"></a><span class="lineno"> 1968</span>&#160; call esmf_fielddestroy(wind_target_grid, rc=rc)</div>
-<div class="line"><a name="l01969"></a><span class="lineno"> 1969</span>&#160; call esmf_fielddestroy(wind_s_target_grid, rc=rc)</div>
-<div class="line"><a name="l01970"></a><span class="lineno"> 1970</span>&#160; call esmf_fielddestroy(wind_w_target_grid, rc=rc)</div>
-<div class="line"><a name="l01971"></a><span class="lineno"> 1971</span>&#160; call esmf_fielddestroy(u_w_target_grid, rc=rc)</div>
-<div class="line"><a name="l01972"></a><span class="lineno"> 1972</span>&#160; call esmf_fielddestroy(v_w_target_grid, rc=rc)</div>
-<div class="line"><a name="l01973"></a><span class="lineno"> 1973</span>&#160; call esmf_fielddestroy(zh_target_grid, rc=rc)</div>
-<div class="line"><a name="l01974"></a><span class="lineno"> 1974</span>&#160;</div>
-<div class="line"><a name="l01975"></a><span class="lineno"> 1975</span>&#160; <span class="keywordflow">do</span> i = 1, num_tracers</div>
-<div class="line"><a name="l01976"></a><span class="lineno"> 1976</span>&#160;   call esmf_fielddestroy(tracers_target_grid(i), rc=rc)</div>
-<div class="line"><a name="l01977"></a><span class="lineno"> 1977</span>&#160; <span class="keywordflow">enddo</span></div>
+<div class="line"><a name="l01959"></a><span class="lineno"> 1959</span>&#160; call esmf_fielddestroy(delp_target_grid, rc=rc)</div>
+<div class="line"><a name="l01960"></a><span class="lineno"> 1960</span>&#160; call esmf_fielddestroy(dzdt_target_grid, rc=rc)</div>
+<div class="line"><a name="l01961"></a><span class="lineno"> 1961</span>&#160; call esmf_fielddestroy(ps_target_grid, rc=rc)</div>
+<div class="line"><a name="l01962"></a><span class="lineno"> 1962</span>&#160; call esmf_fielddestroy(pres_target_grid, rc=rc)</div>
+<div class="line"><a name="l01963"></a><span class="lineno"> 1963</span>&#160; call esmf_fielddestroy(temp_target_grid, rc=rc)</div>
+<div class="line"><a name="l01964"></a><span class="lineno"> 1964</span>&#160; call esmf_fielddestroy(u_s_target_grid, rc=rc)</div>
+<div class="line"><a name="l01965"></a><span class="lineno"> 1965</span>&#160; call esmf_fielddestroy(v_s_target_grid, rc=rc)</div>
+<div class="line"><a name="l01966"></a><span class="lineno"> 1966</span>&#160; call esmf_fielddestroy(wind_target_grid, rc=rc)</div>
+<div class="line"><a name="l01967"></a><span class="lineno"> 1967</span>&#160; call esmf_fielddestroy(wind_s_target_grid, rc=rc)</div>
+<div class="line"><a name="l01968"></a><span class="lineno"> 1968</span>&#160; call esmf_fielddestroy(wind_w_target_grid, rc=rc)</div>
+<div class="line"><a name="l01969"></a><span class="lineno"> 1969</span>&#160; call esmf_fielddestroy(u_w_target_grid, rc=rc)</div>
+<div class="line"><a name="l01970"></a><span class="lineno"> 1970</span>&#160; call esmf_fielddestroy(v_w_target_grid, rc=rc)</div>
+<div class="line"><a name="l01971"></a><span class="lineno"> 1971</span>&#160; call esmf_fielddestroy(zh_target_grid, rc=rc)</div>
+<div class="line"><a name="l01972"></a><span class="lineno"> 1972</span>&#160;</div>
+<div class="line"><a name="l01973"></a><span class="lineno"> 1973</span>&#160; <span class="keywordflow">do</span> i = 1, num_tracers</div>
+<div class="line"><a name="l01974"></a><span class="lineno"> 1974</span>&#160;   call esmf_fielddestroy(tracers_target_grid(i), rc=rc)</div>
+<div class="line"><a name="l01975"></a><span class="lineno"> 1975</span>&#160; <span class="keywordflow">enddo</span></div>
+<div class="line"><a name="l01976"></a><span class="lineno"> 1976</span>&#160;</div>
+<div class="line"><a name="l01977"></a><span class="lineno"> 1977</span>&#160; <span class="keyword">deallocate</span>(tracers_target_grid)</div>
 <div class="line"><a name="l01978"></a><span class="lineno"> 1978</span>&#160;</div>
-<div class="line"><a name="l01979"></a><span class="lineno"> 1979</span>&#160; <span class="keyword">deallocate</span>(tracers_target_grid)</div>
-<div class="line"><a name="l01980"></a><span class="lineno"> 1980</span>&#160;</div>
-<div class="line"><a name="l01981"></a><span class="lineno"> 1981</span>&#160; <span class="keywordflow">if</span> (esmf_fieldiscreated(qnifa_climo_target_grid)) <span class="keywordflow">then</span></div>
-<div class="line"><a name="l01982"></a><span class="lineno"> 1982</span>&#160;   call esmf_fielddestroy(qnifa_climo_target_grid, rc=rc)</div>
-<div class="line"><a name="l01983"></a><span class="lineno"> 1983</span>&#160; <span class="keywordflow">endif</span></div>
-<div class="line"><a name="l01984"></a><span class="lineno"> 1984</span>&#160;</div>
-<div class="line"><a name="l01985"></a><span class="lineno"> 1985</span>&#160; <span class="keywordflow">if</span> (esmf_fieldiscreated(qnwfa_climo_target_grid)) <span class="keywordflow">then</span></div>
-<div class="line"><a name="l01986"></a><span class="lineno"> 1986</span>&#160;   call esmf_fielddestroy(qnwfa_climo_target_grid, rc=rc)</div>
-<div class="line"><a name="l01987"></a><span class="lineno"> 1987</span>&#160; <span class="keywordflow">endif</span></div>
+<div class="line"><a name="l01979"></a><span class="lineno"> 1979</span>&#160; <span class="keywordflow">if</span> (esmf_fieldiscreated(qnifa_climo_target_grid)) <span class="keywordflow">then</span></div>
+<div class="line"><a name="l01980"></a><span class="lineno"> 1980</span>&#160;   call esmf_fielddestroy(qnifa_climo_target_grid, rc=rc)</div>
+<div class="line"><a name="l01981"></a><span class="lineno"> 1981</span>&#160; <span class="keywordflow">endif</span></div>
+<div class="line"><a name="l01982"></a><span class="lineno"> 1982</span>&#160;</div>
+<div class="line"><a name="l01983"></a><span class="lineno"> 1983</span>&#160; <span class="keywordflow">if</span> (esmf_fieldiscreated(qnwfa_climo_target_grid)) <span class="keywordflow">then</span></div>
+<div class="line"><a name="l01984"></a><span class="lineno"> 1984</span>&#160;   call esmf_fielddestroy(qnwfa_climo_target_grid, rc=rc)</div>
+<div class="line"><a name="l01985"></a><span class="lineno"> 1985</span>&#160; <span class="keywordflow">endif</span></div>
+<div class="line"><a name="l01986"></a><span class="lineno"> 1986</span>&#160;</div>
+<div class="line"><a name="l01987"></a><span class="lineno"> 1987</span>&#160;<span class="keyword"> end subroutine </span>cleanup_target_atm_data</div>
 <div class="line"><a name="l01988"></a><span class="lineno"> 1988</span>&#160;</div>
-<div class="line"><a name="l01989"></a><span class="lineno"> 1989</span>&#160;<span class="keyword"> end subroutine </span>cleanup_target_atm_data</div>
-<div class="line"><a name="l01990"></a><span class="lineno"> 1990</span>&#160;</div>
-<div class="line"><a name="l01991"></a><span class="lineno"> 1991</span>&#160;<span class="keyword"> end module </span><a class="code" href="classatmosphere.html">atmosphere</a></div>
-<div class="ttc" id="write__data_8F90_html_a5444b28ff73771c629f9246a7ab8c689"><div class="ttname"><a href="write__data_8F90.html#a5444b28ff73771c629f9246a7ab8c689">write_fv3_atm_bndy_data_netcdf</a></div><div class="ttdeci">subroutine write_fv3_atm_bndy_data_netcdf(localpet)</div><div class="ttdoc">Writes atmospheric fields along the lateral boundary. </div><div class="ttdef"><b>Definition:</b> <a href="write__data_8F90_source.html#l00088">write_data.F90:88</a></div></div>
+<div class="line"><a name="l01989"></a><span class="lineno"> 1989</span>&#160;<span class="keyword"> end module </span><a class="code" href="classatmosphere.html">atmosphere</a></div>
+<div class="ttc" id="write__data_8F90_html_a5444b28ff73771c629f9246a7ab8c689"><div class="ttname"><a href="write__data_8F90.html#a5444b28ff73771c629f9246a7ab8c689">write_fv3_atm_bndy_data_netcdf</a></div><div class="ttdeci">subroutine write_fv3_atm_bndy_data_netcdf(localpet)</div><div class="ttdoc">Writes atmospheric fields along the lateral boundary. </div><div class="ttdef"><b>Definition:</b> <a href="write__data_8F90_source.html#l00087">write_data.F90:87</a></div></div>
 <div class="ttc" id="classinput__data_html_a0acaa48f4b9fa7dc63df496ee4f5f9f4"><div class="ttname"><a href="classinput__data.html#a0acaa48f4b9fa7dc63df496ee4f5f9f4">input_data::cleanup_input_atm_data</a></div><div class="ttdeci">subroutine, public cleanup_input_atm_data</div><div class="ttdoc">Free up memory associated with atm data. </div><div class="ttdef"><b>Definition:</b> <a href="input__data_8F90_source.html#l06475">input_data.F90:6475</a></div></div>
 <div class="ttc" id="classatmosphere_html_a67a8ac36ae3346e7697cc649ce6d7c8c"><div class="ttname"><a href="classatmosphere.html#a67a8ac36ae3346e7697cc649ce6d7c8c">atmosphere::create_atm_b4adj_esmf_fields</a></div><div class="ttdeci">subroutine create_atm_b4adj_esmf_fields</div><div class="ttdoc">Create target grid field objects to hold data before vertical interpolation. </div><div class="ttdef"><b>Definition:</b> <a href="atmosphere_8F90_source.html#l00431">atmosphere.F90:431</a></div></div>
 <div class="ttc" id="classmodel__grid_html"><div class="ttname"><a href="classmodel__grid.html">model_grid</a></div><div class="ttdef"><b>Definition:</b> <a href="chgres__cube_8fd_2model__grid_8F90_source.html#l00007">model_grid.F90:7</a></div></div>
 <div class="ttc" id="classatmosphere_html"><div class="ttname"><a href="classatmosphere.html">atmosphere</a></div><div class="ttdef"><b>Definition:</b> <a href="atmosphere_8F90_source.html#l00018">atmosphere.F90:18</a></div></div>
 <div class="ttc" id="classthompson__mp__climo__data_html_a50ac430a78518b0963e23517cba243bb"><div class="ttname"><a href="classthompson__mp__climo__data.html#a50ac430a78518b0963e23517cba243bb">thompson_mp_climo_data::cleanup_thomp_mp_climo_input_data</a></div><div class="ttdeci">subroutine, public cleanup_thomp_mp_climo_input_data</div><div class="ttdoc">Free up memory associated with this module. </div><div class="ttdef"><b>Definition:</b> <a href="thompson__mp__climo__data_8F90_source.html#l00324">thompson_mp_climo_data.F90:324</a></div></div>
-<div class="ttc" id="classatmosphere_html_a79bac062052ba98de5baa9ea854410fe"><div class="ttname"><a href="classatmosphere.html#a79bac062052ba98de5baa9ea854410fe">atmosphere::atmosphere_driver</a></div><div class="ttdeci">subroutine, public atmosphere_driver(localpet)</div><div class="ttdoc">Driver routine for atmospheric fields. </div><div class="ttdef"><b>Definition:</b> <a href="atmosphere_8F90_source.html#l00109">atmosphere.F90:109</a></div></div>
+<div class="ttc" id="classatmosphere_html_a79bac062052ba98de5baa9ea854410fe"><div class="ttname"><a href="classatmosphere.html#a79bac062052ba98de5baa9ea854410fe">atmosphere::atmosphere_driver</a></div><div class="ttdeci">subroutine, public atmosphere_driver(localpet)</div><div class="ttdoc">Driver routine to process for atmospheric fields. </div><div class="ttdef"><b>Definition:</b> <a href="atmosphere_8F90_source.html#l00109">atmosphere.F90:109</a></div></div>
 <div class="ttc" id="classinput__data_html"><div class="ttname"><a href="classinput__data.html">input_data</a></div><div class="ttdef"><b>Definition:</b> <a href="input__data_8F90_source.html#l00013">input_data.F90:13</a></div></div>
 <div class="ttc" id="classthompson__mp__climo__data_html"><div class="ttname"><a href="classthompson__mp__climo__data.html">thompson_mp_climo_data</a></div><div class="ttdef"><b>Definition:</b> <a href="thompson__mp__climo__data_8F90_source.html#l00007">thompson_mp_climo_data.F90:7</a></div></div>
-<div class="ttc" id="write__data_8F90_html_a0d32984d1e12f6fefe37f9b7e75de5d9"><div class="ttname"><a href="write__data_8F90.html#a0d32984d1e12f6fefe37f9b7e75de5d9">write_fv3_atm_data_netcdf</a></div><div class="ttdeci">subroutine write_fv3_atm_data_netcdf(localpet)</div><div class="ttdoc">Write atmospheric coldstart files (netcdf format). </div><div class="ttdef"><b>Definition:</b> <a href="write__data_8F90_source.html#l01194">write_data.F90:1194</a></div></div>
+<div class="ttc" id="write__data_8F90_html_a0d32984d1e12f6fefe37f9b7e75de5d9"><div class="ttname"><a href="write__data_8F90.html#a0d32984d1e12f6fefe37f9b7e75de5d9">write_fv3_atm_data_netcdf</a></div><div class="ttdeci">subroutine write_fv3_atm_data_netcdf(localpet)</div><div class="ttdoc">Write atmospheric coldstart files (netcdf format). </div><div class="ttdef"><b>Definition:</b> <a href="write__data_8F90_source.html#l01193">write_data.F90:1193</a></div></div>
 <div class="ttc" id="classthompson__mp__climo__data_html_a92a071650b2c4368ae233ac8b85783b4"><div class="ttname"><a href="classthompson__mp__climo__data.html#a92a071650b2c4368ae233ac8b85783b4">thompson_mp_climo_data::read_thomp_mp_climo_data</a></div><div class="ttdeci">subroutine, public read_thomp_mp_climo_data</div><div class="ttdoc">Read Thompson climatological MP data file and time interpolate data to to current cycle time...</div><div class="ttdef"><b>Definition:</b> <a href="thompson__mp__climo__data_8F90_source.html#l00046">thompson_mp_climo_data.F90:46</a></div></div>
 <div class="ttc" id="write__data_8F90_html_a7b255517030a7f64aee71d4ff16863dd"><div class="ttname"><a href="write__data_8F90.html#a7b255517030a7f64aee71d4ff16863dd">write_fv3_atm_header_netcdf</a></div><div class="ttdeci">subroutine write_fv3_atm_header_netcdf(localpet)</div><div class="ttdoc">Writes atmospheric header file in netcdf format. </div><div class="ttdef"><b>Definition:</b> <a href="write__data_8F90_source.html#l00014">write_data.F90:14</a></div></div>
 <div class="ttc" id="classinput__data_html_acd6a4066e6c50a722948161870a94539"><div class="ttname"><a href="classinput__data.html#acd6a4066e6c50a722948161870a94539">input_data::read_input_atm_data</a></div><div class="ttdeci">subroutine, public read_input_atm_data(localpet)</div><div class="ttdoc">Read input grid atmospheric data driver. </div><div class="ttdef"><b>Definition:</b> <a href="input__data_8F90_source.html#l00139">input_data.F90:139</a></div></div>

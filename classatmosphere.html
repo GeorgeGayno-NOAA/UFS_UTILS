@@ -113,66 +113,66 @@ $(document).ready(function(){initNavTree('classatmosphere.html','');});
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a79bac062052ba98de5baa9ea854410fe"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatmosphere.html#a79bac062052ba98de5baa9ea854410fe">atmosphere_driver</a> (localpet)</td></tr>
-<tr class="memdesc:a79bac062052ba98de5baa9ea854410fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver routine for atmospheric fields.  <a href="#a79bac062052ba98de5baa9ea854410fe">More...</a><br/></td></tr>
+<tr class="memdesc:a79bac062052ba98de5baa9ea854410fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver routine to process for atmospheric fields.  <a href="#a79bac062052ba98de5baa9ea854410fe">More...</a><br/></td></tr>
 <tr class="separator:a79bac062052ba98de5baa9ea854410fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67a8ac36ae3346e7697cc649ce6d7c8c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a67a8ac36ae3346e7697cc649ce6d7c8c"></a>
-subroutine&#160;</td><td class="memItemRight" valign="bottom"><b>create_atm_b4adj_esmf_fields</b></td></tr>
+<tr class="memitem:a67a8ac36ae3346e7697cc649ce6d7c8c"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatmosphere.html#a67a8ac36ae3346e7697cc649ce6d7c8c">create_atm_b4adj_esmf_fields</a></td></tr>
+<tr class="memdesc:a67a8ac36ae3346e7697cc649ce6d7c8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create target grid field objects to hold data before vertical interpolation.  <a href="#a67a8ac36ae3346e7697cc649ce6d7c8c">More...</a><br/></td></tr>
 <tr class="separator:a67a8ac36ae3346e7697cc649ce6d7c8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc4e65688bda454688a6f571d6939ae7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc4e65688bda454688a6f571d6939ae7"></a>
-subroutine&#160;</td><td class="memItemRight" valign="bottom"><b>terp3</b> (IM, IXZ1, IXQ1, IXZ2, IXQ2, NM, NXQ1, NXQ2, KM1, KXZ1, KXQ1, Z1, Q1, KM2, KXZ2, KXQ2, Z2, Q2)</td></tr>
+<tr class="memitem:acc4e65688bda454688a6f571d6939ae7"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatmosphere.html#acc4e65688bda454688a6f571d6939ae7">terp3</a> (IM, IXZ1, IXQ1, IXZ2, IXQ2, NM, NXQ1, NXQ2, KM1, KXZ1, KXQ1, Z1, Q1, KM2, KXZ2, KXQ2, Z2, Q2)</td></tr>
+<tr class="memdesc:acc4e65688bda454688a6f571d6939ae7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cubically interpolate in one dimension.  <a href="#acc4e65688bda454688a6f571d6939ae7">More...</a><br/></td></tr>
 <tr class="separator:acc4e65688bda454688a6f571d6939ae7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a4a01d8bf9dd536519d66ccad87491d16"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a01d8bf9dd536519d66ccad87491d16"></a>
-type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>delp_target_grid</b></td></tr>
+<tr class="memitem:a4a01d8bf9dd536519d66ccad87491d16"><td class="memItemLeft" align="right" valign="top">type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatmosphere.html#a4a01d8bf9dd536519d66ccad87491d16">delp_target_grid</a></td></tr>
+<tr class="memdesc:a4a01d8bf9dd536519d66ccad87491d16"><td class="mdescLeft">&#160;</td><td class="mdescRight">pressure thickness  <a href="#a4a01d8bf9dd536519d66ccad87491d16">More...</a><br/></td></tr>
 <tr class="separator:a4a01d8bf9dd536519d66ccad87491d16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e7960fcc8046a86169b581701361286"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2e7960fcc8046a86169b581701361286"></a>
-type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>dzdt_target_grid</b></td></tr>
+<tr class="memitem:a2e7960fcc8046a86169b581701361286"><td class="memItemLeft" align="right" valign="top">type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatmosphere.html#a2e7960fcc8046a86169b581701361286">dzdt_target_grid</a></td></tr>
+<tr class="memdesc:a2e7960fcc8046a86169b581701361286"><td class="mdescLeft">&#160;</td><td class="mdescRight">vertical velocity  <a href="#a2e7960fcc8046a86169b581701361286">More...</a><br/></td></tr>
 <tr class="separator:a2e7960fcc8046a86169b581701361286"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a087a3df78b64c3c342198f2bcc6c8d11"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a087a3df78b64c3c342198f2bcc6c8d11"></a>
-integer, public&#160;</td><td class="memItemRight" valign="bottom"><b>lev_target</b></td></tr>
+<tr class="memitem:a087a3df78b64c3c342198f2bcc6c8d11"><td class="memItemLeft" align="right" valign="top">integer, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatmosphere.html#a087a3df78b64c3c342198f2bcc6c8d11">lev_target</a></td></tr>
+<tr class="memdesc:a087a3df78b64c3c342198f2bcc6c8d11"><td class="mdescLeft">&#160;</td><td class="mdescRight">num vertical levels  <a href="#a087a3df78b64c3c342198f2bcc6c8d11">More...</a><br/></td></tr>
 <tr class="separator:a087a3df78b64c3c342198f2bcc6c8d11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa66c8009b3d057d7bf4da5fb449a7756"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa66c8009b3d057d7bf4da5fb449a7756"></a>
-integer, public&#160;</td><td class="memItemRight" valign="bottom"><b>levp1_target</b></td></tr>
+<tr class="memitem:aa66c8009b3d057d7bf4da5fb449a7756"><td class="memItemLeft" align="right" valign="top">integer, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatmosphere.html#aa66c8009b3d057d7bf4da5fb449a7756">levp1_target</a></td></tr>
+<tr class="memdesc:aa66c8009b3d057d7bf4da5fb449a7756"><td class="mdescLeft">&#160;</td><td class="mdescRight">num levels plus 1  <a href="#aa66c8009b3d057d7bf4da5fb449a7756">More...</a><br/></td></tr>
 <tr class="separator:aa66c8009b3d057d7bf4da5fb449a7756"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cf84436050173b6a0dd926861128428"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5cf84436050173b6a0dd926861128428"></a>
-integer, public&#160;</td><td class="memItemRight" valign="bottom"><b>nvcoord_target</b></td></tr>
+<tr class="memitem:a5cf84436050173b6a0dd926861128428"><td class="memItemLeft" align="right" valign="top">integer, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatmosphere.html#a5cf84436050173b6a0dd926861128428">nvcoord_target</a></td></tr>
+<tr class="memdesc:a5cf84436050173b6a0dd926861128428"><td class="mdescLeft">&#160;</td><td class="mdescRight">num vertical coordinate variables  <a href="#a5cf84436050173b6a0dd926861128428">More...</a><br/></td></tr>
 <tr class="separator:a5cf84436050173b6a0dd926861128428"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00c34f9bbee9f30bff72a84d6731c319"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00c34f9bbee9f30bff72a84d6731c319"></a>
-type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>ps_target_grid</b></td></tr>
+<tr class="memitem:a00c34f9bbee9f30bff72a84d6731c319"><td class="memItemLeft" align="right" valign="top">type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatmosphere.html#a00c34f9bbee9f30bff72a84d6731c319">ps_target_grid</a></td></tr>
+<tr class="memdesc:a00c34f9bbee9f30bff72a84d6731c319"><td class="mdescLeft">&#160;</td><td class="mdescRight">surface pressure  <a href="#a00c34f9bbee9f30bff72a84d6731c319">More...</a><br/></td></tr>
 <tr class="separator:a00c34f9bbee9f30bff72a84d6731c319"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacc1ee6ac118bc90757b0ec7648ee589"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacc1ee6ac118bc90757b0ec7648ee589"></a>
-type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>qnifa_climo_target_grid</b></td></tr>
+<tr class="memitem:aacc1ee6ac118bc90757b0ec7648ee589"><td class="memItemLeft" align="right" valign="top">type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatmosphere.html#aacc1ee6ac118bc90757b0ec7648ee589">qnifa_climo_target_grid</a></td></tr>
+<tr class="memdesc:aacc1ee6ac118bc90757b0ec7648ee589"><td class="mdescLeft">&#160;</td><td class="mdescRight">number concentration of ice friendly aerosols on target horiz/vert grid.  <a href="#aacc1ee6ac118bc90757b0ec7648ee589">More...</a><br/></td></tr>
 <tr class="separator:aacc1ee6ac118bc90757b0ec7648ee589"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c1486c0b773de210a46bbd6807442c7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c1486c0b773de210a46bbd6807442c7"></a>
-type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>qnwfa_climo_target_grid</b></td></tr>
+<tr class="memitem:a1c1486c0b773de210a46bbd6807442c7"><td class="memItemLeft" align="right" valign="top">type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatmosphere.html#a1c1486c0b773de210a46bbd6807442c7">qnwfa_climo_target_grid</a></td></tr>
+<tr class="memdesc:a1c1486c0b773de210a46bbd6807442c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">number concentration of water friendly aerosols on target horiz/vert grid.  <a href="#a1c1486c0b773de210a46bbd6807442c7">More...</a><br/></td></tr>
 <tr class="separator:a1c1486c0b773de210a46bbd6807442c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7872ff8ebbd056093f8fd346af5a9b00"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7872ff8ebbd056093f8fd346af5a9b00"></a>
-type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>temp_target_grid</b></td></tr>
+<tr class="memitem:a7872ff8ebbd056093f8fd346af5a9b00"><td class="memItemLeft" align="right" valign="top">type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatmosphere.html#a7872ff8ebbd056093f8fd346af5a9b00">temp_target_grid</a></td></tr>
+<tr class="memdesc:a7872ff8ebbd056093f8fd346af5a9b00"><td class="mdescLeft">&#160;</td><td class="mdescRight">temperautre  <a href="#a7872ff8ebbd056093f8fd346af5a9b00">More...</a><br/></td></tr>
 <tr class="separator:a7872ff8ebbd056093f8fd346af5a9b00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa755c536f41d9db969c6e6b6fe4d4578"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa755c536f41d9db969c6e6b6fe4d4578"></a>
-type(esmf_field), dimension(:), <br class="typebreak"/>
-allocatable, public&#160;</td><td class="memItemRight" valign="bottom"><b>tracers_target_grid</b></td></tr>
+<tr class="memitem:aa755c536f41d9db969c6e6b6fe4d4578"><td class="memItemLeft" align="right" valign="top">type(esmf_field), dimension(:), <br class="typebreak"/>
+allocatable, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatmosphere.html#aa755c536f41d9db969c6e6b6fe4d4578">tracers_target_grid</a></td></tr>
+<tr class="memdesc:aa755c536f41d9db969c6e6b6fe4d4578"><td class="mdescLeft">&#160;</td><td class="mdescRight">tracers  <a href="#aa755c536f41d9db969c6e6b6fe4d4578">More...</a><br/></td></tr>
 <tr class="separator:aa755c536f41d9db969c6e6b6fe4d4578"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f4e2ff9ea5fbdc485a8306cf58c1422"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4f4e2ff9ea5fbdc485a8306cf58c1422"></a>
-type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>u_s_target_grid</b></td></tr>
+<tr class="memitem:a4f4e2ff9ea5fbdc485a8306cf58c1422"><td class="memItemLeft" align="right" valign="top">type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatmosphere.html#a4f4e2ff9ea5fbdc485a8306cf58c1422">u_s_target_grid</a></td></tr>
+<tr class="memdesc:a4f4e2ff9ea5fbdc485a8306cf58c1422"><td class="mdescLeft">&#160;</td><td class="mdescRight">u-wind, 'south' edge  <a href="#a4f4e2ff9ea5fbdc485a8306cf58c1422">More...</a><br/></td></tr>
 <tr class="separator:a4f4e2ff9ea5fbdc485a8306cf58c1422"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd2b58a77e1d7a74861bd36dd5fd6ad2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acd2b58a77e1d7a74861bd36dd5fd6ad2"></a>
-type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>u_w_target_grid</b></td></tr>
+<tr class="memitem:acd2b58a77e1d7a74861bd36dd5fd6ad2"><td class="memItemLeft" align="right" valign="top">type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatmosphere.html#acd2b58a77e1d7a74861bd36dd5fd6ad2">u_w_target_grid</a></td></tr>
+<tr class="memdesc:acd2b58a77e1d7a74861bd36dd5fd6ad2"><td class="mdescLeft">&#160;</td><td class="mdescRight">u-wind, 'west' edge  <a href="#acd2b58a77e1d7a74861bd36dd5fd6ad2">More...</a><br/></td></tr>
 <tr class="separator:acd2b58a77e1d7a74861bd36dd5fd6ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af47c3ae05903afacbaf5c705551fae8a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af47c3ae05903afacbaf5c705551fae8a"></a>
-type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>v_s_target_grid</b></td></tr>
+<tr class="memitem:af47c3ae05903afacbaf5c705551fae8a"><td class="memItemLeft" align="right" valign="top">type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatmosphere.html#af47c3ae05903afacbaf5c705551fae8a">v_s_target_grid</a></td></tr>
+<tr class="memdesc:af47c3ae05903afacbaf5c705551fae8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">v-wind, 'south' edge  <a href="#af47c3ae05903afacbaf5c705551fae8a">More...</a><br/></td></tr>
 <tr class="separator:af47c3ae05903afacbaf5c705551fae8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff36363895fec1b345aea78549594628"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aff36363895fec1b345aea78549594628"></a>
-type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>v_w_target_grid</b></td></tr>
+<tr class="memitem:aff36363895fec1b345aea78549594628"><td class="memItemLeft" align="right" valign="top">type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatmosphere.html#aff36363895fec1b345aea78549594628">v_w_target_grid</a></td></tr>
+<tr class="memdesc:aff36363895fec1b345aea78549594628"><td class="mdescLeft">&#160;</td><td class="mdescRight">v-wind, 'west' edge  <a href="#aff36363895fec1b345aea78549594628">More...</a><br/></td></tr>
 <tr class="separator:aff36363895fec1b345aea78549594628"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5bfa0946475301f0de866a20a0c9af6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5bfa0946475301f0de866a20a0c9af6"></a>
-real(esmf_kind_r8), dimension(:,:), <br class="typebreak"/>
-allocatable, public&#160;</td><td class="memItemRight" valign="bottom"><b>vcoord_target</b></td></tr>
+<tr class="memitem:ae5bfa0946475301f0de866a20a0c9af6"><td class="memItemLeft" align="right" valign="top">real(esmf_kind_r8), dimension(:,:), <br class="typebreak"/>
+allocatable, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatmosphere.html#ae5bfa0946475301f0de866a20a0c9af6">vcoord_target</a></td></tr>
+<tr class="memdesc:ae5bfa0946475301f0de866a20a0c9af6"><td class="mdescLeft">&#160;</td><td class="mdescRight">vertical coordinate  <a href="#ae5bfa0946475301f0de866a20a0c9af6">More...</a><br/></td></tr>
 <tr class="separator:ae5bfa0946475301f0de866a20a0c9af6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2cceb8cd4b47bc9907ef667342c31b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2cceb8cd4b47bc9907ef667342c31b8"></a>
-type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>zh_target_grid</b></td></tr>
+<tr class="memitem:ae2cceb8cd4b47bc9907ef667342c31b8"><td class="memItemLeft" align="right" valign="top">type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatmosphere.html#ae2cceb8cd4b47bc9907ef667342c31b8">zh_target_grid</a></td></tr>
+<tr class="memdesc:ae2cceb8cd4b47bc9907ef667342c31b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">3-d height  <a href="#ae2cceb8cd4b47bc9907ef667342c31b8">More...</a><br/></td></tr>
 <tr class="separator:ae2cceb8cd4b47bc9907ef667342c31b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -193,9 +193,451 @@ type(esmf_field), public&#160;</td><td class="memItemRight" valign="bottom"><b>z
       </table>
 </div><div class="memdoc">
 
-<p>Driver routine for atmospheric fields. </p>
+<p>Driver routine to process for atmospheric fields. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">localpet</td><td>ESMF local persistent execution thread </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>George Gayno </dd></dl>
 
-<p>Definition at line <a class="el" href="atmosphere_8F90_source.html#l00136">136</a> of file <a class="el" href="atmosphere_8F90_source.html">atmosphere.F90</a>.</p>
+<p>Definition at line <a class="el" href="atmosphere_8F90_source.html#l00109">109</a> of file <a class="el" href="atmosphere_8F90_source.html">atmosphere.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a67a8ac36ae3346e7697cc649ce6d7c8c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine atmosphere::create_atm_b4adj_esmf_fields </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create target grid field objects to hold data before vertical interpolation. </p>
+<p>These will be defined with the same number of vertical levels as the input grid.</p>
+<dl class="section author"><dt>Author</dt><dd>George Gayno </dd></dl>
+
+<p>Definition at line <a class="el" href="atmosphere_8F90_source.html#l00431">431</a> of file <a class="el" href="atmosphere_8F90_source.html">atmosphere.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acc4e65688bda454688a6f571d6939ae7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine atmosphere::terp3 </td>
+          <td>(</td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>IM</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>IXZ1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>IXQ1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>IXZ2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>IXQ2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>NM</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>NXQ1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>NXQ2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>KM1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>KXZ1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>KXQ1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(esmf_kind_r8), dimension(1+(im-1)*ixz1+(km1-1)*kxz1)&#160;</td>
+          <td class="paramname"><em>Z1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(esmf_kind_r8), dimension(1+(im-1)*ixq1+(km1-1)*kxq1+(nm-1)*nxq1)&#160;</td>
+          <td class="paramname"><em>Q1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>KM2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>KXZ2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>KXQ2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(esmf_kind_r8), dimension(1+(im-1)*ixz2+(km2-1)*kxz2)&#160;</td>
+          <td class="paramname"><em>Z2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(esmf_kind_r8), dimension(1+(im-1)*ixq2+(km2-1)*kxq2+(nm-1)*nxq2)&#160;</td>
+          <td class="paramname"><em>Q2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cubically interpolate in one dimension. </p>
+<p>Interpolate field(s) in one dimension along the column(s). The interpolation is cubic lagrangian with a monotonic constraint in the center of the domain. In the outer intervals it is linear. Outside the domain, fields are held constant.</p>
+<p>PROGRAM HISTORY LOG:</p>
+<ul>
+<li>98-05-01 MARK IREDELL</li>
+<li>1999-01-04 IREDELL USE ESSL SEARCH</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">im</td><td>integer number of columns </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ixz1</td><td>integer column skip number for z1 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ixq1</td><td>integer column skip number for q1 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ixz2</td><td>integer column skip number for z2 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ixq2</td><td>integer column skip number for q2 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nm</td><td>integer number of fields per column </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nxq1</td><td>integer field skip number for q1 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nxq2</td><td>integer field skip number for q2 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">km1</td><td>integer number of input points </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">kxz1</td><td>integer point skip number for z1 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">kxq1</td><td>integer point skip number for q1 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">z1</td><td>real (1+(im-1)*ixz1+(km1-1)*kxz1) input coordinate values in which to interpolate (z1 must be strictly monotonic in either direction) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">q1</td><td>real (1+(im-1)*ixq1+(km1-1)*kxq1+(nm-1)*nxq1) input fields to interpolate </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">km2</td><td>integer number of output points </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">kxz2</td><td>integer point skip number for z2 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">kxq2</td><td>integer point skip number for q2 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">z2</td><td>real (1+(im-1)*ixz2+(km2-1)*kxz2) output coordinate values to which to interpolate (z2 need not be monotonic) </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">q2</td><td>real (1+(im-1)*ixq2+(km2-1)*kxq2+(nm-1)*nxq2) output interpolated fields </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Mark Iredell </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>98-05-01 </dd></dl>
+
+<p>Definition at line <a class="el" href="atmosphere_8F90_source.html#l01592">1592</a> of file <a class="el" href="atmosphere_8F90_source.html">atmosphere.F90</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Field Documentation</h2>
+<a class="anchor" id="a4a01d8bf9dd536519d66ccad87491d16"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">type(esmf_field), public atmosphere::delp_target_grid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>pressure thickness </p>
+
+<p>Definition at line <a class="el" href="atmosphere_8F90_source.html#l00064">64</a> of file <a class="el" href="atmosphere_8F90_source.html">atmosphere.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2e7960fcc8046a86169b581701361286"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">type(esmf_field), public atmosphere::dzdt_target_grid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>vertical velocity </p>
+
+<p>Definition at line <a class="el" href="atmosphere_8F90_source.html#l00065">65</a> of file <a class="el" href="atmosphere_8F90_source.html">atmosphere.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a087a3df78b64c3c342198f2bcc6c8d11"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, public atmosphere::lev_target</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>num vertical levels </p>
+
+<p>Definition at line <a class="el" href="atmosphere_8F90_source.html#l00058">58</a> of file <a class="el" href="atmosphere_8F90_source.html">atmosphere.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa66c8009b3d057d7bf4da5fb449a7756"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, public atmosphere::levp1_target</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>num levels plus 1 </p>
+
+<p>Definition at line <a class="el" href="atmosphere_8F90_source.html#l00059">59</a> of file <a class="el" href="atmosphere_8F90_source.html">atmosphere.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5cf84436050173b6a0dd926861128428"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, public atmosphere::nvcoord_target</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>num vertical coordinate variables </p>
+
+<p>Definition at line <a class="el" href="atmosphere_8F90_source.html#l00060">60</a> of file <a class="el" href="atmosphere_8F90_source.html">atmosphere.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a00c34f9bbee9f30bff72a84d6731c319"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">type(esmf_field), public atmosphere::ps_target_grid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>surface pressure </p>
+
+<p>Definition at line <a class="el" href="atmosphere_8F90_source.html#l00069">69</a> of file <a class="el" href="atmosphere_8F90_source.html">atmosphere.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aacc1ee6ac118bc90757b0ec7648ee589"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">type(esmf_field), public atmosphere::qnifa_climo_target_grid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>number concentration of ice friendly aerosols on target horiz/vert grid. </p>
+
+<p>Definition at line <a class="el" href="atmosphere_8F90_source.html#l00090">90</a> of file <a class="el" href="atmosphere_8F90_source.html">atmosphere.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1c1486c0b773de210a46bbd6807442c7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">type(esmf_field), public atmosphere::qnwfa_climo_target_grid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>number concentration of water friendly aerosols on target horiz/vert grid. </p>
+
+<p>Definition at line <a class="el" href="atmosphere_8F90_source.html#l00095">95</a> of file <a class="el" href="atmosphere_8F90_source.html">atmosphere.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7872ff8ebbd056093f8fd346af5a9b00"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">type(esmf_field), public atmosphere::temp_target_grid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>temperautre </p>
+
+<p>Definition at line <a class="el" href="atmosphere_8F90_source.html#l00073">73</a> of file <a class="el" href="atmosphere_8F90_source.html">atmosphere.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa755c536f41d9db969c6e6b6fe4d4578"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">type(esmf_field), dimension(:), allocatable, public atmosphere::tracers_target_grid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>tracers </p>
+
+<p>Definition at line <a class="el" href="atmosphere_8F90_source.html#l00067">67</a> of file <a class="el" href="atmosphere_8F90_source.html">atmosphere.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4f4e2ff9ea5fbdc485a8306cf58c1422"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">type(esmf_field), public atmosphere::u_s_target_grid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>u-wind, 'south' edge </p>
+
+<p>Definition at line <a class="el" href="atmosphere_8F90_source.html#l00076">76</a> of file <a class="el" href="atmosphere_8F90_source.html">atmosphere.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acd2b58a77e1d7a74861bd36dd5fd6ad2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">type(esmf_field), public atmosphere::u_w_target_grid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>u-wind, 'west' edge </p>
+
+<p>Definition at line <a class="el" href="atmosphere_8F90_source.html#l00081">81</a> of file <a class="el" href="atmosphere_8F90_source.html">atmosphere.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af47c3ae05903afacbaf5c705551fae8a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">type(esmf_field), public atmosphere::v_s_target_grid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>v-wind, 'south' edge </p>
+
+<p>Definition at line <a class="el" href="atmosphere_8F90_source.html#l00077">77</a> of file <a class="el" href="atmosphere_8F90_source.html">atmosphere.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aff36363895fec1b345aea78549594628"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">type(esmf_field), public atmosphere::v_w_target_grid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>v-wind, 'west' edge </p>
+
+<p>Definition at line <a class="el" href="atmosphere_8F90_source.html#l00082">82</a> of file <a class="el" href="atmosphere_8F90_source.html">atmosphere.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae5bfa0946475301f0de866a20a0c9af6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(esmf_kind_r8), dimension(:,:), allocatable, public atmosphere::vcoord_target</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>vertical coordinate </p>
+
+<p>Definition at line <a class="el" href="atmosphere_8F90_source.html#l00062">62</a> of file <a class="el" href="atmosphere_8F90_source.html">atmosphere.F90</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae2cceb8cd4b47bc9907ef667342c31b8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">type(esmf_field), public atmosphere::zh_target_grid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>3-d height </p>
+
+<p>Definition at line <a class="el" href="atmosphere_8F90_source.html#l00084">84</a> of file <a class="el" href="atmosphere_8F90_source.html">atmosphere.F90</a>.</p>
 
 </div>
 </div>

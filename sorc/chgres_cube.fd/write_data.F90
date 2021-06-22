@@ -1907,11 +1907,15 @@
 
  integer(esmf_kind_i8), allocatable :: idata_one_tile(:,:)
 
+ logical :: warm_restart
+
  real(kind=4), allocatable       :: lsoil_data(:), x_data(:), y_data(:)
  real(kind=8), allocatable       :: dum2d(:,:), dum3d(:,:,:)
  real(kind=4)                    :: times
  real(esmf_kind_r8), allocatable :: data_one_tile(:,:)
  real(esmf_kind_r8), allocatable :: data_one_tile_3d(:,:,:)
+
+ warm_restart=.true.
 
 ! Remove any halo region.
 
@@ -2020,6 +2024,7 @@
      error = nf90_put_att(ncid, id_time, "cartesian_axis", "T")
      call netcdf_err(error, 'WRITING TIME FIELD' )
 
+     if (.not. warm_restart) then
      error = nf90_def_var(ncid, 'geolon', NF90_DOUBLE, (/dim_x,dim_y/), id_lon)
      call netcdf_err(error, 'DEFINING GEOLON' )
      error = nf90_put_att(ncid, id_lon, "long_name", "Longitude")
@@ -2033,6 +2038,7 @@
      call netcdf_err(error, 'DEFINING GEOLAT LONG NAME' )
      error = nf90_put_att(ncid, id_lat, "units", "degrees_north")
      call netcdf_err(error, 'DEFINING GEOLAT UNITS' )
+     endif
 
      error = nf90_def_var(ncid, 'slmsk', NF90_DOUBLE, (/dim_x,dim_y,dim_time/), id_slmsk)
      call netcdf_err(error, 'DEFINING SLMSK' )
@@ -2534,6 +2540,7 @@
      call netcdf_err(error, 'WRITING TIME RECORD' )
    endif
 
+   if (.not. warm_restart) then
    print*,"- CALL FieldGather FOR TARGET GRID LATITUDE FOR TILE: ", tile
    call ESMF_FieldGather(latitude_target_grid, data_one_tile, rootPet=0, tile=tile, rc=error)
    if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
@@ -2555,6 +2562,8 @@
      error = nf90_put_var( ncid, id_lon, dum2d)
      call netcdf_err(error, 'WRITING LONGITUDE RECORD' )
    endif
+   endif
+
 
    print*,"- CALL FieldGather FOR TARGET GRID SNOW LIQ EQUIV FOR TILE: ", tile
    call ESMF_FieldGather(snow_liq_equiv_target_grid, data_one_tile, rootPet=0, tile=tile, rc=error)

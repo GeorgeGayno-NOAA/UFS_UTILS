@@ -5713,7 +5713,9 @@ if (localpet == 0) then
 ! zm - Not used yet. Xu li said set to '0'.
 
   if (localpet == 0) then
-    data_one_tile = 0.0
+      field='zm'
+    call read_fv3_grid_data_netcdf(trim(field), tile, i_input, j_input, &
+                                   lsoil_input, sfcdata=data_one_tile)
   endif
 
   print*,"- CALL FieldScatter FOR INPUT ZM"

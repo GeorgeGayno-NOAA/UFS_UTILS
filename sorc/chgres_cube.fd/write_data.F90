@@ -1821,6 +1821,7 @@
 
  use surface, only               : canopy_mc_target_grid,  &
                                    f10m_target_grid, &
+                                   ffhh_target_grid, &
                                    ffmm_target_grid, &
                                    q2m_target_grid,   &
                                    seaice_depth_target_grid, &
@@ -2818,7 +2819,16 @@
      dum2d(:,:) = data_one_tile(istart:iend, jstart:jend)
      error = nf90_put_var( ncid, id_ffmm, dum2d, start=(/1,1,1/), count=(/i_target_out,j_target_out,1/))
      call netcdf_err(error, 'WRITING FFMM RECORD' )
-     dum2d = 0.0
+   endif
+
+! warm restarts only.
+   print*,"- CALL FieldGather FOR TARGET GRID FFHH FOR TILE: ", tile
+   call ESMF_FieldGather(ffhh_target_grid, data_one_tile, rootPet=0, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldGather", error)
+
+   if (localpet == 0) then
+     dum2d(:,:) = data_one_tile(istart:iend, jstart:jend)
      error = nf90_put_var( ncid, id_ffhh, dum2d, start=(/1,1,1/), count=(/i_target_out,j_target_out,1/))
      call netcdf_err(error, 'WRITING FFHH RECORD' )
    endif

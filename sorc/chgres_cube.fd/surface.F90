@@ -38,6 +38,9 @@
  type(esmf_field), public           :: f10m_target_grid
                                        !< log((z0+10)*1/z0)
                                        !< See sfc_diff.f for details
+ type(esmf_field), public           :: ffhh_target_grid
+                                       !< log((ztmax+z1)*1/ztmax)
+                                       !< See sfc_diff.f for details
  type(esmf_field), public           :: ffmm_target_grid
                                        !< log((z0+z1)*1/z0)
                                        !< See sfc_diff.f for details
@@ -297,6 +300,7 @@
 
  use input_data, only                : canopy_mc_input_grid,  &
                                        f10m_input_grid,  &
+                                       ffhh_input_grid,  &
                                        ffmm_input_grid,  &
                                        landsea_mask_input_grid, &
                                        q2m_input_grid,  &
@@ -483,6 +487,15 @@
  print*,"- CALL Field_Regrid F10M."
  call ESMF_FieldRegrid(f10m_input_grid, &
                        f10m_target_grid, &
+                       routehandle=regrid_bl_no_mask, &
+                       termorderflag=ESMF_TERMORDER_SRCSEQ,  rc=rc)
+ if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+    call error_handler("IN FieldRegrid", rc)
+
+!cggg only for warm restart files.
+ print*,"- CALL Field_Regrid FFHH."
+ call ESMF_FieldRegrid(ffhh_input_grid, &
+                       ffhh_target_grid, &
                        routehandle=regrid_bl_no_mask, &
                        termorderflag=ESMF_TERMORDER_SRCSEQ,  rc=rc)
  if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
@@ -3754,6 +3767,21 @@
 
  target_ptr = init_val
 
+ print*,"- CALL FieldCreate FOR TARGET GRID FFHH."
+ ffhh_target_grid = ESMF_FieldCreate(target_grid, &
+                                    typekind=ESMF_TYPEKIND_R8, &
+                                    staggerloc=ESMF_STAGGERLOC_CENTER, rc=rc)
+ if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+    call error_handler("IN FieldCreate", rc)
+
+ print*,"- INITIALIZE TARGET grid ffhh."
+ call ESMF_FieldGet(ffhh_target_grid, &
+                    farrayPtr=target_ptr, rc=rc)
+ if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+    call error_handler("IN FieldGet", rc)
+
+ target_ptr = init_val
+
  print*,"- CALL FieldCreate FOR TARGET GRID USTAR."
  ustar_target_grid = ESMF_FieldCreate(target_grid, &
                                     typekind=ESMF_TYPEKIND_R8, &
@@ -4208,6 +4236,7 @@
  call ESMF_FieldDestroy(q2m_target_grid, rc=rc)
  call ESMF_FieldDestroy(tprcp_target_grid, rc=rc)
  call ESMF_FieldDestroy(f10m_target_grid, rc=rc)
+ call ESMF_FieldDestroy(ffhh_target_grid, rc=rc)
  call ESMF_FieldDestroy(ffmm_target_grid, rc=rc)
  call ESMF_FieldDestroy(ustar_target_grid, rc=rc)
  call ESMF_FieldDestroy(snow_liq_equiv_target_grid, rc=rc)

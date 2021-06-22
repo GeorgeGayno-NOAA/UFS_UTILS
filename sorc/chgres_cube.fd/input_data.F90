@@ -74,6 +74,8 @@
                                                             !< temperature (K) over ice.
  type(esmf_field), public        :: canopy_mc_input_grid    !< canopy moist content
  type(esmf_field), public        :: f10m_input_grid         !< log((z0+10)*1/z0)
+ type(esmf_field), public        :: ffhh_input_grid         !< log((ztmax+z1)*1/ztmax)
+                                                            !! See sfc_diff.f for details.
  type(esmf_field), public        :: ffmm_input_grid         !< log((z0+z1)*1/z0)
                                                             !! See sfc_diff.f for details.
  type(esmf_field), public        :: landsea_mask_input_grid !< land sea mask;
@@ -636,6 +638,13 @@
 
  print*,"- CALL FieldCreate FOR INPUT GRID USTAR."
  ustar_input_grid = ESMF_FieldCreate(input_grid, &
+                                   typekind=ESMF_TYPEKIND_R8, &
+                                   staggerloc=ESMF_STAGGERLOC_CENTER, rc=rc)
+ if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+    call error_handler("IN FieldCreate", rc)
+
+ print*,"- CALL FieldCreate FOR INPUT GRID FFHH."
+ ffhh_input_grid = ESMF_FieldCreate(input_grid, &
                                    typekind=ESMF_TYPEKIND_R8, &
                                    staggerloc=ESMF_STAGGERLOC_CENTER, rc=rc)
  if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
@@ -4164,6 +4173,16 @@ else
 
   print*,"- CALL FieldScatter FOR INPUT GRID F10M"
   call ESMF_FieldScatter(f10m_input_grid, data_one_tile, rootpet=0, tile=tile, rc=rc)
+  if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+     call error_handler("IN FieldScatter", rc)
+
+  if (localpet == 0) then
+    call read_fv3_grid_data_netcdf('ffhh', tile, idim_input, jdim_input, &
+                                   lsoil_input, sfcdata=data_one_tile)
+  endif
+
+  print*,"- CALL FieldScatter FOR INPUT GRID FFHH"
+  call ESMF_FieldScatter(ffhh_input_grid, data_one_tile, rootpet=0, tile=tile, rc=rc)
   if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
      call error_handler("IN FieldScatter", rc)
 

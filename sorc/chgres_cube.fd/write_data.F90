@@ -1183,6 +1183,82 @@
 
  end subroutine write_fv3_atm_bndy_data_netcdf
 
+ subroutine write_fv3_atm_warm_restart(localpet)
+
+ use esmf
+ use netcdf
+
+ use atmosphere, only              : lev_target
+ use model_grid, only              : num_tiles_target_grid, &
+                                     i_target, j_target
+ use program_setup, only           : tracers, num_tracers
+                                     
+ implicit none
+
+ integer, intent(in)              :: localpet
+
+ character(len=128)               :: outfile
+
+ integer                          :: fsize=65536, initial = 0
+ integer                          :: header_buffer_val = 16384
+ integer                          :: dim_x, dim_y, dim_z, dim_time
+ integer                          :: id_time
+ integer                          :: error, ncid, tile, n, id_cld
+ integer, allocatable             :: id_tracers(:)
+
+ real(kind=4)                     :: times=1.0
+
+ allocate(id_tracers(num_tracers))
+
+ HEADER : if (localpet < num_tiles_target_grid) then
+
+   tile = localpet + 1
+   WRITE(OUTFILE, '(A, I1, A)') 'fv_tracer.res.', tile, '.nc'
+
+!--- open the file
+   error = nf90_create(outfile, IOR(NF90_NETCDF4,NF90_CLASSIC_MODEL), &
+                       ncid, initialsize=initial, chunksize=fsize)
+   call netcdf_err(error, 'CREATING FILE='//trim(outfile) )
+
+!--- define dimension
+   error = nf90_def_dim(ncid, 'xaxis_1', i_target, dim_x)
+   call netcdf_err(error, 'DEFINING XAXIS DIMENSION' )
+   error = nf90_def_dim(ncid, 'yaxis_1', j_target, dim_y)
+   call netcdf_err(error, 'DEFINING YAXIS DIMENSION' )
+   error = nf90_def_dim(ncid, 'zaxis_1', lev_target, dim_z)
+   call netcdf_err(error, 'DEFINING ZAXIS DIMENSION' )
+   error = nf90_def_dim(ncid, 'Time', 1, dim_time)
+   call netcdf_err(error, 'DEFINING TIME DIMENSION' )
+
+   error = nf90_def_var(ncid, 'Time', NF90_FLOAT, dim_time, id_time)
+   call netcdf_err(error, 'DEFINING TIME' )
+
+   do n = 1, num_tracers
+     if (localpet==0) print*, "write to file tracer ", trim(tracers(n))
+     error = nf90_def_var(ncid, tracers(n), NF90_FLOAT, (/dim_x,dim_y,dim_z,dim_time/), id_tracers(n))
+     call netcdf_err(error, 'DEFINING TRACERS' )
+   enddo
+
+   error = nf90_def_var(ncid, 'cld_amt', NF90_FLOAT, (/dim_x,dim_y,dim_z,dim_time/), id_cld)
+   call netcdf_err(error, 'DEFINING TRACERS' )
+
+   error = nf90_enddef(ncid, header_buffer_val,4,0,4)
+   call netcdf_err(error, 'DEFINING HEADER' )
+
+ endif HEADER
+
+ if (localpet < num_tiles_target_grid) then
+ error = nf90_put_var(ncid, id_time, times)
+ call netcdf_err(error, 'WRITING TIME RECORD' )
+ endif
+
+
+ deallocate(id_tracers)
+
+ if (localpet < num_tiles_target_grid) error = nf90_close(ncid)
+
+ end subroutine write_fv3_atm_warm_restart
+
 !> Write atmospheric coldstart files (netcdf format).
 !!
 !! Routine writes tiled files in parallel.  Tile 1 is written by

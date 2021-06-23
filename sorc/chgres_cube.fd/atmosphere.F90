@@ -420,9 +420,11 @@
 ! Write target data to file.
 !-----------------------------------------------------------------------------------
 
- call write_fv3_atm_header_netcdf(localpet)
- if (regional <= 1) call write_fv3_atm_data_netcdf(localpet)
- if (regional >= 1) call write_fv3_atm_bndy_data_netcdf(localpet)
+!call write_fv3_atm_header_netcdf(localpet)
+!if (regional <= 1) call write_fv3_atm_data_netcdf(localpet)
+!if (regional >= 1) call write_fv3_atm_bndy_data_netcdf(localpet)
+
+ call write_fv3_atm_warm_restart(localpet)
 
 !-----------------------------------------------------------------------------------
 ! Free up memory.

@@ -1192,7 +1192,8 @@
                                      tracers_target_grid
 
  use model_grid, only              : num_tiles_target_grid, &
-                                     i_target, j_target
+                                     i_target, j_target, &
+                                     ip1_target, jp1_target
  use program_setup, only           : tracers, num_tracers
                                      
  implicit none
@@ -1204,7 +1205,9 @@
  integer                          :: fsize=65536, initial = 0
  integer                          :: header_buffer_val = 16384
  integer                          :: dim_x, dim_y, dim_z, dim_time
+ integer                          :: dim_x2, dim_y2
  integer                          :: id_time, id_x, id_y, id_z
+ integer                          :: id_x2, id_y2
  integer                          :: error, ncid, tile, n, id_cld
  integer, allocatable             :: id_tracers(:)
 
@@ -1232,7 +1235,7 @@
  HEADER : if (localpet < num_tiles_target_grid) then
 
    tile = localpet + 1
-   WRITE(OUTFILE, '(A, I1, A)') 'fv_tracer.res.', tile, '.nc'
+   WRITE(OUTFILE, '(A, I1, A)') 'fv_tracer.res.tile', tile, '.nc'
 
 !--- open the file
    error = nf90_create(outfile, IOR(NF90_NETCDF4,NF90_CLASSIC_MODEL), &
@@ -1310,6 +1313,52 @@
 
  deallocate(id_tracers, dum3d, data_one_tile_3d)
  deallocate(x_data, y_data, z_data)
+
+ if (localpet < num_tiles_target_grid) error = nf90_close(ncid)
+
+! Now output 'core' files.
+
+ HEADER_CORE : if (localpet < num_tiles_target_grid) then
+
+   tile = localpet + 1
+   WRITE(OUTFILE, '(A, I1, A)') 'fv_core.res.tile', tile, '.nc'
+
+!--- open the file
+   error = nf90_create(outfile, IOR(NF90_NETCDF4,NF90_CLASSIC_MODEL), &
+                       ncid, initialsize=initial, chunksize=fsize)
+   call netcdf_err(error, 'CREATING FILE='//trim(outfile) )
+
+!--- define dimension
+   error = nf90_def_dim(ncid, 'xaxis_1', i_target, dim_x)
+   call netcdf_err(error, 'DEFINING XAXIS_1 DIMENSION' )
+   error = nf90_def_dim(ncid, 'xaxis_2', ip1_target, dim_x2)
+   call netcdf_err(error, 'DEFINING XAXIS_2 DIMENSION' )
+   error = nf90_def_dim(ncid, 'yaxis_1', jp1_target, dim_y)
+   call netcdf_err(error, 'DEFINING YAXIS_1 DIMENSION' )
+   error = nf90_def_dim(ncid, 'yaxis_2', j_target, dim_y2)
+   call netcdf_err(error, 'DEFINING YAXIS_2 DIMENSION' )
+   error = nf90_def_dim(ncid, 'zaxis_1', lev_target, dim_z)
+   call netcdf_err(error, 'DEFINING ZAXIS DIMENSION' )
+   error = nf90_def_dim(ncid, 'Time', 1, dim_time)
+   call netcdf_err(error, 'DEFINING TIME DIMENSION' )
+ 
+   error = nf90_def_var(ncid, 'xaxis_1', NF90_FLOAT, (/dim_x/), id_x)
+   call netcdf_err(error, 'DEFINING XAXIS_1 FIELD' )
+   error = nf90_def_var(ncid, 'xaxis_2', NF90_FLOAT, (/dim_x2/), id_x2)
+   call netcdf_err(error, 'DEFINING XAXIS_2 FIELD' )
+   error = nf90_def_var(ncid, 'yaxis_1', NF90_FLOAT, (/dim_y/), id_y)
+   call netcdf_err(error, 'DEFINING YAXIS_1 FIELD' )
+   error = nf90_def_var(ncid, 'yaxis_2', NF90_FLOAT, (/dim_y2/), id_y2)
+   call netcdf_err(error, 'DEFINING YAXIS_2 FIELD' )
+   error = nf90_def_var(ncid, 'zaxis_1', NF90_FLOAT, (/dim_z/), id_z)
+   call netcdf_err(error, 'DEFINING ZAXIS_1 FIELD' )
+   error = nf90_def_var(ncid, 'Time', NF90_FLOAT, dim_time, id_time)
+   call netcdf_err(error, 'DEFINING TIME' )
+
+   error = nf90_enddef(ncid, header_buffer_val,4,0,4)
+   call netcdf_err(error, 'DEFINING HEADER' )
+
+ endif HEADER_CORE
 
  if (localpet < num_tiles_target_grid) error = nf90_close(ncid)
 

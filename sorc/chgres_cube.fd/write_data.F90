@@ -1205,9 +1205,10 @@
  integer                          :: fsize=65536, initial = 0
  integer                          :: header_buffer_val = 16384
  integer                          :: dim_x, dim_y, dim_z, dim_time
- integer                          :: dim_x2, dim_y2
+ integer                          :: dim_x2, dim_y2 
  integer                          :: id_time, id_x, id_y, id_z
- integer                          :: id_x2, id_y2
+ integer                          :: id_x2, id_y2, id_phis, id_delp
+ integer                          :: id_t, id_dz, id_w, id_u, id_v
  integer                          :: error, ncid, tile, n, id_cld
  integer, allocatable             :: id_tracers(:)
 
@@ -1354,6 +1355,20 @@
    call netcdf_err(error, 'DEFINING ZAXIS_1 FIELD' )
    error = nf90_def_var(ncid, 'Time', NF90_FLOAT, dim_time, id_time)
    call netcdf_err(error, 'DEFINING TIME' )
+   error = nf90_def_var(ncid, 'u', NF90_FLOAT, (/dim_x,dim_y,dim_z,dim_time/), id_u)
+   call netcdf_err(error, 'DEFINING U' )
+   error = nf90_def_var(ncid, 'v', NF90_FLOAT, (/dim_x2,dim_y2,dim_z,dim_time/), id_v)
+   call netcdf_err(error, 'DEFINING V' )
+   error = nf90_def_var(ncid, 'W', NF90_FLOAT, (/dim_x,dim_y2,dim_z,dim_time/), id_w)
+   call netcdf_err(error, 'DEFINING W' )
+   error = nf90_def_var(ncid, 'DZ', NF90_FLOAT, (/dim_x,dim_y2,dim_z,dim_time/), id_dz)
+   call netcdf_err(error, 'DEFINING DZ' )
+   error = nf90_def_var(ncid, 'T', NF90_FLOAT, (/dim_x,dim_y2,dim_z,dim_time/), id_t)
+   call netcdf_err(error, 'DEFINING T' )
+   error = nf90_def_var(ncid, 'delp', NF90_FLOAT, (/dim_x,dim_y2,dim_z,dim_time/), id_delp)
+   call netcdf_err(error, 'DEFINING DELP' )
+   error = nf90_def_var(ncid, 'phis', NF90_FLOAT, (/dim_x,dim_y2,dim_time/), id_phis)
+   call netcdf_err(error, 'DEFINING PHIS' )
 
    error = nf90_enddef(ncid, header_buffer_val,4,0,4)
    call netcdf_err(error, 'DEFINING HEADER' )

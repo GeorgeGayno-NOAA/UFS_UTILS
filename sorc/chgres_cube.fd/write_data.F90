@@ -1188,7 +1188,9 @@
  use esmf
  use netcdf
 
- use atmosphere, only              : lev_target
+ use atmosphere, only              : lev_target, &
+                                     tracers_target_grid
+
  use model_grid, only              : num_tiles_target_grid, &
                                      i_target, j_target
  use program_setup, only           : tracers, num_tracers
@@ -1207,6 +1209,8 @@
  integer, allocatable             :: id_tracers(:)
 
  real(kind=4)                     :: times=1.0
+ real(kind=4), allocatable        :: dum3d(:,:,:)
+ real(esmf_kind_r8), allocatable  :: data_one_tile_3d(:,:,:)
 
  allocate(id_tracers(num_tracers))
 
@@ -1248,12 +1252,36 @@
  endif HEADER
 
  if (localpet < num_tiles_target_grid) then
- error = nf90_put_var(ncid, id_time, times)
- call netcdf_err(error, 'WRITING TIME RECORD' )
+   error = nf90_put_var(ncid, id_time, times)
+   call netcdf_err(error, 'WRITING TIME RECORD' )
  endif
 
+ if (localpet < num_tiles_target_grid) then
+   allocate(dum3d(i_target,j_target,lev_target))
+   allocate(data_one_tile_3d(i_target,j_target,lev_target))
+ else
+   allocate(dum3d(0,0,0))
+   allocate(data_one_tile_3d(0,0,0))
+ endif
 
- deallocate(id_tracers)
+ do n = 1, num_tracers
+
+   do tile = 1, num_tiles_target_grid
+     print*,"- CALL FieldGather FOR TARGET GRID TRACER ", trim(tracers(n)), " TILE: ", tile
+     call ESMF_FieldGather(tracers_target_grid(n), data_one_tile_3d, rootPet=tile-1, tile=tile, rc=error)
+     if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+        call error_handler("IN FieldGather", error)
+   enddo
+
+   if (localpet < num_tiles_target_grid) then
+     dum3d(:,:,1:lev_target) = data_one_tile_3d(:,:,lev_target:1:-1)
+     error = nf90_put_var( ncid, id_tracers(n), dum3d)
+     call netcdf_err(error, 'WRITING TRACER RECORD' )
+   endif
+
+ enddo
+
+ deallocate(id_tracers, dum3d, data_one_tile_3d)
 
  if (localpet < num_tiles_target_grid) error = nf90_close(ncid)
 

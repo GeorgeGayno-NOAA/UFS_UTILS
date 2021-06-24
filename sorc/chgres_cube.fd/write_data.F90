@@ -1204,15 +1204,30 @@
  integer                          :: fsize=65536, initial = 0
  integer                          :: header_buffer_val = 16384
  integer                          :: dim_x, dim_y, dim_z, dim_time
- integer                          :: id_time
+ integer                          :: id_time, id_x, id_y, id_z
  integer                          :: error, ncid, tile, n, id_cld
  integer, allocatable             :: id_tracers(:)
 
  real(kind=4)                     :: times=1.0
- real(kind=4), allocatable        :: dum3d(:,:,:)
+ real(kind=4), allocatable        :: dum3d(:,:,:), x_data(:), y_data(:), z_data(:)
  real(esmf_kind_r8), allocatable  :: data_one_tile_3d(:,:,:)
 
  allocate(id_tracers(num_tracers))
+
+ allocate(x_data(i_target))
+ do n = 1, i_target
+   x_data(n) = float(n)
+ enddo
+
+ allocate(y_data(j_target))
+ do n = 1, j_target
+   y_data(n) = float(n)
+ enddo
+
+ allocate(z_data(lev_target))
+ do n = 1, lev_target
+   z_data(n) = float(n)
+ enddo
 
  HEADER : if (localpet < num_tiles_target_grid) then
 
@@ -1234,6 +1249,12 @@
    error = nf90_def_dim(ncid, 'Time', 1, dim_time)
    call netcdf_err(error, 'DEFINING TIME DIMENSION' )
 
+   error = nf90_def_var(ncid, 'xaxis_1', NF90_FLOAT, (/dim_x/), id_x)
+   call netcdf_err(error, 'DEFINING XAXIS_1 FIELD' )
+   error = nf90_def_var(ncid, 'yaxis_1', NF90_FLOAT, (/dim_y/), id_y)
+   call netcdf_err(error, 'DEFINING YAXIS_1 FIELD' )
+   error = nf90_def_var(ncid, 'zaxis_1', NF90_FLOAT, (/dim_z/), id_z)
+   call netcdf_err(error, 'DEFINING ZAXIS_1 FIELD' )
    error = nf90_def_var(ncid, 'Time', NF90_FLOAT, dim_time, id_time)
    call netcdf_err(error, 'DEFINING TIME' )
 
@@ -1252,6 +1273,12 @@
  endif HEADER
 
  if (localpet < num_tiles_target_grid) then
+   error = nf90_put_var(ncid, id_x, x_data)
+   call netcdf_err(error, 'WRITING XAXIS RECORD' )
+   error = nf90_put_var(ncid, id_y, y_data)
+   call netcdf_err(error, 'WRITING YAXIS RECORD' )
+   error = nf90_put_var(ncid, id_z, z_data)
+   call netcdf_err(error, 'WRITING ZAXIS RECORD' )
    error = nf90_put_var(ncid, id_time, times)
    call netcdf_err(error, 'WRITING TIME RECORD' )
  endif
@@ -1282,6 +1309,7 @@
  enddo
 
  deallocate(id_tracers, dum3d, data_one_tile_3d)
+ deallocate(x_data, y_data, z_data)
 
  if (localpet < num_tiles_target_grid) error = nf90_close(ncid)
 

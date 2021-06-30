@@ -1195,11 +1195,15 @@
  use atmosphere, only              : lev_target, &
                                      levp1_target, &
                                      tracers_target_grid, &
+                                     temp_target_grid, &
+                                     dzdt_target_grid, &
                                      vcoord_target
 
  use model_grid, only              : num_tiles_target_grid, &
+                                     terrain_target_grid, &
                                      i_target, j_target, &
                                      ip1_target, jp1_target
+
  use program_setup, only           : tracers, num_tracers
                                      
  implicit none
@@ -1221,6 +1225,7 @@
 
  real(kind=4)                     :: times=1.0
  real(kind=4), allocatable        :: dum3d(:,:,:), x_data(:), y_data(:), z_data(:)
+ real(esmf_kind_r8), allocatable  :: data_one_tile_2d(:,:)
  real(esmf_kind_r8), allocatable  :: data_one_tile_3d(:,:,:)
 
  if (localpet == 0) then
@@ -1355,9 +1360,11 @@
 
  if (localpet < num_tiles_target_grid) then
    allocate(dum3d(i_target,j_target,lev_target))
+   allocate(data_one_tile_2d(i_target,j_target))
    allocate(data_one_tile_3d(i_target,j_target,lev_target))
  else
    allocate(dum3d(0,0,0))
+   allocate(data_one_tile_2d(0,0))
    allocate(data_one_tile_3d(0,0,0))
  endif
 
@@ -1378,7 +1385,7 @@
 
  enddo
 
- deallocate(id_tracers, dum3d, data_one_tile_3d)
+ deallocate(id_tracers)
  deallocate(x_data, y_data, z_data)
 
  if (localpet < num_tiles_target_grid) error = nf90_close(ncid)
@@ -1440,6 +1447,94 @@
    call netcdf_err(error, 'DEFINING HEADER' )
 
  endif HEADER_CORE
+
+ if (localpet < num_tiles_target_grid) then
+
+   allocate(x_data(i_target))
+   do n = 1, i_target
+     x_data(n) = float(n)
+   enddo
+   error = nf90_put_var(ncid, id_x, x_data)
+   call netcdf_err(error, 'WRITING XAXIS_1 RECORD' )
+   deallocate(x_data)
+
+   allocate(x_data(ip1_target))
+   do n = 1, ip1_target
+     x_data(n) = float(n)
+   enddo
+   error = nf90_put_var(ncid, id_x2, x_data)
+   call netcdf_err(error, 'WRITING XAXIS_2 RECORD' )
+   deallocate(x_data)
+
+   allocate(y_data(jp1_target))
+   do n = 1, jp1_target
+     y_data(n) = float(n)
+   enddo
+   error = nf90_put_var(ncid, id_y, y_data)
+   call netcdf_err(error, 'WRITING YAXIS_1 RECORD' )
+   deallocate(y_data)
+
+   allocate(y_data(j_target))
+   do n = 1, j_target
+     y_data(n) = float(n)
+   enddo
+   error = nf90_put_var(ncid, id_y2, y_data)
+   call netcdf_err(error, 'WRITING YAXIS_2 RECORD' )
+   deallocate(y_data)
+
+   allocate(z_data(lev_target))
+   do n = 1, lev_target
+     z_data(n) = float(n)
+   enddo
+   error = nf90_put_var(ncid, id_z, z_data)
+   call netcdf_err(error, 'WRITING ZAXIS_1 RECORD' )
+   deallocate(z_data)
+
+   error = nf90_put_var(ncid, id_time, times)
+   call netcdf_err(error, 'WRITING TIME RECORD' )
+
+ endif
+
+ do tile = 1, num_tiles_target_grid
+   print*,"- CALL FieldGather FOR TARGET GRID TEMPERATURE FOR TILE: ", tile
+   call ESMF_FieldGather(temp_target_grid, data_one_tile_3d, rootPet=tile-1, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldGather", error)
+ enddo
+
+ if (localpet < num_tiles_target_grid) then
+   dum3d(:,:,1:lev_target) = data_one_tile_3d(:,:,lev_target:1:-1)
+   error = nf90_put_var( ncid, id_t, dum3d)
+   call netcdf_err(error, 'WRITING TEMPERATURE RECORD' )
+ endif
+
+ do tile = 1, num_tiles_target_grid
+   print*,"- CALL FieldGather FOR TARGET GRID W FOR TILE: ", tile
+   call ESMF_FieldGather(dzdt_target_grid, data_one_tile_3d, rootPet=tile-1, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldGather", error)
+ enddo
+
+ if (localpet < num_tiles_target_grid) then
+   dum3d(:,:,1:lev_target) = data_one_tile_3d(:,:,lev_target:1:-1)
+   error = nf90_put_var( ncid, id_w, dum3d)
+   call netcdf_err(error, 'WRITING W RECORD' )
+ endif
+
+ do tile = 1, num_tiles_target_grid
+   print*,"- CALL FieldGather FOR TARGET GRID TERRAIN FOR TILE: ", tile
+   call ESMF_FieldGather(terrain_target_grid, data_one_tile_2d, rootPet=tile-1, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldGather", error)
+ enddo
+
+ if (localpet < num_tiles_target_grid) then
+   data_one_tile_2d = data_one_tile_2d * 9.806_esmf_kind_r8
+   error = nf90_put_var( ncid, id_phis, data_one_tile_2d)
+   call netcdf_err(error, 'WRITING PHIS RECORD' )
+ endif
+
+ deallocate(dum3d, data_one_tile_3d, data_one_tile_2d)
 
  if (localpet < num_tiles_target_grid) error = nf90_close(ncid)
 

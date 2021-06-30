@@ -1183,13 +1183,19 @@
 
  end subroutine write_fv3_atm_bndy_data_netcdf
 
+!> Write atmospheric warmstart files (netcdf format).
+!!
+!! @param[in] localpet  ESMF local persistent execution thread
+!! @author George Gayno NCEP/EMC
  subroutine write_fv3_atm_warm_restart(localpet)
 
  use esmf
  use netcdf
 
  use atmosphere, only              : lev_target, &
-                                     tracers_target_grid
+                                     levp1_target, &
+                                     tracers_target_grid, &
+                                     vcoord_target
 
  use model_grid, only              : num_tiles_target_grid, &
                                      i_target, j_target, &
@@ -1209,12 +1215,72 @@
  integer                          :: id_time, id_x, id_y, id_z
  integer                          :: id_x2, id_y2, id_phis, id_delp
  integer                          :: id_t, id_dz, id_w, id_u, id_v
+ integer                          :: id_ak, id_bk
  integer                          :: error, ncid, tile, n, id_cld
  integer, allocatable             :: id_tracers(:)
 
  real(kind=4)                     :: times=1.0
  real(kind=4), allocatable        :: dum3d(:,:,:), x_data(:), y_data(:), z_data(:)
  real(esmf_kind_r8), allocatable  :: data_one_tile_3d(:,:,:)
+
+ if (localpet == 0) then
+
+   allocate(x_data(levp1_target))
+   do n = 1, levp1_target
+     x_data(n) = float(n)
+   enddo
+
+   print*,'*** vcoord1 ', vcoord_target(:,1)
+   print*,'*** vcoord2 ', vcoord_target(:,2)
+
+   outfile = "fv_core.res.nc"
+
+!--- open the file
+   error = nf90_create(outfile, IOR(NF90_NETCDF4,NF90_CLASSIC_MODEL), ncid)
+   call netcdf_err(error, 'CREATING FILE='//trim(outfile) )
+
+!--- define dimension
+   error = nf90_def_dim(ncid, 'xaxis_1', levp1_target, dim_x)
+   call netcdf_err(error, 'DEFINING XAXIS DIMENSION' )
+   error = nf90_def_dim(ncid, 'Time', 1, dim_time)
+   call netcdf_err(error, 'DEFINING TIME DIMENSION' )
+
+   error = nf90_def_var(ncid, 'xaxis_1', NF90_FLOAT, dim_x, id_x)
+   call netcdf_err(error, 'DEFINING TIME' )
+   error = nf90_def_var(ncid, 'Time', NF90_FLOAT, dim_time, id_time)
+   call netcdf_err(error, 'DEFINING TIME' )
+   error = nf90_def_var(ncid, 'ak', NF90_FLOAT, (/dim_x,dim_time/), id_ak)
+   call netcdf_err(error, 'DEFINING ak' )
+   error = nf90_def_var(ncid, 'bk', NF90_FLOAT, (/dim_x,dim_time/), id_bk)
+   call netcdf_err(error, 'DEFINING bk' )
+
+   error = nf90_enddef(ncid, header_buffer_val,4,0,4)
+   call netcdf_err(error, 'DEFINING HEADER' )
+
+   error = nf90_put_var(ncid, id_x, x_data)
+   call netcdf_err(error, 'WRITING XAXIS RECORD' )
+   error = nf90_put_var(ncid, id_time, times)
+   call netcdf_err(error, 'WRITING TIME RECORD' )
+
+   do n = 1, levp1_target
+     x_data(n) = vcoord_target(levp1_target-n+1,1)
+   enddo
+
+   error = nf90_put_var(ncid, id_ak, x_data)
+   call netcdf_err(error, 'WRITING ak RECORD' )
+
+   do n = 1, levp1_target
+     x_data(n) = vcoord_target(levp1_target-n+1,2)
+   enddo
+
+   error = nf90_put_var(ncid, id_bk, x_data)
+   call netcdf_err(error, 'WRITING bk RECORD' )
+
+   error = nf90_close(ncid)
+
+   deallocate(x_data)
+
+ endif
 
  allocate(id_tracers(num_tracers))
 

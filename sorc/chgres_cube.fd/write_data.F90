@@ -1197,6 +1197,8 @@
                                      tracers_target_grid, &
                                      temp_target_grid, &
                                      dzdt_target_grid, &
+                                     delp_target_grid, &
+                                     zh_target_grid, &
                                      vcoord_target
 
  use model_grid, only              : num_tiles_target_grid, &
@@ -1227,6 +1229,7 @@
  real(kind=4), allocatable        :: dum3d(:,:,:), x_data(:), y_data(:), z_data(:)
  real(esmf_kind_r8), allocatable  :: data_one_tile_2d(:,:)
  real(esmf_kind_r8), allocatable  :: data_one_tile_3d(:,:,:)
+ real(esmf_kind_r8), allocatable  :: data2_one_tile_3d(:,:,:)
 
  if (localpet == 0) then
 
@@ -1495,6 +1498,30 @@
 
  endif
 
+ if (localpet < num_tiles_target_grid) then
+   allocate(data2_one_tile_3d(i_target,j_target,levp1_target))
+ else
+   allocate(data2_one_tile_3d(0,0,0))
+ endif
+
+ do tile = 1, num_tiles_target_grid
+   print*,"- CALL FieldGather FOR TARGET GRID ZH FOR TILE: ", tile
+   call ESMF_FieldGather(zh_target_grid, data2_one_tile_3d, rootPet=tile-1, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldGather", error)
+ enddo
+
+ if (localpet < num_tiles_target_grid) then
+   do n = 1, lev_target
+     dum3d(:,:,n) = data2_one_tile_3d(:,:,levp1_target-n) - &
+                    data2_one_tile_3d(:,:,levp1_target-n+1)
+   enddo
+   error = nf90_put_var( ncid, id_dz, dum3d)
+   call netcdf_err(error, 'WRITING DZ RECORD' )
+ endif
+
+ deallocate (data2_one_tile_3d)
+
  do tile = 1, num_tiles_target_grid
    print*,"- CALL FieldGather FOR TARGET GRID TEMPERATURE FOR TILE: ", tile
    call ESMF_FieldGather(temp_target_grid, data_one_tile_3d, rootPet=tile-1, tile=tile, rc=error)
@@ -1519,6 +1546,19 @@
    dum3d(:,:,1:lev_target) = data_one_tile_3d(:,:,lev_target:1:-1)
    error = nf90_put_var( ncid, id_w, dum3d)
    call netcdf_err(error, 'WRITING W RECORD' )
+ endif
+
+ do tile = 1, num_tiles_target_grid
+   print*,"- CALL FieldGather FOR TARGET GRID DELP FOR TILE: ", tile
+   call ESMF_FieldGather(delp_target_grid, data_one_tile_3d, rootPet=tile-1, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldGather", error)
+ enddo
+
+ if (localpet < num_tiles_target_grid) then
+   dum3d(:,:,1:lev_target) = data_one_tile_3d(:,:,lev_target:1:-1)
+   error = nf90_put_var( ncid, id_delp, dum3d)
+   call netcdf_err(error, 'WRITING DELP RECORD' )
  endif
 
  do tile = 1, num_tiles_target_grid

@@ -1198,6 +1198,8 @@
                                      temp_target_grid, &
                                      dzdt_target_grid, &
                                      delp_target_grid, &
+                                     ua_target_grid, &
+                                     va_target_grid, &
                                      u_s_target_grid, &
                                      v_w_target_grid, &
                                      zh_target_grid, &
@@ -1223,7 +1225,7 @@
  integer                          :: id_time, id_x, id_y, id_z
  integer                          :: id_x2, id_y2, id_phis, id_delp
  integer                          :: id_t, id_dz, id_w, id_u, id_v
- integer                          :: id_ak, id_bk
+ integer                          :: id_ak, id_bk, id_ua, id_va
  integer                          :: error, ncid, tile, n, id_cld
  integer, allocatable             :: id_tracers(:)
 
@@ -1433,6 +1435,10 @@
    call netcdf_err(error, 'DEFINING ZAXIS_1 FIELD' )
    error = nf90_def_var(ncid, 'Time', NF90_FLOAT, dim_time, id_time)
    call netcdf_err(error, 'DEFINING TIME' )
+   error = nf90_def_var(ncid, 'ua', NF90_FLOAT, (/dim_x,dim_y2,dim_z,dim_time/), id_ua)
+   call netcdf_err(error, 'DEFINING UA' )
+   error = nf90_def_var(ncid, 'va', NF90_FLOAT, (/dim_x,dim_y2,dim_z,dim_time/), id_va)
+   call netcdf_err(error, 'DEFINING VA' )
    error = nf90_def_var(ncid, 'u', NF90_FLOAT, (/dim_x,dim_y,dim_z,dim_time/), id_u)
    call netcdf_err(error, 'DEFINING U' )
    error = nf90_def_var(ncid, 'v', NF90_FLOAT, (/dim_x2,dim_y2,dim_z,dim_time/), id_v)
@@ -1561,6 +1567,32 @@
    dum3d(:,:,1:lev_target) = data_one_tile_3d(:,:,lev_target:1:-1)
    error = nf90_put_var( ncid, id_delp, dum3d)
    call netcdf_err(error, 'WRITING DELP RECORD' )
+ endif
+
+ do tile = 1, num_tiles_target_grid
+   print*,"- CALL FieldGather FOR TARGET GRID ua FOR TILE: ", tile
+   call ESMF_FieldGather(ua_target_grid, data_one_tile_3d, rootPet=tile-1, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldGather", error)
+ enddo
+
+ if (localpet < num_tiles_target_grid) then
+   dum3d(:,:,1:lev_target) = data_one_tile_3d(:,:,lev_target:1:-1)
+   error = nf90_put_var( ncid, id_ua, dum3d)
+   call netcdf_err(error, 'WRITING UA RECORD' )
+ endif
+
+ do tile = 1, num_tiles_target_grid
+   print*,"- CALL FieldGather FOR TARGET GRID va FOR TILE: ", tile
+   call ESMF_FieldGather(va_target_grid, data_one_tile_3d, rootPet=tile-1, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldGather", error)
+ enddo
+
+ if (localpet < num_tiles_target_grid) then
+   dum3d(:,:,1:lev_target) = data_one_tile_3d(:,:,lev_target:1:-1)
+   error = nf90_put_var( ncid, id_va, dum3d)
+   call netcdf_err(error, 'WRITING VA RECORD' )
  endif
 
  deallocate(dum3d, data_one_tile_3d)

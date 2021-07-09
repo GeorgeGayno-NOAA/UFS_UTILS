@@ -33,6 +33,8 @@
                                        cleanup_input_atm_data
 
  use model_grid, only                : target_grid,  &
+                                       latitude_target_grid,  &
+                                       longitude_target_grid, &
                                        latitude_s_target_grid,  &
                                        longitude_s_target_grid, &
                                        latitude_w_target_grid,  &
@@ -87,6 +89,8 @@
  type(esmf_field)                       :: wind_s_target_grid !< 3-d wind, 'south' edge
  type(esmf_field), public               :: u_w_target_grid !< u-wind, 'west' edge
  type(esmf_field), public               :: v_w_target_grid !< v-wind, 'west' edge
+ type(esmf_field), public               :: ua_target_grid
+ type(esmf_field), public               :: va_target_grid
  type(esmf_field)                       :: wind_w_target_grid !< 3-d wind, 'west' edge
  type(esmf_field), public               :: zh_target_grid !< 3-d height
 
@@ -536,6 +540,24 @@
       call error_handler("IN FieldCreate", rc)
  enddo
 
+ print*,"- CALL FieldCreate FOR TARGET GRID ua."
+ ua_target_grid = ESMF_FieldCreate(target_grid, &
+                                   typekind=ESMF_TYPEKIND_R8, &
+                                   staggerloc=ESMF_STAGGERLOC_CENTER, &
+                                   ungriddedLBound=(/1/), &
+                                   ungriddedUBound=(/lev_target/), rc=rc)
+ if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+    call error_handler("IN FieldCreate", rc)
+
+ print*,"- CALL FieldCreate FOR TARGET GRID va."
+ va_target_grid = ESMF_FieldCreate(target_grid, &
+                                   typekind=ESMF_TYPEKIND_R8, &
+                                   staggerloc=ESMF_STAGGERLOC_CENTER, &
+                                   ungriddedLBound=(/1/), &
+                                   ungriddedUBound=(/lev_target/), rc=rc)
+ if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+    call error_handler("IN FieldCreate", rc)
+
  print*,"- CALL FieldCreate FOR TARGET GRID TEMPERATURE."
  temp_target_grid = ESMF_FieldCreate(target_grid, &
                                    typekind=ESMF_TYPEKIND_R8, &
@@ -750,6 +772,51 @@
 
  print*,"- CALL FieldGet FOR LONGITUDE_W."
  call ESMF_FieldGet(longitude_w_target_grid, &
+                    farrayPtr=lonptr, rc=rc)
+ if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+    call error_handler("IN FieldGet", rc)
+
+ do i = clb(1), cub(1)
+   do j = clb(2), cub(2)
+     latrad = latptr(i,j) * acos(-1.) / 180.0
+     lonrad = lonptr(i,j) * acos(-1.) / 180.0
+     do k = clb(3), cub(3)
+       uptr(i,j,k) = windptr(i,j,k,1) * cos(lonrad) + windptr(i,j,k,2) * sin(lonrad)
+       vptr(i,j,k) = -windptr(i,j,k,1) * sin(latrad) * sin(lonrad) + &
+                      windptr(i,j,k,2) * sin(latrad) * cos(lonrad) + &
+                      windptr(i,j,k,3) * cos(latrad)
+     enddo
+   enddo
+ enddo
+
+ print*,"- CALL FieldGet FOR 3-D WIND."
+ call ESMF_FieldGet(wind_target_grid, &
+                    computationalLBound=clb, &
+                    computationalUBound=cub, &
+                    farrayPtr=windptr, rc=rc)
+ if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+    call error_handler("IN FieldGet", rc)
+
+ print*,"- CALL FieldGet FOR Ua."
+ call ESMF_FieldGet(ua_target_grid, &
+                    farrayPtr=uptr, rc=rc)
+ if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+    call error_handler("IN FieldGet", rc)
+
+ print*,"- CALL FieldGet FOR va."
+ call ESMF_FieldGet(va_target_grid, &
+                    farrayPtr=vptr, rc=rc)
+ if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+    call error_handler("IN FieldGet", rc)
+
+ print*,"- CALL FieldGet FOR LATITUDE."
+ call ESMF_FieldGet(latitude_target_grid, &
+                    farrayPtr=latptr, rc=rc)
+ if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+    call error_handler("IN FieldGet", rc)
+
+ print*,"- CALL FieldGet FOR LONGITUDE."
+ call ESMF_FieldGet(longitude_target_grid, &
                     farrayPtr=lonptr, rc=rc)
  if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
     call error_handler("IN FieldGet", rc)

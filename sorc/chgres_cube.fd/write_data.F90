@@ -2360,7 +2360,7 @@
  integer                        :: dim_x, dim_y, dim_lsoil, dim_time
  integer                        :: error, i, ncid, tile
  integer                        :: id_x, id_y, id_lsoil
- integer                        :: id_slmsk, id_time
+ integer                        :: id_slmsk, id_time, id_sncovr
  integer                        :: id_lat, id_lon
  integer                        :: id_tsea, id_sheleg, id_tg3
  integer                        :: id_zorl, id_alvsf, id_alvwf
@@ -2516,6 +2516,17 @@
      call netcdf_err(error, 'DEFINING GEOLAT LONG NAME' )
      error = nf90_put_att(ncid, id_lat, "units", "degrees_north")
      call netcdf_err(error, 'DEFINING GEOLAT UNITS' )
+     endif
+
+     if (warm_restart)then
+     error = nf90_def_var(ncid, 'sncovr', NF90_DOUBLE, (/dim_x,dim_y,dim_time/), id_sncovr)
+     call netcdf_err(error, 'DEFINING SNCOVR' )
+     error = nf90_put_att(ncid, id_sncovr, "long_name", "sncovr")
+     call netcdf_err(error, 'DEFINING SNCOVR LONG NAME' )
+     error = nf90_put_att(ncid, id_sncovr, "units", "none")
+     call netcdf_err(error, 'DEFINING SNCOVR UNITS' )
+     error = nf90_put_att(ncid, id_sncovr, "coordinates", "geolon geolat")
+     call netcdf_err(error, 'DEFINING SNCOVR COORD' )
      endif
 
      error = nf90_def_var(ncid, 'slmsk', NF90_DOUBLE, (/dim_x,dim_y,dim_time/), id_slmsk)
@@ -3396,6 +3407,14 @@
      dum2d(:,:) = data_one_tile(istart:iend, jstart:jend)
      error = nf90_put_var( ncid, id_canopy, dum2d, start=(/1,1,1/), count=(/i_target_out,j_target_out,1/))
      call netcdf_err(error, 'WRITING CANOPY MC RECORD' )
+   endif
+
+   if(warm_restart) then
+     if (localpet == 0) then
+       dum2d(:,:) = -999.9
+       error = nf90_put_var( ncid, id_sncovr, dum2d, start=(/1,1,1/), count=(/i_target_out,j_target_out,1/))
+       call netcdf_err(error, 'WRITING SNCOVR RECORD' )
+     endif
    endif
 
 ! soil temperature 

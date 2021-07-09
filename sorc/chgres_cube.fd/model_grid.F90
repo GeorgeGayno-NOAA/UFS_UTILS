@@ -83,6 +83,7 @@
  type(esmf_field),  public              :: latitude_w_target_grid
                                            !< latitude of 'west' edge of grid
                                            !! box, target grid
+ type(esmf_field),  public              :: latitude_corner_target_grid
  type(esmf_field),  public              :: longitude_target_grid
                                            !< longitude of grid center, target grid
  type(esmf_field),  public              :: longitude_s_target_grid
@@ -91,6 +92,7 @@
  type(esmf_field),  public              :: longitude_w_target_grid
                                            !< longitude of 'west' edge of grid
                                            !! box, target grid
+ type(esmf_field),  public              :: longitude_corner_target_grid
  type(esmf_field),  public              :: seamask_target_grid
                                            !< sea mask target grid - '1' non-land;
                                            !! '0' land
@@ -1127,9 +1129,11 @@ print*,"- CALL FieldScatter FOR INPUT GRID LONGITUDE."
  real(esmf_kind_r8), allocatable       :: latitude_one_tile(:,:)
  real(esmf_kind_r8), allocatable       :: latitude_s_one_tile(:,:)
  real(esmf_kind_r8), allocatable       :: latitude_w_one_tile(:,:)
+ real(esmf_kind_r8), allocatable       :: latitude_corner_one_tile(:,:)
  real(esmf_kind_r8), allocatable       :: longitude_one_tile(:,:)
  real(esmf_kind_r8), allocatable       :: longitude_s_one_tile(:,:)
  real(esmf_kind_r8), allocatable       :: longitude_w_one_tile(:,:)
+ real(esmf_kind_r8), allocatable       :: longitude_corner_one_tile(:,:)
  real(esmf_kind_r8), allocatable       :: terrain_one_tile(:,:)
 
  lsoil_target = nsoill_out
@@ -1252,6 +1256,15 @@ print*,"- CALL FieldScatter FOR INPUT GRID LONGITUDE."
  if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
     call error_handler("IN FieldCreate", error)
 
+ print*,"- CALL FieldCreate FOR TARGET GRID LATITUDE CORNER."
+ latitude_corner_target_grid = ESMF_FieldCreate(target_grid, &
+                                   typekind=ESMF_TYPEKIND_R8, &
+                                   staggerloc=ESMF_STAGGERLOC_CORNER, &
+                                   name="target_grid_latitude_corner", &
+                                   rc=error)
+ if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+    call error_handler("IN FieldCreate", error)
+
  print*,"- CALL FieldCreate FOR TARGET GRID LONGITUDE."
  longitude_target_grid = ESMF_FieldCreate(target_grid, &
                                    typekind=ESMF_TYPEKIND_R8, &
@@ -1279,6 +1292,15 @@ print*,"- CALL FieldScatter FOR INPUT GRID LONGITUDE."
  if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
     call error_handler("IN FieldCreate", error)
 
+ print*,"- CALL FieldCreate FOR TARGET GRID LONGITUDE CORNER."
+ longitude_corner_target_grid = ESMF_FieldCreate(target_grid, &
+                                   typekind=ESMF_TYPEKIND_R8, &
+                                   staggerloc=ESMF_STAGGERLOC_CORNER, &
+                                   name="target_grid_longitude_corner", &
+                                   rc=error)
+ if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+    call error_handler("IN FieldCreate", error)
+
  print*,"- CALL FieldCreate FOR TARGET GRID TERRAIN."
  terrain_target_grid = ESMF_FieldCreate(target_grid, &
                                    typekind=ESMF_TYPEKIND_R8, &
@@ -1294,9 +1316,11 @@ print*,"- CALL FieldScatter FOR INPUT GRID LONGITUDE."
    allocate(latitude_one_tile(i_target,j_target))
    allocate(latitude_s_one_tile(i_target,jp1_target))
    allocate(latitude_w_one_tile(ip1_target,j_target))
+   allocate(latitude_corner_one_tile(ip1_target,jp1_target))
    allocate(longitude_one_tile(i_target,j_target))
    allocate(longitude_s_one_tile(i_target,jp1_target))
    allocate(longitude_w_one_tile(ip1_target,j_target))
+   allocate(longitude_corner_one_tile(ip1_target,jp1_target))
    allocate(terrain_one_tile(i_target,j_target))
  else
    allocate(landmask_one_tile(0,0))
@@ -1304,9 +1328,11 @@ print*,"- CALL FieldScatter FOR INPUT GRID LONGITUDE."
    allocate(longitude_one_tile(0,0))
    allocate(longitude_s_one_tile(0,0))
    allocate(longitude_w_one_tile(0,0))
+   allocate(longitude_corner_one_tile(0,0))
    allocate(latitude_one_tile(0,0))
    allocate(latitude_s_one_tile(0,0))
    allocate(latitude_w_one_tile(0,0))
+   allocate(latitude_corner_one_tile(0,0))
    allocate(terrain_one_tile(0,0))
  endif
 
@@ -1320,7 +1346,8 @@ print*,"- CALL FieldScatter FOR INPUT GRID LONGITUDE."
      call get_model_latlons(mosaic_file_target_grid, orog_dir_target_grid, num_tiles_target_grid, tile, &
                             i_target, j_target, ip1_target, jp1_target, latitude_one_tile, &
                             latitude_s_one_tile, latitude_w_one_tile, longitude_one_tile, &
-                            longitude_s_one_tile, longitude_w_one_tile)
+                            longitude_s_one_tile, longitude_w_one_tile, &
+                            latitude_corner_one_tile, longitude_corner_one_tile)
    endif
    print*,"- CALL FieldScatter FOR TARGET GRID LANDMASK. TILE IS: ", tile
    call ESMF_FieldScatter(landmask_target_grid, landmask_one_tile, rootpet=0, tile=tile, rc=error)
@@ -1342,6 +1369,12 @@ print*,"- CALL FieldScatter FOR INPUT GRID LONGITUDE."
    call ESMF_FieldScatter(longitude_w_target_grid, longitude_w_one_tile, rootpet=0, tile=tile, rc=error)
    if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
       call error_handler("IN FieldScatter", error)
+
+   print*,"- CALL FieldScatter FOR TARGET GRID LONGITUDE CORNER. TILE IS: ", tile
+   call ESMF_FieldScatter(longitude_corner_target_grid, longitude_corner_one_tile, rootpet=0, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldScatter", error)
+
    print*,"- CALL FieldScatter FOR TARGET GRID LATITUDE. TILE IS: ", tile
    call ESMF_FieldScatter(latitude_target_grid, latitude_one_tile, rootpet=0, tile=tile, rc=error)
    if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
@@ -1354,6 +1387,12 @@ print*,"- CALL FieldScatter FOR INPUT GRID LONGITUDE."
    call ESMF_FieldScatter(latitude_w_target_grid, latitude_w_one_tile, rootpet=0, tile=tile, rc=error)
    if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
       call error_handler("IN FieldScatter", error)
+
+   print*,"- CALL FieldScatter FOR TARGET GRID LATITUDE CORNER. TILE IS: ", tile
+   call ESMF_FieldScatter(latitude_corner_target_grid, latitude_corner_one_tile, rootpet=0, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldScatter", error)
+
    print*,"- CALL FieldScatter FOR TARGET GRID TERRAIN. TILE IS: ", tile
    call ESMF_FieldScatter(terrain_target_grid, terrain_one_tile, rootpet=0, tile=tile, rc=error)
    if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
@@ -1365,9 +1404,11 @@ print*,"- CALL FieldScatter FOR INPUT GRID LONGITUDE."
  deallocate(longitude_one_tile)
  deallocate(longitude_s_one_tile)
  deallocate(longitude_w_one_tile)
+ deallocate(longitude_corner_one_tile)
  deallocate(latitude_one_tile)
  deallocate(latitude_s_one_tile)
  deallocate(latitude_w_one_tile)
+ deallocate(latitude_corner_one_tile)
  deallocate(terrain_one_tile)
 
  end subroutine define_target_grid
@@ -1393,7 +1434,8 @@ print*,"- CALL FieldScatter FOR INPUT GRID LONGITUDE."
  subroutine get_model_latlons(mosaic_file, orog_dir, num_tiles, tile, &
                               i_tile, j_tile, ip1_tile, jp1_tile,  &
                               latitude, latitude_s, latitude_w, &
-                              longitude, longitude_s, longitude_w)
+                              longitude, longitude_s, longitude_w, &
+                              latitude_corner, longitude_corner)
 
  use netcdf
 
@@ -1411,6 +1453,8 @@ print*,"- CALL FieldScatter FOR INPUT GRID LONGITUDE."
  real(esmf_kind_r8), intent(out)   :: longitude(i_tile, j_tile)
  real(esmf_kind_r8), intent(out)   :: longitude_s(i_tile, jp1_tile)
  real(esmf_kind_r8), intent(out)   :: longitude_w(ip1_tile, j_tile)
+ real(esmf_kind_r8), optional, intent(out)   :: latitude_corner(ip1_tile, jp1_tile)
+ real(esmf_kind_r8), optional, intent(out)   :: longitude_corner(ip1_tile, jp1_tile)
 
  character(len=25)                 :: grid_files(num_tiles)
  character(len=255)                :: grid_file
@@ -1494,6 +1538,16 @@ print*,"- CALL FieldScatter FOR INPUT GRID LONGITUDE."
  enddo
  enddo
 
+ if (present(longitude_corner)) then
+   do j = 1, jp1_tile
+   do i = 1, ip1_tile
+     ii = (2*i) - 1
+     jj = (2*j) - 1
+     longitude_corner(i,j) = tmpvar(ii,jj)
+   enddo
+   enddo
+ endif
+
  print*,'- READ LATITUDE ID'
  error=nf90_inq_varid(ncid, 'y', id_var)
  call netcdf_err(error, 'reading latitude id')
@@ -1525,6 +1579,16 @@ print*,"- CALL FieldScatter FOR INPUT GRID LONGITUDE."
    latitude_w(i,j) = tmpvar(ii,jj)
  enddo
  enddo
+
+ if (present(latitude_corner)) then
+   do j = 1, jp1_tile
+   do i = 1, ip1_tile
+     ii = (2*i) - 1
+     jj = (2*j) - 1
+     latitude_corner(i,j) = tmpvar(ii,jj)
+   enddo
+   enddo
+ endif
 
  deallocate(tmpvar)
 

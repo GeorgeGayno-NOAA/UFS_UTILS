@@ -1198,6 +1198,8 @@
                                      temp_target_grid, &
                                      dzdt_target_grid, &
                                      delp_target_grid, &
+                                     u_s_target_grid, &
+                                     v_w_target_grid, &
                                      zh_target_grid, &
                                      vcoord_target
 
@@ -1559,6 +1561,52 @@
    dum3d(:,:,1:lev_target) = data_one_tile_3d(:,:,lev_target:1:-1)
    error = nf90_put_var( ncid, id_delp, dum3d)
    call netcdf_err(error, 'WRITING DELP RECORD' )
+ endif
+
+ deallocate(dum3d, data_one_tile_3d)
+
+ if (localpet < num_tiles_target_grid) then
+   allocate(dum3d(i_target,jp1_target,lev_target))
+   allocate(data_one_tile_3d(i_target,jp1_target,lev_target))
+ else
+   allocate(dum3d(0,0,0))
+   allocate(data_one_tile_3d(0,0,0))
+ endif
+
+ do tile = 1, num_tiles_target_grid
+   print*,"- CALL FieldGather FOR TARGET GRID U_S FOR TILE: ", tile
+   call ESMF_FieldGather(u_s_target_grid, data_one_tile_3d, rootPet=tile-1, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldGather", error)
+ enddo
+
+ if (localpet < num_tiles_target_grid) then
+   dum3d(:,:,1:lev_target) = data_one_tile_3d(:,:,lev_target:1:-1)
+   error = nf90_put_var( ncid, id_u, dum3d)
+   call netcdf_err(error, 'WRITING U RECORD' )
+ endif
+
+ deallocate(dum3d, data_one_tile_3d)
+
+ if (localpet < num_tiles_target_grid) then
+   allocate(dum3d(ip1_target,j_target,lev_target))
+   allocate(data_one_tile_3d(ip1_target,j_target,lev_target))
+ else
+   allocate(dum3d(0,0,0))
+   allocate(data_one_tile_3d(0,0,0))
+ endif
+
+ do tile = 1, num_tiles_target_grid
+   print*,"- CALL FieldGather FOR TARGET GRID V_W FOR TILE: ", tile
+   call ESMF_FieldGather(v_w_target_grid, data_one_tile_3d, rootPet=tile-1, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldGather", error)
+ enddo
+
+ if (localpet < num_tiles_target_grid) then
+   dum3d(:,:,1:lev_target) = data_one_tile_3d(:,:,lev_target:1:-1)
+   error = nf90_put_var( ncid, id_v, dum3d)
+   call netcdf_err(error, 'WRITING V RECORD' )
  endif
 
  do tile = 1, num_tiles_target_grid

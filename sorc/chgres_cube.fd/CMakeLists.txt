@@ -15,6 +15,7 @@ set(lib_src
     thompson_mp_climo_data.F90
     wam_climo_data.f90
     utils.F90
+    atm_utils.F90
     write_data.F90)
 
 set(exe_src chgres.F90)

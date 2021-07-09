@@ -37,6 +37,8 @@
                                        longitude_s_target_grid, &
                                        latitude_w_target_grid,  &
                                        longitude_w_target_grid, &
+                                       latitude_corner_target_grid,  &
+                                       longitude_corner_target_grid, &
                                        terrain_target_grid
 
  use program_setup, only             : vcoord_file_target_grid, &
@@ -406,6 +408,8 @@
 
  call convert_winds
  
+ call turn_winds(localpet)
+
 !-----------------------------------------------------------------------------------
 ! If selected, process thompson microphysics climatological fields.
 !-----------------------------------------------------------------------------------
@@ -764,6 +768,110 @@
  enddo
 
  end subroutine convert_winds
+
+ subroutine turn_winds(localpet)
+
+ use atm_utils
+
+ implicit none
+
+ integer :: i, j, k, rc, clb(3), cub(3)
+
+ integer, intent(in) :: localpet
+
+ real(esmf_kind_r8), pointer     :: latptr(:,:)
+ real(esmf_kind_r8), pointer     :: lonptr(:,:)
+ real(esmf_kind_r8), pointer     :: us_ptr(:,:,:)
+ real(esmf_kind_r8), pointer     :: vs_ptr(:,:,:)
+ real(esmf_kind_r8), pointer     :: uw_ptr(:,:,:)
+ real(esmf_kind_r8), pointer     :: vw_ptr(:,:,:)
+ 
+ real :: p1(2), p2(2), p3(2)
+ real :: e1(3), e2(3), ex(3), ey(3)
+
+ print *, 'in turn winds'
+
+ print*,"- CALL FieldGet FOR LATITUDE CORNER."
+ call ESMF_FieldGet(latitude_corner_target_grid, &
+                    farrayPtr=latptr, rc=rc)
+ if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+    call error_handler("IN FieldGet", rc)
+
+ print*,"- CALL FieldGet FOR LONGITUDE CORNER."
+ call ESMF_FieldGet(longitude_corner_target_grid, &
+                    farrayPtr=lonptr, rc=rc)
+ if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+    call error_handler("IN FieldGet", rc)
+
+ print*,"- CALL FieldGet FOR U_S."
+ call ESMF_FieldGet(u_s_target_grid, &
+                    computationalLBound=clb, &
+                    computationalUBound=cub, &
+                    farrayPtr=us_ptr, rc=rc)
+ if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+    call error_handler("IN FieldGet", rc)
+
+ print*,"- CALL FieldGet FOR V_S."
+ call ESMF_FieldGet(v_s_target_grid, &
+                    farrayPtr=vs_ptr, rc=rc)
+ if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+    call error_handler("IN FieldGet", rc)
+
+ do i = clb(1), cub(1)
+   do j = clb(2), cub(2)
+     p1(1) = lonptr(i,j) * acos(-1.) / 180.0
+     p1(2) = latptr(i,j) * acos(-1.) / 180.0
+     p2(1) = lonptr(i+1,j) * acos(-1.) / 180.0
+     p2(2) = latptr(i+1,j) * acos(-1.) / 180.0
+     call mid_pt_sphere(p1,p2,p3)
+     if (i == clb(1) .and. j == clb(2)) then
+       print*,'mid check p1 ',localpet, p1*180./acos(-1.)
+       print*,'mid check p2 ',localpet, p2*180./acos(-1.)
+       print*,'mid check p3 ',localpet, p3*180./acos(-1.)
+     endif
+     call get_unit_vect2(p1, p2, e1)
+     call get_latlon_vector(p3, ex, ey)
+     do k = clb(3), cub(3)
+       us_ptr(i,j,k) = us_ptr(i,j,k) * inner_prod(e1,ex) + vs_ptr(i,j,k) * inner_prod(e1,ey)
+     enddo
+   enddo
+ enddo
+
+ print*,"- CALL FieldGet FOR U_W."
+ call ESMF_FieldGet(u_w_target_grid, &
+                    computationalLBound=clb, &
+                    computationalUBound=cub, &
+                    farrayPtr=uw_ptr, rc=rc)
+ if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+    call error_handler("IN FieldGet", rc)
+
+ print*,"- CALL FieldGet FOR V_W."
+ call ESMF_FieldGet(v_w_target_grid, &
+                    farrayPtr=vw_ptr, rc=rc)
+ if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+    call error_handler("IN FieldGet", rc)
+
+ do i = clb(1), cub(1)
+   do j = clb(2), cub(2)
+     p1(1) = lonptr(i,j) * acos(-1.) / 180.0
+     p1(2) = latptr(i,j) * acos(-1.) / 180.0
+     p2(1) = lonptr(i,j+1) * acos(-1.) / 180.0
+     p2(2) = latptr(i,j+1) * acos(-1.) / 180.0
+     call mid_pt_sphere(p1,p2,p3)
+     if (i == clb(1) .and. j == clb(2)) then
+       print*,'mid check p1 ',localpet, p1*180./acos(-1.)
+       print*,'mid check p2 ',localpet, p2*180./acos(-1.)
+       print*,'mid check p3 ',localpet, p3*180./acos(-1.)
+     endif
+     call get_unit_vect2(p1, p2, e2)
+     call get_latlon_vector(p3, ex, ey)
+     do k = clb(3), cub(3)
+       vw_ptr(i,j,k) = uw_ptr(i,j,k) * inner_prod(e2,ex) + vw_ptr(i,j,k) * inner_prod(e2,ey)
+     enddo
+   enddo
+ enddo
+
+ end subroutine turn_winds
 
 !> Computes 3-D pressure given an adjusted surface pressure.
 !!                                                                       

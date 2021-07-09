@@ -1742,7 +1742,8 @@ print*,"- CALL FieldScatter FOR INPUT GRID LONGITUDE."
  mask = nint(dummy)
 
  print*,"- READ RAW OROGRAPHY."
- error=nf90_inq_varid(ncid, 'orog_raw', id_var)
+ error=nf90_inq_varid(ncid, 'orog_filt', id_var)
+!cggg error=nf90_inq_varid(ncid, 'orog_raw', id_var)
  call netcdf_err(error, 'reading orog_raw id')
  error=nf90_get_var(ncid, id_var, dummy)
  call netcdf_err(error, 'reading orog_raw')

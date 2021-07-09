@@ -1617,7 +1617,7 @@
  enddo
 
  if (localpet < num_tiles_target_grid) then
-   data_one_tile_2d = data_one_tile_2d * 9.806_esmf_kind_r8
+   data_one_tile_2d = data_one_tile_2d * 9.80665_esmf_kind_r8
    error = nf90_put_var( ncid, id_phis, data_one_tile_2d)
    call netcdf_err(error, 'WRITING PHIS RECORD' )
  endif

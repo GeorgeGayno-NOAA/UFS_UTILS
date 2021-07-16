@@ -41,6 +41,9 @@
                                        longitude_w_target_grid, &
                                        latitude_corner_target_grid,  &
                                        longitude_corner_target_grid, &
+                                       num_tiles_target_grid, &
+                                       i_target, ip1_target, &
+                                       j_target, jp1_target, &
                                        terrain_target_grid
 
  use program_setup, only             : vcoord_file_target_grid, &
@@ -842,101 +845,145 @@
 
  implicit none
 
- integer :: i, j, k, rc, clb(3), cub(3)
-
  integer, intent(in) :: localpet
 
- real(esmf_kind_r8), pointer     :: latptr(:,:)
- real(esmf_kind_r8), pointer     :: lonptr(:,:)
- real(esmf_kind_r8), pointer     :: us_ptr(:,:,:)
- real(esmf_kind_r8), pointer     :: vs_ptr(:,:,:)
- real(esmf_kind_r8), pointer     :: uw_ptr(:,:,:)
- real(esmf_kind_r8), pointer     :: vw_ptr(:,:,:)
- 
+ integer :: i, j, k, error, tile
+
  real :: p1(2), p2(2), p3(2)
  real :: e1(3), e2(3), ex(3), ey(3)
 
- print *, 'in turn winds'
+ real(esmf_kind_r8), allocatable  :: us_one_tile(:,:,:)
+ real(esmf_kind_r8), allocatable  :: vs_one_tile(:,:,:)
+ real(esmf_kind_r8), allocatable  :: uw_one_tile(:,:,:)
+ real(esmf_kind_r8), allocatable  :: vw_one_tile(:,:,:)
+ real(esmf_kind_r8), allocatable  :: corner_lon(:,:)
+ real(esmf_kind_r8), allocatable  :: corner_lat(:,:)
 
- print*,"- CALL FieldGet FOR LATITUDE CORNER."
- call ESMF_FieldGet(latitude_corner_target_grid, &
-                    farrayPtr=latptr, rc=rc)
- if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
-    call error_handler("IN FieldGet", rc)
+ print*,'in turn_winds2'
 
- print*,"- CALL FieldGet FOR LONGITUDE CORNER."
- call ESMF_FieldGet(longitude_corner_target_grid, &
-                    farrayPtr=lonptr, rc=rc)
- if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
-    call error_handler("IN FieldGet", rc)
+ if (localpet == 0) then
+   allocate(us_one_tile(i_target,jp1_target,lev_target))
+   allocate(vs_one_tile(i_target,jp1_target,lev_target))
+   allocate(corner_lon(ip1_target,jp1_target))
+   allocate(corner_lat(ip1_target,jp1_target))
+ else
+   allocate(us_one_tile(0,0,0))
+   allocate(vs_one_tile(0,0,0))
+   allocate(corner_lon(0,0))
+   allocate(corner_lat(0,0))
+ endif
 
- print*,"- CALL FieldGet FOR U_S."
- call ESMF_FieldGet(u_s_target_grid, &
-                    computationalLBound=clb, &
-                    computationalUBound=cub, &
-                    farrayPtr=us_ptr, rc=rc)
- if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
-    call error_handler("IN FieldGet", rc)
+ do tile = 1, num_tiles_target_grid
 
- print*,"- CALL FieldGet FOR V_S."
- call ESMF_FieldGet(v_s_target_grid, &
-                    farrayPtr=vs_ptr, rc=rc)
- if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
-    call error_handler("IN FieldGet", rc)
+   print*,"- CALL FieldGather FOR TARGET GRID U_S FOR TILE: ", tile
+   call ESMF_FieldGather(u_s_target_grid, us_one_tile, rootPet=0, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldGather", error)
 
- do i = clb(1), cub(1)
-   do j = clb(2), cub(2)
-     p1(1) = lonptr(i,j) * acos(-1.) / 180.0
-     p1(2) = latptr(i,j) * acos(-1.) / 180.0
-     p2(1) = lonptr(i+1,j) * acos(-1.) / 180.0
-     p2(2) = latptr(i+1,j) * acos(-1.) / 180.0
-     call mid_pt_sphere(p1,p2,p3)
-     if (i == clb(1) .and. j == clb(2)) then
-       print*,'mid check p1 ',localpet, p1*180./acos(-1.)
-       print*,'mid check p2 ',localpet, p2*180./acos(-1.)
-       print*,'mid check p3 ',localpet, p3*180./acos(-1.)
-     endif
-     call get_unit_vect2(p1, p2, e1)
-     call get_latlon_vector(p3, ex, ey)
-     do k = clb(3), cub(3)
-       us_ptr(i,j,k) = us_ptr(i,j,k) * inner_prod(e1,ex) + vs_ptr(i,j,k) * inner_prod(e1,ey)
+   print*,"- CALL FieldGather FOR TARGET GRID V_S FOR TILE: ", tile
+   call ESMF_FieldGather(v_s_target_grid, vs_one_tile, rootPet=0, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldGather", error)
+
+   print*,"- CALL FieldGather FOR TARGET corner lon FOR TILE: ", tile
+   call ESMF_FieldGather(longitude_corner_target_grid, corner_lon, rootPet=0, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldGather", error)
+
+   print*,"- CALL FieldGather FOR TARGET corner lat FOR TILE: ", tile
+   call ESMF_FieldGather(latitude_corner_target_grid, corner_lat, rootPet=0, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldGather", error)
+
+   if (localpet == 0) then
+     do i = 1, i_target
+     do j = 1, jp1_target
+       p1(1) = corner_lon(i,j) * acos(-1.) / 180.0
+       p1(2) = corner_lat(i,j) * acos(-1.) / 180.0
+       p2(1) = corner_lon(i+1,j) * acos(-1.) / 180.0
+       p2(2) = corner_lat(i+1,j) * acos(-1.) / 180.0
+       call mid_pt_sphere(p1,p2,p3)
+       if (i == 1 .and. j == 1) then
+         print*,'mid check p1 ',localpet, p1*180./acos(-1.)
+         print*,'mid check p2 ',localpet, p2*180./acos(-1.)
+         print*,'mid check p3 ',localpet, p3*180./acos(-1.)
+       endif
+       call get_unit_vect2(p1, p2, e1)
+       call get_latlon_vector(p3, ex, ey)
+       do k = 1, lev_target
+         us_one_tile(i,j,k) = us_one_tile(i,j,k) * inner_prod(e1,ex) + vs_one_tile(i,j,k) * inner_prod(e1,ey)
+       enddo
      enddo
-   enddo
+     enddo
+   endif
+
+   print*,"- CALL FieldScatter FOR TARGET GRID U_S FOR TILE: ", tile
+   call ESMF_FieldScatter(u_s_target_grid, us_one_tile, rootPet=0, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldScatter", error)
+
  enddo
 
- print*,"- CALL FieldGet FOR U_W."
- call ESMF_FieldGet(u_w_target_grid, &
-                    computationalLBound=clb, &
-                    computationalUBound=cub, &
-                    farrayPtr=uw_ptr, rc=rc)
- if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
-    call error_handler("IN FieldGet", rc)
+ deallocate(us_one_tile, vs_one_tile)
 
- print*,"- CALL FieldGet FOR V_W."
- call ESMF_FieldGet(v_w_target_grid, &
-                    farrayPtr=vw_ptr, rc=rc)
- if(ESMF_logFoundError(rcToCheck=rc,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
-    call error_handler("IN FieldGet", rc)
+ if (localpet == 0) then
+   allocate(uw_one_tile(ip1_target,j_target,lev_target))
+   allocate(vw_one_tile(ip1_target,j_target,lev_target))
+ else
+   allocate(uw_one_tile(0,0,0))
+   allocate(vw_one_tile(0,0,0))
+ endif
 
- do i = clb(1), cub(1)
-   do j = clb(2), cub(2)
-     p1(1) = lonptr(i,j) * acos(-1.) / 180.0
-     p1(2) = latptr(i,j) * acos(-1.) / 180.0
-     p2(1) = lonptr(i,j+1) * acos(-1.) / 180.0
-     p2(2) = latptr(i,j+1) * acos(-1.) / 180.0
-     call mid_pt_sphere(p1,p2,p3)
-     if (i == clb(1) .and. j == clb(2)) then
-       print*,'mid check p1 ',localpet, p1*180./acos(-1.)
-       print*,'mid check p2 ',localpet, p2*180./acos(-1.)
-       print*,'mid check p3 ',localpet, p3*180./acos(-1.)
-     endif
-     call get_unit_vect2(p1, p2, e2)
-     call get_latlon_vector(p3, ex, ey)
-     do k = clb(3), cub(3)
-       vw_ptr(i,j,k) = uw_ptr(i,j,k) * inner_prod(e2,ex) + vw_ptr(i,j,k) * inner_prod(e2,ey)
+ do tile = 1, num_tiles_target_grid
+
+   print*,"- CALL FieldGather FOR TARGET GRID U_W FOR TILE: ", tile
+   call ESMF_FieldGather(u_w_target_grid, uw_one_tile, rootPet=0, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldGather", error)
+
+   print*,"- CALL FieldGather FOR TARGET GRID V_W FOR TILE: ", tile
+   call ESMF_FieldGather(v_w_target_grid, vw_one_tile, rootPet=0, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldGather", error)
+
+   print*,"- CALL FieldGather FOR TARGET corner lon FOR TILE: ", tile
+   call ESMF_FieldGather(longitude_corner_target_grid, corner_lon, rootPet=0, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldGather", error)
+
+   print*,"- CALL FieldGather FOR TARGET corner lat FOR TILE: ", tile
+   call ESMF_FieldGather(latitude_corner_target_grid, corner_lat, rootPet=0, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldGather", error)
+
+   if (localpet == 0) then
+
+     do i = 1, ip1_target
+     do j = 1, j_target
+       p1(1) = corner_lon(i,j) * acos(-1.) / 180.0
+       p1(2) = corner_lat(i,j) * acos(-1.) / 180.0
+       p2(1) = corner_lon(i,j+1) * acos(-1.) / 180.0
+       p2(2) = corner_lat(i,j+1) * acos(-1.) / 180.0
+       call mid_pt_sphere(p1,p2,p3)
+       call get_unit_vect2(p1, p2, e2)
+       call get_latlon_vector(p3, ex, ey)
+       do k = 1, lev_target
+         vw_one_tile(i,j,k) = uw_one_tile(i,j,k) * inner_prod(e2,ex) + vw_one_tile(i,j,k) * inner_prod(e2,ey)
+       enddo
      enddo
-   enddo
+     enddo
+
+   endif
+
+   print*,"- CALL FieldScatter FOR TARGET GRID V_W FOR TILE: ", tile
+   call ESMF_FieldScatter(v_w_target_grid, vw_one_tile, rootPet=0, tile=tile, rc=error)
+   if(ESMF_logFoundError(rcToCheck=error,msg=ESMF_LOGERR_PASSTHRU,line=__LINE__,file=__FILE__)) &
+      call error_handler("IN FieldScatter", error)
+
  enddo
+
+ deallocate(uw_one_tile, vw_one_tile)
+ deallocate(corner_lat, corner_lon)
 
  end subroutine turn_winds
 

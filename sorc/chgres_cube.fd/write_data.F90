@@ -1392,6 +1392,12 @@
 
  enddo
 
+   if (localpet < num_tiles_target_grid) then
+     dum3d = 0.0
+     error = nf90_put_var( ncid, id_cld, dum3d)
+     call netcdf_err(error, 'WRITING CLD AMT RECORD' )
+   endif
+
  deallocate(id_tracers)
  deallocate(x_data, y_data, z_data)
 

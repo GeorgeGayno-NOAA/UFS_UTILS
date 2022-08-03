@@ -81,9 +81,3 @@ endif()
 
 add_subdirectory(sorc)
 
-# Run unit tests.
-include(CTest)
-if(BUILD_TESTING)
-  add_subdirectory(tests)
-endif()
-

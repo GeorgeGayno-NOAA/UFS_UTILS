@@ -32,6 +32,11 @@ export CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Debug"
 cd ../..
 ./build_all.sh
 
+source ./sorc/machine-setup.sh > /dev/null 2>&1
+module use ./modulefiles
+module load build.$target.$compiler
+module list
+
 cd $this_dir
 
 export OUTDIR="${WORK_DIR:-/lfs/h2/emc/stmp/$LOGNAME}"
@@ -74,14 +79,14 @@ rm -fr $OUTDIR
 LOG_FILE=${LOG_FILE}01
 export APRUN="mpiexec -n 6 -ppn 6 --cpu-bind core"
 TEST1=$(qsub -V -o $LOG_FILE -e $LOG_FILE -q $QUEUE -A $PROJECT_CODE -l walltime=00:05:00 \
-        -N c96.regional -l select=1:ncpus=6:ompthreads=1:mem=35GB $PWD/c96.regional.sh)
+        -N c96.regional.debug -l select=1:ncpus=6:ompthreads=1:mem=35GB $PWD/c96.regional.sh)
 
 #-----------------------------------------------------------------------------
 # Create summary log.
 #-----------------------------------------------------------------------------
 
 qsub -V -o ${LOG_FILE} -e ${LOG_FILE} -q $QUEUE -A $PROJECT_CODE -l walltime=00:01:00 \
-        -N chgres_summary -l select=1:ncpus=1:mem=100MB \
+        -N chgres_summary.debug -l select=1:ncpus=1:mem=100MB \
         -W depend=afterok:$TEST1 << EOF
 #!/bin/bash
 cd ${this_dir}

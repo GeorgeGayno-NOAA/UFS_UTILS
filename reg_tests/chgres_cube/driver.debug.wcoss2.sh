@@ -2,7 +2,7 @@
 
 #-----------------------------------------------------------------------------
 #
-# Run the chgres_cube consistency tests on WCOSS2.
+# Run a single chgres_cube consistency test on WCOSS2 in 'Debug' mode.
 #
 # Set WORK_DIR to a general working location outside the UFS_UTILS directory.
 # The exact working directory (OUTDIR) will be WORK_DIR/reg_tests/chgres-cube. 
@@ -13,10 +13,10 @@
 # "qstat -u USERNAME".
 #
 # The run output will be stored in OUTDIR.  Log output will be placed
-# in LOG_FILE??.  Once the suite has completed, a summary is placed
+# in LOG_FILE??.  Once the test has completed, a summary is placed
 # in SUM_FILE.
 #
-# A test fails when its output does not match the baseline files as
+# The test fails when its output does not match the baseline files as
 # determined by the "nccmp" utility.  The baseline files are stored in
 # HOMEreg.
 #
@@ -25,6 +25,11 @@
 set -x
 
 this_dir=$PWD
+export HOMEufs=$this_dir/../..
+
+#-----------------------------------------------------------------------------
+# Compile the repository in 'Debug' mode.
+#-----------------------------------------------------------------------------
 
 export compiler="intel"
 export CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Debug"
@@ -32,18 +37,18 @@ export CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Debug"
 cd ../..
 ./build_all.sh
 
-source ./sorc/machine-setup.sh > /dev/null 2>&1
-module use ./modulefiles
+cd $this_dir
+
+source $HOMEufs/sorc/machine-setup.sh > /dev/null 2>&1
+module use $HOMEufs/modulefiles
 module load build.$target.$compiler
 module list
 
-cd $this_dir
-
 export OUTDIR="${WORK_DIR:-/lfs/h2/emc/stmp/$LOGNAME}"
-export OUTDIR="${OUTDIR}/reg-tests/chgres-cube"
+export OUTDIR="${OUTDIR}/reg-tests/chgres-cube-debug"
 
 PROJECT_CODE="${PROJECT_CODE:-GFS-DEV}"
-QUEUE="${QUEUE:-dev}"
+QUEUE="${QUEUE:-debug}"
 
 #-----------------------------------------------------------------------------
 # Should not have to change anything below here.  HOMEufs is the root
@@ -58,15 +63,16 @@ if [ "$UPDATE_BASELINE" = "TRUE" ]; then
   source ../get_hash.sh
 fi
 
-export HOMEufs=$this_dir/../..
-
-export HOMEreg=/lfs/h2/emc/nems/noscrub/emc.nems/UFS_UTILS/reg_tests/chgres_cube
+#export HOMEreg=/lfs/h2/emc/nems/noscrub/emc.nems/UFS_UTILS/reg_tests/chgres_cube
+export HOMEreg=/lfs/h2/emc/global/noscrub/George.Gayno/ufs_utils.git/reg_tests/chgres_cube
 
 LOG_FILE=consistency.debug.log
 SUM_FILE=summary.debug.log
 rm -f $LOG_FILE* $SUM_FILE
 
 export OMP_STACKSIZE=1024M
+
+export DEBUG_MODE='true'
 
 export NCCMP=/lfs/h2/emc/global/noscrub/George.Gayno/util/nccmp/nccmp-1.8.5.0/src/nccmp
 #export NCCMP=${NCCMP:-nccmp}
@@ -90,7 +96,7 @@ qsub -V -o ${LOG_FILE} -e ${LOG_FILE} -q $QUEUE -A $PROJECT_CODE -l walltime=00:
         -W depend=afterok:$TEST1 << EOF
 #!/bin/bash
 cd ${this_dir}
-grep -a '<<<' ${LOG_FILE}?? | grep -v echo > $SUM_FILE
+grep -a '<<<' ${LOG_FILE} | grep -v echo > $SUM_FILE
 EOF
 
 exit 0

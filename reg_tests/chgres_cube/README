@@ -3,9 +3,9 @@ changes to the chgres_cube program are merged to the
 main line of development.  Any test failures must
 be resolved or explained before merging.
 
-To run the consistency tests:
+TO RUN THE CONSISTENCY TESTS (Release mode):
 
-1) Build chgres_cube program.  Go to ./sorc and
+1) Build chgres_cube program.  Go to root directory and
    invoke 'build_all.sh' with no arguments.
 2) Set the fixed directories. Go to ./fix and
    invoke the script.
@@ -20,3 +20,15 @@ Log output from each test will be placed in its own
 logfile - "consistency.log??".
 
 A summary of results will be in "summary.log".
+
+TO RUN THE CONSISTENCY TEST ON WCOSS2 IN Debug MODE:
+
+1) Ensure fixed directories are set (see above).
+2) Invoke the 'driver.debug.wcoss2.sh script.
+
+The program will be compiled in 'Debug' model. A single 
+test will run. Log output will be placed in
+"consistency.debug.log01" and a summary of
+results will be placed in "summary.debug.log".
+
+DO NOT RUN THE RELEASE AND DEBUG TESTS AT THE SAME TIME.

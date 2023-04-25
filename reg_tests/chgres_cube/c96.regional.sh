@@ -30,6 +30,8 @@ export OMP_NUM_THREADS_CH=${OMP_NUM_THREADS:-1}
 
 NCCMP=${NCCMP:-$(which nccmp)}
 
+DEBUG_MODE=${DEBUG_MODE:-'false'}
+
 #-----------------------------------------------------------------------------
 # Invoke chgres program.
 #-----------------------------------------------------------------------------
@@ -41,7 +43,7 @@ ${HOMEufs}/ush/chgres_cube.sh
 iret=$?
 if [ $iret -ne 0 ]; then
   set +x
-  echo "<<< C96 REGIONAL TEST FAILED. <<<"
+  echo "<<< C96 REGIONAL DEBUG TEST FAILED. <<<"
   exit $iret
 fi
 
@@ -56,12 +58,19 @@ cd $DATA
 mv out.sfc.tile7.nc out.sfc.tile1.nc
 mv out.atm.tile7.nc out.atm.tile1.nc
 
+if [ "$DEBUG_MODE" = 'true' ]; then
+  BASELINE_DIR=c96_regional.debug
+else
+  BASELINE_DIR=c96_regional
+fi
+BASELINE_DATA=$HOMEreg/baseline_data/$BASELINE_DIR
+
 test_failed=0
 for files in *.nc
 do
   if [ -f $files ]; then
     echo CHECK $files
-    $NCCMP -dmfqS $files $HOMEreg/baseline_data/c96_regional/$files
+    $NCCMP -dmfqS $files $BASELINE_DATA/$files
     iret=$?
     if [ $iret -ne 0 ]; then
       test_failed=1
@@ -71,12 +80,12 @@ done
 
 set +x
 if [ $test_failed -ne 0 ]; then
-  echo "<<< C96 REGIONAL TEST FAILED. >>>"
+  echo "<<< C96 REGIONAL DEBUG TEST FAILED. >>>"
   if [ "$UPDATE_BASELINE" = "TRUE" ]; then
-    $HOMEufs/reg_tests/update_baseline.sh $HOMEreg "c96_regional" $commit_num
+    $HOMEufs/reg_tests/update_baseline.sh $HOMEreg $BASELINE_DIR $commit_num
   fi
 else
-  echo "<<< C96 REGIONAL TEST PASSED. >>>"
+  echo "<<< C96 REGIONAL DEBUG TEST PASSED. >>>"
 fi
 
 exit 0

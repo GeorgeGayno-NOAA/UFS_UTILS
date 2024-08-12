@@ -33,7 +33,7 @@ option(FVCOMTOOLS "Enable building fvcom_tools.fd" OFF)
 option(GBLEVENTS "Enable building gblevents.fd" OFF)
 option(CPLD_GRIDGEN "Enable building cpld_gridgen.fd" OFF)
 option(OCNICE_PREP "Enable building ocnice_prep.fd" OFF)
-option(WEIGHT_GEN "Enable building weight_gen.fd" OFF)
+option(WEIGHT_GEN "Enable building weight_gen.fd" ON)
 option(OCEAN_MERGE "Enable building ocean_merge.fd" OFF)
 
 # Option to build application specific utilities

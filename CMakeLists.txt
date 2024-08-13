@@ -28,7 +28,7 @@ option(OROG_MASK_TOOLS "Enable building orog_mask_tools.fd" OFF)
 # OROG_MASK_TOOLS must be ON for OROG_NETCDF_TOOLS to build.
 option(OROG_NETCDF_TOOLS "Enable building orog_netcdf_tools.fd" OFF)
 option(SFC_CLIMO_GEN "Enable building sfc_climo_gen.fd" OFF)
-option(VCOORD_GEN "Enable building vcoord_gen.fd" OFF)
+option(VCOORD_GEN "Enable building vcoord_gen.fd" ON)
 option(FVCOMTOOLS "Enable building fvcom_tools.fd" OFF)
 option(GBLEVENTS "Enable building gblevents.fd" OFF)
 option(CPLD_GRIDGEN "Enable building cpld_gridgen.fd" OFF)

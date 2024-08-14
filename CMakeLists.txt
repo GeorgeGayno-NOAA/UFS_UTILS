@@ -34,7 +34,7 @@ option(GBLEVENTS "Enable building gblevents.fd" ON)
 option(CPLD_GRIDGEN "Enable building cpld_gridgen.fd" ON)
 option(OCNICE_PREP "Enable building ocnice_prep.fd" ON)
 option(WEIGHT_GEN "Enable building weight_gen.fd" ON)
-option(OCEAN_MERGE "Enable building ocean_merge.fd" OFF)
+option(OCEAN_MERGE "Enable building ocean_merge.fd" ON)
 
 # Option to build application specific utilities
 option(GFS "Enable building GFS-only utilities" OFF)

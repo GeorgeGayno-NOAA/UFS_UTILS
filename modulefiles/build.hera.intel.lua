@@ -13,6 +13,9 @@ load(pathJoin("stack-intel", stack_intel_ver))
 stack_impi_ver=os.getenv("stack_impi_ver") or "2021.5.1"
 load(pathJoin("stack-intel-oneapi-mpi", stack_impi_ver))
 
+load("gnu")
+load("intel/2023.2.0")
+
 cmake_ver=os.getenv("cmake_ver") or "3.23.1"
 load(pathJoin("cmake", cmake_ver))
 
@@ -61,5 +64,11 @@ load(pathJoin("esmf", esmf_ver))
 
 nco_ver=os.getenv("nco_ver") or "5.0.6"
 load(pathJoin("nco", nco_ver))
+
+setenv("I_MPI_CC", "icx")
+setenv("I_MPI_FC", "ifx")
+
+setenv("CC", "mpicc")
+setenv("FC", "mpifc")
 
 whatis("Description: UFS_UTILS build environment")

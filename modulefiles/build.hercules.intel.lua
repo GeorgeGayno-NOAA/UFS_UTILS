@@ -59,7 +59,10 @@ load(pathJoin("esmf", esmf_ver))
 nco_ver=os.getenv("nco_ver") or "5.0.6"
 load(pathJoin("nco", nco_ver))
 
-setenv("CC", "icx")
-setenv("FC", "ifx")
+setenv("I_MPI_CC", "icx")
+setenv("I_MPI_F90", "ifx")
+
+setenv("CC", "mpiicc")
+setenv("FC", "mpiifort")
 
 whatis("Description: UFS_UTILS build environment")

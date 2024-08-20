@@ -86,10 +86,14 @@ elseif(CMAKE_Fortran_COMPILER_ID MATCHES "^(GNU)$")
   set(CMAKE_Fortran_FLAGS_DEBUG "-O0 -ggdb -Wall -fcheck=all")
 endif()
 
-if(CMAKE_C_COMPILER_ID MATCHES "^(Intel)$")
+if(CMAKE_C_COMPILER_ID MATCHES "^(Intel|IntelLLVM)$")
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -traceback")
-  set(CMAKE_C_FLAGS_RELEASE "-O2")
   set(CMAKE_C_FLAGS_DEBUG "-O0")
+  if(CMAKE_C_COMPILER_ID MATCHES "^(Intel)$")
+    set(CMAKE_C_FLAGS_RELEASE "-O2")
+  else()
+    set(CMAKE_C_FLAGS_RELEASE "-O1")
+  endif()
 endif()
 
 # Find packages.

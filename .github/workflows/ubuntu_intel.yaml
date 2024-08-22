@@ -7,14 +7,14 @@ defaults:
   run:
     shell: bash -leo pipefail {0}
 
-# Set I_MPI_CC/F90 so Intel MPI wrapper uses icc/ifort instead of gcc/gfortran
+# Set I_MPI_CC/F90 so IntelLLVM is used.
 env:
   cache_key: intel
-  CC: icc
-  FC: ifort
-  CXX: icpc
-  I_MPI_CC: icc
-  I_MPI_F90: ifort
+  CC: mpiicc
+  FC: mpiifort
+  CXX: mpiicpc
+  I_MPI_CC: icx
+  I_MPI_F90: ifx
 
 # The jobs are split into:
 # 1. a dependency build step (setup), and

@@ -99,8 +99,8 @@ jobs:
         run: |
           source spack/share/spack/setup-env.sh
           spack env activate ufs_utils-env
-          export CC
-          export FC
+          export CC=mpiicx
+          export FC=mpiifx
           cd ufs_utils
           mkdir -p build && cd build
           cmake -DCMAKE_INSTALL_PREFIX=../install ..

@@ -1,0 +1,13 @@
+!> Handle netCDF errors.
+!!
+!! @param[in] ret NetCDF return code.
+!! @author Shan Sun
+subroutine handle_err (ret)
+  use netcdf
+  integer, intent(in) :: ret
+
+  if (ret /= NF90_NOERR) then
+    write(6,*) nf90_strerror (ret)
+    stop 999
+  end if
+end subroutine handle_err

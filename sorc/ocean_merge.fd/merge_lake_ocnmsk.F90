@@ -22,7 +22,6 @@ program merge_lake_ocnmsk
   character(len=120) :: pth1
   character(len=120) :: pth2,pth3
   character(len=10)  :: atmres,ocnres
-  real, parameter    :: min_land=1.e-4, def_lakedp=10.
  ! this variable is now renamed as binary_lake and is passed in from the name
  ! list
  ! logical, parameter :: int_lake=.true.  
@@ -30,15 +29,14 @@ program merge_lake_ocnmsk
   integer :: binary_lake
 
   character(len=250) :: flnm
-  integer :: ncid,ndims,nvars,natts,lat,lon,v1id,v2id,v3id,v4id,start(2),count(2),i,j,latid,lonid,ncid4, dims(2),tile,nodp_pt
-  integer :: lake_pt,vlat
+  integer :: ncid,ndims,nvars,natts,lat,lon,v1id,v2id,v3id,v4id,start(2),count(2),latid,lonid,ncid4, dims(2),tile
+  integer :: vlat
   real, allocatable :: lake_frac(:,:),lake_depth(:,:),land_frac(:,:),ocn_frac(:,:),slmsk(:,:),lat2d(:,:)
 
   call read_nml(pth1, pth2, atmres, ocnres, pth3,binary_lake)
   
   print *, pth1
-  nodp_pt=0
-  lake_pt=0  
+
   do tile=1,6
     write(flnm,'(5a,i1,a)') trim(pth1),trim(atmres),'.',trim(ocnres),'.tile',tile,'.nc'
     call handle_err (nf90_open (flnm, NF90_NOWRITE, ncid))
@@ -69,32 +67,7 @@ program merge_lake_ocnmsk
     call handle_err (nf90_get_var (ncid, v3id, lake_depth,start=start, count=count))
     call handle_err (nf90_get_var (ncid, vlat, lat2d,     start=start, count=count))
 
-    do i=1,lon
-    do j=1,lat
-      if (binary_lake.eq.1) lake_frac(i,j)=nint(lake_frac(i,j))     ! using integer lake_frac
-      if (lat2d(i,j).le.-60.) lake_frac(i,j)=0.             ! ignore lakes on Antarctica
-      land_frac(i,j)=1.-ocn_frac(i,j)
-      if (land_frac(i,j) <    min_land) land_frac(i,j)=0.   ! ignore land  < min_land
-      if (land_frac(i,j) > 1.-min_land) land_frac(i,j)=1.   ! ignore water < min_land
-      if (1.-land_frac(i,j) > 0.) lake_frac(i,j)=0.         ! ocn dominates
-
-      if (lake_frac(i,j) > 0.) then
-        lake_pt=lake_pt+1            ! calculating total lake points
-        if (binary_lake.eq.1) then
-          land_frac(i,j)=0.
-        else
-          land_frac(i,j)=1.-lake_frac(i,j)
-        end if
-        if (lake_depth(i,j) <= 0.) then
-          lake_depth(i,j)=def_lakedp ! set missing lake depth to default value
-          nodp_pt=nodp_pt+1          ! calculating total lake points without depth
-        end if
-      else
-        lake_depth(i,j)=0.
-      end if
-       slmsk(i,j) = nint(land_frac(i,j)) ! nint got the land pts correct
-    end do
-    end do
+    call merge(lon, lat, binary_lake, lat2d, ocn_frac, lake_frac, lake_depth, land_frac, slmsk)
 
     write(flnm,'(4a,i1,a)') trim(atmres),'.',trim(ocnres),'.tile',tile,'.nc'
     print *,'output=',trim(flnm)
@@ -117,6 +90,5 @@ program merge_lake_ocnmsk
     call handle_err (nf90_close(ncid4))
 
   end do ! tile
-  write(*,'(a,i8,a,i8,a)') 'total lake point ',lake_pt,' where ',nodp_pt,' has no depth'
 
 end program merge_lake_ocnmsk

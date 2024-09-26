@@ -34,7 +34,6 @@ program merge_lake_ocnmsk
   integer :: lake_pt,vlat
   real, allocatable :: lake_frac(:,:),lake_depth(:,:),land_frac(:,:),ocn_frac(:,:),slmsk(:,:),lat2d(:,:)
 
-
   call read_nml(pth1, pth2, atmres, ocnres, pth3,binary_lake)
   
   print *, pth1
@@ -58,21 +57,11 @@ program merge_lake_ocnmsk
     call handle_err (nf90_inq_varid(ncid, 'land_frac', v1id))
     call handle_err (nf90_get_var (ncid, v1id, ocn_frac, start=start, count=count))
 
-   !write(flnm,'(3a,i1,a)') trim(pth2),trim(atmres),'_orog_data.tile',tile,'.nc'
     write(flnm,'(4a,i1,a)') trim(pth2),'oro.',trim(atmres),'.tile',tile,'.nc'
     print *,' flnm2=',trim(flnm)
     call handle_err (nf90_open (flnm, NF90_NOWRITE, ncid))
     call handle_err (nf90_inquire (ncid, ndimensions=ndims, nvariables=nvars, nattributes=natts))
     write(6,*) 'flnm_lake=',flnm,' ncid=',ncid, ' ndims=',ndims, 'nvars=',nvars,' natts=',natts
-   !if (tile==1) then
-   !  call handle_err (nf90_inq_dimid (ncid, 'lat', latid))
-   !  call handle_err (nf90_inq_dimid (ncid, 'lon', lonid))
-   !  call handle_err (nf90_inquire_dimension (ncid, latid, len=lat))
-   !  call handle_err (nf90_inquire_dimension (ncid, lonid, len=lon))
-   !  write(6,*) 'lat=',lat,'lon=',lon
-   !  start(1:2) = (/1,1/)
-   !  count(1:2) = (/lon,lat/)
-   !end if
     call handle_err (nf90_inq_varid(ncid, 'lake_frac', v2id))
     call handle_err (nf90_inq_varid(ncid, 'lake_depth',v3id))
     call handle_err (nf90_inq_varid(ncid, 'geolat'    ,vlat))
@@ -103,7 +92,6 @@ program merge_lake_ocnmsk
       else
         lake_depth(i,j)=0.
       end if
-!      slmsk(i,j) = ceiling(land_frac(i,j))! "ceiling is used for orog smoothing"
        slmsk(i,j) = nint(land_frac(i,j)) ! nint got the land pts correct
     end do
     end do
@@ -127,12 +115,6 @@ program merge_lake_ocnmsk
     call handle_err (nf90_put_var (ncid4, v3id,lake_depth))
     call handle_err (nf90_put_var (ncid4, v4id,slmsk))
     call handle_err (nf90_close(ncid4))
-
-!   do i=1,48
-!   do j=1,48
-!     write(*,'(2i4,4f6.1)') i,j,land_frac(i,j),lake_frac(i,j),lake_depth(i,j),slmsk(i,j)
-!   end do
-!   end do
 
   end do ! tile
   write(*,'(a,i8,a,i8,a)') 'total lake point ',lake_pt,' where ',nodp_pt,' has no depth'

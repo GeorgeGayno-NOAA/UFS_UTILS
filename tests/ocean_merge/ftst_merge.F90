@@ -20,18 +20,17 @@
  print*,"Begin test of merge routine"
 
 ! Test point 1
-
-! Some ocean. No lake. 
+! Some ocean. No lake. Ocean info retained.
 
  print*,'Test point 1.'
 
- binary_lake = 0         ! keep fractional lake.
- lat2d(1,1) = 30.0       ! point at 30N.
+ binary_lake = 0         ! Keep fractional lake.
+ lat2d(1,1) = 30.0       ! Point at 30N.
  ocn_frac(1,1) = .75     ! .75 ocean/.25 land
- lake_frac(1,1) = 0.0    ! no lake.
- lake_depth(1,1) = 0.0   ! no lake.
- land_frac(1,1) = -99.   ! based on ocn_frac, should be .25.
- slmsk(1,1) = -99.       ! should be zero (nint of land_frac)
+ lake_frac(1,1) = 0.0    ! No lake.
+ lake_depth(1,1) = 0.0   ! No lake.
+ land_frac(1,1) = -99.   ! Based on ocn_frac, should be .25.
+ slmsk(1,1) = -99.       ! Should be zero (nint of land_frac)
 
  call merge(lon, lat, binary_lake, lat2d, ocn_frac, &
             lake_frac, lake_depth, land_frac, slmsk)
@@ -41,163 +40,163 @@
  if ( abs(land_frac(1,1) - .25) > epsilon) stop 2
  if ( abs(slmsk(1,1) - 0.) > epsilon) stop 2
 
-! test point 2
+! Test point 2
+! No ocean. Some lake. Lake info retained.
 
-! No ocean. Some lake.
+ print*,'Test point 2.'
 
- binary_lake = 0
- lat2d(1,1) = 30.0
- ocn_frac(1,1) = 0.0
- lake_frac(1,1) = .75
- lake_depth(1,1) = 100.0
- land_frac(1,1) = -99.
- slmsk(1,1) = -99.
-
- call merge(lon, lat, binary_lake, lat2d, ocn_frac, &
-            lake_frac, lake_depth, land_frac, slmsk)
-
- print*,'test point 2 '
- print*,'ocn_frac ',ocn_frac(1,1)
- print*,'lake_frac ',lake_frac(1,1)
- print*,'lake_depth ',lake_depth(1,1)
- print*,'land_frac ',land_frac(1,1)
- print*,'slmsk ', slmsk(1,1)
-
-! test point 3
-
-! Some lake and some ocean. Ocean should dominate.
-
- binary_lake = 0
- lat2d(1,1) = 30.0
- ocn_frac(1,1) = .45
- lake_frac(1,1) = .75
- lake_depth(1,1) = 100.0
- land_frac(1,1) = -99.
- slmsk(1,1) = -99.
+ binary_lake = 0          ! Keep fractional lake.
+ lat2d(1,1) = 30.0        ! Point at 30N.
+ ocn_frac(1,1) = 0.0      ! 0 ocean/1 land.
+ lake_frac(1,1) = .75     ! Some lake.
+ lake_depth(1,1) = 100.0  ! Lake depth.
+ land_frac(1,1) = -99.    ! Should be .25
+ slmsk(1,1) = -99.        ! Should be zero (nint of land_frac).
 
  call merge(lon, lat, binary_lake, lat2d, ocn_frac, &
             lake_frac, lake_depth, land_frac, slmsk)
 
- print*,'test point 3 '
- print*,'ocn_frac ',ocn_frac(1,1)
- print*,'lake_frac ',lake_frac(1,1)
- print*,'lake_depth ',lake_depth(1,1)
- print*,'land_frac ',land_frac(1,1)
- print*,'slmsk ', slmsk(1,1)
+ if ( abs(lake_frac(1,1) - .75) > epsilon) stop 4
+ if ( abs(lake_depth(1,1) - 100.) > epsilon) stop 4
+ if ( abs(land_frac(1,1) - .25) > epsilon) stop 4
+ if ( abs(slmsk(1,1) - 0.) > epsilon) stop 4
 
-! test point 4
+! Test point 3
+! Some lake and some ocean. Ocean should dominate. Lake
+! should be removed.
 
-! No ocean. Some lake. Lake has a missing depth that should
-! be given a default value.
+ print*,'Test point 3.'
 
- binary_lake = 0
- lat2d(1,1) = 30.0
- ocn_frac(1,1) = 0.0
- lake_frac(1,1) = .75
- lake_depth(1,1) = -9.
- land_frac(1,1) = -99.
- slmsk(1,1) = -99.
+ binary_lake = 0           ! Keep fractional lake.
+ lat2d(1,1) = 30.0         ! Point at 30N.
+ ocn_frac(1,1) = .45       ! Some ocean.
+ lake_frac(1,1) = .75      ! Some lake.
+ lake_depth(1,1) = 100.0   ! Lake depth
+ land_frac(1,1) = -99.     ! Should be 1 minus ocn_frac
+ slmsk(1,1) = -99.         ! Should be 1 (nint of land_frac).
 
  call merge(lon, lat, binary_lake, lat2d, ocn_frac, &
             lake_frac, lake_depth, land_frac, slmsk)
 
- print*,'test point 4 '
- print*,'ocn_frac ',ocn_frac(1,1)
- print*,'lake_frac ',lake_frac(1,1)
- print*,'lake_depth ',lake_depth(1,1)
- print*,'land_frac ',land_frac(1,1)
- print*,'slmsk ', slmsk(1,1)
+ if ( abs(lake_frac(1,1) - 0.) > epsilon) stop 6
+ if ( abs(lake_depth(1,1) - 0.) > epsilon) stop 6
+ if ( abs(land_frac(1,1) - .55) > epsilon) stop 6
+ if ( abs(slmsk(1,1) - 1.) > epsilon) stop 6
+
+! Test point 4
+! No ocean. Some lake. Lake will be retainted. Lake has 
+! a missing depth that should be given a default value.
+
+ print*,'Test point 4.'
+
+ binary_lake = 0           ! Keep fractional lake.
+ lat2d(1,1) = 30.0         ! Point at 30N.
+ ocn_frac(1,1) = 0.0       ! No ocean.
+ lake_frac(1,1) = .75      ! Some lake.
+ lake_depth(1,1) = -9.     ! Lake depth is missing.
+ land_frac(1,1) = -99.     ! Should be 1 minus lake_frac
+ slmsk(1,1) = -99.         ! Should be 0 (nint of land_frac).
+
+ call merge(lon, lat, binary_lake, lat2d, ocn_frac, &
+            lake_frac, lake_depth, land_frac, slmsk)
+
+ if ( abs(lake_frac(1,1) - .75) > epsilon) stop 8
+ if ( abs(lake_depth(1,1) - 10.) > epsilon) stop 8
+ if ( abs(land_frac(1,1) - .25) > epsilon) stop 8
+ if ( abs(slmsk(1,1) - 0.) > epsilon) stop 8
 
 ! Test point 5
 ! Some ocean (but very small percentage). No lake. 
-! The ocean is removed and point becomes all land.
+! The ocean % is below the min threshold, so it will be
+! removed and the point becomes all land.
 
- binary_lake = 0
- lat2d(1,1) = 30.0
- ocn_frac(1,1) = 1.e-6
- lake_frac(1,1) = 0.0
- lake_depth(1,1) = 0.0
- land_frac(1,1) = -99.
- slmsk(1,1) = -99.
+ print*,'Test point 5.'
+
+ binary_lake = 0          ! Keep fractional lake.
+ lat2d(1,1) = 30.0        ! Point at 30N.
+ ocn_frac(1,1) = 1.e-6    ! Very small % of ocean.
+ lake_frac(1,1) = 0.0     ! No lake.
+ lake_depth(1,1) = 0.0    ! No lake.
+ land_frac(1,1) = -99.    ! Should be 1.
+ slmsk(1,1) = -99.        ! Should be 1.
 
  call merge(lon, lat, binary_lake, lat2d, ocn_frac, &
             lake_frac, lake_depth, land_frac, slmsk)
 
- print*,'test point 5 '
- print*,'ocn_frac ',ocn_frac(1,1)
- print*,'lake_frac ',lake_frac(1,1)
- print*,'lake_depth ',lake_depth(1,1)
- print*,'land_frac ',land_frac(1,1)
- print*,'slmsk ', slmsk(1,1)
+ if ( abs(lake_frac(1,1) - 0.) > epsilon) stop 10
+ if ( abs(lake_depth(1,1) - 0.) > epsilon) stop 10
+ if ( abs(land_frac(1,1) - 1.) > epsilon) stop 10
+ if ( abs(slmsk(1,1) - 1.) > epsilon) stop 10
 
 ! Test point 6
-! Some ocean (almost all ocean). Some lake.
-! The ocean is set to 1.0 and there is no land.
+! Almost all ocean. Some lake. Since the ocean %
+! is very close to 1, it will be rounded up to
+! exactly 1. Since ocean dominates, the lake
+! will be removed.
 
- binary_lake = 0
- lat2d(1,1) = 30.0
- ocn_frac(1,1) = 0.99999
- lake_frac(1,1) = 0.24
- lake_depth(1,1) = 50.0
- land_frac(1,1) = -99.
- slmsk(1,1) = -99.
+ print*,'Test point 6.'
 
- call merge(lon, lat, binary_lake, lat2d, ocn_frac, &
-            lake_frac, lake_depth, land_frac, slmsk)
-
- print*,'test point 6 '
- print*,'ocn_frac ',ocn_frac(1,1)
- print*,'lake_frac ',lake_frac(1,1)
- print*,'lake_depth ',lake_depth(1,1)
- print*,'land_frac ',land_frac(1,1)
- print*,'slmsk ', slmsk(1,1)
-
-! test point 7
-
-! No ocean. Some lake, but near Antarctica.
-! Lake to be removed.
-
- binary_lake = 0
- lat2d(1,1) = -70.0
- ocn_frac(1,1) = 0.0
- lake_frac(1,1) = .75
- lake_depth(1,1) = 100.0
- land_frac(1,1) = -99.
- slmsk(1,1) = -99.
+ binary_lake = 0           ! Keep fractional lake.
+ lat2d(1,1) = 30.0         ! Point at 30N
+ ocn_frac(1,1) = 0.99999   ! Very high % of ocean.
+ lake_frac(1,1) = 0.24     ! Some lake.
+ lake_depth(1,1) = 50.0    ! Lake depth.
+ land_frac(1,1) = -99.     ! Should be 0.
+ slmsk(1,1) = -99.         ! Should be 0.
 
  call merge(lon, lat, binary_lake, lat2d, ocn_frac, &
             lake_frac, lake_depth, land_frac, slmsk)
 
- print*,'test point 7 '
- print*,'ocn_frac ',ocn_frac(1,1)
- print*,'lake_frac ',lake_frac(1,1)
- print*,'lake_depth ',lake_depth(1,1)
- print*,'land_frac ',land_frac(1,1)
- print*,'slmsk ', slmsk(1,1)
+ if ( abs(lake_frac(1,1) - 0.) > epsilon) stop 12
+ if ( abs(lake_depth(1,1) - 0.) > epsilon) stop 12
+ if ( abs(land_frac(1,1) - 0.) > epsilon) stop 12
+ if ( abs(slmsk(1,1) - 0.) > epsilon) stop 12
 
-! test point 8
+! Test point 7
+! No ocean. Some lake, but it is near Antarctica.
+! Lakes near Antarctica are to be removed. Point
+! becomes all land.
 
+ print*,'Test point 7.'
+
+ binary_lake = 0           ! Keep fractional lake.
+ lat2d(1,1) = -70.0        ! Point at 70S.
+ ocn_frac(1,1) = 0.0       ! No ocean.
+ lake_frac(1,1) = .75      ! Some lake.
+ lake_depth(1,1) = 100.0   ! Lake depth.
+ land_frac(1,1) = -99.     ! Should be 1.
+ slmsk(1,1) = -99.         ! Should be 1.
+
+ call merge(lon, lat, binary_lake, lat2d, ocn_frac, &
+            lake_frac, lake_depth, land_frac, slmsk)
+
+ if ( abs(lake_frac(1,1) - 0.) > epsilon) stop 14
+ if ( abs(lake_depth(1,1) - 0.) > epsilon) stop 14
+ if ( abs(land_frac(1,1) - 1.) > epsilon) stop 14
+ if ( abs(slmsk(1,1) - 1.) > epsilon) stop 14
+
+! Test point 8
 ! No ocean. Some lake. Assume binary yes/no lake.
+! In this case, the lake fraction will become zero and
+! the land fraction will become 1.
 
- binary_lake = 1
- lat2d(1,1) = 30.0
- ocn_frac(1,1) = 0.0
- lake_frac(1,1) = .15
- lake_depth(1,1) = 100.0
- land_frac(1,1) = -99.
- slmsk(1,1) = -99.
+ print*,'Test point 8.'
+
+ binary_lake = 1           ! Keep fractional lake.
+ lat2d(1,1) = 30.0         ! Point at 30N.
+ ocn_frac(1,1) = 0.0       ! No ocean.
+ lake_frac(1,1) = .15      ! Less than 50% lake.
+ lake_depth(1,1) = 100.0   ! Lake depth.
+ land_frac(1,1) = -99.     ! Should be 1.
+ slmsk(1,1) = -99.         ! Should be 1.
 
  call merge(lon, lat, binary_lake, lat2d, ocn_frac, &
             lake_frac, lake_depth, land_frac, slmsk)
 
- print*,'test point 8 '
- print*,'ocn_frac ',ocn_frac(1,1)
- print*,'lake_frac ',lake_frac(1,1)
- print*,'lake_depth ',lake_depth(1,1)
- print*,'land_frac ',land_frac(1,1)
- print*,'slmsk ', slmsk(1,1)
-
-
+ if ( abs(lake_frac(1,1) - 0.) > epsilon) stop 16
+ if ( abs(lake_depth(1,1) - 0.) > epsilon) stop 16
+ if ( abs(land_frac(1,1) - 1.) > epsilon) stop 16
+ if ( abs(slmsk(1,1) - 1.) > epsilon) stop 16
 
  print*, "OK"
 

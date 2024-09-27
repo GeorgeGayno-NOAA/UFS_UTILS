@@ -18,4 +18,8 @@ execute_process( COMMAND ${CMAKE_COMMAND} -E copy
 add_executable(ftst_read_nml ftst_read_nml.F90)
 target_link_libraries(ftst_read_nml om_lib)
 
+add_executable(ftst_merge ftst_merge.F90)
+target_link_libraries(ftst_merge om_lib)
+
 add_test(NAME ocean_merge-ftst_read_nml COMMAND ftst_read_nml)
+add_test(NAME ocean_merge-ftst_merge COMMAND ftst_merge)

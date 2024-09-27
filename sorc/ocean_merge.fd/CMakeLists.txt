@@ -1,4 +1,4 @@
-set(lib_src utils.F90 namelist.F90)
+set(lib_src merge.F90 utils.F90 namelist.F90)
 set(exe_src merge_lake_ocnmsk.F90)
 
 if(CMAKE_Fortran_COMPILER_ID MATCHES "^(Intel)$")

@@ -9,7 +9,7 @@
  real, intent(in)           :: ocn_frac(lon,lat)
  real, intent(inout)        :: lake_frac(lon,lat)
  real, intent(inout)        :: lake_depth(lon,lat)
- real, intent(inout)        :: land_frac(lon,lat)
+ real, intent(out)          :: land_frac(lon,lat)
  real, intent(out)          :: slmsk(lon,lat)
 
  real, parameter            :: min_land=1.e-4, def_lakedp=10.

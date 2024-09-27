@@ -1,3 +1,21 @@
+!> Determine the water mask by merging the lake mask with the mapped ocean
+!! mask from MOM6. Both are on the FV3 grid. During merge, the ocean mask
+!! dominates the lake mask if there is a conflict. After the merge, the remaining
+!! non-water fraction is the land fraction.
+!! 
+!! @param[in] lon The "east/west" dimension of the model grid.
+!! @param[in] lat The "north/south" dimension of the model grid.
+!! @param[in] binary_lake When '1', lake fraction is either 0 or 1. Otherwise, it is a fraction.
+!! @param[in] lat2d Latitude of the model grid points.
+!! @param[in] ocn_frac Fraction of the grid point that is ocean.
+!! @param[inout] lake_frac Fraction of the grid point that is lake.
+!! @param[inout] lake_depth Lake depth.
+!! @param[out] land_frac Fraction of the grid point that is land.
+!! @param[out] slmsk Land/sea mask. '1' if less than 50% land. Otherwise, '1'.
+!!
+!! @author Shan Sun
+!! @author Rahul Mahajan
+!! @author Sanath Kumar
  subroutine merge(lon, lat, binary_lake, lat2d, ocn_frac, &
                   lake_frac, lake_depth, land_frac, slmsk)
 

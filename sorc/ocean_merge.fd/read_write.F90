@@ -1,3 +1,40 @@
+ subroutine read_lake_mask(pth2,atmres,tile,lon,lat,lake_frac, &
+                           lake_depth,lat2d)
+
+ use netcdf
+
+ implicit none
+
+ character(len=*), intent(in) :: pth2, atmres
+
+ integer, intent(in)          :: tile, lon, lat
+
+ real, intent(out)            :: lake_frac(lon,lat)
+ real, intent(out)            :: lake_depth(lon,lat)
+ real, intent(out)            :: lat2d(lon,lat)
+
+ character(len=250)           :: flnm
+
+ integer                      :: ncid, ndims, nvars, natts
+ integer                      :: v2id, v3id, vlat
+ integer                      :: start(2), count(2)
+
+ write(flnm,'(4a,i1,a)') trim(pth2),'oro.',trim(atmres),'.tile',tile,'.nc'
+ print *,' flnm2=',trim(flnm)
+ call handle_err (nf90_open (flnm, NF90_NOWRITE, ncid))
+ call handle_err (nf90_inquire (ncid, ndimensions=ndims, nvariables=nvars, nattributes=natts))
+ write(6,*) 'flnm_lake=',flnm,' ncid=',ncid, ' ndims=',ndims, 'nvars=',nvars,' natts=',natts
+ call handle_err (nf90_inq_varid(ncid, 'lake_frac', v2id))
+ call handle_err (nf90_inq_varid(ncid, 'lake_depth',v3id))
+ call handle_err (nf90_inq_varid(ncid, 'geolat'    ,vlat))
+ start(1:2) = (/1,1/)
+ count(1:2) = (/lon,lat/)
+ call handle_err (nf90_get_var (ncid, v2id, lake_frac, start=start, count=count))
+ call handle_err (nf90_get_var (ncid, v3id, lake_depth,start=start, count=count))
+ call handle_err (nf90_get_var (ncid, vlat, lat2d,     start=start, count=count))
+ call handle_err (nf90_close (ncid))
+
+ end subroutine read_lake_mask
 !> Write the merged data to a NetCDF file. Each tile is in
 !! its own file.
 !!

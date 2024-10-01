@@ -29,8 +29,7 @@ program merge_lake_ocnmsk
   integer :: binary_lake
 
   character(len=250) :: flnm
-  integer :: ncid,ndims,nvars,natts,lat,lon,v1id,v2id,v3id,start(2),count(2),latid,lonid,tile
-  integer :: vlat
+  integer :: ncid,ndims,nvars,natts,lat,lon,v1id,start(2),count(2),latid,lonid,tile
   real, allocatable :: lake_frac(:,:),lake_depth(:,:),land_frac(:,:),ocn_frac(:,:),slmsk(:,:),lat2d(:,:)
 
   call read_nml(pth1, pth2, atmres, ocnres, pth3,binary_lake)
@@ -55,17 +54,8 @@ program merge_lake_ocnmsk
     call handle_err (nf90_inq_varid(ncid, 'land_frac', v1id))
     call handle_err (nf90_get_var (ncid, v1id, ocn_frac, start=start, count=count))
 
-    write(flnm,'(4a,i1,a)') trim(pth2),'oro.',trim(atmres),'.tile',tile,'.nc'
-    print *,' flnm2=',trim(flnm)
-    call handle_err (nf90_open (flnm, NF90_NOWRITE, ncid))
-    call handle_err (nf90_inquire (ncid, ndimensions=ndims, nvariables=nvars, nattributes=natts))
-    write(6,*) 'flnm_lake=',flnm,' ncid=',ncid, ' ndims=',ndims, 'nvars=',nvars,' natts=',natts
-    call handle_err (nf90_inq_varid(ncid, 'lake_frac', v2id))
-    call handle_err (nf90_inq_varid(ncid, 'lake_depth',v3id))
-    call handle_err (nf90_inq_varid(ncid, 'geolat'    ,vlat))
-    call handle_err (nf90_get_var (ncid, v2id, lake_frac, start=start, count=count))
-    call handle_err (nf90_get_var (ncid, v3id, lake_depth,start=start, count=count))
-    call handle_err (nf90_get_var (ncid, vlat, lat2d,     start=start, count=count))
+    call read_lake_mask(pth2,atmres,tile,lon,lat,lake_frac, &
+                        lake_depth,lat2d)
 
     call merge(lon, lat, binary_lake, lat2d, ocn_frac, lake_frac, lake_depth, land_frac, slmsk)
 

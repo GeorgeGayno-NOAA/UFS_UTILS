@@ -29,7 +29,7 @@ program merge_lake_ocnmsk
   integer :: binary_lake
 
   character(len=250) :: flnm
-  integer :: ncid,ndims,nvars,natts,lat,lon,v1id,v2id,v3id,v4id,start(2),count(2),latid,lonid,ncid4, dims(2),tile
+  integer :: ncid,ndims,nvars,natts,lat,lon,v1id,v2id,v3id,start(2),count(2),latid,lonid,tile
   integer :: vlat
   real, allocatable :: lake_frac(:,:),lake_depth(:,:),land_frac(:,:),ocn_frac(:,:),slmsk(:,:),lat2d(:,:)
 
@@ -69,25 +69,8 @@ program merge_lake_ocnmsk
 
     call merge(lon, lat, binary_lake, lat2d, ocn_frac, lake_frac, lake_depth, land_frac, slmsk)
 
-    write(flnm,'(4a,i1,a)') trim(atmres),'.',trim(ocnres),'.tile',tile,'.nc'
-    print *,'output=',trim(flnm)
-    call handle_err (nf90_create (path=trim(pth3)//trim(flnm), &
-    cmode=or(NF90_CLOBBER, NF90_64BIT_OFFSET), ncid=ncid4))   ! netcdf3
-
-    call handle_err (nf90_def_dim (ncid4,'lon', lon, dims(1)))
-    call handle_err (nf90_def_dim (ncid4,'lat', lat, dims(2)))
-    call handle_err (nf90_def_var (ncid4,'land_frac', nf90_float, dims(1:2), v1id))
-    call handle_err (nf90_def_var (ncid4,'lake_frac', nf90_float, dims(1:2), v2id))
-    call handle_err (nf90_def_var (ncid4,'lake_depth',nf90_float, dims(1:2), v3id))
-    call handle_err (nf90_def_var (ncid4,'slmsk',     nf90_float, dims(1:2), v4id))
-
-    call handle_err (nf90_enddef  (ncid4))
-
-    call handle_err (nf90_put_var (ncid4, v1id,land_frac))
-    call handle_err (nf90_put_var (ncid4, v2id,lake_frac))
-    call handle_err (nf90_put_var (ncid4, v3id,lake_depth))
-    call handle_err (nf90_put_var (ncid4, v4id,slmsk))
-    call handle_err (nf90_close(ncid4))
+    call write_data(atmres,ocnres,pth3,tile,lon,lat,land_frac, &
+                    lake_frac,lake_depth,slmsk)
 
   end do ! tile
 

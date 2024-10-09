@@ -15,11 +15,18 @@ endif()
 execute_process( COMMAND ${CMAKE_COMMAND} -E copy
     ${CMAKE_CURRENT_SOURCE_DIR}/data/input.nml ${CMAKE_CURRENT_BINARY_DIR}/input.nml)
 
+execute_process( COMMAND ${CMAKE_COMMAND} -E copy
+    ${CMAKE_CURRENT_SOURCE_DIR}/data/oro.C48.tile1.nc ${CMAKE_CURRENT_BINARY_DIR}/oro.C48.tile1.nc)
+
 add_executable(ftst_read_nml ftst_read_nml.F90)
 target_link_libraries(ftst_read_nml om_lib)
 
 add_executable(ftst_merge ftst_merge.F90)
 target_link_libraries(ftst_merge om_lib)
 
+add_executable(ftst_read_lake_mask ftst_read_lake_mask.F90)
+target_link_libraries(ftst_read_lake_mask om_lib)
+
 add_test(NAME ocean_merge-ftst_read_nml COMMAND ftst_read_nml)
 add_test(NAME ocean_merge-ftst_merge COMMAND ftst_merge)
+add_test(NAME ocean_merge-ftst_read_lake_mask COMMAND ftst_read_lake_mask)

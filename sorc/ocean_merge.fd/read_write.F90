@@ -1,3 +1,37 @@
+ subroutine read_grid_dims(pth1, atmres, ocnres, tile, lon, lat)
+
+ use netcdf
+
+ implicit none
+
+ character(len=*), intent(in)   :: pth1
+ character(len=*), intent(in)   :: atmres
+ character(len=*), intent(in)   :: ocnres
+
+ integer, intent(in)            :: tile
+ integer, intent(out)           :: lon, lat
+
+ character(len=250)             :: flnm
+
+ integer                        :: ncid, ndims, nvars, natts
+ integer                        :: latid, lonid
+
+ write(flnm,'(5a,i1,a)') trim(pth1),trim(atmres),'.',trim(ocnres),'.tile',tile,'.nc'
+
+ call handle_err (nf90_open (flnm, NF90_NOWRITE, ncid))
+ call handle_err (nf90_inquire (ncid, ndimensions=ndims, nvariables=nvars, nattributes=natts))
+ call handle_err (nf90_inquire (ncid, ndimensions=ndims, nvariables=nvars, nattributes=natts))
+ write(6,*) 'flnm_ocn=',flnm,' ncid=',ncid, ' ndims=',ndims, 'nvars=',nvars,' natts=',natts
+ call handle_err (nf90_inq_dimid (ncid, 'grid_xt', latid))  ! RM: lon is no longer in this file; try grid_xt
+ call handle_err (nf90_inq_dimid (ncid, 'grid_yt', lonid))  ! RM: lat is no longer in this file; try grid_yt
+ call handle_err (nf90_inquire_dimension (ncid, latid, len=lat))
+ call handle_err (nf90_inquire_dimension (ncid, lonid, len=lon))
+ call handle_err (nf90_close (ncid))
+
+ print*,'- in new routine ',lon, lat
+
+ end subroutine read_grid_dims
+
  subroutine read_lake_mask(pth2,atmres,tile,lon,lat,lake_frac, &
                            lake_depth,lat2d)
 

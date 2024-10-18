@@ -29,7 +29,7 @@ program merge_lake_ocnmsk
   integer :: binary_lake
 
   character(len=250) :: flnm
-  integer :: ncid,ndims,nvars,natts,lat,lon,v1id,start(2),count(2),latid,lonid,tile
+  integer :: ncid,lat,lon,v1id,start(2),count(2),tile
   real, allocatable :: lake_frac(:,:),lake_depth(:,:),land_frac(:,:),ocn_frac(:,:),slmsk(:,:),lat2d(:,:)
 
   call read_nml(pth1, pth2, atmres, ocnres, pth3,binary_lake)
@@ -37,14 +37,10 @@ program merge_lake_ocnmsk
   print *, pth1
 
   do tile=1,6
+    call read_grid_dims(pth1, atmres, ocnres, tile, lon, lat)
+
     write(flnm,'(5a,i1,a)') trim(pth1),trim(atmres),'.',trim(ocnres),'.tile',tile,'.nc'
     call handle_err (nf90_open (flnm, NF90_NOWRITE, ncid))
-    call handle_err (nf90_inquire (ncid, ndimensions=ndims, nvariables=nvars, nattributes=natts))
-    write(6,*) 'flnm_ocn=',flnm,' ncid=',ncid, ' ndims=',ndims, 'nvars=',nvars,' natts=',natts
-    call handle_err (nf90_inq_dimid (ncid, 'grid_xt', latid))  ! RM: lon is no longer in this file; try grid_xt
-    call handle_err (nf90_inq_dimid (ncid, 'grid_yt', lonid))  ! RM: lat is no longer in this file; try grid_tyt
-    call handle_err (nf90_inquire_dimension (ncid, latid, len=lat))
-    call handle_err (nf90_inquire_dimension (ncid, lonid, len=lon))
     if (tile==1) then
       write(6,*) 'lat=',lat,'lon=',lon
       allocate (lake_frac(lon,lat),lake_depth(lon,lat),land_frac(lon,lat),ocn_frac(lon,lat),slmsk(lon,lat),lat2d(lon,lat))

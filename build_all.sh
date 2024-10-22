@@ -19,7 +19,7 @@ source "${DIR_ROOT}/sorc/machine-setup.sh"
 
 # User Options
 target=${target:-"NULL"}
-compiler=${compiler:-"intel"}
+compiler=${compiler:-"intelllvm"}
 
 if [[ "$target" == "linux.*" || "$target" == "macosx.*" ]]; then
   unset -f module

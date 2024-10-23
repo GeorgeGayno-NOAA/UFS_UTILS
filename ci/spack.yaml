@@ -12,7 +12,6 @@ spack:
   - nemsio@2.5.4
   - sp@2.5.0
   - w3emc@2.10.0
-  - sfcio@1.4.1
   - sigio@2.3.3
   - nccmp@1.9.0.1
   - parallelio@2.5.10+fortran~pnetcdf
